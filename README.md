@@ -1,6 +1,6 @@
 # devfund-h
 
-[![Build status](https://travis-ci.org/MinionsGroup/devfund-h.svg?branch=develop)](https://travis-ci.org/MinionsGroup/devfund-h) 
+[![Build status](https://travis-ci.com/MinionsGroup/devfund-h.svg?branch=develop)](https://travis-ci.com/MinionsGroup/devfund-h) 
 
 [![Code Coverage](https://img.shields.io/codecov/c/github/MinionsGroup/devfund-h/develop.svg)](https://codecov.io/github/MinionsGroup/devfund-h?branch=develop)
 
