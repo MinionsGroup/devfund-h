@@ -1,4 +1,4 @@
-# coding
+# devfund-h
 
 [![Build status](https://travis-ci.org/MinionsGroup/devfund-h.svg?branch=develop)](https://travis-ci.org/MinionsGroup/devfund-h) 
 
