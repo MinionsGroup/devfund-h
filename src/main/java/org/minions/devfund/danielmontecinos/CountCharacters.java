@@ -1,4 +1,4 @@
-package org.minions.devfund.danielMontecinos;
+package org.minions.devfund.danielmontecinos;
 
 import java.util.function.Predicate;
 import java.util.stream.Stream;
