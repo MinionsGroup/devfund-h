@@ -6,6 +6,8 @@ import java.util.Arrays;
  * Class simulates WhackAMoles game.
  */
 public class WhackAMole {
+    private static final String SPACE = " ";
+    private static final String NEW_LINE = "\n";
     private static final char MOLE = 'M';
     private static final char NO_MOLE = '*';
     private static final char WHACKED = 'W';
@@ -96,9 +98,9 @@ public class WhackAMole {
         for (char[] row : moleGrid) {
             for (char place : row) {
                 char currentPlace = place == WHACKED ? WHACKED : NO_MOLE;
-                userGrid.append(String.valueOf(currentPlace).concat(" "));
+                userGrid.append(String.valueOf(currentPlace)).append(SPACE);
             }
-            userGrid.append("\n");
+            userGrid.append(NEW_LINE);
         }
         return userGrid.toString();
     }
@@ -112,9 +114,9 @@ public class WhackAMole {
         StringBuilder gridBuilder = new StringBuilder();
         for (char[] row : moleGrid) {
             for (char value : row) {
-                gridBuilder.append(String.valueOf(value)).append(" ");
+                gridBuilder.append(String.valueOf(value)).append(SPACE);
             }
-            gridBuilder.append("\n");
+            gridBuilder.append(NEW_LINE);
         }
         return gridBuilder.toString();
     }
