@@ -67,18 +67,6 @@ public class WhackAMoleTest {
     }
 
     /**
-     * update the Place mole in row and column that is already taken test.
-     */
-    @Test
-    public void testUpdateThePlaceMoleWithCharacterM() {
-        final int postX = 1;
-        final int postY = 1;
-
-        whackAMole.createTheMoleGrid();
-        assertTrue(whackAMole.place(postX, postY));
-    }
-
-    /**
      * Whack a place that contains a mole test.
      */
     @Test
