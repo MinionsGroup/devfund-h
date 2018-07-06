@@ -1,7 +1,6 @@
-package org.minions.devfund.Marylin;
+package org.minions.devfund.marylin;
 
 import org.junit.Test;
-import org.minions.devfund.marylin.CC;
 
 import static org.junit.Assert.assertEquals;
 
