@@ -1,6 +1,5 @@
 package org.minions.devfund;
 
-import java.util.*;
 
 /**
  * Solution for "count the characters" kata.
