@@ -1,4 +1,4 @@
-package org.minions.devfund.carlos_orellana;
+package org.minions.devfund.carlosorellana;
 
 /**
  * The goal is count the number of characters appears in a string.
