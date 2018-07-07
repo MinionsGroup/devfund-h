@@ -1,4 +1,4 @@
-package org.minions.devfund.noemi_guzman;
+package org.minions.devfund.noemiguzman;
 
 import org.junit.Test;
 

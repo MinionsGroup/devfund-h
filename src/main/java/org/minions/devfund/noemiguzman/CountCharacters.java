@@ -1,4 +1,4 @@
-package org.minions.devfund.noemi_guzman;
+package org.minions.devfund.noemiguzman;
 
 /**
  *  Kata solution Count the Characters.
