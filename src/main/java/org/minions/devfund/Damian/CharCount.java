@@ -1,4 +1,4 @@
-package org.minions.devfund.Damian;
+package org.minions.devfund.damian;
 
 import java.util.regex.Pattern;
 
