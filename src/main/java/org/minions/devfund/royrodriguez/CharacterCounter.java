@@ -14,9 +14,8 @@ public class CharacterCounter {
      * @return number of characters found.
      */
     public int charCount(final String str, final char c) {
-        return (int) str
-                .chars().mapToObj(i -> (char) i)
-                .filter(i -> i.toString().equalsIgnoreCase(String.valueOf(c)))
+        return (int) str.toLowerCase()
+                .chars().filter(i -> i== Character.toLowerCase(c))
                 .count();
     }
 }
