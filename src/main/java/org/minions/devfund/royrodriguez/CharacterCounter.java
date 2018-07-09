@@ -15,7 +15,7 @@ public class CharacterCounter {
      */
     public int charCount(final String str, final char c) {
         return (int) str.toLowerCase()
-                .chars().filter(i -> i== Character.toLowerCase(c))
+                .chars().filter(i -> i == Character.toLowerCase(c))
                 .count();
     }
 }
