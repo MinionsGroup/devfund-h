@@ -106,7 +106,7 @@ public class WhackAMole {
     }
 
     /**
-     * Prints moleGris on console.
+     * Prints moleGrid on console.
      *
      * @return grid that displays moles position.
      */
