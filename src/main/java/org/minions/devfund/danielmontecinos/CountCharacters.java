@@ -6,13 +6,6 @@ package org.minions.devfund.danielmontecinos;
 public final class CountCharacters {
 
     /**
-     * Constructor.
-     */
-    public CountCharacters() {
-        // Do nothing.
-    }
-
-    /**
      * Counts the how many times char "c" appears on str.
      *
      * @param str as String.
