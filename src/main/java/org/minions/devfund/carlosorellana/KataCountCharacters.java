@@ -18,9 +18,11 @@ public class KataCountCharacters {
     public int countCharacteres(final String sentence, final char charToCount) {
         int count = 0;
 
+        int numericValue = Character.getNumericValue(charToCount);
+
         for (int i = 0; i < sentence.length(); i++) {
 
-            if (sentence.charAt(i) != charToCount) {
+            if (Character.getNumericValue(sentence.charAt(i)) != numericValue) {
                 continue;
             }
             count++;
