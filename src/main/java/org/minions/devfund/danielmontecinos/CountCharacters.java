@@ -1,18 +1,14 @@
 package org.minions.devfund.danielmontecinos;
 
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-
 /**
  * My solution for kata https://www.codewars.com/kata/count-the-characters/.
  */
 public final class CountCharacters {
-    private static final String EMPTY_STRING = "";
 
     /**
-     * Private constructor.
+     * Constructor.
      */
-    private CountCharacters() {
+    public CountCharacters() {
     }
 
     /**
@@ -22,8 +18,9 @@ public final class CountCharacters {
      * @param c   as char.
      * @return times "c" appears on str.
      */
-    public static int charCount(final String str, final char c) {
-        Predicate<String> ifCharacterMatch = chr -> chr.equalsIgnoreCase(String.valueOf(c));
-        return (int) Stream.of(str.split(EMPTY_STRING)).filter(ifCharacterMatch).count();
+    public int charCount(final String str, final char c) {
+        return (int) str.toLowerCase().chars()
+                .filter(chr -> chr == Character.toLowerCase(c))
+                .count();
     }
 }
