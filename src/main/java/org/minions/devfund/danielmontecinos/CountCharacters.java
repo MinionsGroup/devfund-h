@@ -9,6 +9,7 @@ public final class CountCharacters {
      * Constructor.
      */
     public CountCharacters() {
+        // Do nothing.
     }
 
     /**
