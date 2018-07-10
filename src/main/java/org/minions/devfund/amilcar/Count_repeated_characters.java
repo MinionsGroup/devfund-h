@@ -1,4 +1,4 @@
-package org.minions.devfund;
+package org.minions.devfund.amilcar;
 
 public class Count_repeated_characters {
         //
