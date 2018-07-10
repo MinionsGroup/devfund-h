@@ -18,8 +18,10 @@ public final class CountCharacters {
      * @return (int) This returns the number of repetitions.
      */
     public static int countChar(final String str, final char c) {
-        return (int) str.chars().mapToObj(value -> (char) value)
-                .filter(myChar -> Character.toString(myChar).equalsIgnoreCase(Character.toString(c)))
+        return (int) str
+                .toLowerCase()
+                .chars()
+                .filter(myChar -> myChar == Character.toLowerCase(c))
                 .count();
     }
 }
