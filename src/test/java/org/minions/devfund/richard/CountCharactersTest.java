@@ -19,5 +19,7 @@ public class CountCharactersTest {
 
         assertEquals(expectedFour, CountCharacters.countChar("fizzbuzz", 'z'));
         assertEquals(expectedFive, CountCharacters.countChar("Fancy fifth fly aloof", 'f'));
+        assertEquals(expectedFour, CountCharacters.countChar("fizzbuzz", 'Z'));
+        assertEquals(expectedFive, CountCharacters.countChar("Fancy fifth fly aloof", 'F'));
     }
 }
