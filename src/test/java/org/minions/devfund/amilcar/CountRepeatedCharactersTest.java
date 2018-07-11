@@ -12,9 +12,9 @@ public class CountRepeatedCharactersTest {
      */
     @Test
     public void testCountRepeatedCharacters() {
-        Assert.assertEquals(ConstantNumbers.FOUR, CountRepeatedCharacters.charCount("fizzbuzz", 'z'));
-        Assert.assertEquals(ConstantNumbers.FOUR, CountRepeatedCharacters.charCount("FIZZBUZZ", 'z'));
-        Assert.assertEquals(ConstantNumbers.EIGHT, CountRepeatedCharacters.charCount("fizzbuzz FIZZBUZZ", 'z'));
-        Assert.assertNotEquals(ConstantNumbers.TWO, CountRepeatedCharacters.charCount("fizzbuzz FIZZBUZZ", 'z'));
+        Assert.assertEquals(CountRepeatedCharacters.FOUR, CountRepeatedCharacters.charCount("fizzbuzz", 'z'));
+        Assert.assertEquals(CountRepeatedCharacters.FOUR, CountRepeatedCharacters.charCount("FIZZBUZZ", 'z'));
+        Assert.assertEquals(CountRepeatedCharacters.EIGHT, CountRepeatedCharacters.charCount("fizzbuzz FIZZBUZZ", 'z'));
+        Assert.assertNotEquals(CountRepeatedCharacters.TWO, CountRepeatedCharacters.charCount("fizzbuzz FIZZBUZZ", 'z'));
     }
 }

@@ -4,6 +4,17 @@ package org.minions.devfund.amilcar;
  * Class about count repeated character inside a string.
  */
 public final class CountRepeatedCharacters {
+
+    /**
+     * @param FOUR represent the 8 value.
+     * @param EIGHT represent the 8 value.
+     * @param TWO represent the 2 value.
+     */
+
+    public static final int FOUR = 4;
+    public static final int EIGHT = 8;
+    public static final int TWO = 2;
+
     /**
      * This is the private constructor.
      */
