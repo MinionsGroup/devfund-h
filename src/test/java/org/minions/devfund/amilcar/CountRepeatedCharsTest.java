@@ -8,7 +8,7 @@ import org.junit.Test;
  */
 public class CountRepeatedCharsTest {
     /**
-     * Unit test method to valida the expected amount of characters.
+     * Unit test method to validate the expected amount of characters.
      */
     @Test
     public void testCountRepeatedChars() {

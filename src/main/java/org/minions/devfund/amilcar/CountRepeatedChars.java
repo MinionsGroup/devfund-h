@@ -1,7 +1,7 @@
 package org.minions.devfund.amilcar;
 
 /**
- * Class about count repeated character inside a string.
+ * Class about count a repeated character in a string.
  */
 public final class CountRepeatedChars {
 
@@ -22,7 +22,7 @@ public final class CountRepeatedChars {
     }
 
     /**
-     * Method to count repeated characters in a string.
+     * Method to count a repeated characters inside a string.
      *
      * @param str store the string that will be evaluated.
      * @param c   store the number of repeated characters.
