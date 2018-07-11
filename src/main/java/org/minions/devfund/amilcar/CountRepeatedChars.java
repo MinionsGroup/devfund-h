@@ -3,7 +3,7 @@ package org.minions.devfund.amilcar;
 /**
  * Class about count repeated character inside a string.
  */
-public final class CountRepeatedCharacters {
+public final class CountRepeatedChars {
 
     /**
      * @param FOUR represent the 8 value.
@@ -19,7 +19,7 @@ public final class CountRepeatedCharacters {
      * This is the private constructor.
      */
 
-    private CountRepeatedCharacters() {
+    private CountRepeatedChars() {
 
     }
 
