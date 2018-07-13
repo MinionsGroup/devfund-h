@@ -11,9 +11,8 @@ import static org.junit.Assert.assertFalse;
  * Class to run unit test against WhackAMole.java class.
  */
 public class WhackAMoleTest {
-    WhackAMole whackAMole;
-    char[][] expectedMoleGrid;
-    char[][] expectedMoleGridPlacedMole;
+    private WhackAMole whackAMole;
+    private char[][] expectedMoleGrid;
 
     @Before
     public void setUp() {
