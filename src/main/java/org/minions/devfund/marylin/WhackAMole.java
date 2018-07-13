@@ -3,6 +3,7 @@ package org.minions.devfund.marylin;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -75,7 +76,7 @@ public final class WhackAMole {
                     strBuilderRow.append("  ");
                 }
             }
-            LOGGER.info(strBuilderRow.toString());
+            LOGGER.fine(strBuilderRow.toString());
         }
     }
 
@@ -90,7 +91,7 @@ public final class WhackAMole {
                 strBuilderRow.append(charItem);
                 strBuilderRow.append("  ");
             }
-            LOGGER.info(strBuilderRow.toString());
+            LOGGER.fine(strBuilderRow.toString());
         }
     }
 
@@ -126,7 +127,7 @@ public final class WhackAMole {
                 strBuilderMessage.append(",");
                 strBuilderMessage.append(y);
             }
-            LOGGER.info(strBuilderMessage.toString());
+            LOGGER.fine(strBuilderMessage.toString());
         }
 
         //Try to whack 50 times the moles given the x and y
@@ -135,7 +136,7 @@ public final class WhackAMole {
 
         LOGGER.info("-------------------------------------");
         whackAMole.printGrid();
-        LOGGER.info("-----You have a maximum of " + numAttemps + " attempts to get all the moles wacked-----");
+        LOGGER.log(Level.INFO, "-----You have a maximum of {0} attempts to get all the moles wacked-----", numAttemps);
 
         int xAxis;
         int yAxis;
@@ -143,30 +144,30 @@ public final class WhackAMole {
         Scanner yScanner;
         for (int i = numAttemps; i > 0; i--) {
             xScanner = new Scanner(System.in);
-            LOGGER.info("Enter the x coordinates: ");
+            LOGGER.fine("Enter the x coordinates: ");
             xAxis = xScanner.nextInt();
 
             yScanner = new Scanner(System.in);
-            LOGGER.info("Enter the y coordinates: ");
+            LOGGER.fine("Enter the y coordinates: ");
             yAxis = yScanner.nextInt();
 
             if (xAxis == -1 || yAxis == -1) {
-                LOGGER.info("Giving up!!");
+                LOGGER.fine("Giving up!!");
                 whackAMole.printGrid();
                 break;
             } else {
-                LOGGER.info("State of Game");
+                LOGGER.fine("State of Game");
                 whackAMole.whack(xAxis, yAxis);
                 whackAMole.printGridToUser();
             }
 
             if (whackAMole.molesLeft == 0) {
-                LOGGER.info("All moles were whacked with score: " + whackAMole.score);
+                LOGGER.log(Level.INFO, "All moles were whacked with score: {0}", whackAMole.score);
                 break;
             }
 
             if (whackAMole.attemptsLeft == 0) {
-                LOGGER.info("There are no more attemps with score: " + whackAMole.score);
+                LOGGER.log(Level.INFO, "There are no more attemps with score: {0}", whackAMole.score);
                 break;
             }
         }
