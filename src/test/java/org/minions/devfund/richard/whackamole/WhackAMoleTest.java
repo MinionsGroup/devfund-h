@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class WhackAMoleTest {
 
+    private static final int ONE_NE = -1;
     private static final int ONE = 1;
     private static final int THREE = 3;
     private static final int FIVE = 5;
@@ -47,7 +48,27 @@ public class WhackAMoleTest {
      *
      */
     @Test
-    public void testWhackMethod() {
+    public void testNegativePlaceMethod() {
+        WhackAMole myWhackAMole = new WhackAMole(FIVE, FIVE);
+        myWhackAMole.place(FIVE, FIVE);
+        myWhackAMole.place(FIVE, ONE);
+        myWhackAMole.place(ONE, FIVE);
+        myWhackAMole.place(ONE_NE, ONE);
+        myWhackAMole.place(ONE, ONE_NE);
+        myWhackAMole.place(ONE_NE, ONE_NE);
+        String expectedResult = GRID
+                + GRID
+                + GRID
+                + GRID
+                + GRID;
+        assertEquals(expectedResult, myWhackAMole.printGrid());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testWhackMethodOne() {
         WhackAMole myWhackAMole = new WhackAMole(FIVE, FIVE);
         myWhackAMole.place(THREE, THREE);
         myWhackAMole.whack(THREE, THREE);
@@ -55,6 +76,41 @@ public class WhackAMoleTest {
                 + GRID
                 + GRID
                 + "* * * W * "
+                + GRID;
+        assertEquals(expectedResult, myWhackAMole.printGrid());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testWhackMethodTwo() {
+        WhackAMole myWhackAMole = new WhackAMole(FIVE, FIVE);
+        myWhackAMole.place(THREE, THREE);
+        myWhackAMole.whack(ONE, ONE);
+        String expectedResult = GRID
+                + GRID
+                + GRID
+                + "* * * M * "
+                + GRID;
+        assertEquals(expectedResult, myWhackAMole.printGrid());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testNegativeWhackMethod() {
+        WhackAMole myWhackAMole = new WhackAMole(FIVE, FIVE);
+        myWhackAMole.whack(FIVE, FIVE);
+        myWhackAMole.whack(FIVE, ONE);
+        myWhackAMole.whack(ONE, FIVE);
+        myWhackAMole.whack(ONE_NE, FIVE);
+        myWhackAMole.whack(ONE_NE, ONE_NE);
+        String expectedResult = GRID
+                + GRID
+                + GRID
+                + GRID
                 + GRID;
         assertEquals(expectedResult, myWhackAMole.printGrid());
     }
