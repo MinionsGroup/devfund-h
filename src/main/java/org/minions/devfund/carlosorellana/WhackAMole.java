@@ -45,12 +45,11 @@ public class WhackAMole {
      * @param y - Y positions.
      * @return True if the position is correct, otherwise false.
      */
-    public boolean place(final int x, final int y ){
-
+    public boolean place(final int x, final int y) {
         int xPosition = x - 1;
         int yPosition = y - 1;
 
-        if(isCorrectPosition(xPosition, yPosition) && moleGrid[xPosition][yPosition] != MOLE_CHAR) {
+        if (isCorrectPosition(xPosition, yPosition) && moleGrid[xPosition][yPosition] != MOLE_CHAR) {
             moleGrid[xPosition][yPosition] = MOLE_CHAR;
             molesLeft++;
             return true;
@@ -64,7 +63,7 @@ public class WhackAMole {
      *
      * @param x - X position.
      * @param y - Y position.
-     * @return
+     * @return True fi the position is correct in the grid, otherwise false.
      */
     private boolean isCorrectPosition(final int x, final int y) {
         return x >= 0 && x < moleGrid.length && y >= 0 && y < moleGrid.length;
@@ -76,12 +75,11 @@ public class WhackAMole {
      * @param x - X position.
      * @param y - Y positions.
      */
-    public void whack(final int x, final int y){
-
+    public void whack(final int x, final int y) {
         int xPosition = x - 1;
         int yPosition = y - 1;
 
-        if(attemptsLeft > 0) {
+        if (attemptsLeft > 0) {
             if (isCorrectPosition(xPosition, yPosition) && moleGrid[xPosition][yPosition] == MOLE_CHAR) {
                 moleGrid[xPosition][yPosition] = WHACKED_CHAR;
                 score++;
@@ -97,8 +95,10 @@ public class WhackAMole {
 
     /**
      * Prints the Grid to User.
+     *
+     * @return String value.
      */
-    public void printGridToUser(){
+    public String printGridToUser() {
         StringBuilder gridToUser = new StringBuilder();
 
         for (char[] row : moleGrid) {
@@ -108,12 +108,16 @@ public class WhackAMole {
                 }
             gridToUser.append(NEW_LINE);
             }
+
+        return gridToUser.toString();
     }
 
     /**
      * Prints the Grid initial.
+     *
+     * @return String value.
      */
-    public void printGrid(){
+    public String printGrid() {
         StringBuilder gridBuilder = new StringBuilder();
 
         for (char[] row : moleGrid) {
@@ -122,6 +126,8 @@ public class WhackAMole {
                 }
             gridBuilder.append(NEW_LINE);
             }
+
+        return gridBuilder.toString();
     }
 
     /**

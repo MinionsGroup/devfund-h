@@ -3,7 +3,10 @@ package org.minions.devfund.carlosorellana;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 
 /**
  * The goal is test the WhackAMole.
@@ -22,7 +25,7 @@ public class WhackAMoleTest {
      */
     @Before
     public void setUp() {
-        whackAMole = new WhackAMole(NUM_ATTEMPTS,GRID_DIMENSION);
+        whackAMole = new WhackAMole(NUM_ATTEMPTS, GRID_DIMENSION);
     }
 
     /**
@@ -30,7 +33,7 @@ public class WhackAMoleTest {
      */
     @Test
     public void validateScoreBeforeGame() {
-        int expectedScore = 0;
+        final int expectedScore = 0;
         assertEquals(expectedScore, whackAMole.getScore());
     }
 
@@ -47,40 +50,36 @@ public class WhackAMoleTest {
      */
     @Test
     public void validateMolesLeft() {
-        int xPos = 7;
-        int yPos = 9;
-        int expectedResult = 49;
+        final int xPos = 7;
+        final int yPos = 9;
+        final int expectedResult = 49;
         whackAMole.whack(xPos, yPos);
         assertEquals(expectedResult, whackAMole.getAttemptsLeft());
     }
 
     /**
-     * Validate Score when One mole is found in Maximum Position
+     * Validate Score when One mole is found in Maximum Position.
      */
     @Test
     public void validateGetScoreWhenOneMoleIsFoundMaximum() {
-        int xPos = 10;
-        int yPos = 10;
-        int expectedResult = 1;
+        final int xPos = 10;
+        final int yPos = 10;
+        final int expectedResult = 1;
         whackAMole.place(xPos, yPos);
-        whackAMole.printGrid();
         whackAMole.whack(xPos, yPos);
-        whackAMole.printGridToUser();
         assertEquals(expectedResult, whackAMole.getScore());
     }
 
     /**
-     * Validate Score when One mole is found in Minimum Position
+     * Validate Score when One mole is found in Minimum Position.
      */
     @Test
     public void validateGetScoreWhenOneMoleIsFoundMinimum() {
-        int xPos = 1;
-        int yPos = 1;
-        int expectedResult = 1;
+        final int xPos = 1;
+        final int yPos = 1;
+        final int expectedResult = 1;
         whackAMole.place(xPos, yPos);
-        whackAMole.printGrid();
         whackAMole.whack(xPos, yPos);
-        whackAMole.printGridToUser();
         assertEquals(expectedResult, whackAMole.getScore());
     }
 
@@ -89,13 +88,11 @@ public class WhackAMoleTest {
      */
     @Test
     public void validateGetScoreWhenOneMoleIsFound() {
-        int xPos = 7;
-        int yPos = 9;
-        int expectedResult = 1;
+        final int xPos = 7;
+        final int yPos = 9;
+        final int expectedResult = 1;
         whackAMole.place(xPos, yPos);
-        whackAMole.printGrid();
         whackAMole.whack(xPos, yPos);
-        whackAMole.printGridToUser();
         assertEquals(expectedResult, whackAMole.getScore());
     }
 
@@ -104,19 +101,19 @@ public class WhackAMoleTest {
      */
     @Test
     public void validateGetScoreWhenFourMoleIsFound() {
-        int xPosMole1 = 7;
-        int yPosMole1 = 9;
+        final  int xPosMole1 = 7;
+        final int yPosMole1 = 9;
 
-        int xPosMole2 = 8;
-        int yPosMole2 = 1;
+        final int xPosMole2 = 8;
+        final int yPosMole2 = 1;
 
-        int xPosMole3 = 1;
-        int yPosMole3 = 10;
+        final int xPosMole3 = 1;
+        final int yPosMole3 = 10;
 
-        int xPosMole4 = 10;
-        int yPosMole4 = 1;
+        final int xPosMole4 = 10;
+        final int yPosMole4 = 1;
 
-        int expectedResult = 4;
+        final int expectedResult = 4;
 
         whackAMole.place(xPosMole1, yPosMole1);
         whackAMole.place(xPosMole2, yPosMole2);
@@ -136,19 +133,19 @@ public class WhackAMoleTest {
      */
     @Test
     public void validateGetScoreWhenTwoCorrectMolesFoundAndOneIncorrect() {
-        int xPosMole1 = 7;
-        int yPosMole1 = 9;
+        final int xPosMole1 = 7;
+        final int yPosMole1 = 9;
 
-        int xPosMole2 = 5;
-        int yPosMole2 = 5;
+        final int xPosMole2 = 5;
+        final int yPosMole2 = 5;
 
-        int xPosMole3 = 9;
-        int yPosMole3 = 1;
+        final int xPosMole3 = 9;
+        final int yPosMole3 = 1;
 
-        int xPosMole3Failed = 1;
-        int yPosMole3Failed = 9;
+        final int xPosMole3Failed = 1;
+        final int yPosMole3Failed = 9;
 
-        int expectedResult = 2;
+        final int expectedResult = 2;
         whackAMole.place(xPosMole1, yPosMole1);
         whackAMole.place(xPosMole2, yPosMole2);
         whackAMole.place(xPosMole3, yPosMole3);
@@ -165,16 +162,16 @@ public class WhackAMoleTest {
      */
     @Test
     public void validateGetScoreWhenOneCorrectMolesFoundAndOneIncorrectResult() {
-        int xPosMole1 = 7;
-        int yPosMole1 = 9;
+        final int xPosMole1 = 7;
+        final int yPosMole1 = 9;
 
-        int xPosMole2 = 9;
-        int yPosMole2 = 1;
+        final int xPosMole2 = 9;
+        final int yPosMole2 = 1;
 
-        int xPosMole2Failed = 1;
-        int yPosMole2Failed = 9;
+        final int xPosMole2Failed = 1;
+        final int yPosMole2Failed = 9;
 
-        int expectedResult = 1;
+        final int expectedResult = 1;
         whackAMole.place(xPosMole1, yPosMole1);
         whackAMole.place(xPosMole2, yPosMole2);
 
@@ -190,12 +187,13 @@ public class WhackAMoleTest {
     @Test
     public void validateGetAttemptsMessage() {
         String  messageAttempts = "The number of attempts exceeds the allowed";
-        int xPosMole1 = 7;
-        int yPosMole1 = 9;
 
-        int attempts = 50;
+        final int xPosMole1 = 7;
+        final int yPosMole1 = 9;
 
-        while(attempts > 0) {
+        int attempts = NUM_ATTEMPTS;
+
+        while (attempts > 0) {
             whackAMole.place(xPosMole1, yPosMole1);
             whackAMole.whack(xPosMole1, yPosMole1);
             attempts--;
@@ -211,8 +209,8 @@ public class WhackAMoleTest {
      */
     @Test
     public void validatePlaceResultIsTrueWhenPositionsAreCorrect() {
-        int xPos = 10;
-        int yPos = 10;
+        final int xPos = 10;
+        final int yPos = 10;
 
         assertTrue("The Position send to grid are incorrect", whackAMole.place(xPos, yPos));
     }
@@ -222,9 +220,35 @@ public class WhackAMoleTest {
      */
     @Test
     public void validatePlaceResultIsFalseWhenPositionsAreIncorrect() {
-        int xPos = 0;
-        int yPos = 0;
+        final int xPos = 0;
+        final int yPos = 0;
 
-        assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos) );
+        assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos));
+    }
+
+    /**
+     * validate that PrintGrid method return the string with the value M..
+     */
+    @Test
+    public void validatePrintGridString() {
+        final int xPos = 0;
+        final int yPos = 0;
+        whackAMole.place(xPos, yPos);
+
+        assertFalse("The Print Grid method does not return the expected String",
+                whackAMole.printGrid().contains("M"));
+    }
+
+    /**
+     * validate that PrintGrid method return the string with the value W..
+     */
+    @Test
+    public void validatePrintGridUserString() {
+        final int xPos = 0;
+        final int yPos = 0;
+        whackAMole.place(xPos, yPos);
+
+        assertFalse("The Print Grid To User method does not return the expected String",
+                whackAMole.printGridToUser().contains("W"));
     }
 }
