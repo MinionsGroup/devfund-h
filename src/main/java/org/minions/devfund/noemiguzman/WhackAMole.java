@@ -5,13 +5,12 @@ package org.minions.devfund.noemiguzman;
  */
 public class WhackAMole {
 
-    /**
-     * Create a class called WhackAMole.
-     */
-    private static final char WHACKED = '-';
-    public static final char MOLE = '*';
-    private static final char DEFAULTCHARACTER = '0';
+
+    private static final char DEFAULTCHARACTER = '*';
     private static final String SPACES = "  ";
+    private static final char WHACKED = 'W';
+    private static final char MOLE = 'M';
+    private static final String NEWLINE = "\n";
 
     // three integer instance variables called score, molesLeft, and attemptsLeft
     private int score;
@@ -111,9 +110,9 @@ public class WhackAMole {
         StringBuilder grid = new StringBuilder();
         for (char[] row : moleGrid) {
             for (char value : row) {
-                grid.append(String.valueOf(value).concat(" "));
+                grid.append(String.valueOf(value).concat(SPACES));
             }
-            grid.append('\n');
+            grid.append(NEWLINE);
         }
         return grid.toString();
     }
@@ -128,7 +127,7 @@ public class WhackAMole {
             for (char value : row) {
                 existTheMole(userGrid, value);
             }
-            userGrid.append('\n');
+            userGrid.append(NEWLINE);
         }
         return userGrid.toString();
     }
@@ -157,13 +156,14 @@ public class WhackAMole {
         return attemptsLeft;
     }
 
+
     /**
      * This methods to verify the moles in the game.
      * @param userGrid the userGrid.
      * @param typeCharacter the caracter.
      */
     private void existTheMole(final StringBuilder userGrid, char typeCharacter) {
-        if (typeCharacter == 'M') {
+        if (typeCharacter == MOLE) {
             userGrid.append(String.valueOf("*").concat(" "));
             return;
         }
