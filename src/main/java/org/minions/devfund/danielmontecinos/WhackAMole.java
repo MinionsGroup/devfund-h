@@ -81,11 +81,9 @@ public class WhackAMole {
         if (isValidLocation(x, y) && moleGrid[x][y] == MOLE) {
             moleGrid[x][y] = WHACKED;
             score++;
-            attemptsLeft--;
             molesLeft--;
-        } else {
-            attemptsLeft--;
         }
+        attemptsLeft--;
     }
 
     /**
@@ -98,7 +96,7 @@ public class WhackAMole {
         for (char[] row : moleGrid) {
             for (char place : row) {
                 char currentPlace = place == WHACKED ? WHACKED : NO_MOLE;
-                userGrid.append(String.valueOf(currentPlace)).append(SPACE);
+                userGrid.append(currentPlace).append(SPACE);
             }
             userGrid.append(NEW_LINE);
         }
@@ -114,7 +112,7 @@ public class WhackAMole {
         StringBuilder gridBuilder = new StringBuilder();
         for (char[] row : moleGrid) {
             for (char value : row) {
-                gridBuilder.append(String.valueOf(value)).append(SPACE);
+                gridBuilder.append(value).append(SPACE);
             }
             gridBuilder.append(NEW_LINE);
         }
