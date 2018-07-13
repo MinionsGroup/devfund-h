@@ -63,6 +63,7 @@ public class WhackAMole {
     public WhackAMole(int numAttempts, int gridDimension) {
         attemptsLeft = numAttempts;
         this.gridDimension = gridDimension;
+        createTheMoleGrid();
     }
 
     /**
@@ -134,11 +135,20 @@ public class WhackAMole {
         StringBuilder grid = new StringBuilder();
         for (char[] row : moleGrid) {
             for (char value : row) {
-                grid.append(String.valueOf(value).concat(SPACES));
+                addTheValueOnStringBuild(grid, value);
             }
             grid.append(NEWLINE);
         }
         return grid.toString();
+    }
+
+    /**
+     * Method that add to string build.
+     * @param grid string build.
+     * @param value char.
+     */
+    private void addTheValueOnStringBuild(final StringBuilder grid, final char value) {
+        grid.append(String.valueOf(value).concat(SPACES));
     }
 
     /**
@@ -165,10 +175,10 @@ public class WhackAMole {
      */
     private void existTheMole(final StringBuilder userGrid, char typeCharacter) {
         if (typeCharacter == 'M') {
-            userGrid.append(String.valueOf("*").concat(SPACES));
+            addTheValueOnStringBuild(userGrid, '*');
             return;
         }
-        userGrid.append(String.valueOf(typeCharacter).concat(SPACES));
+        addTheValueOnStringBuild(userGrid, typeCharacter);
     }
 
 }
