@@ -1,7 +1,6 @@
 package org.minions.devfund.abel;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.Arrays;
 
 /**
  * Class to simulate a variant of the classic whack-a-mole game.
@@ -25,10 +24,8 @@ public class WhackAMole {
      */
     public WhackAMole(int numAttempts, int gridDimension) {
         this.moleGrid = new char[gridDimension][gridDimension];
-        for (int i = 0; i < gridDimension; i++) {
-            for (int j = 0; j < gridDimension; j++) {
-                this.moleGrid[i][j] = EMPTY_MOLE;
-            }
+        for (char[] row : this.moleGrid) {
+            Arrays.fill(row, EMPTY_MOLE);
         }
         this.attemptsLeft = numAttempts;
     }
@@ -72,9 +69,8 @@ public class WhackAMole {
             this.moleGrid[row][col] = MOLE;
             this.molesLeft++;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -116,15 +112,7 @@ public class WhackAMole {
      * @return the grid completely without moles.
      */
     public String printGridToUser() {
-        int length = this.moleGrid.length;
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < length; j++) {
-                stringBuilder.append(this.moleGrid[i][j] == MOLE ? EMPTY_MOLE : this.moleGrid[i][j]);
-            }
-            stringBuilder.append(System.lineSeparator());
-        }
-        return stringBuilder.toString();
+        return printGrid().replace(MOLE, EMPTY_MOLE);
     }
 
     /**
@@ -136,47 +124,10 @@ public class WhackAMole {
      * @return the grid completely.
      */
     public String printGrid() {
-        int length = this.moleGrid.length;
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            for (int j = 0; j < length; j++) {
-                stringBuilder.append(this.moleGrid[i][j]);
-            }
-            stringBuilder.append(System.lineSeparator());
+        for (char[] row : this.moleGrid) {
+            stringBuilder.append(String.format("%s%s", String.valueOf(row), System.lineSeparator()));
         }
         return stringBuilder.toString();
-    }
-
-    /**
-     * The psvm method.
-     *
-     * @param args Args.
-     */
-    public static void main(final String[] args) {
-        final int numAttempts = 50;
-        final int gridDimension = 10;
-        final int totalMoles = 10;
-        final int givingUp = -1;
-        WhackAMole whackAMole = new WhackAMole(numAttempts, gridDimension);
-        Random random = new Random();
-        do {
-            int row = random.nextInt(gridDimension);
-            int col = random.nextInt(gridDimension);
-            whackAMole.place(row, col);
-        } while (whackAMole.molesLeft < totalMoles);
-        while (whackAMole.attemptsLeft > 0) {
-            System.out.println(String.format("You have %d attempts left.", numAttempts));
-            System.out.println(whackAMole.printGridToUser());
-            Scanner scanner = new Scanner(System.in, "UTF-8");
-            System.out.print("Row: ");
-            int row = scanner.nextInt();
-            System.out.print("Col: ");
-            int col = scanner.nextInt();
-            whackAMole.whack(row, col);
-            if (row == givingUp && col == givingUp) {
-                break;
-            }
-        }
-        System.out.println(whackAMole.printGrid());
     }
 }

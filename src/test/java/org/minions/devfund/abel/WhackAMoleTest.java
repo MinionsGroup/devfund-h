@@ -136,11 +136,7 @@ public class WhackAMoleTest {
      */
     @Test
     public void testWhackAMolePrintGridToUserWithWhackedMoles() {
-        String expected = "W****\n"
-                + "*****\n"
-                + "*****\n"
-                + "*****\n"
-                + "*****\n";
+        String expected = "W****\n*****\n*****\n*****\n*****\n";
         final int row = 0;
         final int col = 0;
         whackAMole.place(row, col);
@@ -153,11 +149,7 @@ public class WhackAMoleTest {
      */
     @Test
     public void testWhackAMolePrintGridToUserEmpty() {
-        String expected = "*****\n"
-                + "*****\n"
-                + "*****\n"
-                + "*****\n"
-                + "*****\n";
+        String expected = "*****\n*****\n*****\n*****\n*****\n";
         final int row = 0;
         final int col = 0;
         whackAMole.place(row, col);
@@ -169,11 +161,7 @@ public class WhackAMoleTest {
      */
     @Test
     public void testWhackAMolePrintGrid() {
-        String expected = "W****\n"
-                + "*****\n"
-                + "*****\n"
-                + "*****\n"
-                + "****M\n";
+        String expected = "W****\n*****\n*****\n*****\n****M\n";
         final int rowOne = 0;
         final int colOne = 0;
         whackAMole.place(rowOne, colOne);
