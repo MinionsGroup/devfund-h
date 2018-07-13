@@ -3,11 +3,13 @@ package org.minions.devfund.marylin;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  * Class to simulate whack a mole.
  */
-public class WhackAMole {
+public final class WhackAMole {
+    private static final Logger LOGGER = Logger.getLogger(WhackAMole.class.getName());
     private int score;
     private int molesLeft;
     private int attemptsLeft;
@@ -19,7 +21,7 @@ public class WhackAMole {
      * @param numAttempts   Number of the attempts.
      * @param gridDimension Number of the grid dimension.
      */
-    WhackAMole(int numAttempts, int gridDimension) {
+    private WhackAMole(int numAttempts, int gridDimension) {
         this.moleGrid = new char[gridDimension][gridDimension];
         this.attemptsLeft = numAttempts;
 
@@ -35,7 +37,7 @@ public class WhackAMole {
      * @param y Y axis in the grid.
      * @return Returns true if the mole was place, false otherwise.
      */
-    boolean place(int x, int y) {
+    private boolean place(int x, int y) {
         if (this.moleGrid[x][y] != 'M') {
             this.moleGrid[x][y] = 'M';
             this.molesLeft++;
@@ -50,7 +52,7 @@ public class WhackAMole {
      * @param x X axis in the grid.
      * @param y Y axis in the grid.
      */
-    void whack(int x, int y) {
+    private void whack(int x, int y) {
         if (this.moleGrid[x][y] == 'M') {
             this.moleGrid[x][y] = 'W';
             this.score++;
@@ -62,28 +64,33 @@ public class WhackAMole {
     /**
      * Method to print the status of the game without shows the moles.
      */
-    void printGridToUser() {
-        for (int i = 0; i < this.moleGrid.length; i++) {
-            for (int j = 0; j < this.moleGrid.length; j++) {
-                if (this.moleGrid[i][j] == 'M') {
-                    System.out.print("*  ");
+    private void printGridToUser() {
+        for (char[] rowGrid:this.moleGrid) {
+            StringBuilder strBuilderRow = new StringBuilder();
+            for (char charItem:rowGrid) {
+                if (charItem == 'M') {
+                    strBuilderRow.append("*  ");
                 } else {
-                    System.out.print(this.moleGrid[i][j] + "  ");
+                    strBuilderRow.append(charItem);
+                    strBuilderRow.append("  ");
                 }
             }
-            System.out.println("");
+            LOGGER.info(strBuilderRow.toString());
         }
     }
+
 
     /**
      * Method to print the grid showing the status of the game even moles.
      */
-    void printGrid() {
-        for (int i = 0; i < this.moleGrid.length; i++) {
-            for (int j = 0; j < this.moleGrid.length; j++) {
-                System.out.print(this.moleGrid[i][j] + "  ");
+    private void printGrid() {
+        for (char[] rowGrid:this.moleGrid) {
+            StringBuilder strBuilderRow = new StringBuilder();
+            for (char charItem:rowGrid) {
+                strBuilderRow.append(charItem);
+                strBuilderRow.append("  ");
             }
-            System.out.println("");
+            LOGGER.info(strBuilderRow.toString());
         }
     }
 
@@ -125,7 +132,7 @@ public class WhackAMole {
         int yAxis;
         Scanner xScanner;
         Scanner yScanner;
-        for (int i = numAttemps; i > 0; i++) {
+        for (int i = numAttemps; i > 0; i--) {
             xScanner = new Scanner(System.in);
             System.out.print("Enter the x coordinates: ");
             xAxis = xScanner.nextInt();
