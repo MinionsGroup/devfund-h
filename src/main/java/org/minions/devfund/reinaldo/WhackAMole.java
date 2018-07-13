@@ -70,7 +70,7 @@ public class WhackAMole {
      * Methods to fill the mole grid for the game whack a mole.
      *
      */
-    public void createTheMoleGrid() {
+    private void createTheMoleGrid() {
         moleGrid = new char[gridDimension][gridDimension];
         for (int i = 0; i < gridDimension; i++) {
             for (int j = 0; j < moleGrid[i].length; j++) {

@@ -29,7 +29,7 @@ public class WhackAMoleTest {
      */
     @Test
     public void testWhenIsFillingTheMoleGridWithDefaultCharacter() {
-        whackAMole.createTheMoleGrid();
+
         char[][] actualResult = whackAMole.getMoleGrid();
         char expectedResult = '*';
 
@@ -47,7 +47,6 @@ public class WhackAMoleTest {
         final int postX = 1;
         final int postY = 1;
 
-        whackAMole.createTheMoleGrid();
         whackAMole.place(postX, postY);
 
         assertFalse(whackAMole.place(postX, postY));
@@ -62,7 +61,6 @@ public class WhackAMoleTest {
         final int postX = 1;
         final int postY = 1;
 
-        whackAMole.createTheMoleGrid();
         assertTrue(whackAMole.place(postX, postY));
     }
 
@@ -74,7 +72,7 @@ public class WhackAMoleTest {
         final int postX = 3;
         final int postY = 3;
         final int expectedMolesLeft = 0;
-        whackAMole.createTheMoleGrid();
+
         whackAMole.place(postX, postY);
         whackAMole.whack(postX, postY);
 
@@ -89,7 +87,7 @@ public class WhackAMoleTest {
         final int postX = 3;
         final int postY = 3;
         final int expectedMolesLeft = 1;
-        whackAMole.createTheMoleGrid();
+
         whackAMole.place(postX, postY);
         whackAMole.whack(postX + 1, postY + 1);
 
@@ -110,7 +108,6 @@ public class WhackAMoleTest {
         final String expectedGrid = "W  M  *  \n*  *  *  \n*  *  *  \n";
 
         whackAMole = new WhackAMole(attempts, gridDimension);
-        whackAMole.createTheMoleGrid();
 
         whackAMole.whack(whackRow, whackColumn);
         whackAMole.place(placementX, placementY);
@@ -130,7 +127,6 @@ public class WhackAMoleTest {
         final int whackColumn = 0;
         final String expectedGrid = "W  *  *  \n*  *  *  \n*  *  *  \n";
         whackAMole = new WhackAMole(attempts, gridDimension);
-        whackAMole.createTheMoleGrid();
 
         whackAMole.whack(whackRow, whackColumn);
         whackAMole.place(placementX, placementY);
