@@ -68,6 +68,17 @@ public class WhackAMoleTest {
     }
 
     /**
+     * Test WhackAMole place is out of Index.
+     */
+    @Test
+    public void testWhackAMolePlaceFalseOutOfIndexLower() {
+        final int row = -3;
+        final int col = -5;
+        whackAMole.place(row, col);
+        assertFalse(whackAMole.place(row, col));
+    }
+
+    /**
      * Test WhackAMole place update molesLeft.
      */
     @Test
@@ -85,6 +96,17 @@ public class WhackAMoleTest {
     public void testWhackAMolePlaceFalseGetMolesLeft() {
         final int row = -5;
         final int col = 0;
+        whackAMole.place(row, col);
+        assertEquals(0, whackAMole.getMolesLeft());
+    }
+
+    /**
+     * Test WhackAMole place don't update molesLeft if Out of Index.
+     */
+    @Test
+    public void testWhackAMolePlaceFalseGetMolesLeftChange() {
+        final int row = 0;
+        final int col = -5;
         whackAMole.place(row, col);
         assertEquals(0, whackAMole.getMolesLeft());
     }

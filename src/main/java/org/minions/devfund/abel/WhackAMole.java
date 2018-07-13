@@ -65,7 +65,7 @@ public class WhackAMole {
      * @return if the mole can be placed.
      */
     public boolean place(int row, int col) {
-        if (isValidPosition(row, col, EMPTY_MOLE)) {
+        if (isValidPosition(row, col) && EMPTY_MOLE == this.moleGrid[row][col]) {
             this.moleGrid[row][col] = MOLE;
             this.molesLeft++;
             return true;
@@ -83,7 +83,7 @@ public class WhackAMole {
      */
     public void whack(int row, int col) {
         this.attemptsLeft--;
-        if (isValidPosition(row, col, MOLE)) {
+        if (isValidPosition(row, col) && MOLE == this.moleGrid[row][col]) {
             this.molesLeft--;
             this.score++;
             this.moleGrid[row][col] = MOLE_WHACKED;
@@ -95,14 +95,13 @@ public class WhackAMole {
      *
      * @param row    row position to check.
      * @param col    col position to check.
-     * @param output char value to verify.
      * @return if the position is valid.
      */
-    private boolean isValidPosition(int row, int col, char output) {
+    private boolean isValidPosition(int row, int col) {
         int size = this.moleGrid.length;
         boolean checkRow = ZERO <= row && row < size;
         boolean checkCol = ZERO <= col && col < size;
-        return checkRow && checkCol && output == this.moleGrid[row][col];
+        return checkRow && checkCol;
     }
 
     /**
