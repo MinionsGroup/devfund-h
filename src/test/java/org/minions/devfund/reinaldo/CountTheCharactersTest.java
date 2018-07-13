@@ -1,4 +1,4 @@
-package org.minions.devfund.reinaldo.codewars;
+package org.minions.devfund.reinaldo;
 
 import org.junit.Test;
 
