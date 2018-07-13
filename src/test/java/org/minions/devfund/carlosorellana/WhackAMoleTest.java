@@ -230,7 +230,7 @@ public class WhackAMoleTest {
      * validate that PrintGrid method return the string with the value M..
      */
     @Test
-    public void validatePrintGridString() {
+    public void validatePrintGridStringWithInvalidPosition() {
         final int xPos = 0;
         final int yPos = 0;
         whackAMole.place(xPos, yPos);
@@ -240,15 +240,43 @@ public class WhackAMoleTest {
     }
 
     /**
+     * validate that PrintGrid method return the string with the value M..
+     */
+    @Test
+    public void validatePrintGridStringWithValidPostion() {
+        final int xPos = 5;
+        final int yPos = 5;
+        whackAMole.place(xPos, yPos);
+
+        assertTrue("The Print Grid method does not return the expected String",
+                whackAMole.printGrid().contains("M"));
+    }
+
+    /**
      * validate that PrintGrid method return the string with the value W..
      */
     @Test
-    public void validatePrintGridUserString() {
+    public void validatePrintGridUserStringWithInvalidPosition() {
         final int xPos = 0;
         final int yPos = 0;
         whackAMole.place(xPos, yPos);
+        whackAMole.whack(xPos, yPos);
 
         assertFalse("The Print Grid To User method does not return the expected String",
+                whackAMole.printGridToUser().contains("W"));
+    }
+
+    /**
+     * validate that PrintGrid method return the string with the value W..
+     */
+    @Test
+    public void validatePrintGridUserStringWithValidPosition() {
+        final int xPos = 3;
+        final int yPos = 7;
+        whackAMole.place(xPos, yPos);
+        whackAMole.whack(xPos, yPos);
+
+        assertTrue("The Print Grid To User method does not return the expected String",
                 whackAMole.printGridToUser().contains("W"));
     }
 }
