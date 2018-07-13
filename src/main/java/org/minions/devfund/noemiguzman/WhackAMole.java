@@ -105,8 +105,9 @@ public class WhackAMole {
 
     /**
      * Methods that print the grid.
+     * @return grid string.
      */
-    public void printGrid() {
+    public String printGrid() {
         StringBuilder grid = new StringBuilder();
         for (char[] row : moleGrid) {
             for (char value : row) {
@@ -114,13 +115,14 @@ public class WhackAMole {
             }
             grid.append('\n');
         }
-        System.out.print(grid.toString());
+        return grid.toString();
     }
 
     /**
      * Methods that print the grid to user.
+     * @return grid for user string.
      */
-    public void printGridToUser() {
+    public String printGridToUser() {
         StringBuilder userGrid = new StringBuilder();
         for (char[] row : moleGrid) {
             for (char value : row) {
@@ -128,7 +130,7 @@ public class WhackAMole {
             }
             userGrid.append('\n');
         }
-        System.out.print(userGrid.toString());
+        return userGrid.toString();
     }
 
     /**
@@ -173,21 +175,19 @@ public class WhackAMole {
      * @param args string
      */
     public static void main(final String[] args) {
-        System.out.println(play());
+        play();
     }
 
     /**
      * This private main methods.
-     * @return string
      */
-    private static String play() {
+    private static void play() {
         final int gridDimension = 10;
         final int mAXATTEMPTS = 50;
         int attempts = mAXATTEMPTS;
         WhackAMole whackAMole = new WhackAMole(attempts, gridDimension);
         whackAMole.initializeMoleGrid();
         whackAMole.printGridToUser();
-        return "THANKS TO PAY ... WHACKMOLE";
     }
 }
 
