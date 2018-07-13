@@ -169,25 +169,5 @@ public class WhackAMole {
         }
         userGrid.append(String.valueOf(typeCharacter).concat(SPACES));
     }
-
-    /**
-     * This public main methods.
-     * @param args string
-     */
-    public static void main(final String[] args) {
-        play();
-    }
-
-    /**
-     * This private main methods.
-     */
-    private static void play() {
-        final int gridDimension = 10;
-        final int mAXATTEMPTS = 50;
-        int attempts = mAXATTEMPTS;
-        WhackAMole whackAMole = new WhackAMole(attempts, gridDimension);
-        whackAMole.initializeMoleGrid();
-        whackAMole.printGridToUser();
-    }
 }
 
