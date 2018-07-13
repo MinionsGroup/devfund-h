@@ -65,9 +65,9 @@ public final class WhackAMole {
      * Method to print the status of the game without shows the moles.
      */
     private void printGridToUser() {
-        for (char[] rowGrid:this.moleGrid) {
+        for (char[] rowGrid : this.moleGrid) {
             StringBuilder strBuilderRow = new StringBuilder();
-            for (char charItem:rowGrid) {
+            for (char charItem : rowGrid) {
                 if (charItem == 'M') {
                     strBuilderRow.append("*  ");
                 } else {
@@ -84,9 +84,9 @@ public final class WhackAMole {
      * Method to print the grid showing the status of the game even moles.
      */
     private void printGrid() {
-        for (char[] rowGrid:this.moleGrid) {
+        for (char[] rowGrid : this.moleGrid) {
             StringBuilder strBuilderRow = new StringBuilder();
-            for (char charItem:rowGrid) {
+            for (char charItem : rowGrid) {
                 strBuilderRow.append(charItem);
                 strBuilderRow.append("  ");
             }
@@ -112,52 +112,61 @@ public final class WhackAMole {
             Random rand = new Random();
             int x = rand.nextInt(numberOfMoles);
             int y = rand.nextInt(numberOfMoles);
+            StringBuilder strBuilderMessage = new StringBuilder();
             if (!whackAMole.place(x, y)) {
-                System.out.println("There is already a mole at " + x + "," + y + ". Trying again!");
+                strBuilderMessage.append("There is already a mole at ");
+                strBuilderMessage.append(x);
+                strBuilderMessage.append(",");
+                strBuilderMessage.append(y);
+                strBuilderMessage.append(". Trying again!");
                 i--;
             } else {
-                System.out.println("Mole places at " + x + "," + y);
+                strBuilderMessage.append("Mole places at ");
+                strBuilderMessage.append(x);
+                strBuilderMessage.append(",");
+                strBuilderMessage.append(y);
             }
+            LOGGER.info(strBuilderMessage.toString());
         }
 
         //Try to whack 50 times the moles given the x and y
         //Finish the game if we enter xAxis -1 and yAxis -1 printing the grid
         //The game ends if the user is able to uncover all the moles or if the user runs out of attempts.
 
-        System.out.println("----------------------------");
+        LOGGER.info("-------------------------------------");
         whackAMole.printGrid();
+        LOGGER.info("-----You have a maximum of " + numAttemps + " attempts to get all the moles wacked-----");
 
-        System.out.println("-----You have a maximum of " + numAttemps + " attempts to get all the moles wacked-----");
         int xAxis;
         int yAxis;
         Scanner xScanner;
         Scanner yScanner;
         for (int i = numAttemps; i > 0; i--) {
             xScanner = new Scanner(System.in);
-            System.out.print("Enter the x coordinates: ");
+            LOGGER.info("Enter the x coordinates: ");
             xAxis = xScanner.nextInt();
 
             yScanner = new Scanner(System.in);
-            System.out.print("Enter the y coordinates: ");
+            LOGGER.info("Enter the y coordinates: ");
             yAxis = yScanner.nextInt();
 
             if (xAxis == -1 || yAxis == -1) {
-                System.out.println("Giving up!!");
+                LOGGER.info("Giving up!!");
                 whackAMole.printGrid();
                 break;
             } else {
-                System.out.println("State of Game");
+                LOGGER.info("State of Game");
                 whackAMole.whack(xAxis, yAxis);
                 whackAMole.printGridToUser();
             }
 
             if (whackAMole.molesLeft == 0) {
-                System.out.println("All moles were whacked with score: " + whackAMole.score);
+                LOGGER.info("All moles were whacked with score: " + whackAMole.score);
                 break;
             }
 
             if (whackAMole.attemptsLeft == 0) {
-                System.out.println("There are no more attemps with score: " + whackAMole.score);
+                LOGGER.info("There are no more attemps with score: " + whackAMole.score);
                 break;
             }
         }
