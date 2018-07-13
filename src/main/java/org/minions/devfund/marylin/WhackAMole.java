@@ -1,16 +1,11 @@
 package org.minions.devfund.marylin;
 
 import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Class to simulate whack a mole.
  */
 public class WhackAMole {
-    private static final Logger LOGGER = Logger.getLogger(WhackAMole.class.getName());
     private int score;
     private int molesLeft;
     private int attemptsLeft;
@@ -22,13 +17,85 @@ public class WhackAMole {
      * @param numAttempts   Number of the attempts.
      * @param gridDimension Number of the grid dimension.
      */
-    public WhackAMole(int numAttempts, int gridDimension) {
+    WhackAMole(int numAttempts, int gridDimension) {
         this.moleGrid = new char[gridDimension][gridDimension];
         this.attemptsLeft = numAttempts;
 
         for (char[] row : this.moleGrid) {
             Arrays.fill(row, '*');
         }
+    }
+
+    /**
+     * Get score.
+     *
+     * @return score.
+     */
+    public int getScore() {
+        return score;
+    }
+
+    /**
+     * Set score.
+     *
+     * @param score score.
+     */
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    /**
+     * Get Moles left.
+     *
+     * @return molesLeft.
+     */
+    public int getMolesLeft() {
+        return molesLeft;
+    }
+
+    /**
+     * Set Moles left.
+     *
+     * @param molesLeft molesLeft.
+     */
+    public void setMolesLeft(int molesLeft) {
+        this.molesLeft = molesLeft;
+    }
+
+    /**
+     * Get Attempts left.
+     *
+     * @return attemptsLeft.
+     */
+    public int getAttemptsLeft() {
+        return attemptsLeft;
+    }
+
+    /**
+     * Set Attemps left.
+     *
+     * @param attemptsLeft attemptsLeft.
+     */
+    public void setAttemptsLeft(int attemptsLeft) {
+        this.attemptsLeft = attemptsLeft;
+    }
+
+    /**
+     * Get Mole grid.
+     *
+     * @return moleGrid.
+     */
+    public char[][] getMoleGrid() {
+        return moleGrid;
+    }
+
+    /**
+     * Set Mole grid.
+     *
+     * @param moleGrid moleGrid.
+     */
+    public void setMoleGrid(final char[][] moleGrid) {
+        this.moleGrid = moleGrid;
     }
 
     /**
@@ -64,10 +131,12 @@ public class WhackAMole {
 
     /**
      * Method to print the status of the game without shows the moles.
+     *
+     * @return return the grid in a string.
      */
-    public void printGridToUser() {
+    public StringBuilder printGridToUser() {
+        StringBuilder strBuilderRow = new StringBuilder();
         for (char[] rowGrid : this.moleGrid) {
-            StringBuilder strBuilderRow = new StringBuilder();
             for (char charItem : rowGrid) {
                 if (charItem == 'M') {
                     strBuilderRow.append("*  ");
@@ -76,22 +145,23 @@ public class WhackAMole {
                     strBuilderRow.append("  ");
                 }
             }
-            LOGGER.fine(strBuilderRow.toString());
         }
+        return strBuilderRow;
     }
-
 
     /**
      * Method to print the grid showing the status of the game even moles.
+     *
+     * @return return the grid in a string.
      */
-    public void printGrid() {
+    public StringBuilder printGrid() {
+        StringBuilder strBuilderRow = new StringBuilder();
         for (char[] rowGrid : this.moleGrid) {
-            StringBuilder strBuilderRow = new StringBuilder();
             for (char charItem : rowGrid) {
                 strBuilderRow.append(charItem);
                 strBuilderRow.append("  ");
             }
-            LOGGER.fine(strBuilderRow.toString());
         }
+        return strBuilderRow;
     }
 }
