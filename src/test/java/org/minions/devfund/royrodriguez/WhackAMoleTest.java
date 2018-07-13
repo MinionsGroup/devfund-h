@@ -5,6 +5,7 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Tests for whack a mole game.
@@ -19,7 +20,7 @@ public class WhackAMoleTest {
         final int numAttempts = 5;
         final int gridDimension = 10;
         WhackAMole whackAMole = new WhackAMole(numAttempts, gridDimension);
-        assertEquals(whackAMole.getClass(), WhackAMole.class);
+        assertNotNull(whackAMole);
     }
 
     /**
