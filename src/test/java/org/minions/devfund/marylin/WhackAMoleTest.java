@@ -4,8 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Class to run unit test against WhackAMole.java class.
@@ -14,14 +14,25 @@ public class WhackAMoleTest {
     private WhackAMole whackAMole;
     private char[][] expectedMoleGrid;
 
+    /**
+     * Before method to create the expected initial grid and an instance of the whackAMole class.
+     */
     @Before
     public void setUp() {
+        final int numAttempts = 3;
+        final int gridDimension = 3;
         expectedMoleGrid = new char[][]{{'*', '*', '*'}, {'*', '*', '*'}, {'*', '*', '*'}};
-        whackAMole = new WhackAMole(3, 3);
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
     }
 
 
-    public boolean isGridEquals(char[][] actualGrid) {
+    /**
+     * Method to compare the expected with the actual grid.
+     *
+     * @param actualGrid actualGrid.
+     * @return true if the grids are equal or false otherwise.
+     */
+    public boolean isGridEquals(final char[][] actualGrid) {
         boolean gridsAreEguals = true;
         for (int i = 0; i < expectedMoleGrid.length; i++) {
             for (int j = 0; j < expectedMoleGrid.length; j++) {
@@ -46,7 +57,7 @@ public class WhackAMoleTest {
      */
     @Test
     public void testConstructorNumOfAttempts() {
-        int expectedNumOfAddemps = 3;
+        final int expectedNumOfAddemps = 3;
         assertEquals(expectedNumOfAddemps, whackAMole.getAttemptsLeft());
     }
 
@@ -55,7 +66,7 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPlaceSucceed() {
-    assertTrue(whackAMole.place(1,1));
+        assertTrue(whackAMole.place(1, 1));
     }
 
     /**
@@ -63,8 +74,8 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPlaceFail() {
-        whackAMole.place(2,2);
-        assertFalse(whackAMole.place(2,2));
+        whackAMole.place(2, 2);
+        assertFalse(whackAMole.place(2, 2));
     }
 
     /**
@@ -73,10 +84,10 @@ public class WhackAMoleTest {
     @Test
     public void testWhackSucceedAttempts() {
         int originalAttempsLeft = whackAMole.getAttemptsLeft();
-        whackAMole.place(1,2);
+        whackAMole.place(1, 2);
         whackAMole.whack(1, 2);
 
-        assertEquals(originalAttempsLeft - 1,whackAMole.getAttemptsLeft());
+        assertEquals(originalAttempsLeft - 1, whackAMole.getAttemptsLeft());
     }
 
     /**
@@ -87,6 +98,6 @@ public class WhackAMoleTest {
         int originalAttempsLeft = whackAMole.getAttemptsLeft();
         whackAMole.whack(0, 2);
 
-        assertEquals(originalAttempsLeft - 1,whackAMole.getAttemptsLeft());
+        assertEquals(originalAttempsLeft - 1, whackAMole.getAttemptsLeft());
     }
 }
