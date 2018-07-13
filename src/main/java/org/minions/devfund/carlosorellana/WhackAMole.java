@@ -49,12 +49,11 @@ public class WhackAMole {
         int xPosition = x - 1;
         int yPosition = y - 1;
 
-        if (isCorrectPosition(xPosition, yPosition)) {
-            if (moleGrid[xPosition][yPosition] != MOLE_CHAR) {
+        if (isCorrectPosition(xPosition, yPosition)
+             && moleGrid[xPosition][yPosition] != MOLE_CHAR) {
                 moleGrid[xPosition][yPosition] = MOLE_CHAR;
                 molesLeft++;
                 return true;
-            }
         }
 
         return false;
