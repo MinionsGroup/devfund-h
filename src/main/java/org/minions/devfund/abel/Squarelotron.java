@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class Squarelotron {
 
 
-    private int[][] squarelotron;
+    private int[][] squarelotronMatrix;
     private int size;
 
     /**
@@ -17,11 +17,11 @@ public class Squarelotron {
      * @param size size of the Squarelotron matrix.
      */
     public Squarelotron(int size) {
-        squarelotron = new int[size][size];
+        squarelotronMatrix = new int[size][size];
         int number = 1;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                squarelotron[i][j] = number;
+                squarelotronMatrix[i][j] = number;
                 number++;
             }
         }
@@ -34,10 +34,8 @@ public class Squarelotron {
      * @param squarelotron value assigned to the Squarelotron matrix.
      */
     public Squarelotron(final int[][] squarelotron) {
-        this.squarelotron = deepCopy(squarelotron);
-        if (this.squarelotron != null) {
-            this.size = squarelotron.length;
-        }
+        this.squarelotronMatrix = deepCopy(squarelotron);
+        this.size = this.squarelotronMatrix.length;
     }
 
     /**
@@ -45,31 +43,31 @@ public class Squarelotron {
      *
      * @return The Squarelotron.
      */
-    public int[][] getSquarelotron() {
-        return deepCopy(squarelotron);
+    public int[][] getSquarelotronMatrix() {
+        return deepCopy(squarelotronMatrix);
     }
 
     /**
-     * This method performs the Upside-Down Flip of the squarelotron, as described above,
-     * and returns the new squarelotron.
+     * This method performs the Upside-Down Flip of the squarelotronMatrix, as described above,
+     * and returns the new squarelotronMatrix.
      *
      * @param ring The ring to be modified.
      * @return A new Squarelotron object.
      */
     public Squarelotron upsideDownFlip(int ring) {
-        Function<Integer, Integer, Integer> upsideDown = (i, j) -> squarelotron[size - i - 1][j];
+        Function<Integer, Integer, Integer> upsideDown = (i, j) -> squarelotronMatrix[size - i - 1][j];
         return new Squarelotron(flip(ring, upsideDown));
     }
 
     /**
-     * This method performs the Main Diagonal Flip of the squarelotron, as described above,
-     * and returns the new squarelotron.
+     * This method performs the Main Diagonal Flip of the squarelotronMatrix, as described above,
+     * and returns the new squarelotronMatrix.
      *
      * @param ring The ring to be modified.
      * @return A new Squarelotron object.
      */
     public Squarelotron mainDiagonalFlip(int ring) {
-        Function<Integer, Integer, Integer> upsideDown = (i, j) -> squarelotron[j][i];
+        Function<Integer, Integer, Integer> upsideDown = (i, j) -> squarelotronMatrix[j][i];
         return new Squarelotron(flip(ring, upsideDown));
     }
 
@@ -87,7 +85,7 @@ public class Squarelotron {
                 if (isInRing(ring, i, j)) {
                     copy[i][j] = fn.apply(i, j);
                 } else {
-                    copy[i][j] = squarelotron[i][j];
+                    copy[i][j] = squarelotronMatrix[i][j];
                 }
             }
         }
@@ -97,12 +95,12 @@ public class Squarelotron {
     /**
      * Custom Functional interface.
      *
-     * @param <One> The first parameter.
-     * @param <Two> The second parameter.
-     * @param <R>   The result response.
+     * @param <T>  The first parameter.
+     * @param <T2> The second parameter.
+     * @param <R>  The result response.
      */
     @FunctionalInterface
-    interface Function<One, Two, R> {
+    interface Function<T, T2, R> {
         /**
          * Method to execute the function.
          *
@@ -110,11 +108,12 @@ public class Squarelotron {
          * @param two Second parameters.
          * @return The response type.
          */
-        R apply(One one, Two two);
+        R apply(T one, T2 two);
     }
 
     /**
-     * The argument numberOfTurns indicates the number of times the entire squarelotron should be rotated 90° clockwise.
+     * The argument numberOfTurns indicates the number of times the entire squarelotronMatrix
+     * should be rotated 90° clockwise.
      * Any integer, including zero and negative integers, is allowable as the argument.
      * A value of -1 indicates a 90° counterclockwise rotation.
      *
@@ -123,20 +122,19 @@ public class Squarelotron {
     public void rotateRight(int numberOfTurns) {
         int[][] copy = new int[size][size];
         for (int x = 0; x < Math.abs(numberOfTurns); x++) {
-            int[][] cloned = deepCopy(squarelotron);
-            rotate(numberOfTurns, copy, cloned);
-            squarelotron = copy;
+            rotate(numberOfTurns, copy);
+            squarelotronMatrix = copy;
         }
     }
 
     /**
-     * Rotate the squarelotron 2d array.
+     * Rotate the squarelotronMatrix 2d array.
      *
      * @param numberOfTurns Numbers of rotations.
      * @param copy          the roteted 2d array.
-     * @param cloned        a clone on squarelotron.
      */
-    private void rotate(int numberOfTurns, final int[][] copy, final int[][] cloned) {
+    private void rotate(int numberOfTurns, final int[][] copy) {
+        int[][] cloned = deepCopy(squarelotronMatrix);
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (numberOfTurns > 0) {
@@ -149,14 +147,14 @@ public class Squarelotron {
     }
 
     /**
-     * Creates a deep copy of the squarelotron matrix.
+     * Creates a deep copy of the squarelotronMatrix matrix.
      *
      * @param original The original 2d array.
      * @return a Deep Copy of the 2d array.
      */
     private static int[][] deepCopy(final int[][] original) {
         if (original == null) {
-            return null;
+            return new int[][]{};
         }
 
         final int[][] result = new int[original.length][];

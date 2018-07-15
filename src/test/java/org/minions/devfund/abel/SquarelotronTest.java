@@ -3,7 +3,6 @@ package org.minions.devfund.abel;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertNull;
 
 /**
  * Class for Squarelotron tests.
@@ -25,7 +24,7 @@ public class SquarelotronTest {
     public void testConstructorFillsArray() {
         Squarelotron squarelotron = new Squarelotron(TWO);
         final int[][] expected = new int[][]{{1, 2}, {3, 4}};
-        assertArrayEquals(expected, squarelotron.getSquarelotron());
+        assertArrayEquals(expected, squarelotron.getSquarelotronMatrix());
     }
 
     /**
@@ -34,8 +33,9 @@ public class SquarelotronTest {
     @Test
     public void testConstructorFillsArrayNull() {
         final int[][] new2dArray = null;
+        final int[][] expected = new int[][]{};
         Squarelotron squarelotron = new Squarelotron(new2dArray);
-        assertNull(squarelotron.getSquarelotron());
+        assertArrayEquals(expected, squarelotron.getSquarelotronMatrix());
     }
 
     /**
@@ -45,7 +45,7 @@ public class SquarelotronTest {
     public void testUpsideDownFlipSizeTwoRingOne() {
         Squarelotron squarelotron = new Squarelotron(TWO);
         final int[][] expected = new int[][]{{3, 4}, {1, 2}};
-        assertArrayEquals(expected, squarelotron.upsideDownFlip(ONE).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.upsideDownFlip(ONE).getSquarelotronMatrix());
     }
 
     /**
@@ -55,7 +55,7 @@ public class SquarelotronTest {
     public void testUpsideDownFlipSizeThreeRingOne() {
         Squarelotron squarelotron = new Squarelotron(THREE);
         final int[][] expected = new int[][]{{7, 8, 9}, {4, 5, 6}, {1, 2, 3}};
-        assertArrayEquals(expected, squarelotron.upsideDownFlip(ONE).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.upsideDownFlip(ONE).getSquarelotronMatrix());
     }
 
     /**
@@ -65,7 +65,7 @@ public class SquarelotronTest {
     public void testUpsideDownFlipFourSizeRingOne() {
         Squarelotron squarelotron = new Squarelotron(FOUR);
         final int[][] expected = new int[][]{{13, 14, 15, 16}, {9, 6, 7, 12}, {5, 10, 11, 8}, {1, 2, 3, 4}};
-        assertArrayEquals(expected, squarelotron.upsideDownFlip(ONE).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.upsideDownFlip(ONE).getSquarelotronMatrix());
     }
 
     /**
@@ -80,7 +80,7 @@ public class SquarelotronTest {
                 {11, 12, 13, 14, 15},
                 {6, 17, 18, 19, 10},
                 {1, 2, 3, 4, 5}};
-        assertArrayEquals(expected, squarelotron.upsideDownFlip(ONE).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.upsideDownFlip(ONE).getSquarelotronMatrix());
     }
 
     /**
@@ -90,7 +90,7 @@ public class SquarelotronTest {
     public void testUpsideDownFlipSizeThreeRingTwo() {
         Squarelotron squarelotron = new Squarelotron(THREE);
         final int[][] expected = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        assertArrayEquals(expected, squarelotron.upsideDownFlip(TWO).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.upsideDownFlip(TWO).getSquarelotronMatrix());
     }
 
     /**
@@ -100,7 +100,7 @@ public class SquarelotronTest {
     public void testUpsideDownFlipFourSizeRingTwo() {
         Squarelotron squarelotron = new Squarelotron(FOUR);
         final int[][] expected = new int[][]{{1, 2, 3, 4}, {5, 10, 11, 8}, {9, 6, 7, 12}, {13, 14, 15, 16}};
-        assertArrayEquals(expected, squarelotron.upsideDownFlip(TWO).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.upsideDownFlip(TWO).getSquarelotronMatrix());
     }
 
     /**
@@ -115,7 +115,7 @@ public class SquarelotronTest {
                 {11, 12, 13, 14, 15},
                 {16, 7, 8, 9, 20},
                 {21, 22, 23, 24, 25}};
-        assertArrayEquals(expected, squarelotron.upsideDownFlip(TWO).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.upsideDownFlip(TWO).getSquarelotronMatrix());
     }
 
     /**
@@ -125,7 +125,7 @@ public class SquarelotronTest {
     public void testMainDiagonalFlipSizeThreeRingOne() {
         Squarelotron squarelotron = new Squarelotron(THREE);
         final int[][] expected = new int[][]{{1, 4, 7}, {2, 5, 8}, {3, 6, 9}};
-        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(ONE).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(ONE).getSquarelotronMatrix());
     }
 
     /**
@@ -135,7 +135,7 @@ public class SquarelotronTest {
     public void testMainDiagonalFlipFourSizeRingOne() {
         Squarelotron squarelotron = new Squarelotron(FOUR);
         final int[][] expected = new int[][]{{1, 5, 9, 13}, {2, 6, 7, 14}, {3, 10, 11, 15}, {4, 8, 12, 16}};
-        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(ONE).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(ONE).getSquarelotronMatrix());
     }
 
     /**
@@ -150,7 +150,7 @@ public class SquarelotronTest {
                 {3, 12, 13, 14, 23},
                 {4, 17, 18, 19, 24},
                 {5, 10, 15, 20, 25}};
-        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(ONE).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(ONE).getSquarelotronMatrix());
     }
 
     /**
@@ -160,7 +160,7 @@ public class SquarelotronTest {
     public void testMainDiagonalFlipSizeThreeRingTwo() {
         Squarelotron squarelotron = new Squarelotron(THREE);
         final int[][] expected = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(TWO).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(TWO).getSquarelotronMatrix());
     }
 
     /**
@@ -170,7 +170,7 @@ public class SquarelotronTest {
     public void testMainDiagonalFlipFourSizeRingTwo() {
         Squarelotron squarelotron = new Squarelotron(FOUR);
         final int[][] expected = new int[][]{{1, 2, 3, 4}, {5, 6, 10, 8}, {9, 7, 11, 12}, {13, 14, 15, 16}};
-        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(TWO).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(TWO).getSquarelotronMatrix());
     }
 
     /**
@@ -185,7 +185,7 @@ public class SquarelotronTest {
                 {11, 8, 13, 18, 15},
                 {16, 9, 14, 19, 20},
                 {21, 22, 23, 24, 25}};
-        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(TWO).getSquarelotron());
+        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(TWO).getSquarelotronMatrix());
     }
 
     /**
@@ -196,7 +196,7 @@ public class SquarelotronTest {
         Squarelotron squarelotron = new Squarelotron(TWO);
         final int[][] expected = new int[][]{{3, 1}, {4, 2}};
         squarelotron.rotateRight(ONE);
-        assertArrayEquals(expected, squarelotron.getSquarelotron());
+        assertArrayEquals(expected, squarelotron.getSquarelotronMatrix());
     }
 
     /**
@@ -207,7 +207,7 @@ public class SquarelotronTest {
         Squarelotron squarelotron = new Squarelotron(TWO);
         final int[][] expected = new int[][]{{4, 3}, {2, 1}};
         squarelotron.rotateRight(TWO);
-        assertArrayEquals(expected, squarelotron.getSquarelotron());
+        assertArrayEquals(expected, squarelotron.getSquarelotronMatrix());
     }
 
     /**
@@ -218,7 +218,7 @@ public class SquarelotronTest {
         Squarelotron squarelotron = new Squarelotron(TWO);
         final int[][] expected = new int[][]{{2, 4}, {1, 3}};
         squarelotron.rotateRight(MINUS_ONE);
-        assertArrayEquals(expected, squarelotron.getSquarelotron());
+        assertArrayEquals(expected, squarelotron.getSquarelotronMatrix());
     }
 
     /**
@@ -229,6 +229,6 @@ public class SquarelotronTest {
         Squarelotron squarelotron = new Squarelotron(TWO);
         final int[][] expected = new int[][]{{4, 3}, {2, 1}};
         squarelotron.rotateRight(MINUS_TWO);
-        assertArrayEquals(expected, squarelotron.getSquarelotron());
+        assertArrayEquals(expected, squarelotron.getSquarelotronMatrix());
     }
 }
