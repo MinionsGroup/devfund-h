@@ -57,17 +57,8 @@ public class Squarelotron {
      * @return A new Squarelotron object.
      */
     public Squarelotron upsideDownFlip(int ring) {
-        int[][] copy = new int[size][size];
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (isInRing(ring, i, j)) {
-                    copy[i][j] = squarelotron[size - i - 1][j];
-                } else {
-                    copy[i][j] = squarelotron[i][j];
-                }
-            }
-        }
-        return new Squarelotron(copy);
+        Function<Integer, Integer, Integer> upsideDown = (i, j) -> squarelotron[size - i - 1][j];
+        return new Squarelotron(flip(ring, upsideDown));
     }
 
     /**
@@ -78,17 +69,48 @@ public class Squarelotron {
      * @return A new Squarelotron object.
      */
     public Squarelotron mainDiagonalFlip(int ring) {
+        Function<Integer, Integer, Integer> upsideDown = (i, j) -> squarelotron[j][i];
+        return new Squarelotron(flip(ring, upsideDown));
+    }
+
+    /**
+     * Method to flip based on a Function.
+     *
+     * @param ring The ring to be modified.
+     * @param fn   The lambda function to execute.
+     * @return 2d array flipped.
+     */
+    private int[][] flip(int ring, final Function<Integer, Integer, Integer> fn) {
         int[][] copy = new int[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (isInRing(ring, i, j)) {
-                    copy[i][j] = squarelotron[j][i];
+                    copy[i][j] = fn.apply(i, j);
                 } else {
                     copy[i][j] = squarelotron[i][j];
                 }
             }
         }
-        return new Squarelotron(copy);
+        return copy;
+    }
+
+    /**
+     * Custom Functional interface.
+     *
+     * @param <One> The first parameter.
+     * @param <Two> The second parameter.
+     * @param <R>   The result response.
+     */
+    @FunctionalInterface
+    interface Function<One, Two, R> {
+        /**
+         * Method to execute the function.
+         *
+         * @param one First parameter.
+         * @param two Second parameters.
+         * @return The response type.
+         */
+        R apply(One one, Two two);
     }
 
     /**
@@ -102,16 +124,27 @@ public class Squarelotron {
         int[][] copy = new int[size][size];
         for (int x = 0; x < Math.abs(numberOfTurns); x++) {
             int[][] cloned = deepCopy(squarelotron);
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
-                    if (numberOfTurns > 0) {
-                        copy[i][j] = cloned[size - 1 - j][i];
-                    } else {
-                        copy[i][j] = cloned[j][size - 1 - i];
-                    }
+            rotate(numberOfTurns, copy, cloned);
+            squarelotron = copy;
+        }
+    }
+
+    /**
+     * Rotate the squarelotron 2d array.
+     *
+     * @param numberOfTurns Numbers of rotations.
+     * @param copy          the roteted 2d array.
+     * @param cloned        a clone on squarelotron.
+     */
+    private void rotate(int numberOfTurns, final int[][] copy, final int[][] cloned) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (numberOfTurns > 0) {
+                    copy[i][j] = cloned[size - 1 - j][i];
+                } else {
+                    copy[i][j] = cloned[j][size - 1 - i];
                 }
             }
-            squarelotron = copy;
         }
     }
 
