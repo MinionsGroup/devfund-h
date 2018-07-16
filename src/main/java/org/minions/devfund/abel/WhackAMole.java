@@ -106,7 +106,7 @@ public class WhackAMole {
 
     /**
      * Print the grid without showing where the moles are.
-     * For every spot that has recorded a “whacked mole,” print out a W, or * otherwise.
+     * For every spot that has recorded a whacked mole, print out a W, or * otherwise.
      *
      * @return the grid completely without moles.
      */
