@@ -80,6 +80,11 @@ public class WhackAMole {
         int xPosition = x - 1;
         int yPosition = y - 1;
 
+        if (attemptsLeft <= 0) {
+            messageAttempts = "The number of attempts exceeds the allowed";
+            return;
+        }
+
         if (attemptsLeft > 0) {
             if (isCorrectPosition(xPosition, yPosition) && moleGrid[xPosition][yPosition] == MOLE_CHAR) {
                 moleGrid[xPosition][yPosition] = WHACKED_CHAR;
@@ -89,8 +94,6 @@ public class WhackAMole {
             } else {
                 attemptsLeft--;
             }
-        } else {
-            messageAttempts = "The number of attempts exceeds the allowed";
         }
     }
 
@@ -109,7 +112,7 @@ public class WhackAMole {
             }
             gridToUser.append(NEW_LINE);
         }
-
+        System.out.println(gridToUser.toString());
         return gridToUser.toString();
     }
 
@@ -127,7 +130,7 @@ public class WhackAMole {
             }
             gridBuilder.append(NEW_LINE);
         }
-
+        System.out.println(gridBuilder.toString());
         return gridBuilder.toString();
     }
 
