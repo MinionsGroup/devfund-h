@@ -110,7 +110,7 @@ public class WhackAMole {
         StringBuilder grid = new StringBuilder();
         for (char[] row : moleGrid) {
             for (char value : row) {
-                grid.append(String.valueOf(value).concat(SPACES));
+                grid.append(value).append(SPACES);
             }
             grid.append(NEWLINE);
         }
@@ -125,7 +125,7 @@ public class WhackAMole {
         StringBuilder userGrid = new StringBuilder();
         for (char[] row : moleGrid) {
             for (char value : row) {
-                existTheMole(userGrid, value);
+                userGrid.append(value == MOLE ? DEFAULTCHARACTER : value).append(SPACES);
             }
             userGrid.append(NEWLINE);
         }

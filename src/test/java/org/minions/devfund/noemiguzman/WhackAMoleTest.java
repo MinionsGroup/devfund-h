@@ -10,8 +10,8 @@ import static org.junit.Assert.assertTrue;
  * It is in charged to define the unit tests for WhackAMole class.
  */
 public class WhackAMoleTest {
-    public static final int NUM_ATTEMPTS =  10;
-    public static final int GRID_DIMENSION = 10;
+    private static final int NUM_ATTEMPTS =  10;
+    private static final int GRID_DIMENSION = 10;
     private WhackAMole whackAMole;
 
     /**
@@ -98,7 +98,7 @@ public class WhackAMoleTest {
      * Print the grid with M and W.
      */
     @Test
-    public void printGridTest() {
+    public void testPrintGrid() {
         final int gridDimension = 3;
         final int attempts = 2;
         final int placementX = 0;
@@ -125,7 +125,7 @@ public class WhackAMoleTest {
         final int placementY = 1;
         final int whackRow = 0;
         final int whackColumn = 0;
-        final String expectedGrid = "W  * *  \n*  *  *  \n*  *  *  \n";
+        final String expectedGrid = "W  *  *  \n*  *  *  \n*  *  *  \n";
         whackAMole = new WhackAMole(attempts, gridDimension);
 
         whackAMole.whack(whackRow, whackColumn);
