@@ -1,7 +1,6 @@
 package org.minions.devfund.royrodriguez;
 
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * Whack a Mole game.
@@ -24,8 +23,6 @@ public class WhackAMole {
      */
     public WhackAMole(int numAttempts, int gridDimension) {
         this.attemptsLeft = numAttempts;
-        score = 0;
-        molesLeft = 0;
         moleGrid = new char[gridDimension][gridDimension];
         initializeMoleGrid();
     }
@@ -36,17 +33,6 @@ public class WhackAMole {
     private void initializeMoleGrid() {
         for (char[] c : moleGrid) {
             Arrays.fill(c, EMPTY_PLACE);
-        }
-    }
-
-    /**
-     * Place moles to play.
-     */
-    public void placeMoles() {
-        while (molesLeft < moleGrid.length) {
-            int xRandomValue = new Random().nextInt(moleGrid.length);
-            int yRandomValue = new Random().nextInt(moleGrid.length);
-            place(xRandomValue, yRandomValue);
         }
     }
 
@@ -73,16 +59,17 @@ public class WhackAMole {
      * @param y position.
      */
     public void whack(int x, int y) {
-        if (x != -1 && y != -1) {
-            if (moleGrid[x][y] == MOLE) {
-                moleGrid[x][y] = WHACKED;
-                score++;
-                molesLeft--;
-            }
-            attemptsLeft--;
-        } else {
+        if (x < 0 || y < 0) {
             attemptsLeft = 0;
+            return;
         }
+
+        if (moleGrid[x][y] == MOLE) {
+            moleGrid[x][y] = WHACKED;
+            score++;
+            molesLeft--;
+        }
+        attemptsLeft--;
     }
 
     /**
@@ -94,11 +81,7 @@ public class WhackAMole {
         StringBuilder stringBuilder = new StringBuilder();
         for (char[] row : moleGrid) {
             for (char position : row) {
-                if (position == MOLE) {
-                    stringBuilder.append(EMPTY_PLACE);
-                } else {
-                    stringBuilder.append(position);
-                }
+                stringBuilder.append(position == MOLE ? EMPTY_PLACE : position);
             }
             stringBuilder.append("\n");
         }
