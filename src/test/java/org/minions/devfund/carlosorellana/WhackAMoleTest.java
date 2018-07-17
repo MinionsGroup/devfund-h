@@ -279,4 +279,28 @@ public class WhackAMoleTest {
         assertTrue("The Print Grid To User method does not return the expected String",
                 whackAMole.printGridToUser().contains("W"));
     }
+
+    /**
+     * validate that PrintGrid method return the string with the value W..
+     */
+    @Test
+    public void validateIsCorrectPositionMethodReturnFalseWhenTheCoordinatesAreIncorrect() {
+        final int xPos = 3;
+        final int yPos = 11;
+        boolean result = whackAMole.isCorrectPosition(xPos, yPos);
+        assertFalse("The IsCorrectPosition Method return True when the Coordinates are incorrect ",
+                result);
+    }
+
+    /**
+     * validate that PrintGrid method return the string with the value W..
+     */
+    @Test
+    public void validateIsCorrectPositionMethodReturnTrueWhenTheCoordinatesAreCorrect() {
+        final int xPos = 3;
+        final int yPos = 9;
+        boolean result = whackAMole.isCorrectPosition(xPos, yPos);
+        assertTrue("The IsCorrectPosition Method return False when the Coordinates are correct ",
+                result);
+    }
 }

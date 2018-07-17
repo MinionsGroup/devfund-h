@@ -66,7 +66,7 @@ public class WhackAMole {
      * @param y - Y position.
      * @return True fi the position is correct in the grid, otherwise false.
      */
-    private boolean isCorrectPosition(final int x, final int y) {
+    public boolean isCorrectPosition(final int x, final int y) {
         return x >= 0 && x < moleGrid.length && y >= 0 && y < moleGrid.length;
     }
 
