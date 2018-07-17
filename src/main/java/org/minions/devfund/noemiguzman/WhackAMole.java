@@ -156,18 +156,5 @@ public class WhackAMole {
         return attemptsLeft;
     }
 
-
-    /**
-     * This methods to verify the moles in the game.
-     * @param userGrid the userGrid.
-     * @param typeCharacter the caracter.
-     */
-    private void existTheMole(final StringBuilder userGrid, char typeCharacter) {
-        if (typeCharacter == MOLE) {
-            userGrid.append(String.valueOf("*").concat(" "));
-            return;
-        }
-        userGrid.append(String.valueOf(typeCharacter).concat(SPACES));
-    }
 }
 
