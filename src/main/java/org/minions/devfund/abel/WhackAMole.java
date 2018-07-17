@@ -93,8 +93,8 @@ public class WhackAMole {
     /**
      * Verifies if the position contains an specific char.
      *
-     * @param row    row position to check.
-     * @param col    col position to check.
+     * @param row row position to check.
+     * @param col col position to check.
      * @return if the position is valid.
      */
     private boolean isValidPosition(int row, int col) {
@@ -106,7 +106,7 @@ public class WhackAMole {
 
     /**
      * Print the grid without showing where the moles are.
-     * For every spot that has recorded a “whacked mole,” print out a W, or * otherwise.
+     * For every spot that has recorded a whacked mole, print out a W, or * otherwise.
      *
      * @return the grid completely without moles.
      */
@@ -125,7 +125,7 @@ public class WhackAMole {
     public String printGrid() {
         StringBuilder stringBuilder = new StringBuilder();
         for (char[] row : this.moleGrid) {
-            stringBuilder.append(String.format("%s%s", String.valueOf(row), System.lineSeparator()));
+            stringBuilder.append(String.format("%s%n", String.valueOf(row)));
         }
         return stringBuilder.toString();
     }
