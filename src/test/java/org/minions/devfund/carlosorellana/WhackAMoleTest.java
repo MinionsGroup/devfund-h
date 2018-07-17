@@ -216,12 +216,57 @@ public class WhackAMoleTest {
     }
 
     /**
-     * validate Place Result is False when the positions are incorrect.
+     * validate Place Result is False when the mole was already placed.
      */
     @Test
-    public void validatePlaceResultIsFalseWhenPositionsAreIncorrect() {
-        final int xPos = 0;
-        final int yPos = 0;
+    public void validatePlaceResultIsFalseWhenMolesWasAlreadyPlaced() {
+        final int xPos = 5;
+        final int yPos = 5;
+        whackAMole.place(xPos, yPos);
+
+        assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos));
+    }
+
+    /**
+     * validate Place Result is False when the positions on X are negative.
+     */
+    @Test
+    public void validatePlaceResultIsFalseWhenPositionsOnXAreNegative() {
+        final int xPos = -10;
+        final int yPos = 1;
+
+        assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos));
+    }
+
+    /**
+     * validate Place Result is False when the positions on X are incorrect.
+     */
+    @Test
+    public void validatePlaceResultIsFalseWhenPositionsOnXAreIncorrect() {
+        final int xPos = 20;
+        final int yPos = 1;
+
+        assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos));
+    }
+
+    /**
+     * validate Place Result is False when the positions on Y are negative.
+     */
+    @Test
+    public void validatePlaceResultIsFalseWhenPositionsOnYAreNegative() {
+        final int xPos = 1;
+        final int yPos = -10;
+
+        assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos));
+    }
+
+    /**
+     * validate Place Result is False when the positions on Y are incorrect.
+     */
+    @Test
+    public void validatePlaceResultIsFalseWhenPositionsOnYAreIncorrect() {
+        final int xPos = 1;
+        final int yPos = 20;
 
         assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos));
     }
@@ -278,29 +323,5 @@ public class WhackAMoleTest {
 
         assertTrue("The Print Grid To User method does not return the expected String",
                 whackAMole.printGridToUser().contains("W"));
-    }
-
-    /**
-     * validate that PrintGrid method return the string with the value W..
-     */
-    @Test
-    public void validateIsCorrectPositionMethodReturnFalseWhenTheCoordinatesAreIncorrect() {
-        final int xPos = 3;
-        final int yPos = 11;
-        boolean result = whackAMole.isCorrectPosition(xPos, yPos);
-        assertFalse("The IsCorrectPosition Method return True when the Coordinates are incorrect ",
-                result);
-    }
-
-    /**
-     * validate that PrintGrid method return the string with the value W..
-     */
-    @Test
-    public void validateIsCorrectPositionMethodReturnTrueWhenTheCoordinatesAreCorrect() {
-        final int xPos = 3;
-        final int yPos = 9;
-        boolean result = whackAMole.isCorrectPosition(xPos, yPos);
-        assertTrue("The IsCorrectPosition Method return False when the Coordinates are correct ",
-                result);
     }
 }

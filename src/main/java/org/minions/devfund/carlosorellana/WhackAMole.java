@@ -66,8 +66,10 @@ public class WhackAMole {
      * @param y - Y position.
      * @return True fi the position is correct in the grid, otherwise false.
      */
-    public boolean isCorrectPosition(final int x, final int y) {
-        return x >= 0 && x < moleGrid.length && y >= 0 && y < moleGrid.length;
+    private boolean isCorrectPosition(final int x, final int y) {
+        boolean isValidOnX = x >= 0 && x < moleGrid.length;
+        boolean isValidOnY = y >= 0 && y < moleGrid.length;
+        return isValidOnX && isValidOnY;
     }
 
     /**
@@ -85,16 +87,12 @@ public class WhackAMole {
             return;
         }
 
-        if (attemptsLeft > 0) {
-            if (isCorrectPosition(xPosition, yPosition) && moleGrid[xPosition][yPosition] == MOLE_CHAR) {
-                moleGrid[xPosition][yPosition] = WHACKED_CHAR;
-                score++;
-                attemptsLeft--;
-                molesLeft--;
-            } else {
-                attemptsLeft--;
-            }
+        if (isCorrectPosition(xPosition, yPosition) && moleGrid[xPosition][yPosition] == MOLE_CHAR) {
+            moleGrid[xPosition][yPosition] = WHACKED_CHAR;
+            score++;
+            molesLeft--;
         }
+        attemptsLeft--;
     }
 
     /**
@@ -112,7 +110,6 @@ public class WhackAMole {
             }
             gridToUser.append(NEW_LINE);
         }
-        System.err.println(gridToUser.toString());
         return gridToUser.toString();
     }
 
@@ -130,7 +127,6 @@ public class WhackAMole {
             }
             gridBuilder.append(NEW_LINE);
         }
-        System.err.println(gridBuilder.toString());
         return gridBuilder.toString();
     }
 
