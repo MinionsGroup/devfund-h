@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class Squarelotron {
 
 
+    private static final int MAX_ROTATIONS = 4;
     private int[][] squarelotronMatrix;
     private int size;
 
@@ -55,8 +56,9 @@ public class Squarelotron {
      * @return A new Squarelotron object.
      */
     public Squarelotron upsideDownFlip(int ring) {
-        Function<Integer, Integer, Integer> upsideDown = (i, j) -> squarelotronMatrix[size - i - 1][j];
-        return new Squarelotron(flip(ring, upsideDown));
+        Function<int[][], Boolean, Integer, Integer, Integer> upsideDown = (tArray, condition, row, col) ->
+                condition ? tArray[size - row - 1][col] : tArray[row][col];
+        return new Squarelotron(flip(ring, squarelotronMatrix, upsideDown));
     }
 
     /**
@@ -67,48 +69,51 @@ public class Squarelotron {
      * @return A new Squarelotron object.
      */
     public Squarelotron mainDiagonalFlip(int ring) {
-        Function<Integer, Integer, Integer> upsideDown = (i, j) -> squarelotronMatrix[j][i];
-        return new Squarelotron(flip(ring, upsideDown));
+        Function<int[][], Boolean, Integer, Integer, Integer> mainDiagonal = (tArray, condition, row, col) ->
+                condition ? tArray[col][row] : tArray[row][col];
+        return new Squarelotron(flip(ring, squarelotronMatrix, mainDiagonal));
     }
 
     /**
      * Method to flip based on a Function.
      *
      * @param ring The ring to be modified.
+     * @param ints The 2dArray to be modified.
      * @param fn   The lambda function to execute.
      * @return 2d array flipped.
      */
-    private int[][] flip(int ring, final Function<Integer, Integer, Integer> fn) {
+    private int[][] flip(int ring, final int[][] ints, final Function<int[][], Boolean, Integer, Integer, Integer> fn) {
         int[][] copy = new int[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (isInRing(ring, i, j)) {
-                    copy[i][j] = fn.apply(i, j);
-                } else {
-                    copy[i][j] = squarelotronMatrix[i][j];
-                }
+                copy[i][j] = fn.apply(ints, isInRing(ring, i, j), i, j);
             }
         }
         return copy;
     }
 
+
     /**
      * Custom Functional interface.
      *
-     * @param <T>  The first parameter.
-     * @param <T2> The second parameter.
+     * @param <T1> The first parameter, the array to be modified.
+     * @param <T2> The second parameter, the boolean condition.
+     * @param <T3> The third parameter, the row position.
+     * @param <T4> The fourth parameter, the col position.
      * @param <R>  The result response.
      */
     @FunctionalInterface
-    interface Function<T, T2, R> {
+    interface Function<T1, T2, T3, T4, R> {
         /**
          * Method to execute the function.
          *
-         * @param one First parameter.
-         * @param two Second parameters.
+         * @param tArray     First parameter.
+         * @param tCondition Second parameter.
+         * @param tRow       Third parameter.
+         * @param tCol       Fourth parameter.
          * @return The response type.
          */
-        R apply(T one, T2 two);
+        R apply(T1 tArray, T2 tCondition, T3 tRow, T4 tCol);
     }
 
     /**
@@ -120,10 +125,8 @@ public class Squarelotron {
      * @param numberOfTurns The times to rotate.
      */
     public void rotateRight(int numberOfTurns) {
-        int[][] copy = new int[size][size];
-        for (int x = 0; x < Math.abs(numberOfTurns); x++) {
-            rotate(numberOfTurns, copy);
-            squarelotronMatrix = copy;
+        for (int x = 0; x < Math.abs(numberOfTurns) % MAX_ROTATIONS; x++) {
+            squarelotronMatrix = rotate(numberOfTurns);
         }
     }
 
@@ -131,19 +134,19 @@ public class Squarelotron {
      * Rotate the squarelotronMatrix 2d array.
      *
      * @param numberOfTurns Numbers of rotations.
-     * @param copy          the roteted 2d array.
+     * @return a rotated 2d int array.
      */
-    private void rotate(int numberOfTurns, final int[][] copy) {
+    private int[][] rotate(int numberOfTurns) {
         int[][] cloned = deepCopy(squarelotronMatrix);
+        int[][] copy = new int[size][size];
+        Function<int[][], Boolean, Integer, Integer, Integer> right = (tArray, condition, row, col) ->
+                condition ? tArray[size - 1 - col][row] : tArray[col][size - 1 - row];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (numberOfTurns > 0) {
-                    copy[i][j] = cloned[size - 1 - j][i];
-                } else {
-                    copy[i][j] = cloned[j][size - 1 - i];
-                }
+                copy[i][j] = right.apply(cloned, numberOfTurns > 0, i, j);
             }
         }
+        return copy;
     }
 
     /**
