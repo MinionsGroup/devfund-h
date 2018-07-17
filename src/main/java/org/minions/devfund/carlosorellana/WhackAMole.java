@@ -112,7 +112,7 @@ public class WhackAMole {
             }
             gridToUser.append(NEW_LINE);
         }
-        System.out.println(gridToUser.toString());
+        System.err.println(gridToUser.toString());
         return gridToUser.toString();
     }
 
@@ -130,7 +130,7 @@ public class WhackAMole {
             }
             gridBuilder.append(NEW_LINE);
         }
-        System.out.println(gridBuilder.toString());
+        System.err.println(gridBuilder.toString());
         return gridBuilder.toString();
     }
 
