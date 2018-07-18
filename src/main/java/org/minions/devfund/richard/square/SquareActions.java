@@ -5,6 +5,7 @@ package org.minions.devfund.richard.square;
  */
 public abstract class SquareActions {
 
+    private static final int MAX_ROTATIONS = 4;
     static int myRow;
     static int myColumn;
     static int value;
@@ -40,7 +41,7 @@ public abstract class SquareActions {
      * @param mySquare Square.
      */
     static void rotateRight(final Squarelotron mySquare) {
-        for (int ind = 0; ind < Math.abs(mySquare.getNumberOfTurns()); ind++) {
+        for (int ind = 0; ind < Math.abs(mySquare.getNumberOfTurns()) % MAX_ROTATIONS; ind++) {
             SquareActions.action(new SquareCopy(), mySquare);
             SquareActions.action(new SquareRotateRight(), mySquare);
         }

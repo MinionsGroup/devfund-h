@@ -10,15 +10,14 @@ public class Squarelotron {
     private int ring;
     private int numberOfTurns;
     private int size;
-    private Squarelotron myNewSquare;
 
     /**
      * @param n size.
      */
     public Squarelotron(int n) {
         this.size = n;
-        this.squarelotron = new int[n][n];
-        this.squareCopy = new int[n][n];
+        this.squarelotron = new int[size][size];
+        this.squareCopy = new int[size][size];
         SquareActions.action(new SquareFill(), this);
     }
 
@@ -27,8 +26,9 @@ public class Squarelotron {
      * @return Square.
      */
     public Squarelotron upsideDownFlip(int ring) {
+        Squarelotron myNewSquare = new Squarelotron(size);
         this.ring = ring;
-        myNewSquare = this;
+        myNewSquare.ring = ring;
         SquareActions.action(new SquareCopy(), myNewSquare);
         SquareActions.action(new SquareUpsideDownFlip(), myNewSquare);
         return myNewSquare;
@@ -39,8 +39,9 @@ public class Squarelotron {
      * @return Square.
      */
     public Squarelotron mainDiagonalFlip(int ring) {
+        Squarelotron myNewSquare = new Squarelotron(size);
         this.ring = ring;
-        myNewSquare = this;
+        myNewSquare.ring = ring;
         SquareActions.action(new SquareCopy(), myNewSquare);
         SquareActions.action(new SquareDiagonalFlip(), myNewSquare);
         return myNewSquare;
@@ -52,9 +53,8 @@ public class Squarelotron {
      */
     public Squarelotron rotateRight(int numberOfTurns) {
         this.numberOfTurns = numberOfTurns;
-        myNewSquare = this;
-        SquareActions.rotateRight(myNewSquare);
-        return myNewSquare;
+        SquareActions.rotateRight(this);
+        return this;
     }
 
     /**
@@ -67,7 +67,7 @@ public class Squarelotron {
     /**
      * @return int.
      */
-    public int getRing() {
+    int getRing() {
         return ring;
     }
 
@@ -75,20 +75,20 @@ public class Squarelotron {
      * @return original square.
      */
     public int[][] getSquare() {
-        return squarelotron.clone();
+        return squarelotron;
     }
 
     /**
      * @return cloned square.
      */
-    public int[][] getSquareCopy() {
-        return squareCopy.clone();
+    int[][] getSquareCopy() {
+        return squareCopy;
     }
 
     /**
      * @return Number of turns.
      */
-    public int getNumberOfTurns() {
+    int getNumberOfTurns() {
         return numberOfTurns;
     }
 }

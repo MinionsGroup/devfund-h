@@ -3,6 +3,7 @@ package org.minions.devfund.richard;
 import org.junit.Test;
 import org.minions.devfund.richard.square.Squarelotron;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -63,6 +64,30 @@ public class SquarelotronTest {
                 + "15 11 7 3 "
                 + "16 12 8 4 ";
         assertEquals(expectedValue, mySquarelotron.rotateRight(ONE).print());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testUpsideDownFlipSizeThreeRingOne() {
+        final int three = 3;
+        Squarelotron squarelotron = new Squarelotron(three);
+        final int[][] expected = {{7, 8, 9}, {4, 5, 6}, {1, 2, 3}};
+        assertArrayEquals(expected, squarelotron.upsideDownFlip(1).getSquare());
+        assertArrayEquals(new int[][]{{1,2,3}, {4,5,6}, {7,8,9}}, squarelotron.getSquare());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testMainDiagonalFlipSizeThreeRingOne() {
+        final int three = 3;
+        Squarelotron squarelotron = new Squarelotron(three);
+        final int[][] expected = {{1, 4, 7}, {2, 5, 8}, {3, 6, 9}};
+        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(1).getSquare());
+        assertArrayEquals(new int[][]{{1,2,3}, {4,5,6}, {7,8,9}}, squarelotron.getSquare());
     }
 
 }
