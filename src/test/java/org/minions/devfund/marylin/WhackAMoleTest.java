@@ -105,6 +105,28 @@ public class WhackAMoleTest {
      * Method to .
      */
     @Test
+    public void testMolesLefts() {
+        whackAMole.place(1, 1);
+        whackAMole.place(1, 2);
+        whackAMole.whack(1, 2);
+        assertEquals(1, whackAMole.getMolesLeft());
+    }
+
+    /**
+     * Method to .
+     */
+    @Test
+    public void testScore() {
+        whackAMole.place(1, 1);
+        whackAMole.place(1, 2);
+        whackAMole.whack(1, 2);
+        assertEquals(1, whackAMole.getScore());
+    }
+
+    /**
+     * Method to .
+     */
+    @Test
     public void testprintGridToUser() {
         final String expectedGrid = "*  *  *  *  W  *  *  *  *";
         whackAMole.place(1, 1);
