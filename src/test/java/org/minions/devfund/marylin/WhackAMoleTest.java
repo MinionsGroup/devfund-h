@@ -100,4 +100,28 @@ public class WhackAMoleTest {
 
         assertEquals(originalAttempsLeft - 1, whackAMole.getAttemptsLeft());
     }
+
+    /**
+     * Method to .
+     */
+    @Test
+    public void testprintGridToUser() {
+        final String expectedGrid = "*  *  *  *  W  *  *  *  *";
+        whackAMole.place(1, 1);
+        whackAMole.place(2, 2);
+        whackAMole.whack(1, 1);
+        assertEquals(expectedGrid, whackAMole.printGridToUser().toString().trim());
+    }
+
+    /**
+     * Method to .
+     */
+    @Test
+    public void testprintGrid() {
+        final String expectedGrid = "*  *  *  *  W  *  *  *  M";
+        whackAMole.place(1, 1);
+        whackAMole.place(2, 2);
+        whackAMole.whack(1, 1);
+        assertEquals(expectedGrid, whackAMole.printGrid().toString().trim());
+    }
 }

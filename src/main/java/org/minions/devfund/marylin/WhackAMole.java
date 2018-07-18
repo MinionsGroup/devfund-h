@@ -34,16 +34,6 @@ public class WhackAMole {
     public int getScore() {
         return score;
     }
-
-    /**
-     * Set score.
-     *
-     * @param score score.
-     */
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     /**
      * Get Moles left.
      *
@@ -54,30 +44,12 @@ public class WhackAMole {
     }
 
     /**
-     * Set Moles left.
-     *
-     * @param molesLeft molesLeft.
-     */
-    public void setMolesLeft(int molesLeft) {
-        this.molesLeft = molesLeft;
-    }
-
-    /**
      * Get Attempts left.
      *
      * @return attemptsLeft.
      */
     public int getAttemptsLeft() {
         return attemptsLeft;
-    }
-
-    /**
-     * Set Attemps left.
-     *
-     * @param attemptsLeft attemptsLeft.
-     */
-    public void setAttemptsLeft(int attemptsLeft) {
-        this.attemptsLeft = attemptsLeft;
     }
 
     /**
