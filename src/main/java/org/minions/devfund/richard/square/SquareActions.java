@@ -6,11 +6,11 @@ package org.minions.devfund.richard.square;
 public abstract class SquareActions {
 
     private static final int MAX_ROTATIONS = 4;
-    static int myRow;
-    static int myColumn;
-    static int value;
-    static int squareSize;
-    static StringBuilder myStreamBuilder;
+    private static int myRow;
+    private static int myColumn;
+    private static int value;
+    private static int squareSize;
+    private static StringBuilder myStreamBuilder;
 
     /**
      * @param mySquare Square.
@@ -24,7 +24,7 @@ public abstract class SquareActions {
      */
     static SquareActions action(final SquareActions mySquareActions, final Squarelotron mySquarelotron) {
         value = 0;
-        squareSize = mySquarelotron.getSquare().length;
+        squareSize = mySquarelotron.getSquarelotron().length;
         myStreamBuilder = new StringBuilder();
         for (int row = 0; row < squareSize; row++) {
             for (int column = 0; column < squareSize; column++) {
@@ -66,5 +66,40 @@ public abstract class SquareActions {
      */
     String getPrint() {
         return myStreamBuilder.toString();
+    }
+
+    /**
+     * @return row.
+     */
+    int gRow() {
+        return myRow;
+    }
+
+    /**
+     * @return Column.
+     */
+    int gCol() {
+        return myColumn;
+    }
+
+    /**
+     * @return value.
+     */
+    int getValue() {
+        return value;
+    }
+
+    /**
+     * @return Square size.
+     */
+    int getSquareSize() {
+        return squareSize;
+    }
+
+    /**
+     * @return StreamBuilder.
+     */
+    StringBuilder getMyStreamBuilder() {
+        return myStreamBuilder;
     }
 }

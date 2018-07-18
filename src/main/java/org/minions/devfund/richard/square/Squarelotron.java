@@ -10,6 +10,7 @@ public class Squarelotron {
     private int ring;
     private int numberOfTurns;
     private int size;
+    private Squarelotron myNewSquare;
 
     /**
      * @param n size.
@@ -26,9 +27,8 @@ public class Squarelotron {
      * @return Square.
      */
     public Squarelotron upsideDownFlip(int ring) {
-        Squarelotron myNewSquare = new Squarelotron(size);
-        this.ring = ring;
-        myNewSquare.ring = ring;
+        this.myNewSquare = new Squarelotron(size);
+        this.myNewSquare.ring = ring;
         SquareActions.action(new SquareCopy(), myNewSquare);
         SquareActions.action(new SquareUpsideDownFlip(), myNewSquare);
         return myNewSquare;
@@ -39,9 +39,8 @@ public class Squarelotron {
      * @return Square.
      */
     public Squarelotron mainDiagonalFlip(int ring) {
-        Squarelotron myNewSquare = new Squarelotron(size);
-        this.ring = ring;
-        myNewSquare.ring = ring;
+        this.myNewSquare = new Squarelotron(size);
+        this.myNewSquare.ring = ring;
         SquareActions.action(new SquareCopy(), myNewSquare);
         SquareActions.action(new SquareDiagonalFlip(), myNewSquare);
         return myNewSquare;
@@ -74,8 +73,8 @@ public class Squarelotron {
     /**
      * @return original square.
      */
-    public int[][] getSquare() {
-        return squarelotron;
+    public int[][] getSquarelotron() {
+        return squarelotron.clone();
     }
 
     /**

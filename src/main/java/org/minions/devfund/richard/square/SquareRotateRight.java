@@ -9,8 +9,8 @@ public class SquareRotateRight extends SquareActions {
      */
     @Override
     protected void action(final Squarelotron mySquare) {
-        int trueValue = mySquare.getSquareCopy()[squareSize - myColumn - 1][myRow];
-        int falseValue = mySquare.getSquareCopy()[myColumn][squareSize - myRow - 1];
-        mySquare.getSquare()[myRow][myColumn] = (mySquare.getNumberOfTurns() > 0) ? trueValue : falseValue;
+        int tValue = mySquare.getSquareCopy()[this.getSquareSize() - this.gCol() - 1][this.gRow()];
+        int fValue = mySquare.getSquareCopy()[this.gCol()][this.getSquareSize() - this.gRow() - 1];
+        mySquare.getSquarelotron()[this.gRow()][this.gCol()] = mySquare.getNumberOfTurns() > 0 ? tValue : fValue;
     }
 }

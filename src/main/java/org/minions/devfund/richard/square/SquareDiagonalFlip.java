@@ -10,7 +10,7 @@ public class SquareDiagonalFlip extends SquareActions {
     @Override
     protected void action(final Squarelotron mySquare) {
         if (isInRing(mySquare.getRing())) {
-            mySquare.getSquare()[myRow][myColumn] = mySquare.getSquareCopy()[myColumn][myRow];
+            mySquare.getSquarelotron()[this.gRow()][this.gCol()] = mySquare.getSquareCopy()[this.gCol()][this.gRow()];
         }
     }
 }

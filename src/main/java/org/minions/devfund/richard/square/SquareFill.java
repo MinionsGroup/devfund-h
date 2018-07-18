@@ -10,6 +10,6 @@ public class SquareFill extends SquareActions {
      */
     @Override
     public void action(final Squarelotron mySquare) {
-        mySquare.getSquare()[myRow][myColumn] = value;
+        mySquare.getSquarelotron()[this.gRow()][this.gCol()] = this.getValue();
     }
 }

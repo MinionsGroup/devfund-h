@@ -10,7 +10,8 @@ public class SquareUpsideDownFlip extends SquareActions {
     @Override
     protected void action(final Squarelotron mySquare) {
         if (isInRing(mySquare.getRing())) {
-            mySquare.getSquare()[myRow][myColumn] = mySquare.getSquareCopy()[squareSize - myRow - 1][myColumn];
+            mySquare.getSquarelotron()[this.gRow()][this.gCol()] =
+                    mySquare.getSquareCopy()[this.getSquareSize() - this.gRow() - 1][this.gCol()];
         }
     }
 }

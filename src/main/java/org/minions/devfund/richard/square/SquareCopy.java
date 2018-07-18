@@ -9,6 +9,6 @@ public class SquareCopy extends SquareActions {
      */
     @Override
     protected void action(final Squarelotron mySquare) {
-        mySquare.getSquareCopy()[myRow][myColumn] = mySquare.getSquare()[myRow][myColumn];
+        mySquare.getSquareCopy()[this.gRow()][this.gCol()] = mySquare.getSquarelotron()[this.gRow()][this.gCol()];
     }
 }

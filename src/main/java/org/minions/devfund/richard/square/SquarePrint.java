@@ -11,6 +11,6 @@ public class SquarePrint extends SquareActions {
      */
     @Override
     protected void action(final Squarelotron mySquare) {
-        myStreamBuilder.append(mySquare.getSquare()[myRow][myColumn]).append(" ");
+        this.getMyStreamBuilder().append(mySquare.getSquarelotron()[this.gRow()][this.gCol()]).append(" ");
     }
 }
