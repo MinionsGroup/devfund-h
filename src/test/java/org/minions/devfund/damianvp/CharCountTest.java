@@ -1,4 +1,4 @@
-package org.minions.devfund.damian;
+package org.minions.devfund.damianvp;
 
 import org.junit.Test;
 

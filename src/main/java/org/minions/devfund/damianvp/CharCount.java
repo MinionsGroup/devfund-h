@@ -1,4 +1,4 @@
-package org.minions.devfund.damian;
+package org.minions.devfund.damianvp;
 
 import java.util.regex.Pattern;
 
@@ -17,6 +17,6 @@ public class CharCount {
      * @return the number of times that character appears in the string (insensitive case)
      */
     public int characterCounter(final String str, final char c) {
-        return Pattern.compile("(?i)[^" + c + "]").matcher(str).replaceAll("").length();
+        return Pattern.compile(String.format("(?i)[^%s]", c)).matcher(str).replaceAll("").length();
     }
 }
