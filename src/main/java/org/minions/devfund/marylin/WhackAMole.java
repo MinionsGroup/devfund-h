@@ -86,16 +86,7 @@ public class WhackAMole {
      * @return moleGrid.
      */
     public char[][] getMoleGrid() {
-        return moleGrid;
-    }
-
-    /**
-     * Set Mole grid.
-     *
-     * @param moleGrid moleGrid.
-     */
-    public void setMoleGrid(final char[][] moleGrid) {
-        this.moleGrid = moleGrid;
+        return this.moleGrid.clone();
     }
 
     /**
