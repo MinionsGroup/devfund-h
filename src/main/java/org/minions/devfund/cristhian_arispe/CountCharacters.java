@@ -13,20 +13,20 @@ public final class CountCharacters {
 
     /**
      * Count characters on the String.
+     *
      * @param str String value.
-     * @param c Char value.
+     * @param c   Char value.
      * @return The number of characters that are found in the string.
      */
-    public static int charCount(final String str, final char c) {
-        String[] wordArray = str.split("");
+    static int charCount(final String str, final char c) {
         int counter = 0;
-        for (int i = 0; i < str.length(); i++) {
-            if (wordArray[i].toLowerCase().equals((c + "").toLowerCase())) {
+        char[] wordArray = str.toLowerCase().toCharArray();
+        for (char aWordArray : wordArray) {
+            if (aWordArray == Character.toLowerCase(c)) {
                 counter++;
             }
         }
         return counter;
-
     }
 
 }
