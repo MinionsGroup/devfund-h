@@ -11,8 +11,8 @@ import static org.junit.Assert.assertTrue;
  * It is in charged to define the unit tests for WhackAMole class.
  */
 public class WhackAMoleTest {
-    public static final int NUM_ATTEMPTS =  10;
-    public static final int GRID_DIMENSION = 10;
+    private static final int NUM_ATTEMPTS =  10;
+    private static final int GRID_DIMENSION = 10;
     private WhackAMole whackAMole;
 
     /**

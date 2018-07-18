@@ -9,7 +9,7 @@ public class WhackAMole {
     private static final String NEWLINE = "\n";
     private static final String SPACES = "  ";
     private static final char WHACKED = 'W';
-    public static final char MOLE = 'M';
+    private static final char MOLE = 'M';
 
     //instance variables called score, molesLeft, and attemptsLeft.
     // Make one more instance variable called moleGrid which is a 2-dimensional array of chars.
@@ -135,20 +135,11 @@ public class WhackAMole {
         StringBuilder grid = new StringBuilder();
         for (char[] row : moleGrid) {
             for (char value : row) {
-                addTheValueOnStringBuild(grid, value);
+                grid.append(value).append(SPACES);
             }
             grid.append(NEWLINE);
         }
         return grid.toString();
-    }
-
-    /**
-     * Method that add to string build.
-     * @param grid string build.
-     * @param value char.
-     */
-    private void addTheValueOnStringBuild(final StringBuilder grid, final char value) {
-        grid.append(String.valueOf(value).concat(SPACES));
     }
 
     /**
@@ -160,25 +151,12 @@ public class WhackAMole {
         StringBuilder userGrid = new StringBuilder();
         for (char[] row : moleGrid) {
             for (char value : row) {
-                existTheMole(userGrid, value);
+                userGrid.append(value == MOLE ? DEFAULTCHARACTER : value).append(SPACES);
             }
             userGrid.append(NEWLINE);
         }
 
         return userGrid.toString();
-    }
-
-    /**
-     * This methods to verify the moles in the game.
-     * @param userGrid the userGrid.
-     * @param typeCharacter the caracter.
-     */
-    private void existTheMole(final StringBuilder userGrid, char typeCharacter) {
-        if (typeCharacter == 'M') {
-            addTheValueOnStringBuild(userGrid, '*');
-            return;
-        }
-        addTheValueOnStringBuild(userGrid, typeCharacter);
     }
 
 }
