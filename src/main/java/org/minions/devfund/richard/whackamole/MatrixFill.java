@@ -15,8 +15,8 @@ public class MatrixFill implements MatrixActions {
      * {@inheritDoc}
      */
     @Override
-    public void action(final char[][] moleGrid, final int row, final int column, final StringBuilder myStreamBuilder) {
-        moleGrid[row][column] = EMPTY_PLACE;
+    public void action(final WhackAMole myW) {
+        myW.getMoleGrid()[myW.getRow()][myW.getCol()] = EMPTY_PLACE;
     }
 
     /**
@@ -25,7 +25,7 @@ public class MatrixFill implements MatrixActions {
      * @param col      This variable is the column.
      * @return This returns the boolean.
      */
-    public boolean setMole(final char[][] moleGrid, final int row, final int col) {
+    boolean setMole(final char[][] moleGrid, final int row, final int col) {
         boolean valueReturned = this.isValidPosition(moleGrid, row, col, EMPTY_PLACE);
         if (valueReturned) {
             moleGrid[row][col] = MOLE;
@@ -39,7 +39,7 @@ public class MatrixFill implements MatrixActions {
      * @param row      This variable is the row.
      * @param col      This variable is the column.
      */
-    public void setWhack(final char[][] moleGrid, final int row, final int col) {
+    void setWhack(final char[][] moleGrid, final int row, final int col) {
         if (isValidPosition(moleGrid, row, col, MOLE)) {
             this.molesLeft--;
             this.score++;
@@ -63,14 +63,14 @@ public class MatrixFill implements MatrixActions {
     /**
      * @return This returns the moles left.
      */
-    public int getMolesLeft() {
+    int getMolesLeft() {
         return this.molesLeft;
     }
 
     /**
      * @return This returns the score.
      */
-    public int getScore() {
+    int getScore() {
         return this.score;
     }
 }

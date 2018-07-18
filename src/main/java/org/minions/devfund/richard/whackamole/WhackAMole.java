@@ -8,12 +8,17 @@ public class WhackAMole {
     private int attemptsLeft;
     private char[][] moleGrid;
     private MatrixFill myMatrixFill;
+    private int row;
+    private int col;
+
+
+    private StringBuilder myStringBuilder;
 
     /**
      * @param numAttempts   This variable is the number attempts.
      * @param gridDimension This variable is grid dimension..
      */
-    public WhackAMole(final int numAttempts, final int gridDimension) {
+    WhackAMole(final int numAttempts, final int gridDimension) {
         this.moleGrid = new char[gridDimension][gridDimension];
         this.attemptsLeft = numAttempts;
         myMatrixFill = new MatrixFill();
@@ -25,7 +30,7 @@ public class WhackAMole {
      * @param col This variable is the column.
      * @return This returns the boolean.
      */
-    public boolean place(int row, int col) {
+    boolean place(int row, int col) {
         return myMatrixFill.setMole(moleGrid, row, col);
     }
 
@@ -41,14 +46,14 @@ public class WhackAMole {
     /**
      * @return This returns string.
      */
-    public String printGrid() {
+    String printGrid() {
         return iterateArray(new MatrixPrint());
     }
 
     /**
      * @return This returns string.
      */
-    public String printGridToUser() {
+    String printGridToUser() {
         return iterateArray(new MatrixPrintToUser());
     }
 
@@ -57,10 +62,12 @@ public class WhackAMole {
      * @return This returns string.
      */
     private String iterateArray(final MatrixActions myMatrixActions) {
-        StringBuilder myStringBuilder = new StringBuilder();
-        for (int row = 0; row < moleGrid.length; row++) {
-            for (int column = 0; column < moleGrid.length; column++) {
-                myMatrixActions.action(moleGrid, row, column, myStringBuilder);
+        myStringBuilder = new StringBuilder();
+        for (int myRow = 0; myRow < moleGrid.length; myRow++) {
+            for (int myColumn = 0; myColumn < moleGrid.length; myColumn++) {
+                this.row = myRow;
+                this.col = myColumn;
+                myMatrixActions.action(this);
             }
         }
         return myStringBuilder.toString();
@@ -69,21 +76,50 @@ public class WhackAMole {
     /**
      * @return This returns the attempts left.
      */
-    public int getAttemptsLeft() {
+    int getAttemptsLeft() {
         return this.attemptsLeft;
     }
 
     /**
      * @return This returns the moles left.
      */
-    public int getMolesLeft() {
+    int getMolesLeft() {
         return myMatrixFill.getMolesLeft();
     }
 
     /**
      * @return This returns the score.
      */
-    public int getScore() {
+    int getScore() {
         return myMatrixFill.getScore();
     }
+
+    /**
+     * @return row.
+     */
+    int getRow() {
+        return row;
+    }
+
+    /**
+     * @return column;
+     */
+    int getCol() {
+        return col;
+    }
+
+    /**
+     * @return StringBuilder.
+     */
+    StringBuilder getMyStringBuilder() {
+        return myStringBuilder;
+    }
+
+    /**
+     * @return getMoleGrid.
+     */
+    char[][] getMoleGrid() {
+        return moleGrid;
+    }
+
 }

@@ -12,7 +12,10 @@ public class MatrixPrintToUser implements MatrixActions {
      * {@inheritDoc}
      */
     @Override
-    public void action(final char[][] moleGrid, final int row, final int column, final StringBuilder myStreamBuilder) {
-        myStreamBuilder.append(moleGrid[row][column] == MOLE ? EMPTY_PLACE : moleGrid[row][column]).append(" ");
+    public void action(final WhackAMole myW) {
+        final char[][] moleGrid = myW.getMoleGrid();
+        final int row = myW.getRow();
+        final int col = myW.getCol();
+        myW.getMyStringBuilder().append(moleGrid[row][col] == MOLE ? EMPTY_PLACE : moleGrid[row][col]).append(" ");
     }
 }

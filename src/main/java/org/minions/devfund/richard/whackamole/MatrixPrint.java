@@ -8,7 +8,7 @@ public class MatrixPrint implements MatrixActions {
      *  {@inheritDoc}
      */
     @Override
-    public void action(final char[][] moleGrid, final int row, final int column, final StringBuilder myStreamBuilder) {
-        myStreamBuilder.append(moleGrid[row][column]).append(" ");
+    public void action(final WhackAMole myW) {
+        myW.getMyStringBuilder().append(myW.getMoleGrid()[myW.getRow()][myW.getCol()]).append(" ");
     }
 }

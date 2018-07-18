@@ -6,10 +6,7 @@ package org.minions.devfund.richard.whackamole;
 public interface MatrixActions {
 
     /**
-     * @param moleGrid        This variable is the array.
-     * @param row             This variable is the row.
-     * @param column          This variable is the column.
-     * @param myStreamBuilder This variable is the Stream Builder.
+     * @param myWhackAMole WhackAMole.
      */
-    void action(char[][] moleGrid, int row, int column, StringBuilder myStreamBuilder);
+    void action(WhackAMole myWhackAMole);
 }
