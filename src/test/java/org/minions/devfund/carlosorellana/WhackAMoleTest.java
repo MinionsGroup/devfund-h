@@ -19,6 +19,8 @@ public class WhackAMoleTest {
     private static final int NUM_ATTEMPTS = 50;
     private static final int GRID_DIMENSION = 10;
     private WhackAMole whackAMole;
+    private static final String MESSAGE_ERROR = "The Position send to grid are correct";
+    private static final String MESSAGE_PRINT_ERROR = "The Print Grid method does not return the expected String";
 
     /**
      * Set ups method.
@@ -224,7 +226,7 @@ public class WhackAMoleTest {
         final int yPos = 5;
         whackAMole.place(xPos, yPos);
 
-        assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos));
+        assertFalse(MESSAGE_ERROR, whackAMole.place(xPos, yPos));
     }
 
     /**
@@ -235,7 +237,7 @@ public class WhackAMoleTest {
         final int xPos = -10;
         final int yPos = 1;
 
-        assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos));
+        assertFalse(MESSAGE_ERROR, whackAMole.place(xPos, yPos));
     }
 
     /**
@@ -246,7 +248,7 @@ public class WhackAMoleTest {
         final int xPos = 20;
         final int yPos = 1;
 
-        assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos));
+        assertFalse(MESSAGE_ERROR, whackAMole.place(xPos, yPos));
     }
 
     /**
@@ -257,7 +259,7 @@ public class WhackAMoleTest {
         final int xPos = 1;
         final int yPos = -10;
 
-        assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos));
+        assertFalse(MESSAGE_ERROR, whackAMole.place(xPos, yPos));
     }
 
     /**
@@ -268,7 +270,7 @@ public class WhackAMoleTest {
         final int xPos = 1;
         final int yPos = 20;
 
-        assertFalse("The Position send to grid are correct", whackAMole.place(xPos, yPos));
+        assertFalse(MESSAGE_ERROR, whackAMole.place(xPos, yPos));
     }
 
     /**
@@ -280,7 +282,7 @@ public class WhackAMoleTest {
         final int yPos = 0;
         whackAMole.place(xPos, yPos);
 
-        assertFalse("The Print Grid method does not return the expected String",
+        assertFalse(MESSAGE_PRINT_ERROR,
                 whackAMole.printGrid().contains("M"));
     }
 
@@ -293,7 +295,7 @@ public class WhackAMoleTest {
         final int yPos = 5;
         whackAMole.place(xPos, yPos);
 
-        assertTrue("The Print Grid method does not return the expected String",
+        assertTrue(MESSAGE_PRINT_ERROR,
                 whackAMole.printGrid().contains("M"));
     }
 
@@ -307,7 +309,7 @@ public class WhackAMoleTest {
         whackAMole.place(xPos, yPos);
         whackAMole.whack(xPos, yPos);
 
-        assertFalse("The Print Grid To User method does not return the expected String",
+        assertFalse(MESSAGE_PRINT_ERROR,
                 whackAMole.printGridToUser().contains("W"));
     }
 
@@ -321,7 +323,7 @@ public class WhackAMoleTest {
         whackAMole.place(xPos, yPos);
         whackAMole.whack(xPos, yPos);
 
-        assertTrue("The Print Grid To User method does not return the expected String",
+        assertTrue(MESSAGE_PRINT_ERROR,
                 whackAMole.printGridToUser().contains("W"));
     }
 }
