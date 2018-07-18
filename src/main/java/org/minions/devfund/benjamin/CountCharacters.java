@@ -1,9 +1,10 @@
-package org.minions.devfund.Benjamin;
+package org.minions.devfund.benjamin;
 
 /**
  * Class for count characters.
  */
 public final class CountCharacters {
+
     /**
      * Constructor.
      */
@@ -12,23 +13,19 @@ public final class CountCharacters {
 
     /**
      * Count characters.
+     *
      * @param str string value.
-     * @param c char value.
+     * @param c   char value.
      * @return number of matches.
      */
     public static int charCount(final String str, final char c) {
-        // your code here
         int contMatches = 0;
-        String subStr = Character.toString(c);
-        subStr = subStr.toUpperCase();
-        String[] array = str.toUpperCase().split("");
-
-        for (int i = 0; i <= str.length() - 1; i++) {
-            if (subStr.equals(array[i])) {
+        char[] array = str.toUpperCase().toCharArray();
+        for (char anArray : array) {
+            if (Character.toUpperCase(c) == anArray) {
                 contMatches++;
             }
         }
-
         return contMatches;
     }
 }
