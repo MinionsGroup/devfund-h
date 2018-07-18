@@ -12,6 +12,11 @@ public abstract class SquareActions {
     static StringBuilder myStreamBuilder;
 
     /**
+     * @param mySquare Square.
+     */
+    protected abstract void action(Squarelotron mySquare);
+
+    /**
      * @param mySquareActions mySquareActions.
      * @param mySquarelotron  mySquarelotron.
      * @return mySquareActions.
@@ -34,17 +39,12 @@ public abstract class SquareActions {
     /**
      * @param mySquare Square.
      */
-    public static void rotateRight(final Squarelotron mySquare) {
+    static void rotateRight(final Squarelotron mySquare) {
         for (int ind = 0; ind < Math.abs(mySquare.getNumberOfTurns()); ind++) {
             SquareActions.action(new SquareCopy(), mySquare);
             SquareActions.action(new SquareRotateRight(), mySquare);
         }
     }
-
-    /**
-     * @param mySquare Square.
-     */
-    protected abstract void action(Squarelotron mySquare);
 
     /**
      * @param ring int.
@@ -63,7 +63,7 @@ public abstract class SquareActions {
     /**
      * @return String.
      */
-    public String getPrint() {
+    String getPrint() {
         return myStreamBuilder.toString();
     }
 }
