@@ -6,6 +6,11 @@ import java.util.Arrays;
  * Class to simulate whack a mole.
  */
 public class WhackAMole {
+    public static final char BLANK_SPACE = ' ';
+    public static final char START_CHAR = '*';
+    public static final char MOLE_CHAR = 'M';
+    public static final char WHACKED_CHAR = 'W';
+
     private int score;
     private int molesLeft;
     private int attemptsLeft;
@@ -22,7 +27,7 @@ public class WhackAMole {
         this.attemptsLeft = numAttempts;
 
         for (char[] row : this.moleGrid) {
-            Arrays.fill(row, '*');
+            Arrays.fill(row, START_CHAR);
         }
     }
 
@@ -34,6 +39,7 @@ public class WhackAMole {
     public int getScore() {
         return score;
     }
+
     /**
      * Get Moles left.
      *
@@ -69,8 +75,8 @@ public class WhackAMole {
      * @return Returns true if the mole was place, false otherwise.
      */
     public boolean place(int x, int y) {
-        if (this.moleGrid[x][y] != 'M') {
-            this.moleGrid[x][y] = 'M';
+        if (this.moleGrid[x][y] != MOLE_CHAR) {
+            this.moleGrid[x][y] = MOLE_CHAR;
             this.molesLeft++;
             return true;
         }
@@ -84,8 +90,8 @@ public class WhackAMole {
      * @param y Y axis in the grid.
      */
     public void whack(int x, int y) {
-        if (this.moleGrid[x][y] == 'M') {
-            this.moleGrid[x][y] = 'W';
+        if (this.moleGrid[x][y] == MOLE_CHAR) {
+            this.moleGrid[x][y] = WHACKED_CHAR;
             this.score++;
             this.molesLeft--;
         }
@@ -101,12 +107,7 @@ public class WhackAMole {
         StringBuilder strBuilderRow = new StringBuilder();
         for (char[] rowGrid : this.moleGrid) {
             for (char charItem : rowGrid) {
-                if (charItem == 'M') {
-                    strBuilderRow.append("*  ");
-                } else {
-                    strBuilderRow.append(charItem);
-                    strBuilderRow.append("  ");
-                }
+                strBuilderRow.append(charItem == MOLE_CHAR ? START_CHAR : charItem).append(BLANK_SPACE);
             }
         }
         return strBuilderRow;
@@ -121,8 +122,7 @@ public class WhackAMole {
         StringBuilder strBuilderRow = new StringBuilder();
         for (char[] rowGrid : this.moleGrid) {
             for (char charItem : rowGrid) {
-                strBuilderRow.append(charItem);
-                strBuilderRow.append("  ");
+                strBuilderRow.append(charItem).append(BLANK_SPACE);
             }
         }
         return strBuilderRow;

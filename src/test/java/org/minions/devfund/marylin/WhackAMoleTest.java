@@ -128,7 +128,7 @@ public class WhackAMoleTest {
      */
     @Test
     public void testprintGridToUser() {
-        final String expectedGrid = "*  *  *  *  W  *  *  *  *";
+        final String expectedGrid = "* * * * W * * * *";
         whackAMole.place(1, 1);
         whackAMole.place(2, 2);
         whackAMole.whack(1, 1);
@@ -140,7 +140,7 @@ public class WhackAMoleTest {
      */
     @Test
     public void testprintGrid() {
-        final String expectedGrid = "*  *  *  *  W  *  *  *  M";
+        final String expectedGrid = "* * * * W * * * M";
         whackAMole.place(1, 1);
         whackAMole.place(2, 2);
         whackAMole.whack(1, 1);
