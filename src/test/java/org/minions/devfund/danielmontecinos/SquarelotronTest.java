@@ -156,7 +156,7 @@ public class SquarelotronTest {
      * Tests rotateClockwise method using three dimension array and turns equal to zero.
      */
     @Test
-    public void testRotateClockwiseThreeDimensionMatrixWithNoTurns() {
+    public void testRotateClockwiseWithThreeDimensionMatrixWithZeroTurns() {
         final int dimension = 3;
         final int turns = 0;
         final Squarelotron squarelotron = new Squarelotron(dimension);
