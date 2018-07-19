@@ -10,7 +10,7 @@ public class SquarePrint extends SquareActions {
      * {@inheritDoc}
      */
     @Override
-    protected void action(final Squarelotron mySquare) {
-        this.getMyStreamBuilder().append(mySquare.getSquarelotron()[this.gRow()][this.gCol()]).append(" ");
+    protected void action(final Square mySquare) {
+        this.getMyStreamBuilder().append(mySquare.getMatrix()[this.gRow()][this.gCol()]).append(" ");
     }
 }

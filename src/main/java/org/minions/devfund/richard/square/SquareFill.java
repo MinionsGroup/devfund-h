@@ -9,7 +9,7 @@ public class SquareFill extends SquareActions {
      * {@inheritDoc}
      */
     @Override
-    public void action(final Squarelotron mySquare) {
-        mySquare.getSquarelotron()[this.gRow()][this.gCol()] = this.getValue();
+    public void action(final Square mySquare) {
+        mySquare.getMatrix()[this.gRow()][this.gCol()] = this.getValue();
     }
 }

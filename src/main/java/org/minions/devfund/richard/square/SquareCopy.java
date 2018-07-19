@@ -8,7 +8,7 @@ public class SquareCopy extends SquareActions {
      * {@inheritDoc}
      */
     @Override
-    protected void action(final Squarelotron mySquare) {
-        mySquare.getSquareCopy()[this.gRow()][this.gCol()] = mySquare.getSquarelotron()[this.gRow()][this.gCol()];
+    protected void action(final Square mySquare) {
+        mySquare.getMatrixCopy()[this.gRow()][this.gCol()] = mySquare.getMatrix()[this.gRow()][this.gCol()];
     }
 }

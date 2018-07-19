@@ -15,23 +15,23 @@ public abstract class SquareActions {
     /**
      * @param mySquare Square.
      */
-    protected abstract void action(Squarelotron mySquare);
+    protected abstract void action(Square mySquare);
 
     /**
      * @param mySquareActions mySquareActions.
-     * @param mySquarelotron  mySquarelotron.
+     * @param mySquare        mySquare.
      * @return mySquareActions.
      */
-    static SquareActions action(final SquareActions mySquareActions, final Squarelotron mySquarelotron) {
+    static SquareActions action(final SquareActions mySquareActions, final Square mySquare) {
         value = 0;
-        squareSize = mySquarelotron.getSquarelotron().length;
+        squareSize = mySquare.getMatrix().length;
         myStreamBuilder = new StringBuilder();
         for (int row = 0; row < squareSize; row++) {
             for (int column = 0; column < squareSize; column++) {
                 myRow = row;
                 myColumn = column;
                 value++;
-                mySquareActions.action(mySquarelotron);
+                mySquareActions.action(mySquare);
             }
         }
         return mySquareActions;
@@ -40,7 +40,7 @@ public abstract class SquareActions {
     /**
      * @param mySquare Square.
      */
-    static void rotateRight(final Squarelotron mySquare) {
+    static void rotateRight(final Square mySquare) {
         for (int ind = 0; ind < Math.abs(mySquare.getNumberOfTurns()) % MAX_ROTATIONS; ind++) {
             SquareActions.action(new SquareCopy(), mySquare);
             SquareActions.action(new SquareRotateRight(), mySquare);
