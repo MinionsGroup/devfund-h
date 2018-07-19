@@ -29,7 +29,8 @@ public class Squarelotron {
      */
     public Squarelotron upsideDownFlip(final int ring) {
         Squarelotron newSquarelotron = new Squarelotron(size);
-        newSquarelotron.setSquarelotronMatrix(replaceNoRingValues(upsideDown(squarelotronMatrix), squarelotronMatrix, ring));
+        newSquarelotron.setSquarelotronMatrix(
+                replaceNoRingValues(upsideDown(squarelotronMatrix), squarelotronMatrix, ring));
         return newSquarelotron;
     }
 
@@ -41,7 +42,8 @@ public class Squarelotron {
      */
     public Squarelotron mainDiagonalFlip(final int ring) {
         Squarelotron newSquarelotron = new Squarelotron(size);
-        newSquarelotron.setSquarelotronMatrix(replaceNoRingValues(transposeMatrix(squarelotronMatrix), squarelotronMatrix, ring));
+        newSquarelotron.setSquarelotronMatrix(
+                replaceNoRingValues(transposeMatrix(squarelotronMatrix), squarelotronMatrix, ring));
         return newSquarelotron;
     }
 
