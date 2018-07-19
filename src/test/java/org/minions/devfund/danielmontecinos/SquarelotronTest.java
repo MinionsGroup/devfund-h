@@ -170,17 +170,18 @@ public class SquarelotronTest {
     }
 
     /**
-     * Tests rotateClockwise method using three dimension array and turns equal to four.
+     * Tests rotateClockwise method using four dimension array and turns equal to four.
      */
     @Test
-    public void testRotateClockwiseWithThreeDimensionMatrixWithAFourTurns() {
-        final int dimension = 3;
+    public void testRotateClockwiseWithFourDimensionMatrixWithAFourTurns() {
+        final int dimension = 4;
         final int turns = 0;
         final Squarelotron squarelotron = new Squarelotron(dimension);
         final int[][] expectedResult = new int[][]{
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 16}
         };
         squarelotron.rotateRight(turns);
         assertArrayEquals(expectedResult, squarelotron.getSquarelotronMatrix());
