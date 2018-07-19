@@ -22,72 +22,77 @@ public class Squarelotron {
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                squarelotron[i][j] = i * size + j + 1;
+                squarelotron[i][j] = size * i + j + 1;
             }
         }
     }
 
     /**
-     * Constructor Squarelotron.
+     * Builds new array in base a Squarelotron.
      *
-     *  @param array - New Squarelotron array
+     * @return New array with Squarelotron values.
      */
-    public Squarelotron(int[] array){
-        this.size = (int) Math.sqrt(array.length);
-        this.squarelotron = new int[size][size];
-        int indexArray = 0;
-        for(int i = 0; i < size; i++){
-            for(int j = 0; j < size; j++){
-                squarelotron[i][j] = array[indexArray];
-                indexArray++;
-            }
-        }
-    }
-
     public int[] buildArray() {
         int[] newArray = new int[this.size * this.size];
 
-        for(int x = 0; x < this.size; x++) {
+        for (int x = 0; x < this.size; x++) {
 
             for (int y = 0; y < this.size; y++) {
-                newArray[x * this.size + y] = squarelotron[x][y];
-//                System.out.println(squarelotron[x][y]);
-//                System.out.println('|');
-//                System.out.println(newArray[x * this.size + y]);
-//                System.out.println('-');
+                newArray[this.size * x + y] = squarelotron[x][y];
             }
         }
-
 
         return newArray;
     }
 
-    public Squarelotron upsideDownFlip(int ring) {
-
-        int[] arrayToChange = buildArray();
-        int[] squarelotronArray = new int[this.size * this.size];
-
-        for(int x = 0; x < this.size; x++) {
-            for(int y = 0; y < this.size; y++){
-
-                if(x == ring - 1 || x == this.size - ring || y == ring - 1 || y == this.size - ring){
-                    int indexSquarelotron = x * this.size + y;
-                    int indexArrayToChange = (this.size - x - 1) * this.size + y;
-                    squarelotronArray[indexSquarelotron] = arrayToChange[indexArrayToChange];
-                }//0 * 5 + 0 = 0 // (5 - 0 - 1) = 4 *
-                 else {
-                    int a = x * size + y;
-                    int b = x * size + y;
-                    squarelotronArray[a] = arrayToChange[b];
-                }
-
-            }
-        }
-        return new Squarelotron(squarelotronArray);
+    /**
+     * Finds the Maximum Rings number.
+     *
+     * @return Numbers maximum of rings.
+     */
+    public int findMaxRings() {
+        return (this.size % 2 == 0)
+                ? size / 2
+                : size / 2 + 1;
     }
     /**
-     * hola.
-     * @return Sting.
+      * Modifies A Upside-Down Flip of the outer ring of Squarelotron.
+      *
+      * @param ring - Number of ring.
+      * @return Instance new Squarelotron.
+      */
+    public Squarelotron upsideDownFlip(int ring) {
+
+        if (ring > this.findMaxRings() || ring < 1) {
+            throw new NumberFormatException();
+        }
+
+        Squarelotron squarelotron = new Squarelotron(this.size);
+
+        int first = ring - 1;
+        int last = size - ring;
+
+        for (int i = 0; i <= size - 1; i++) {
+            for (int j = 0; j <= size - 1; j++) {
+                if (i == first || i == last) {
+                    if (j >= first && j <= last) {
+                        squarelotron.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
+                    }
+                }
+
+                if (i > first && i < last) {
+                    if (j == first || j == last) {
+                        squarelotron.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
+                    }
+                }
+            }
+        }
+        return squarelotron;
+    }
+    /**
+     * Prints the Squarelotron matrix.
+     *
+     * @return String with the Squarelotron matrix.
      */
     @Override
     public String toString() {

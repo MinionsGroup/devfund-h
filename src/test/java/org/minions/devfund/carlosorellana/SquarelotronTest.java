@@ -2,6 +2,8 @@ package org.minions.devfund.carlosorellana;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * The goal is test the Squarelotron methods.
  *
@@ -11,15 +13,26 @@ import org.junit.Test;
 public class SquarelotronTest {
 
     /**
-     * Runs test case countCharacteresElephantSentence.
+     * Validates Matriz.
      */
     @Test
-    public void countCharacteresElephantSentence() {
-        final int size = 4;
+    public void countCharactersElephantSentence() {
+        final int size = 6;
+        final int ringNumber = 3;
         Squarelotron squarelotron = new Squarelotron(size);
         System.out.println(squarelotron.toString());
-        squarelotron.buildArray();
-        Squarelotron one = squarelotron.upsideDownFlip(2);
+        Squarelotron one = squarelotron.upsideDownFlip(ringNumber);
         System.out.println(one.toString());
+    }
+
+    /**
+     * Validates Matriz size.
+     */
+    @Test
+    public void validatesMatrixSize() {
+        final int size = 6;
+        Squarelotron squarelotron = new Squarelotron(size);
+        int[] actualArraySize = squarelotron.buildArray();
+        assertTrue((size * size) == actualArraySize.length);
     }
 }
