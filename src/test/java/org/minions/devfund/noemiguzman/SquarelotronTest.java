@@ -161,4 +161,25 @@ public class SquarelotronTest {
         s4.rotateRight(numberOfTurns3);
         assertArrayEquals(test7, s4.getSquarelotron());
     }
+
+    /**
+     *  test negative no squarelotron.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testThrowsIllegalArgumentExceptionForNoSquarelotron() {
+        s = new Squarelotron(SIZE3);
+        final int[] temp = {1, 2, 3, 4, 5, 6, 7, 8, 9, 9};
+        s = new Squarelotron(temp);
+    }
+
+    /**
+     *  test negative with values more than 99.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testThrowsIllegalArgumentExceptionForInvalidSquarelotron() {
+        s = new Squarelotron(SIZE3);
+        final int[] temp = {1, 2, 3, 4, 125, 6, 17, 18, 9};
+        s = new Squarelotron(temp);
+    }
+
 }
