@@ -1,6 +1,8 @@
 package org.minions.devfund.miguelcalderon;
 
 
+import java.util.logging.Logger;
+
 /**
  * Solution for "count the characters" kata.
  *
@@ -9,6 +11,7 @@ package org.minions.devfund.miguelcalderon;
  */
 
 public class CountCharacters {
+    private final static Logger LOGGER = Logger.getLogger(CountCharacters.class.getName());
 
     /**
      * Private constructor.
@@ -29,6 +32,6 @@ public class CountCharacters {
                 result++;
             }
         }
-        System.out.print(result);
+        LOGGER.info(String.valueOf(result));
     }
 }

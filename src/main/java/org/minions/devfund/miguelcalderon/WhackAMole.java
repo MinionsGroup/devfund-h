@@ -55,7 +55,6 @@ public class WhackAMole {
      */
 
     public boolean place(int x, int y) {
-        //if (x >= 0 && y >= 0 && x < moleGrid.length && y < moleGrid.length)
         if (isEmptyCell(x, y)) {
             moleGrid[x][y] = MOLE;
             molesLeft++;
@@ -181,35 +180,6 @@ public class WhackAMole {
     public char[][] getMoleGrid() {
         return moleGrid;
     }
-
-
-
-    //Main method, test a 10x10 grid with 50 attempts.
-      /*
-    public static void main(String[] args) {
-        WhackAMole whackAMole = new WhackAMole(50, 10);
-        whackAMole.setRandomPlaceForMoles();
-        System.out.println(whackAMole.printGridToUser());
-        while(whackAMole.stillHavingAttempts()) {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("You have 50 attempts, if you give up enter -1,-1, good luck!");
-            System.out.println("Enter X");
-            int userX = sc.nextInt();
-            System.out.println("Enter Y");
-            int userY = sc.nextInt();
-            if (!(whackAMole.giveUp(userX, userY))) {
-                whackAMole.whack(userX, userY);
-                System.out.println(whackAMole.printGridToUser());
-            } else {
-                whackAMole.attemptsLeft = 0;
-                System.out.println(whackAMole.printGrid());
-            }
-
-        }
-        System.out.println("You have no more attempts, now you can see the moles!");
-        System.out.println(whackAMole.printGrid());
-
-    }*/
 
 }
 
