@@ -132,6 +132,7 @@ public class SquarelotronTest {
         final int numberOfTurns8 = 8;
         final int numberOfTurns3 = 3;
         final int numberOfTurns2 = 2;
+        final int numberOfTurns5 = 5;
         // test 4 by 4 case
         final int[][] test4 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
         final int[][] test5 = {{13, 9, 5, 1}, {14, 10, 6, 2}, {15, 11, 7, 3}, {16, 12, 8, 4}};
@@ -160,6 +161,8 @@ public class SquarelotronTest {
         // rotate to the right 270 degrees
         s4.rotateRight(numberOfTurns3);
         assertArrayEquals(test7, s4.getSquarelotron());
+        s4.rotateRight(-numberOfTurns5);
+        assertArrayEquals(test6, s4.getSquarelotron());
     }
 
     /**
@@ -181,5 +184,13 @@ public class SquarelotronTest {
         final int[] temp = {1, 2, 3, 4, 125, 6, 17, 18, 9};
         s = new Squarelotron(temp);
     }
-
+    /**
+     *  test negative with values less than 0.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testThrowsIllegalArgumentExceptionNegativeSquarelotron() {
+        s = new Squarelotron(SIZE3);
+        final int[] temp = {1, 2, 3, -1, 125, 6, 17, 18, 9};
+        s = new Squarelotron(temp);
+    }
 }
