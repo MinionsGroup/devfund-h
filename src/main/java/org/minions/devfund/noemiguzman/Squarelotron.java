@@ -178,7 +178,7 @@ public class Squarelotron {
             rotateRightUpperCorner();
             rotateRightLowerCorner();
 
-        } else if (ind == 1 || ind == -NUM_SIDES - 1) {
+        } else if (ind == 1 || ind == -NUM_SIDES + 1) {
             // inverse transpose
             int[][] temp4 = new int[this.size][this.size];
             for (int i = 0; i < this.size; i++) {

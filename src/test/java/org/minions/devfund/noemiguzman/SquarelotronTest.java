@@ -162,7 +162,7 @@ public class SquarelotronTest {
         assertArrayEquals(test7, s4.getSquarelotron());
         // rotate to the right 180 degrees
         s4.rotateRight(-numberOfTurns3);
-        assertArrayEquals(test7, s4.getSquarelotron());
+        assertArrayEquals(test4, s4.getSquarelotron());
     }
 
     /**
