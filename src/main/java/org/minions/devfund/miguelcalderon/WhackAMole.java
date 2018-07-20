@@ -6,15 +6,15 @@ import java.util.Scanner;
 /**
  * Solution for "Whackmole game" excercise.
  *
+ * @author Miguel Calderon
  * @version 1.0 16 Jul 2018
- * @author
- * Miguel Calderon
  */
 
 public class WhackAMole {
     private int molesLeft;
     private int attemptsLeft;
     private char[][] moleGrid;
+    private int score;
     private static final char MOLE = 'M';
     private static final char WHACKED_MOLE = 'W';
     private static final char EMPTY = '*';
@@ -29,14 +29,16 @@ public class WhackAMole {
         this.moleGrid = new char[gridDimension][gridDimension];
         attemptsLeft = numAttempts;
         this.molesLeft = 0;
+        score = 0;
         createEmptyGrid();
+        setRandomPlaceForMoles();
 
     }
 
     /**
      * Creates empty grid.
      */
-    private void createEmptyGrid() {
+    public void createEmptyGrid() {
         for (int i = 0; i < moleGrid.length; i++) {
             for (int j = 0; j < moleGrid.length; j++) {
                 moleGrid[i][j] = EMPTY;
@@ -46,13 +48,15 @@ public class WhackAMole {
 
     /**
      * Set moles in a cell.
+     *
      * @param x axis.
      * @param y axis.
      * @return True if the Mole was added properly otherwise false.
      */
 
     public boolean place(int x, int y) {
-        if (x >= 0 && y >= 0 && x < moleGrid.length && y < moleGrid.length) {
+        //if (x >= 0 && y >= 0 && x < moleGrid.length && y < moleGrid.length)
+        if (isEmptyCell(x, y)) {
             moleGrid[x][y] = MOLE;
             molesLeft++;
             return true;
@@ -63,7 +67,7 @@ public class WhackAMole {
     /**
      * Set moles in random positions in grid, using "place" method.
      */
-    public void setRandomPlaceForMoles() {
+    private void setRandomPlaceForMoles() {
         while (molesLeft < moleGrid.length) {
             int xRandomValue = new Random().nextInt(moleGrid.length);
             int yRandomValue = new Random().nextInt(moleGrid.length);
@@ -74,12 +78,13 @@ public class WhackAMole {
     /**
      * Whack a specified cell.
      */
-
     public void whack(int x, int y) {
         if (stillHavingAttempts() && !giveUp(x, y)) {
             if (moleGrid[x][y] == MOLE) {
                 moleGrid[x][y] = WHACKED_MOLE;
-                molesLeft++;
+                molesLeft--;
+                attemptsLeft--;
+                score++;
             } else
                 attemptsLeft--;
         }
@@ -101,7 +106,7 @@ public class WhackAMole {
      *
      * @return true if the rules are applied otherwise false.
      */
-    public boolean stillHavingAttempts() {
+    private boolean stillHavingAttempts() {
         return attemptsLeft > 0;
     }
 
@@ -145,8 +150,42 @@ public class WhackAMole {
         return stringBuilder;
     }
 
-    //Main method, test a 10x10 grid with 50 attempts.
 
+    /**
+     * Verify if the cell is empty.
+     * @param x axis
+     * @param y axis
+     * @return true if it is an empty cell, otherwise false
+     */
+    public boolean isEmptyCell(int x, int y) {
+        boolean valid = false;
+        if (x >= 0 && y >= 0 && x < moleGrid.length && y < moleGrid.length)
+            valid = moleGrid[x][y] == EMPTY;
+        return valid;
+
+    }
+
+
+    public int getMolesLeft() {
+        return molesLeft;
+    }
+
+    public int getAttemptsLeft() {
+        return attemptsLeft;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public char[][] getMoleGrid() {
+        return moleGrid;
+    }
+
+
+
+    //Main method, test a 10x10 grid with 50 attempts.
+      /*
     public static void main(String[] args) {
         WhackAMole whackAMole = new WhackAMole(50, 10);
         whackAMole.setRandomPlaceForMoles();
@@ -170,7 +209,7 @@ public class WhackAMole {
         System.out.println("You have no more attempts, now you can see the moles!");
         System.out.println(whackAMole.printGrid());
 
-    }
+    }*/
 
 }
 
