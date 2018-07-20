@@ -158,7 +158,7 @@ public class WhackAMole {
      */
     public boolean isEmptyCell(int x, int y) {
         boolean valid = false;
-        if (x >= 0 && y >= 0 && x <= moleGrid.length && y <= moleGrid.length)
+        if (x >= 0 && y >= 0 && x < moleGrid.length && y < moleGrid.length)
             valid = moleGrid[x][y] == EMPTY;
         return valid;
 
