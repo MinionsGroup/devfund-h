@@ -17,12 +17,14 @@ public class SquarelotronTest {
      */
     @Test
     public void countCharactersElephantSentence() {
-        final int size = 6;
-        final int ringNumber = 3;
+        final int size = 5;
+        final int ringNumber = 2;
         Squarelotron squarelotron = new Squarelotron(size);
         System.out.println(squarelotron.toString());
         Squarelotron one = squarelotron.upsideDownFlip(ringNumber);
         System.out.println(one.toString());
+        Squarelotron two = squarelotron.mainDiagonarlFlip(ringNumber);
+        System.out.println(two.toString());
     }
 
     /**

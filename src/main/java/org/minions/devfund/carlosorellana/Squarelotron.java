@@ -89,6 +89,37 @@ public class Squarelotron {
         }
         return squarelotron;
     }
+
+    public Squarelotron mainDiagonarlFlip(int ring) {
+
+        if (ring > this.findMaxRings() || ring < 1) {
+            throw new NumberFormatException();
+        }
+
+        Squarelotron squarelotron = new Squarelotron(this.size);
+
+        int first = ring - 1; // 0
+        int last = size - ring; // 3
+
+        for (int i = 0; i <= size - 1; i++) {
+            for (int j = 0; j <= size - 1; j++) {
+
+                if (i == first || i == last) {
+                    if (j >= first && j <= last) {
+                        squarelotron.squarelotron[j][i] = this.squarelotron[i][j];
+                    }
+                }
+
+                if (i > first && i < last) {
+                    if (j == first || j == last) {
+                        squarelotron.squarelotron[j][i] = this.squarelotron[i][j];
+                    }
+                }
+            }
+        }
+        return squarelotron;
+    }
+
     /**
      * Prints the Squarelotron matrix.
      *
