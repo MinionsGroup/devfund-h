@@ -37,27 +37,10 @@ public class Squarelotron {
      */
     public Squarelotron(int n) {
         this.squarelotron = new int[n][n];
-        size = n;
+        this.size = n;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 this.squarelotron[i][j] = i * n + j + 1;
-            }
-        }
-    }
-
-    /**
-     * additional constructor.
-     *
-     * @param array - 1d array convert to a squarelotron
-     */
-    public Squarelotron(final int[] array) {
-        Squarelotron newSquare = Squarelotron.makeSquarelotron(array);
-        this.squarelotron = new int[newSquare.size][newSquare.size];
-        this.size = newSquare.size;
-
-        for (int i = 0; i < newSquare.size; i++) {
-            for (int j = 0; j < newSquare.size; j++) {
-                this.squarelotron[i][j] = newSquare.squarelotron[i][j];
             }
         }
     }
@@ -101,10 +84,7 @@ public class Squarelotron {
 
     public Squarelotron upsideDownFlip(int ring) {
         // deep copy the board out
-        int[][] deepCopy1;
-        int[][] deepCopy2;
-
-        deepCopy2 = copySquarelotron();
+        int[][] deepCopy2 = copySquarelotron();
 
         // manipulating on deepCopy2, upsideDownFlip on deepCopy2
         for (int i = 0; i < this.size / DIMENSION; i++) {
@@ -114,22 +94,9 @@ public class Squarelotron {
         }
         // get the wanted ring on deepCopy2, and copy those numbers onto deepCopy1
         // upper bound
-        deepCopy1 = rotateSquarelotron(ring, deepCopy2);
-        return copyToNewSquarelotron(deepCopy1);
-    }
-
-    /**
-     * Copy from int[][] to new squareloton.
-     * @param deepCopy1  data to copy on new squareletorn
-     * @return Squarelotron
-     */
-    private Squarelotron copyToNewSquarelotron(final int[][] deepCopy1) {
+        int[][] deepCopy1 = rotateSquarelotron(ring, deepCopy2);
         Squarelotron s = new Squarelotron(this.size);
-        for (int i = 0; i < s.size; i++) {
-            for (int j = 0; j < s.size; j++) {
-                s.squarelotron[i][j] = deepCopy1[i][j];
-            }
-        }
+        s.squarelotron = deepCopy1;
         return s;
     }
 
@@ -141,13 +108,12 @@ public class Squarelotron {
      */
     public Squarelotron mainDiagonalFlip(int ring) {
         // deep copy the board out
-        int[][] deepCopy1;
-        int[][] deepCopy2;
-
-        deepCopy2 = copyReverseSquarelotron();
-        deepCopy1 = rotateSquarelotron(ring,  deepCopy2);
+        int[][] deepCopy2 = copyReverseSquarelotron();
+        int[][] deepCopy1 = rotateSquarelotron(ring,  deepCopy2);
         // get the wanted ring on deepCopy2, and copy those numbers onto deepCopy1
-        return copyToNewSquarelotron(deepCopy1);
+        Squarelotron s = new Squarelotron(this.size);
+        s.squarelotron = deepCopy1;
+        return s;
     }
 
     /**
@@ -168,8 +134,7 @@ public class Squarelotron {
         int ind = numberOfTurns % NUM_SIDES;
         if (ind == -1 || ind == NUM_SIDES - 1) {
             // transpose
-            int[][] temp;
-            temp = copyReverseSquarelotron();
+            int[][] temp = copyReverseSquarelotron();
             copyToSquarelotron(temp);
             rotateRightUpperCorner();
 
@@ -187,7 +152,6 @@ public class Squarelotron {
                 }
             }
             copyToSquarelotron(temp4);
-
             rotateRightUpperCorner();
         }
     }
@@ -262,13 +226,11 @@ public class Squarelotron {
     /**
      *
      * @param ring num ring
-
      * @param deepCopy2 help int[][]
      * @return rotated Squarelotron
      */
     private int[][] rotateSquarelotron(int ring,  final int[][] deepCopy2) {
-        int[][] deepCopy1;
-        deepCopy1 = copySquarelotron();
+        int[][] deepCopy1 = copySquarelotron();
         // get the wanted ring on deepCopy2, and copy those numbers onto deepCopy1
         // upper bound
         for (int j = ring - 1; j < this.size - ring; j++) {

@@ -20,49 +20,6 @@ public class SquarelotronTest {
     static final int SIZE5 = 5;
 
     /**
-     * Method to test Squarelotron with Size3.
-     */
-
-    @Test
-    public void testSquarelotronOfSize3() {
-        s = new Squarelotron(SIZE3);
-        final int[] temp = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        Squarelotron sArray = new Squarelotron(temp);
-        assertEquals(SIZE3, s.getSize());
-        final int[][] test = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        assertArrayEquals(test, s.getSquarelotron());
-        assertArrayEquals(test, sArray.getSquarelotron());
-    }
-
-    /**
-     * Method to test Squarelotron with Size4.
-     */
-    @Test
-    public void testSquarelotronOfSize4() {
-        s4 = new Squarelotron(SIZE4);
-        final int[] temp4 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
-        Squarelotron sArray4 = new Squarelotron(temp4);
-        final int[][] test4 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
-        assertArrayEquals(test4, s4.getSquarelotron());
-        assertArrayEquals(test4, sArray4.getSquarelotron());
-
-    }
-
-    /**
-     * Method to test Squarelotron with Size5.
-     */
-    @Test
-    public void testSquarelotronSize5() {
-        s5 = new Squarelotron(SIZE5);
-        final int[] temp5 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
-        Squarelotron sArray5 = new Squarelotron(temp5);
-        final int[][] test6 = {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20},
-                {21, 22, 23, 24, 25}};
-        assertArrayEquals(test6, s5.getSquarelotron());
-        assertArrayEquals(test6, sArray5.getSquarelotron());
-    }
-
-    /**
      * Method to test UpsideDownFlip.
      */
     @Test
@@ -165,32 +122,4 @@ public class SquarelotronTest {
         assertArrayEquals(test4, s4.getSquarelotron());
     }
 
-    /**
-     *  test negative no squarelotron.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testThrowsIllegalArgumentExceptionForNoSquarelotron() {
-        s = new Squarelotron(SIZE3);
-        final int[] temp = {1, 2, 3, 4, 5, 6, 7, 8, 9, 9};
-        s = new Squarelotron(temp);
-    }
-
-    /**
-     *  test negative with values more than 99.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testThrowsIllegalArgumentExceptionForInvalidSquarelotron() {
-        s = new Squarelotron(SIZE3);
-        final int[] temp = {1, 2, 3, 4, 125, 6, 17, 18, 9};
-        s = new Squarelotron(temp);
-    }
-    /**
-     *  test negative with values less than 0.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testThrowsIllegalArgumentExceptionNegativeSquarelotron() {
-        s = new Squarelotron(SIZE3);
-        final int[] temp = {1, 2, 3, -1, 125, 6, 17, 18, 9};
-        s = new Squarelotron(temp);
-    }
 }
