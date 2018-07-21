@@ -94,7 +94,7 @@ public class Squarelotron {
         }
         // get the wanted ring on deepCopy2, and copy those numbers onto deepCopy1
         // upper bound
-        int[][] deepCopy1 = rotateSquarelotron(ring, deepCopy2);
+        int[][] deepCopy1 = rotateCorners(ring - 1, this.size - ring, deepCopy2);
         Squarelotron s = new Squarelotron(this.size);
         s.squarelotron = deepCopy1;
         return s;
@@ -109,7 +109,7 @@ public class Squarelotron {
     public Squarelotron mainDiagonalFlip(int ring) {
         // deep copy the board out
         int[][] deepCopy2 = copyReverseSquarelotron();
-        int[][] deepCopy1 = rotateSquarelotron(ring,  deepCopy2);
+        int[][] deepCopy1 = rotateCorners(ring - 1,this.size - ring, deepCopy2);;
         // get the wanted ring on deepCopy2, and copy those numbers onto deepCopy1
         Squarelotron s = new Squarelotron(this.size);
         s.squarelotron = deepCopy1;
@@ -222,31 +222,24 @@ public class Squarelotron {
             }
         }
     }
-
     /**
      *
-     * @param ring num ring
+     * @param initI
+     * @param finalI
      * @param deepCopy2 help int[][]
-     * @return rotated Squarelotron
+     * @return rotate corners of Squarelotron
      */
-    private int[][] rotateSquarelotron(int ring,  final int[][] deepCopy2) {
+    private int[][] rotateCorners(int initI, int finalI, final int[][] deepCopy2){
         int[][] deepCopy1 = copySquarelotron();
-        // get the wanted ring on deepCopy2, and copy those numbers onto deepCopy1
-        // upper bound
-        for (int j = ring - 1; j < this.size - ring; j++) {
-            deepCopy1[ring - 1][j] = deepCopy2[ring - 1][j];
+        // upper bound and right bound
+        for (int j = initI; j < finalI; j++) {
+            deepCopy1[initI][j] = deepCopy2[initI][j];
+            deepCopy1[j][finalI] = deepCopy2[j][finalI];
         }
-        // right bound
-        for (int i = ring - 1; i < this.size - ring; i++) {
-            deepCopy1[i][this.size - ring] = deepCopy2[i][this.size - ring];
-        }
-        // lower bound
-        for (int j = this.size - ring; j > ring - 1; j--) {
-            deepCopy1[this.size - ring][j] = deepCopy2[this.size - ring][j];
-        }
-        // left bound
-        for (int i = this.size - ring; i > ring - 1; i--) {
-            deepCopy1[i][ring - 1] = deepCopy2[i][ring - 1];
+        // lower bound and left bound
+        for (int i = finalI; i > initI; i--) {
+            deepCopy1[finalI][i] = deepCopy2[finalI][i];
+            deepCopy1[i][initI] = deepCopy2[i][initI];
         }
         return deepCopy1;
     }
