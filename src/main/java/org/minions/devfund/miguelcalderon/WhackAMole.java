@@ -1,7 +1,6 @@
 package org.minions.devfund.miguelcalderon;
 
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Solution for "Whackmole game" excercise.
@@ -32,7 +31,6 @@ public class WhackAMole {
         score = 0;
         createEmptyGrid();
         setRandomPlaceForMoles();
-
     }
 
     /**
@@ -55,12 +53,14 @@ public class WhackAMole {
      */
 
     public boolean place(int x, int y) {
-        if (isEmptyCell(x, y)) {
+        if (isValidPosition(x, y)) {
             moleGrid[x][y] = MOLE;
             molesLeft++;
             return true;
-        } else
+        } else {
             return false;
+        }
+
     }
 
     /**
@@ -76,6 +76,9 @@ public class WhackAMole {
 
     /**
      * Whack a specified cell.
+     *
+     * @param x axis.
+     * @param y axis.
      */
     public void whack(int x, int y) {
         if (stillHavingAttempts() && !giveUp(x, y)) {
@@ -84,8 +87,10 @@ public class WhackAMole {
                 molesLeft--;
                 attemptsLeft--;
                 score++;
-            } else
+            } else {
                 attemptsLeft--;
+            }
+
         }
     }
 
@@ -152,31 +157,44 @@ public class WhackAMole {
 
     /**
      * Verify if the cell is empty.
+     *
      * @param x axis
      * @param y axis
      * @return true if it is an empty cell, otherwise false
      */
-    public boolean isEmptyCell(int x, int y) {
+    public boolean isValidPosition(int x, int y) {
         boolean valid = false;
-        if (x >= 0 && y >= 0 && x < moleGrid.length && y < moleGrid.length)
+        if (x >= 0 && y >= 0 && x < moleGrid.length && y < moleGrid.length){
             valid = moleGrid[x][y] == EMPTY;
+        }
         return valid;
-
     }
 
-
+    /**
+     * Gets moles left.
+     * @return int
+     */
     public int getMolesLeft() {
         return molesLeft;
     }
-
+    /**
+     * Gets attempts left.
+     * @return int
+     */
     public int getAttemptsLeft() {
         return attemptsLeft;
     }
-
+    /**
+     * Gets score.
+     * @return int
+     */
     public int getScore() {
         return score;
     }
-
+    /**
+     * Gets all the grid.
+     * @return char[][]
+     */
     public char[][] getMoleGrid() {
         return moleGrid;
     }

@@ -1,8 +1,5 @@
 package org.minions.devfund.miguelcalderon;
 
-
-import java.util.logging.Logger;
-
 /**
  * Solution for "count the characters" kata.
  *
@@ -10,8 +7,7 @@ import java.util.logging.Logger;
  * Miguel Calderon
  */
 
-public class CountCharacters {
-    private final static Logger LOGGER = Logger.getLogger(CountCharacters.class.getName());
+public final class CountCharacters {
 
     /**
      * Private constructor.
@@ -20,18 +16,19 @@ public class CountCharacters {
     }
 
     /**
-     * Counts the how many times char "e" appears in word.
+     * Count number of times that a letter appears in a sentence.
+     *
+     * @param word sentence
+     * @param e letter
+     * @return number of times that letter appears in sentence
      */
-    public static void main(final String[] args) {
-        String word = "Martes de fuchitos";
-        char character = 'e';
+    public int countCharcters(final String word, char e) {
         int result = 0;
-
-        for (char c : word.toCharArray()) {
-            if (c == character) {
+        for (char i : word.toCharArray()) {
+            if (i == e) {
                 result++;
             }
         }
-        LOGGER.info(String.valueOf(result));
+        return result;
     }
 }

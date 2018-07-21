@@ -16,9 +16,9 @@ public class WhackAMoleTest {
     @Test
     public void testPlaceValidPosition() {
 
-        whackAMole = new WhackAMole(3, 3);
+        whackAMole = new WhackAMole(3, 5);
         whackAMole.createEmptyGrid();
-        boolean result = whackAMole.place(1, 1);
+        boolean result = whackAMole.place(4, 4);
         Assert.assertTrue(result);
     }
 
