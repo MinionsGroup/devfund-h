@@ -164,7 +164,7 @@ public class WhackAMole {
      */
     public boolean isValidPosition(int x, int y) {
         boolean valid = false;
-        if (x >= 0 && y >= 0 && x < moleGrid.length && y < moleGrid.length){
+        if (x >= 0 && y >= 0 && x < moleGrid.length && y < moleGrid.length) {
             valid = moleGrid[x][y] == EMPTY;
         }
         return valid;
@@ -172,27 +172,34 @@ public class WhackAMole {
 
     /**
      * Gets moles left.
+     *
      * @return int
      */
     public int getMolesLeft() {
         return molesLeft;
     }
+
     /**
      * Gets attempts left.
+     *
      * @return int
      */
     public int getAttemptsLeft() {
         return attemptsLeft;
     }
+
     /**
      * Gets score.
+     *
      * @return int
      */
     public int getScore() {
         return score;
     }
+
     /**
      * Gets all the grid.
+     *
      * @return char[][]
      */
     public char[][] getMoleGrid() {
