@@ -5,6 +5,7 @@ package org.minions.devfund.reinaldo;
  */
 public class Squarelotron {
 
+    private static final int LIMITROTATIONFORMATRIX = 4;
     private int[][] squarelotronGame;
     private int size;
 
@@ -23,9 +24,10 @@ public class Squarelotron {
      * @param size the dimension for matriz
      */
     private void fillSquarelotron(int size) {
+        int value = 1;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                squarelotronGame[i][j] = size * i + j + 1;
+                squarelotronGame[i][j] = value++;
             }
         }
     }
@@ -37,9 +39,8 @@ public class Squarelotron {
      */
     public Squarelotron upsideDownFlip(int ring) {
         Squarelotron squarelotronCopy = new Squarelotron(size);
-        int sizeMatrix = size - 1;
-        for (int i = 0; i <= sizeMatrix; i++) {
-            swapFirstAndLastColumns(squarelotronCopy, ring - 1, size - ring, i, sizeMatrix);
+        for (int row = 0; row < size; row++) {
+            swapFirstAndLastColumns(squarelotronCopy, ring - 1, size - ring, row);
         }
         return squarelotronCopy;
     }
@@ -47,22 +48,32 @@ public class Squarelotron {
     /**
      * Methods that swap the position for first and last columns.
      * @param squarelotronCopy squarelotroncopy.
-     * @param first firstPosition.
-     * @param last lastPosition.
-     * @param i currencyRow.
-     * @param sizeMatrix size.
+     * @param first row.
+     * @param last row.
+     * @param row currencyRow.
      */
     private void swapFirstAndLastColumns(final Squarelotron squarelotronCopy, int first,
-                                        int last, int i, int sizeMatrix) {
-        for (int j = 0; j <= sizeMatrix; j++) {
-            if ((i == first || i == last) && j >= first && j <= last) {
-                squarelotronCopy.squarelotronGame[i][j] = squarelotronGame[sizeMatrix - i][j];
+                                        int last, int row) {
+        for (int column = 0; column < size; column++) {
+            if (verifyThecolumnsInTheMatrix(row, column, first, last)) {
+                squarelotronCopy.squarelotronGame[row][column] = squarelotronGame[size - 1 - row][column];
             }
-            if (i > first && i < last && (j == first || j == last)) {
-                squarelotronCopy.squarelotronGame[i][j] = squarelotronGame[sizeMatrix - i][j];
-            }
-
         }
+    }
+
+    /**
+     *
+     * @param row position on the matrix.
+     * @param column position on the matrix.
+     * @param first row.
+     * @param last row.
+     * @return boolean.
+     */
+    public boolean verifyThecolumnsInTheMatrix(int row, int column, int first, int last) {
+
+        boolean firsAndLastColumn = (row == first || row == last) && column >= first && column <= last;
+        boolean diferentThatFirstAndLastColmun = row > first && row < last && (column == first || column == last);
+      return firsAndLastColumn || diferentThatFirstAndLastColmun;
     }
 
     /**
@@ -125,6 +136,7 @@ public class Squarelotron {
      * @param numberOfTurns Integer that represent the moves number.
      */
     public void rotateRight(int numberOfTurns) {
+        numberOfTurns = numberOfTurns % LIMITROTATIONFORMATRIX;
         while (numberOfTurns != 0) {
             if (numberOfTurns > 0) {
                 rotateRightClockWise();
@@ -149,7 +161,7 @@ public class Squarelotron {
                 squarelotronClone[i][j] = squarelotronGame[(size - 1) - j][i];
             }
         }
-        squarelotronGame = squarelotronClone.clone();
+        squarelotronGame = squarelotronClone;
     }
 
     /**
@@ -164,8 +176,7 @@ public class Squarelotron {
                 squarelotronClone[i][j] = squarelotronGame[j][(size - 1) - i];
             }
         }
-
-        squarelotronGame = squarelotronClone.clone();
+        squarelotronGame = squarelotronClone;
     }
 
     /**
