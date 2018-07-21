@@ -64,6 +64,19 @@ public class SquarelotronTest {
     }
 
     @Test
+    public void mainDiagonalFlipTestSecondRing() {
+        final int[][] expectedResult = {
+                {1, 2, 3, 4},
+                {5, 6, 10, 8},
+                {9, 7, 11, 12},
+                {13, 14, 15, 16}
+        };
+
+        Squarelotron squarelotron = new Squarelotron(4);
+        Assert.assertEquals(expectedResult, squarelotron.mainDiagonalFlip(2).squarelotron);
+    }
+
+    @Test
     public void testMainDiagonalFlipDimensionFiveRingThree() {
         final int[][] expectedResult = {
                 {1, 2, 3, 4, 5},
@@ -90,6 +103,30 @@ public class SquarelotronTest {
         Assert.assertEquals(expectedResult, squarelotron.squarelotron);
     }
 
+    @Test
+    public void testRotateRight3() {
+        int[][] expectedResult = {
+                {16, 15, 14, 13},
+                {12, 11, 10, 9},
+                {8, 7, 6, 5},
+                {4, 3, 2, 1}
+        };
+        Squarelotron squarelotron = new Squarelotron(4);
+        squarelotron.rotateRight(3);
+        Assert.assertEquals(expectedResult, squarelotron.squarelotron);
+    }
+
+    @Test
+    public void testRotate4() {
+        final int[][] expectedResult = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        Squarelotron squarelotron = new Squarelotron(3);
+        squarelotron.rotateRight(4);
+        Assert.assertEquals(expectedResult, squarelotron.squarelotron);
+    }
     @Test
     public void oddNTest() {
     }

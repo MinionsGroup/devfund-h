@@ -1,5 +1,7 @@
 package org.minions.devfund.royrodriguez;
 
+import java.util.Arrays;
+
 public class Squarelotron {
     public int[][] squarelotron;
     int size;
@@ -7,19 +9,30 @@ public class Squarelotron {
     public Squarelotron(int n) {
         this.size = n;
         this.squarelotron = new int[n][n];
-        initialize();
+        initialize(squarelotron);
     }
 
     public Squarelotron(int[][] matrix, int size) {
         this.size = size;
-        this.squarelotron = matrix;
+        this.squarelotron = deepCopy(matrix);
     }
 
-    private void initialize() {
+    private int[][] deepCopy(final int[][] original) {
+        if (original == null) {
+            return new int[][]{};
+        }
+        final int[][] result = new int[original.length][];
+        for (int i = 0; i < original.length; i++) {
+            result[i] = Arrays.copyOf(original[i], original[i].length);
+        }
+        return result;
+    }
+
+    private void initialize(int[][] matrix) {
         int value = 1;
-        for (int row = 0; row < squarelotron.length; row++) {
-            for (int col = 0; col < squarelotron.length; col++) {
-                squarelotron[row][col] = value;
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix.length; col++) {
+                matrix[row][col] = value;
                 value++;
             }
         }
@@ -43,15 +56,15 @@ public class Squarelotron {
     }
 
     public Squarelotron upsideDownFlip(int ring) {
-        int[][] matrix = squarelotron;
-        for (int row = 0; row < squarelotron.length / 2; row++) {
-            for (int col = 0; col < squarelotron.length; col++) {
+        int[][] matrix = deepCopy(squarelotron);
+        for (int row = 0; row < matrix.length / 2; row++) {
+            for (int col = 0; col < matrix.length; col++) {
                 if (belongsToTheRing(ring, row + 1, col + 1)) {
                     flip(row, col, matrix, matrix.length);
                 }
             }
         }
-        return new Squarelotron(squarelotron, size);
+        return new Squarelotron(matrix, size);
     }
 
     private void flip(int row, int col, int[][] matrix, int matrixSize) {
@@ -71,18 +84,20 @@ public class Squarelotron {
     }
 
     public Squarelotron mainDiagonalFlip(int ring) {
-        int[][] matrix = squarelotron;
+        int[][] matrix = deepCopy(squarelotron);
         int aux;
         for (int col = ring - 1; col <= matrix.length - ring; col++) {
             aux = matrix[ring - 1][col];
             matrix[ring - 1][col] = matrix[col][ring - 1];
             matrix[col][ring - 1] = aux;
         }
-        int rowLimit = matrix.length % 2 == 1 ? matrix.length - ring : matrix.length;
-        for (int row = ring; row < rowLimit; row++) {
-            aux = matrix[row][matrix.length - ring];
-            matrix[row][matrix.length - ring] = matrix[matrix.length - ring][row];
-            matrix[matrix.length - ring][row] = aux;
+        if (ring < maxRings(size)) {
+            int rowLimit = matrix.length % 2 == 1 ? matrix.length : matrix.length - ring;
+            for (int row = ring; row < rowLimit; row++) {
+                aux = matrix[row][matrix.length - ring];
+                matrix[row][matrix.length - ring] = matrix[matrix.length - ring][row];
+                matrix[matrix.length - ring][row] = aux;
+            }
         }
         return new Squarelotron(matrix, matrix.length);
     }
@@ -99,7 +114,6 @@ public class Squarelotron {
                 squarelotron = mainDiagonalFlip(ring).squarelotron;
                 ring--;
             }
-            printSquarelotron();
             numberOfTurns--;
         }
     }
