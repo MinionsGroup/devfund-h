@@ -15,13 +15,13 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPlaceValidPosition() {
-        final int numAttempts = 3 ;
-        final int gridDimension = 6 ;
+        final int numAttempts = 3;
+        final int gridDimension = 6;
         final int x = 4;
         final int y = 4;
-        whackAMole = new WhackAMole(numAttempts,gridDimension);
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
         whackAMole.createEmptyGrid();
-        boolean result = whackAMole.place(x,y);
+        boolean result = whackAMole.place(x, y);
         Assert.assertTrue(result);
     }
 
@@ -30,12 +30,12 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPlaceInvalidPosition() {
-        final int numAttempts = 3 ;
-        final int gridDimension = 6 ;
+        final int numAttempts = 3;
+        final int gridDimension = 6;
         final int x = 2;
         final int y = 7;
-        whackAMole = new WhackAMole(numAttempts,gridDimension);
-        boolean result = whackAMole.place(x,y);
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
+        boolean result = whackAMole.place(x, y);
         Assert.assertFalse(result);
     }
 
@@ -44,12 +44,12 @@ public class WhackAMoleTest {
      */
     @Test
     public void testWhackSuceedPosition() {
-        final int numAttempts = 2 ;
-        final int gridDimension = 1 ;
+        final int numAttempts = 2;
+        final int gridDimension = 1;
         final int x = 0;
         final int y = 0;
-        whackAMole = new WhackAMole(numAttempts,gridDimension);
-        whackAMole.whack(x,y);
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
+        whackAMole.whack(x, y);
         Assert.assertTrue(whackAMole.getScore() > 0);
     }
 
@@ -58,9 +58,9 @@ public class WhackAMoleTest {
      */
     @Test
     public void testWhackEmptyPosition() {
-        final int numAttempts = 3 ;
-        final int gridDimension = 3 ;
-        whackAMole = new WhackAMole(numAttempts,gridDimension);
+        final int numAttempts = 3;
+        final int gridDimension = 3;
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
         char expectedValue = '*';
         char calculatedValue = 'x';
         for (int i = 0; i < whackAMole.getMoleGrid().length; i++) {
@@ -82,12 +82,12 @@ public class WhackAMoleTest {
      */
     @Test
     public void testGiveUpWithValidValues() {
-        final int numAttempts = 2 ;
-        final int gridDimension = 1 ;
+        final int numAttempts = 2;
+        final int gridDimension = 1;
         final int x = -1;
         final int y = -1;
-        whackAMole = new WhackAMole(numAttempts,gridDimension);
-        Assert.assertTrue(whackAMole.giveUp(x,y));
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
+        Assert.assertTrue(whackAMole.giveUp(x, y));
     }
 
     /**
@@ -95,12 +95,12 @@ public class WhackAMoleTest {
      */
     @Test
     public void testGiveUpWithInvalidValues() {
-        final int numAttempts = 2 ;
-        final int gridDimension = 10 ;
+        final int numAttempts = 2;
+        final int gridDimension = 10;
         final int x = 5;
         final int y = 3;
-        whackAMole = new WhackAMole(numAttempts,gridDimension);
-        Assert.assertFalse(whackAMole.giveUp(x,y));
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
+        Assert.assertFalse(whackAMole.giveUp(x, y));
     }
 
     /**
@@ -108,9 +108,9 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPrintGridToUserWithoutMoles() {
-        final int numAttempts = 2 ;
-        final int gridDimension = 4 ;
-        whackAMole = new WhackAMole(numAttempts,gridDimension);
+        final int numAttempts = 2;
+        final int gridDimension = 4;
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
         String expectedResult = "****\n****\n****\n****\n";
         String calculatedResult = whackAMole.printGridToUser().toString();
         Assert.assertEquals(expectedResult, calculatedResult);
@@ -122,13 +122,13 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPrintGridToUserWithMoles() {
-        final int numAttempts = 2 ;
-        final int gridDimension = 4 ;
+        final int numAttempts = 2;
+        final int gridDimension = 4;
         final int x = 0;
         final int y = 0;
-        whackAMole = new WhackAMole(numAttempts,gridDimension);
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
         whackAMole.createEmptyGrid();
-        whackAMole.place(x,y);
+        whackAMole.place(x, y);
         String expectedResult = "M***\n****\n****\n****\n";
         String calculatedResult = whackAMole.printGrid().toString();
         Assert.assertEquals(expectedResult, calculatedResult);
@@ -140,9 +140,9 @@ public class WhackAMoleTest {
      */
     @Test
     public void testCreateEmptyGrid() {
-        final int numAttempts = 2 ;
-        final int gridDimension = 4 ;
-        whackAMole = new WhackAMole(numAttempts,gridDimension);
+        final int numAttempts = 2;
+        final int gridDimension = 4;
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
         whackAMole.createEmptyGrid();
         String expectedResult = "****\n****\n****\n****\n";
         String calculatedResult = whackAMole.printGrid().toString();
@@ -155,9 +155,9 @@ public class WhackAMoleTest {
      */
     @Test
     public void testIsEmptyCell() {
-        final int numAttempts = 2 ;
-        final int gridDimension = 4 ;
-        whackAMole = new WhackAMole(numAttempts,gridDimension);
+        final int numAttempts = 2;
+        final int gridDimension = 4;
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
         char expectedValue = '*';
         char calculatedValue = 'x';
         for (int i = 0; i < whackAMole.getMoleGrid().length; i++) {
