@@ -109,14 +109,16 @@ public class WhackAMole {
      * Method to print the grid available for user.
      */
     void printGridToUser() {
-        LOGGER.log(Level.INFO, Arrays.deepToString(this.trackerMoleGrid));
+        String gridPrintFormat = Arrays.deepToString(this.trackerMoleGrid);
+        LOGGER.log(Level.INFO, gridPrintFormat);
     }
 
     /**
      * Method to print the complete grid game status.
      */
     void printGrid() {
-        LOGGER.log(Level.INFO, Arrays.deepToString(this.moleGrid));
+        String gridPrintFormat = Arrays.deepToString(this.moleGrid);
+        LOGGER.log(Level.INFO, gridPrintFormat);
     }
 
     /**
