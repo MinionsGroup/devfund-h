@@ -28,6 +28,9 @@ public class MovieDatabaseTest {
     private static final String ACTOR_43 = "Actor 43";
     private static final String ACTOR_111 = "Actor 111";
     private static final String ACTOR_78 = "Actor 78";
+    private static final String BEST_MOVIE = "Best Movie";
+    private static final String SO_SO_MOVIE = "So so Movie";
+    private static final String WORST_MOVIE = "Worst Movie";
     private MovieDatabase movieDatabase;
 
     /**
@@ -183,16 +186,16 @@ public class MovieDatabaseTest {
     @Test
     public void testGetsBesMovieReturnsTheMovieWithHighestRating() {
         final double bestRating = 100.0;
-        movieDatabase.addMovie("Best Movie", new String[]{ACTOR_1, ACTOR_2, ACTOR_21});
-        movieDatabase.addRating("Best Movie", bestRating);
+        movieDatabase.addMovie(BEST_MOVIE, new String[]{ACTOR_1, ACTOR_2, ACTOR_21});
+        movieDatabase.addRating(BEST_MOVIE, bestRating);
 
         final double midRating = 50.0;
-        movieDatabase.addMovie("So so Movie", new String[]{ACTOR_7, ACTOR_12, ACTOR_43});
-        movieDatabase.addRating("So so Movie", midRating);
+        movieDatabase.addMovie(SO_SO_MOVIE, new String[]{ACTOR_7, ACTOR_12, ACTOR_43});
+        movieDatabase.addRating(SO_SO_MOVIE, midRating);
 
         final double worstRating = 5.0;
-        movieDatabase.addMovie("Worst Movie", new String[]{ACTOR_111, ACTOR_78});
-        movieDatabase.addRating("Worst Movie", worstRating);
-        assertEquals("Best Movie", movieDatabase.getBestMovie());
+        movieDatabase.addMovie(WORST_MOVIE, new String[]{ACTOR_111, ACTOR_78});
+        movieDatabase.addRating(WORST_MOVIE, worstRating);
+        assertEquals(BEST_MOVIE, movieDatabase.getBestMovie());
     }
 }
