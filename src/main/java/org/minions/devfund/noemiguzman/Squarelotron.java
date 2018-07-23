@@ -15,15 +15,6 @@ public class Squarelotron {
 
     /**
      *
-     * @return size of squarelotron
-     */
-
-    public int getSize() {
-        return size;
-    }
-
-    /**
-     *
      * @return current squarelotron
      */
     public int[][] getSquarelotron() {
