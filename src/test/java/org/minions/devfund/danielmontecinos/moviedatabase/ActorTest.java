@@ -11,6 +11,9 @@ import static org.junit.Assert.assertEquals;
  * Tests Actor class.
  */
 public class ActorTest {
+    private static final String MOVIE_1 = "Movie 1";
+    private static final String MOVIE_2 = "Movie 2";
+    private static final String MOVIE_3 = "Movie 3";
     private Actor actor;
 
     /**
@@ -51,9 +54,9 @@ public class ActorTest {
      */
     @Test
     public void testSetMovieMethod() {
-        actor.setMovie("Movie 1");
-        actor.setMovie("Movie 2");
-        actor.setMovie("Movie 3");
+        actor.setMovie(MOVIE_1);
+        actor.setMovie(MOVIE_2);
+        actor.setMovie(MOVIE_3);
         final int expectedSize = 3;
         assertEquals(expectedSize, actor.getMovies().size());
     }
@@ -63,11 +66,11 @@ public class ActorTest {
      */
     @Test
     public void testGetMoviesGetName() {
-        actor.setMovie("Movie 1");
-        actor.setMovie("Movie 2");
-        actor.setMovie("Movie 3");
-        assertEquals("Movie 1", actor.getMovies().get(0).getName());
-        assertEquals("Movie 2", actor.getMovies().get(1).getName());
-        assertEquals("Movie 3", actor.getMovies().get(2).getName());
+        actor.setMovie(MOVIE_1);
+        actor.setMovie(MOVIE_2);
+        actor.setMovie(MOVIE_3);
+        assertEquals(MOVIE_1, actor.getMovies().get(0).getName());
+        assertEquals(MOVIE_2, actor.getMovies().get(1).getName());
+        assertEquals(MOVIE_3, actor.getMovies().get(2).getName());
     }
 }

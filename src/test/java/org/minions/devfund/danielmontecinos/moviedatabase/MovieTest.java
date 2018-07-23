@@ -11,6 +11,10 @@ import static org.junit.Assert.assertEquals;
  * Tests Movie class.
  */
 public class MovieTest {
+    private static final String MOVIE_1 = "Movie 1";
+    private static final String ACTOR_1 = "Actor 1";
+    private static final String ACTOR_2 = "Actor 2";
+    private static final String ACTOR_3 = "Actor 3";
     private Movie movie;
 
     /**
@@ -34,8 +38,8 @@ public class MovieTest {
      */
     @Test
     public void testSetNameMethod() {
-        movie.setName("Movie 1");
-        assertEquals("Movie 1", movie.getName());
+        movie.setName(MOVIE_1);
+        assertEquals(MOVIE_1, movie.getName());
     }
 
     /**
@@ -51,17 +55,17 @@ public class MovieTest {
      */
     @Test
     public void testSetActorsMethod() {
-        movie.setName("Movie 1");
-        movie.setActors("Movie 1", new String[]{"Actor 1", "Actor 2", "Actor 3"});
-        assertEquals("Movie 1", movie.getName());
-        assertEquals("Actor 1", movie.getActors().get(0).getName());
-        assertEquals("Actor 2", movie.getActors().get(1).getName());
-        assertEquals("Actor 3", movie.getActors().get(2).getName());
+        movie.setName(MOVIE_1);
+        movie.setActors(MOVIE_1, new String[]{ACTOR_1, ACTOR_2, ACTOR_3});
+        assertEquals(MOVIE_1, movie.getName());
+        assertEquals(ACTOR_1, movie.getActors().get(0).getName());
+        assertEquals(ACTOR_2, movie.getActors().get(1).getName());
+        assertEquals(ACTOR_3, movie.getActors().get(2).getName());
 
 
-        assertEquals("Movie 1", movie.getActors().get(0).getMovies().get(0).getName());
-        assertEquals("Movie 1", movie.getActors().get(1).getMovies().get(0).getName());
-        assertEquals("Movie 1", movie.getActors().get(2).getMovies().get(0).getName());
+        assertEquals(MOVIE_1, movie.getActors().get(0).getMovies().get(0).getName());
+        assertEquals(MOVIE_1, movie.getActors().get(1).getMovies().get(0).getName());
+        assertEquals(MOVIE_1, movie.getActors().get(2).getMovies().get(0).getName());
     }
 
     /**
