@@ -42,13 +42,11 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPlaceMoleUsingNegativeLocations() {
-//        WhackAMole game = startNewGame(4,4);
         final int xLocation = -1;
         final int yLocation = -1;
         int expectedMolesLeft = 0;
         assertFalse(whackAMoleGame.place(xLocation, yLocation));
         assertEquals(expectedMolesLeft, whackAMoleGame.getMolesLeft());
-//        assertTrue(whackAMoleGame.place());
     }
 
     /**

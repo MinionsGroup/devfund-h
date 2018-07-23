@@ -2,6 +2,8 @@ package org.minions.devfund.damianvp;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Class to build whack a mole game.
@@ -16,6 +18,7 @@ public class WhackAMole {
     static final char EMPTY = '*';
     static final char WHACKED = 'W';
     static final int INVALID_RANGE = -2;
+    private static final Logger LOGGER = Logger.getLogger(WhackAMole.class.getName());
 
     /**
      * constructor class.
@@ -68,7 +71,8 @@ public class WhackAMole {
         int max = this.moleGrid.length;
         int min = 0;
         boolean moleIsPlaced;
-        if (moles <= this.moleGrid.length * this.moleGrid.length) {
+        int limitGrid = this.moleGrid.length * this.moleGrid.length;
+        if (moles <= limitGrid) {
             while (moles > 0) {
                 int x = random.nextInt(max - min);
                 int y = random.nextInt(max - min);
@@ -78,7 +82,7 @@ public class WhackAMole {
                 }
             }
         }
-        System.out.println("Is not possible place more than fdsfsdf");
+        LOGGER.log(Level.WARNING, "Is not possible place more than {0} moles ", limitGrid);
     }
 
     /**
@@ -89,7 +93,7 @@ public class WhackAMole {
     void whack(int x, int y) {
         if (validatedCoordinates(x, y)) {
             if (this.moleGrid[x][y] == MOLE) {
-                System.out.println("Good, you found a mole!!");
+                LOGGER.log(Level.FINE, "Good, you found a mole!!");
                 this.molesLeft--;
                 this.score++;
 
@@ -105,14 +109,14 @@ public class WhackAMole {
      * Method to print the grid available for user.
      */
     void printGridToUser() {
-        System.out.println(Arrays.deepToString(this.trackerMoleGrid));
+        LOGGER.log(Level.INFO, Arrays.deepToString(this.trackerMoleGrid));
     }
 
     /**
      * Method to print the complete grid game status.
      */
     void printGrid() {
-        System.out.println(Arrays.deepToString(this.moleGrid));
+        LOGGER.log(Level.INFO, Arrays.deepToString(this.moleGrid));
     }
 
     /**
@@ -131,7 +135,7 @@ public class WhackAMole {
             }
             return true;
         } else {
-            System.out.println(String.format("valid coordinates should be between 0 - %s", this.moleGrid.length - 1));
+            LOGGER.log(Level.WARNING, "valid coordinates should be between 0 - {0} ", this.moleGrid.length - 1);
             return false;
         }
     }
@@ -141,12 +145,12 @@ public class WhackAMole {
      */
     void verifyGameStatus() {
         if (this.molesLeft == 0) {
-            System.out.println("Great you win!!!");
-            System.out.println(String.format("Score: %s", this.score));
+            LOGGER.log(Level.FINE, "Great you Win!!!");
+            LOGGER.log(Level.FINE, "Scoer: {0}", this.score);
             return;
         }
         if (this.attemptsLeft <= 0) {
-            System.out.println("You Loss...  Try Again");
+            LOGGER.log(Level.WARNING, "YOu Loss.... Try Again");
             printGrid();
         }
     }
