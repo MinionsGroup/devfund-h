@@ -3,7 +3,6 @@ package org.minions.devfund.noemiguzman;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 
 /**
  * class to test Squarelotron.
@@ -18,7 +17,6 @@ public class SquarelotronTest {
     static final int SIZE3 = 3;
     static final int SIZE4 = 4;
     static final int SIZE5 = 5;
-
     /**
      * Method to test UpsideDownFlip.
      */
