@@ -13,11 +13,11 @@ public class SquarelotronTest {
      * Tests upsideDownFlip method using two dimension matrix and ring equal to one.
      */
     @Test
-    public void testUpsideDownFlipWithATwoDimensionMatrixWithRingOne() {
+    public void testUpsideDownFlipDimensionTwoRingOne() {
         final int ring = 1;
         final int dimension = 2;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {3, 4},
                 {1, 2}
         };
@@ -29,11 +29,11 @@ public class SquarelotronTest {
      * Tests upsideDownFlip method using four dimension matrix and ring equal to two.
      */
     @Test
-    public void testUpsideDownFlipWithAFourDimensionMatrixWithRingOne() {
+    public void testUpsideDownFlipDimensionFourWithRingOne() {
         final int ring = 1;
         final int dimension = 4;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {13, 14, 15, 16},
                 {9, 6, 7, 12},
                 {5, 10, 11, 8},
@@ -47,11 +47,11 @@ public class SquarelotronTest {
      * Tests upsideDownFlip method using five dimension array and ring equal to two.
      */
     @Test
-    public void testUpsideDownFlipWithAFiveDimensionMatrixWithRingTwo() {
+    public void testUpsideDownFlipDimensionFiveRingTwo() {
         final int ring = 2;
         final int dimension = 5;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {1, 2, 3, 4, 5},
                 {6, 17, 18, 19, 10},
                 {11, 12, 13, 14, 15},
@@ -66,11 +66,11 @@ public class SquarelotronTest {
      * Tests upsideDownFlip method using five dimension array and ring equal to three.
      */
     @Test
-    public void testUpsideDownFlipWithAFiveDimensionMatrixWithRingThree() {
+    public void testUpsideDownFlipDimensionFiveRingThree() {
         final int ring = 3;
         final int dimension = 5;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {1, 2, 3, 4, 5},
                 {6, 7, 8, 9, 10},
                 {11, 12, 13, 14, 15},
@@ -85,11 +85,11 @@ public class SquarelotronTest {
      * Tests mainDiagonalFlip method using five dimension array and ring equal to one.
      */
     @Test
-    public void testMainDiagonalFlipWithFourMatrixWithRingOne() {
+    public void testMainDiagonalFlipDimensionFourRingOne() {
         final int ring = 1;
         final int dimension = 4;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {1, 5, 9, 13},
                 {2, 6, 7, 14},
                 {3, 10, 11, 15},
@@ -103,11 +103,11 @@ public class SquarelotronTest {
      * Tests mainDiagonalFlip method using six dimension array and ring equal to one.
      */
     @Test
-    public void testMainDiagonalFlipWithSixMatrixWithRingTwo() {
+    public void testMainDiagonalFlipDimensionSixRingTwo() {
         final int ring = 2;
         final int dimension = 6;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {1, 2, 3, 4, 5, 6},
                 {7, 8, 14, 20, 26, 12},
                 {13, 9, 15, 16, 27, 18},
@@ -123,11 +123,11 @@ public class SquarelotronTest {
      * Tests rotateClockwise method using four dimension array and turns equal to one.
      */
     @Test
-    public void testRotateClockwiseFourDimensionMatrixOnce() {
+    public void testRotateClockwiseDimesionFourTurnOne() {
         final int dimension = 4;
         final int turns = 1;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {13, 9, 5, 1},
                 {14, 10, 6, 2},
                 {15, 11, 7, 3},
@@ -140,11 +140,11 @@ public class SquarelotronTest {
      * Tests rotateClockwise method using two dimension array and turns equal to two.
      */
     @Test
-    public void testRotateAntiClockwiseTwoDimensionMatrixTwice() {
+    public void testRotateAntiClockwiseDimensionTwoTurnTwo() {
         final int dimension = 2;
         final int turns = -2;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {4, 3},
                 {2, 1}
         };
@@ -156,11 +156,11 @@ public class SquarelotronTest {
      * Tests rotateClockwise method using three dimension array and turns equal to zero.
      */
     @Test
-    public void testRotateClockwiseWithThreeDimensionMatrixWithZeroTurns() {
+    public void testRotateClockwiseDimensionThreeTurnZero() {
         final int dimension = 3;
         final int turns = 0;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {1, 2, 3},
                 {4, 5, 6},
                 {7, 8, 9}
@@ -173,11 +173,11 @@ public class SquarelotronTest {
      * Tests rotateClockwise method using four dimension array and turns equal to four.
      */
     @Test
-    public void testRotateClockwiseWithFourDimensionMatrixWithAFourTurns() {
+    public void testRotateClockwiseDimensionFourTurnZero() {
         final int dimension = 4;
         final int turns = 0;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {1, 2, 3, 4},
                 {5, 6, 7, 8},
                 {9, 10, 11, 12},
@@ -191,11 +191,11 @@ public class SquarelotronTest {
      * Tests rotateClockwise method using three dimension array and turns equal to four.
      */
     @Test
-    public void testRotateClockwiseWithThreeDimensionMatrixWithAThreeTurns() {
+    public void testRotateClockwiseDimensionThreeTurnThree() {
         final int dimension = 3;
         final int turns = 3;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {3, 6, 9},
                 {2, 5, 8},
                 {1, 4, 7}
@@ -208,11 +208,11 @@ public class SquarelotronTest {
      * Tests rotateClockwise method using three dimension array and turns equal to four.
      */
     @Test
-    public void testRotateAntiClockwiseWithThreeDimensionMatrixWithAThreeTurns() {
+    public void testRotateAntiClockwiseThreeTurnThree() {
         final int dimension = 3;
         final int turns = -3;
         final Squarelotron squarelotron = new Squarelotron(dimension);
-        final int[][] expectedResult = new int[][]{
+        final int[][] expectedResult = {
                 {7, 4, 1},
                 {8, 5, 2},
                 {9, 6, 3}
