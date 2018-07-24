@@ -58,23 +58,14 @@ public class WhackAMoleTest {
      */
     @Test
     public void testWhackEmptyPosition() {
-        final int numAttempts = 3;
+        final int numAttempts = 2;
         final int gridDimension = 3;
+        final int x = 2;
+        final int y = 2;
         whackAMole = new WhackAMole(numAttempts, gridDimension);
-        char expectedValue = '*';
-        char calculatedValue = 'x';
-        for (int i = 0; i < whackAMole.getMoleGrid().length; i++) {
-            for (int j = 0; j < whackAMole.getMoleGrid().length; j++) {
-                if (whackAMole.getMoleGrid()[i][j] == '*') {
-                    whackAMole.whack(i, j);
-                    calculatedValue = whackAMole.getMoleGrid()[i][j];
-                }
-            }
-        }
-
-
-        Assert.assertEquals(expectedValue, calculatedValue);
-
+        whackAMole.createEmptyGrid();
+        whackAMole.whack(x, y);
+        Assert.assertTrue(whackAMole.getScore() == 0);
     }
 
     /**
@@ -149,27 +140,5 @@ public class WhackAMoleTest {
         Assert.assertEquals(expectedResult, calculatedResult);
 
     }
-
-    /**
-     * Test method that verifies a cell is empty.
-     */
-    @Test
-    public void testIsEmptyCell() {
-        final int numAttempts = 2;
-        final int gridDimension = 4;
-        whackAMole = new WhackAMole(numAttempts, gridDimension);
-        char expectedValue = '*';
-        char calculatedValue = 'x';
-        for (int i = 0; i < whackAMole.getMoleGrid().length; i++) {
-            for (int j = 0; j < whackAMole.getMoleGrid().length; j++) {
-                if (whackAMole.getMoleGrid()[i][j] == '*') {
-                    calculatedValue = whackAMole.getMoleGrid()[i][j];
-                }
-            }
-        }
-        Assert.assertEquals(expectedValue, calculatedValue);
-
-    }
-
 
 }

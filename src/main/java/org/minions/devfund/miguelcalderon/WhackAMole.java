@@ -197,13 +197,4 @@ public class WhackAMole {
         return score;
     }
 
-    /**
-     * Gets all the grid.
-     *
-     * @return char[][]
-     */
-    public char[][] getMoleGrid() {
-        return moleGrid;
-    }
-
 }
