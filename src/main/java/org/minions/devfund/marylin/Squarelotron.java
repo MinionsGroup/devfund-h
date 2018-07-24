@@ -49,7 +49,7 @@ public class Squarelotron {
      * @return the Squarelotron grid.
      */
     public int[][] getSquarelotron() {
-        return squarelotron;
+        return squarelotron.clone();
     }
 
     /**
@@ -116,7 +116,7 @@ public class Squarelotron {
     Squarelotron upsideDownFlip(int ring) {
 
         //Returns the same squarelotron if the ring number is equal to the number of rings of a matrix n x n.
-        if (size % 2 == 1 && ring == this.numberOfRings) {
+        if (Math.abs(size) % 2 == 1 && ring == this.numberOfRings) {
             return this;
         }
 
@@ -157,7 +157,6 @@ public class Squarelotron {
      */
     private int[][] flipExternalRing(final int[][] matrix) {
         int[][] resultGrid = duplicateGrid(matrix);
-        int size = matrix.length;
         int tempJ = 0;
         for (int i = 1; i < size; i++) {
             resultGrid[i][tempJ] = matrix[tempJ][i];
@@ -180,7 +179,6 @@ public class Squarelotron {
      */
     private int[][] flipInternalRing(final int[][] matrix) {
         int[][] resultGrid = duplicateGrid(matrix);
-        int size = matrix.length;
         int tempJ = 1;
         for (int i = 1; i < size - 1; i++) {
             resultGrid[i][tempJ] = matrix[tempJ][i];
@@ -203,7 +201,7 @@ public class Squarelotron {
      * @return a Squarelotron.
      */
     Squarelotron mainDiagonalFlip(int ring) {
-        if (this.size % 2 == 1 && ring == this.numberOfRings) {
+        if (Math.abs(this.size) % 2 == 1 && ring == this.numberOfRings) {
             return this; // returns the same squarelotron if the ring number is equal to the number of rings.
         }
         int[][] resultGrid = mainDiagonalFlipHelper(ring);
@@ -272,18 +270,6 @@ public class Squarelotron {
                 squarelotron = upsideDownFlipHelper(i);
             }
             numberOfTurns++;
-        }
-    }
-
-    /**
-     * Prints the Squarelotron.
-     */
-    void printSquarelotron() {
-        for (int i = 0; i < squarelotron.length; i++) {
-            for (int j = 0; j < squarelotron.length; j++) {
-                System.out.print(" " + squarelotron[i][j] + " ");
-            }
-            System.out.println();
         }
     }
 }
