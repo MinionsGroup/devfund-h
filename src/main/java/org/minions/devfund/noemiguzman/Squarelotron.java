@@ -21,6 +21,13 @@ public class Squarelotron {
         return squarelotron.clone();
     }
     /**
+     *
+     * @return current size
+     */
+    public int getSize() {
+        return size;
+    }
+    /**
      * constructor It fills the 2-dimensional array with the numbers 1 to n squared.
      *
      * @param n - the dimension of the squarelotron

@@ -160,9 +160,9 @@ public class SquarelotronTest {
      */
     @Test
     public void testUpsideDownFlipNewObject() {
-        s = new Squarelotron(SIZE3);
+        s = new Squarelotron(SIZE4);
         Squarelotron temp = s.upsideDownFlip(1);
-        final int[][] test = {{7, 8, 9}, {4, 5, 6}, {1, 2, 3}};
+        final int[][] test = {{13, 14, 15, 16}, {9, 6, 7, 12}, {5, 10, 11, 8}, {1, 2, 3, 4}};
         assertArrayEquals(test, temp.getSquarelotron());
     }
     /**
@@ -181,9 +181,8 @@ public class SquarelotronTest {
     @Test
     public void testUpsideDownFlipDimensionOne() {
         s = new Squarelotron(1);
-        Squarelotron temp = s.upsideDownFlip(1);
-        final int[][] test = {{1}};
-        assertArrayEquals(test, temp.getSquarelotron());
+        Squarelotron temp = s.upsideDownFlip(2);
+        assertArrayEquals(temp.getSquarelotron(), s.getSquarelotron());
     }
     /**
      * Method to test MainDiagonalFlip new object.
