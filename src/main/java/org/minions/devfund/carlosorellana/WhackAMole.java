@@ -106,7 +106,7 @@ public class WhackAMole {
         for (char[] row : moleGrid) {
             for (char place : row) {
                 char currentPlace = place == WHACKED_CHAR ? WHACKED_CHAR : NO_MOLE_CHAR;
-                gridToUser.append(String.valueOf(currentPlace)).append(SPACE);
+                gridToUser.append(currentPlace).append(SPACE);
             }
             gridToUser.append(NEW_LINE);
         }
@@ -123,7 +123,7 @@ public class WhackAMole {
 
         for (char[] row : moleGrid) {
             for (char value : row) {
-                gridBuilder.append(String.valueOf(value)).append(SPACE);
+                gridBuilder.append(value).append(SPACE);
             }
             gridBuilder.append(NEW_LINE);
         }
