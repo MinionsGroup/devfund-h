@@ -21,20 +21,17 @@ public class SquarelotronTest {
         final int ringNumber = 2;
         Squarelotron squarelotron = new Squarelotron(size);
         System.out.println(squarelotron.toString());
-        Squarelotron one = squarelotron.upsideDownFlip(ringNumber);
-        System.out.println(one.toString());
-        Squarelotron two = squarelotron.mainDiagonarlFlip(ringNumber);
-        System.out.println(two.toString());
-    }
-
-    /**
-     * Validates Matriz size.
-     */
-    @Test
-    public void validatesMatrixSize() {
-        final int size = 6;
-        Squarelotron squarelotron = new Squarelotron(size);
-        int[] actualArraySize = squarelotron.buildArray();
-        assertTrue((size * size) == actualArraySize.length);
+//        Squarelotron one = squarelotron.upsideDownFlip(ringNumber);
+//        System.out.println(one.toString());
+//        Squarelotron two = squarelotron.mainDiagonarlFlip(ringNumber);
+//        System.out.println(two.toString());
+        squarelotron.rotateRight(1);
+        System.out.println(squarelotron.toString());
+        squarelotron.rotateRight(2);
+        System.out.println(squarelotron.toString());
+        squarelotron.rotateRight(3);
+        System.out.println(squarelotron.toString());
+        squarelotron.rotateRight(-1);
+        System.out.println(squarelotron.toString());
     }
 }
