@@ -102,6 +102,11 @@ public class Squarelotron {
         return squarelotron;
     }
 
+    /**
+     * Rotates Matrix 90 grades positive or negative position.
+     *
+     * @param numberOfTurns Number or rotations.
+     */
     public void rotateRight(int numberOfTurns) {
 
         int ring;
