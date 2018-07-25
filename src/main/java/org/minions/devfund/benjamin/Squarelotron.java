@@ -59,13 +59,11 @@ public class Squarelotron {
     public void rotateRight(int numberOfTurns) {
         if (numberOfTurns >= 0) {
             for (int x = 0; x < numberOfTurns % MAX_ROTATIONS; x++) {
-                //int[][] copy = copyMatrix(squarelotronMatrix);
                 int[][] transponedMatrix = getTransponedMatrix();
                 squarelotron = horizontalFlip(transponedMatrix);
             }
         } else {
             for (int x = 0; x < Math.abs(numberOfTurns) % MAX_ROTATIONS; x++) {
-                //int[][] copy = copyMatrix(squarelotronMatrix);
                 int[][] transponedMatrix = getTransponedMatrix();
                 squarelotron = verticalFlip(transponedMatrix);
             }
