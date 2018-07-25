@@ -54,6 +54,17 @@ public class SquarelotronTest {
         assertArrayEquals(expected, s4.getSquarelotron());
     }
     /**
+     * Method to test Rotate Right-1.
+     */
+    @Test
+    public  void testRotateRightNegative1() {
+        s4 = new Squarelotron(SIZE4);
+        s4.rotateRight(-1);
+        final int[][] expected = {{4, 8, 12, 16}, {3, 7, 11, 15}, {2, 6, 10, 14}, {1, 5, 9, 13}};
+        assertArrayEquals(expected, s4.getSquarelotron());
+    }
+
+    /**
      * Method to test Rotate Right 2.
      */
     @Test
@@ -61,6 +72,18 @@ public class SquarelotronTest {
         final int numberOfTurns2 = 2;
         s4 = new Squarelotron(SIZE4);
         s4.rotateRight(numberOfTurns2);
+        final int[][] expected = {{16, 15, 14, 13}, {12, 11, 10, 9}, {8, 7, 6, 5}, {4, 3, 2, 1}};
+        assertArrayEquals(expected, s4.getSquarelotron());
+    }
+
+    /**
+     * Method to test Rotate Right -2.
+     */
+    @Test
+    public void testRotateRightNegative2() {
+        final int numberOfTurns2 = 2;
+        s4 = new Squarelotron(SIZE4);
+        s4.rotateRight(-numberOfTurns2);
         final int[][] expected = {{16, 15, 14, 13}, {12, 11, 10, 9}, {8, 7, 6, 5}, {4, 3, 2, 1}};
         assertArrayEquals(expected, s4.getSquarelotron());
     }
@@ -73,6 +96,17 @@ public class SquarelotronTest {
         s4 = new Squarelotron(SIZE4);
         s4.rotateRight(numberOfTurns3);
         final int[][] expected = {{4, 8, 12, 16}, {3, 7, 11, 15}, {2, 6, 10, 14}, {1, 5, 9, 13}};
+        assertArrayEquals(expected, s4.getSquarelotron());
+    }
+    /**
+     * Method to test Rotate Right -3.
+     */
+    @Test
+    public void testRotateRightNegative3() {
+        final int numberOfTurns3 = 3;
+        s4 = new Squarelotron(SIZE4);
+        s4.rotateRight(-numberOfTurns3);
+        final int[][] expected = {{13, 9, 5, 1}, {14, 10, 6, 2}, {15, 11, 7, 3}, {16, 12, 8, 4}};
         assertArrayEquals(expected, s4.getSquarelotron());
     }
     /**
