@@ -68,7 +68,6 @@ public class SquarelotronTest {
         squarelotron.rotateRight(turnsOne);
         assertArrayEquals(expected, squarelotron.currentStatus());
     }
-    // from here test that i did
     /**
      * Squarelotron constructor.
      */
@@ -200,5 +199,14 @@ public class SquarelotronTest {
         Squarelotron squarelotron = new Squarelotron(sizeTwo);
         final int[][] expected = {{1, 3}, {2, 4}};
         assertArrayEquals(expected, squarelotron.mainDiagonalFlip(ringOne).currentStatus());
+    }
+    /**
+     *  Unit test for Copy matrix function.
+     */
+    @Test
+    public void testCopyMatrixNull() {
+        final int sizeOne = 1;
+        Squarelotron squarelotron = new Squarelotron(sizeOne);
+        assertArrayEquals(new int[][]{}, squarelotron.copyMatrix(null));
     }
 }

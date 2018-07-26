@@ -83,7 +83,7 @@ public class Squarelotron {
      * @param origin object to be copied.
      * @return 2D array.
      */
-    private int[][] copyMatrix(final int[][] origin) {
+    public int[][] copyMatrix(final int[][] origin) {
         if (origin == null) {
             return new int[][]{};
         } else {
@@ -186,11 +186,7 @@ public class Squarelotron {
         int[][] copy = new int[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (isRingElement(ring, i, j)) {
-                    copy[i][j] = squarelotron[j][i];
-                } else {
-                    copy[i][j] = squarelotron[i][j];
-                }
+               copy[i][j] = isRingElement(ring, i, j) ? squarelotron[j][i] : squarelotron[i][j];
             }
         }
         return copy;
