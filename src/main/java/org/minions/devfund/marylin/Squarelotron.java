@@ -38,7 +38,6 @@ public class Squarelotron {
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 this.squarelotron[i][j] = squarelotron[i][j];
-                this.squarelotron[i][j] = squarelotron[i][j];
             }
         }
     }
