@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -19,6 +20,11 @@ public class SquarelotronTest {
     private static final int THREE = 3;
     private static final int FOUR = 4;
     private static final int FIVE = 5;
+    private static final int NEGATIVEONE = -1;
+    private static final int NEGATIVETWO = -2;
+    private static final int NEGATIVETHREE = -3;
+    private static final int NEGATIVEFOUR = -4;
+    private static final int NEGATIVEFIVE = -5;
     private static final String EMPTYSPACE = " ";
     private static final String INITIALWORD = "INITIAL";
     private static final String ACTUALWORD = "ACTUAL";
@@ -64,7 +70,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronTwoByTwo.upsideDownFlip(ONE);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -77,7 +83,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronThreeByThree.upsideDownFlip(ONE);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -90,7 +96,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronThreeByThree.upsideDownFlip(TWO);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -103,7 +109,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronFourByFour.upsideDownFlip(ONE);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
 
@@ -117,7 +123,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronFourByFour.upsideDownFlip(TWO);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -131,7 +137,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.upsideDownFlip(ONE);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -145,7 +151,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.upsideDownFlip(TWO);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
 
     }
 
@@ -160,7 +166,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.upsideDownFlip(THREE);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**********************************************************
@@ -177,7 +183,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronTwoByTwo.mainDiagonalFlip(ONE);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -190,7 +196,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronThreeByThree.mainDiagonalFlip(ONE);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -203,7 +209,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronThreeByThree.mainDiagonalFlip(TWO);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -216,7 +222,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronFourByFour.mainDiagonalFlip(ONE);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
 
@@ -230,7 +236,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronFourByFour.mainDiagonalFlip(TWO);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -244,7 +250,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.mainDiagonalFlip(ONE);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -258,7 +264,7 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.mainDiagonalFlip(TWO);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE, Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
 
     }
 
@@ -273,8 +279,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.mainDiagonalFlip(THREE);
         printGrid(actualSquarelotron.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, actualSquarelotron.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /*********************************************************
@@ -291,8 +297,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronTwoByTwo.rotateRight(ONE);
         printGrid(initialSquarelotronTwoByTwo.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron());
     }
 
     /**
@@ -305,8 +311,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronTwoByTwo.rotateRight(TWO);
         printGrid(initialSquarelotronTwoByTwo.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron());
     }
 
     /**
@@ -319,8 +325,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronTwoByTwo.rotateRight(THREE);
         printGrid(initialSquarelotronTwoByTwo.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron());
     }
 
     /**
@@ -333,8 +339,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronTwoByTwo.rotateRight(FOUR);
         printGrid(initialSquarelotronTwoByTwo.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron());
     }
 
     /**
@@ -347,8 +353,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronTwoByTwo.rotateRight(ZERO);
         printGrid(initialSquarelotronTwoByTwo.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron());
     }
 
     /**
@@ -361,8 +367,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronThreeByThree.rotateRight(ONE);
         printGrid(initialSquarelotronThreeByThree.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronThreeByThree.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronThreeByThree.getSquarelotron());
     }
 
     /**
@@ -375,8 +381,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronThreeByThree.rotateRight(TWO);
         printGrid(initialSquarelotronThreeByThree.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronThreeByThree.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronThreeByThree.getSquarelotron());
     }
 
     /**
@@ -389,8 +395,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronThreeByThree.rotateRight(THREE);
         printGrid(initialSquarelotronThreeByThree.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronThreeByThree.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronThreeByThree.getSquarelotron());
     }
 
     /**
@@ -403,8 +409,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronThreeByThree.rotateRight(FOUR);
         printGrid(initialSquarelotronThreeByThree.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronThreeByThree.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronThreeByThree.getSquarelotron());
     }
 
     /**
@@ -417,8 +423,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronThreeByThree.rotateRight(ZERO);
         printGrid(initialSquarelotronThreeByThree.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronThreeByThree.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronThreeByThree.getSquarelotron());
     }
 
     /**
@@ -431,8 +437,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronFourByFour.rotateRight(ONE);
         printGrid(initialSquarelotronFourByFour.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronFourByFour.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFourByFour.getSquarelotron());
     }
 
     /**
@@ -445,8 +451,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronFourByFour.rotateRight(TWO);
         printGrid(initialSquarelotronFourByFour.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronFourByFour.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFourByFour.getSquarelotron());
     }
 
     /**
@@ -459,8 +465,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronFourByFour.rotateRight(THREE);
         printGrid(initialSquarelotronFourByFour.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronFourByFour.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFourByFour.getSquarelotron());
     }
 
     /**
@@ -473,8 +479,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronFourByFour.rotateRight(FOUR);
         printGrid(initialSquarelotronFourByFour.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronFourByFour.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFourByFour.getSquarelotron());
     }
 
     /**
@@ -487,8 +493,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronFourByFour.rotateRight(ZERO);
         printGrid(initialSquarelotronFourByFour.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronFourByFour.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFourByFour.getSquarelotron());
     }
 
     /**
@@ -502,8 +508,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronFiveByFive.rotateRight(ONE);
         printGrid(initialSquarelotronFiveByFive.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronFiveByFive.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
     /**
@@ -517,8 +523,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronFiveByFive.rotateRight(TWO);
         printGrid(initialSquarelotronFiveByFive.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronFiveByFive.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
     /**
@@ -532,8 +538,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronFiveByFive.rotateRight(THREE);
         printGrid(initialSquarelotronFiveByFive.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronFiveByFive.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
     /**
@@ -547,8 +553,8 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronFiveByFive.rotateRight(FOUR);
         printGrid(initialSquarelotronFiveByFive.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronFiveByFive.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
     /**
@@ -562,7 +568,67 @@ public class SquarelotronTest {
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronFiveByFive.rotateRight(ZERO);
         printGrid(initialSquarelotronFiveByFive.getSquarelotron(), ACTUALWORD);
-        assertTrue(ASSERTIONMESSAGE,
-                Arrays.deepEquals(expectedGrid, initialSquarelotronFiveByFive.getSquarelotron()));
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
+    }
+
+    /**
+     * {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}}.
+     */
+    @Test
+    public void testRotateLeftFiveByFiveGridFirstRotate() {
+        final int[][] expectedGrid = {{5, 10, 15, 20, 25}, {4, 9, 14, 19, 24},
+                {3, 8, 13, 18, 23}, {2, 7, 12, 17, 22}, {1, 6, 11, 16, 21}};
+        printGrid(initialSquarelotronFiveByFive.getSquarelotron(), INITIALWORD);
+        printGrid(expectedGrid, EXPECTEDWORD);
+        initialSquarelotronFiveByFive.rotateRight(NEGATIVEONE);
+        printGrid(initialSquarelotronFiveByFive.getSquarelotron(), ACTUALWORD);
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
+    }
+
+    /**
+     * {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}}.
+     */
+    @Test
+    public void testRotateLeftFiveByFiveGridSecondRotate() {
+        final int[][] expectedGrid = {{25, 24, 23, 22, 21}, {20, 19, 18, 17, 16},
+                {15, 14, 13, 12, 11}, {10, 9, 8, 7, 6}, {5, 4, 3, 2, 1}};
+        printGrid(initialSquarelotronFiveByFive.getSquarelotron(), INITIALWORD);
+        printGrid(expectedGrid, EXPECTEDWORD);
+        initialSquarelotronFiveByFive.rotateRight(NEGATIVETWO);
+        printGrid(initialSquarelotronFiveByFive.getSquarelotron(), ACTUALWORD);
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
+    }
+
+    /**
+     * {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}}.
+     */
+    @Test
+    public void testRotateLeftFiveByFiveGridThirdRotate() {
+        final int[][] expectedGrid = {{21, 16, 11, 6, 1}, {22, 17, 12, 7, 2},
+                {23, 18,  13, 8, 3}, {24, 19, 14, 9, 4}, {25, 20, 15, 10, 5}};
+        printGrid(initialSquarelotronFiveByFive.getSquarelotron(), INITIALWORD);
+        printGrid(expectedGrid, EXPECTEDWORD);
+        initialSquarelotronFiveByFive.rotateRight(NEGATIVETHREE);
+        printGrid(initialSquarelotronFiveByFive.getSquarelotron(), ACTUALWORD);
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
+    }
+
+    /**
+     * {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}}.
+     */
+    @Test
+    public void testRotateLeftFiveByFiveGridFourRotate() {
+        final int[][] expectedGrid = {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10},
+                {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}};
+        printGrid(initialSquarelotronFourByFour.getSquarelotron(), INITIALWORD);
+        printGrid(expectedGrid, EXPECTEDWORD);
+        initialSquarelotronFiveByFive.rotateRight(NEGATIVEFOUR);
+        printGrid(initialSquarelotronFiveByFive.getSquarelotron(), ACTUALWORD);
+        assertArrayEquals(ASSERTIONMESSAGE,
+                expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 }

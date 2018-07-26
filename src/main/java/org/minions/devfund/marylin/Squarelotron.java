@@ -186,10 +186,8 @@ public class Squarelotron {
 
         int tempI = size - 2;
         for (int j = 2; j <= size - 2; j++) {
-            if (tempI != j) {
                 resultGrid[tempI][j] = matrix[j][tempI];
                 resultGrid[j][tempI] = matrix[tempI][j];
-            }
         }
         return resultGrid;
     }
