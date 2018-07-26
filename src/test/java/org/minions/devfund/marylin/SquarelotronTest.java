@@ -22,7 +22,6 @@ public class SquarelotronTest {
     private static final int NEGATIVETWO = -2;
     private static final int NEGATIVETHREE = -3;
     private static final int NEGATIVEFOUR = -4;
-    private static final int NEGATIVEFIVE = -5;
     private static final String EMPTYSPACE = " ";
     private static final String INITIALWORD = "INITIAL";
     private static final String ACTUALWORD = "ACTUAL";
