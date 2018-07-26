@@ -2,12 +2,10 @@ package org.minions.devfund.marylin;
 
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * SquarelotronTest class.
@@ -608,7 +606,7 @@ public class SquarelotronTest {
     @Test
     public void testRotateLeftFiveByFiveGridThirdRotate() {
         final int[][] expectedGrid = {{21, 16, 11, 6, 1}, {22, 17, 12, 7, 2},
-                {23, 18,  13, 8, 3}, {24, 19, 14, 9, 4}, {25, 20, 15, 10, 5}};
+                {23, 18, 13, 8, 3}, {24, 19, 14, 9, 4}, {25, 20, 15, 10, 5}};
         printGrid(initialSquarelotronFiveByFive.getSquarelotron(), INITIALWORD);
         printGrid(expectedGrid, EXPECTEDWORD);
         initialSquarelotronFiveByFive.rotateRight(NEGATIVETHREE);
