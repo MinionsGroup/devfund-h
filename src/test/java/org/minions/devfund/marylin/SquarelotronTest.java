@@ -45,7 +45,9 @@ public class SquarelotronTest {
                 stringBuilder.append(EMPTYSPACE).append(grid[i][j]).append(EMPTYSPACE);
             }
         }
-        LOGGER.log(Level.INFO, stringBuilder.toString());
+        if (stringBuilder != null) {
+            LOGGER.log(Level.INFO, stringBuilder.toString());
+        }
     }
 
     /**********************************************************
