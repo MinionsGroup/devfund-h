@@ -83,7 +83,10 @@ public class Squarelotron {
         }
     }
 
-    public Squarelotron mainDiagonalFlip(int ring) {
+    public Squarelotron mainDiagonalFlip(int ring) throws NumberFormatException {
+        if (ring > maxRings(size) || ring < 1) {
+            throw new NumberFormatException();
+        }
         int[][] matrix = deepCopy(squarelotron);
         int aux;
         for (int col = ring - 1; col <= matrix.length - ring; col++) {
@@ -92,7 +95,7 @@ public class Squarelotron {
             matrix[col][ring - 1] = aux;
         }
         if (ring < maxRings(size)) {
-            int rowLimit = matrix.length % 2 == 1 ? matrix.length : matrix.length - ring;
+            int rowLimit = matrix.length % 2 == 1 ? matrix.length - 1 : matrix.length - ring;
             for (int row = ring; row < rowLimit; row++) {
                 aux = matrix[row][matrix.length - ring];
                 matrix[row][matrix.length - ring] = matrix[matrix.length - ring][row];
@@ -103,16 +106,21 @@ public class Squarelotron {
     }
 
     public void rotateRight(int numberOfTurns) {
-        int ring = maxRings(size);
+        if (numberOfTurns < 0) {
+            numberOfTurns = (numberOfTurns / 4) > 0 ? numberOfTurns / 4 + 4 : numberOfTurns + 4;
+        }
         while (numberOfTurns > 0) {
-            while (ring > 0) {
-                squarelotron = upsideDownFlip(ring).squarelotron;
-                ring--;
-            }
-            ring = maxRings(size);
-            while (ring > 0) {
-                squarelotron = mainDiagonalFlip(ring).squarelotron;
-                ring--;
+            int[][] copy = deepCopy(squarelotron);
+            int rowIndex = squarelotron.length - 1;
+            int indexAux = 0;
+            while (rowIndex >= 0) {
+                int[] aux = copy[rowIndex];
+
+                for (int index = 0; index < copy.length; index++) {
+                    squarelotron[index][indexAux] = aux[index];
+                }
+                indexAux++;
+                rowIndex--;
             }
             numberOfTurns--;
         }

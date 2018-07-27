@@ -106,13 +106,25 @@ public class SquarelotronTest {
     @Test
     public void testRotateRight3() {
         int[][] expectedResult = {
-                {16, 15, 14, 13},
-                {12, 11, 10, 9},
-                {8, 7, 6, 5},
-                {4, 3, 2, 1}
+                {4, 8, 12, 16},
+                {3, 7, 11, 15},
+                {2, 6, 10, 14},
+                {1, 5, 9, 13}
         };
         Squarelotron squarelotron = new Squarelotron(4);
         squarelotron.rotateRight(3);
+        Assert.assertEquals(expectedResult, squarelotron.squarelotron);
+    }
+
+    @Test
+    public void testRotateRight3Dimension3() {
+        int[][] expectedResult = {
+                {3, 6, 9},
+                {2, 5, 8},
+                {1, 4, 7}
+        };
+        Squarelotron squarelotron = new Squarelotron(3);
+        squarelotron.rotateRight(-1);
         Assert.assertEquals(expectedResult, squarelotron.squarelotron);
     }
 
@@ -127,7 +139,22 @@ public class SquarelotronTest {
         squarelotron.rotateRight(4);
         Assert.assertEquals(expectedResult, squarelotron.squarelotron);
     }
+
     @Test
     public void oddNTest() {
+    }
+
+    @Test
+    public void testMainDiagonalFlipDimensionFiveRingTwo() {
+        final int[][] expectedResult = {
+                {1, 2, 3, 4, 5},
+                {6, 7, 12, 17, 10},
+                {11, 8, 13, 18, 15},
+                {16, 9, 14, 19, 20},
+                {21, 22, 23, 24, 25}
+        };
+        Squarelotron squarelotron = new Squarelotron(5);
+//        squarelotron.mainDiagonalFlip(2).printSquarelotron();
+        Assert.assertEquals(expectedResult, squarelotron.mainDiagonalFlip(2).squarelotron);
     }
 }
