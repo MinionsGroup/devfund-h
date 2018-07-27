@@ -56,9 +56,9 @@ public class MovieDatabaseTest {
         movieList3 = new ArrayList<>();
         movieList3.add(movie3);
 
-        actor1 = new Actor("actor1", movieList1);
-        actor2 = new Actor("actor2", movieList2);
-        actor3 = new Actor("actor3", movieList3);
+        actor1 = new Actor("Ben Affleck", movieList1);
+        actor2 = new Actor("Adam West", movieList2);
+        actor3 = new Actor("Christian Bale", movieList3);
 
         movie1.addActor(actor1);
         movie2.addActor(actor2);
@@ -83,7 +83,7 @@ public class MovieDatabaseTest {
     @Test
     public void testAddMovie() {
 
-        String[] actors1 = new String[] {"actor1", "actor2"};
+        String[] actors1 = new String[] {"Ben Affleck", "Adam West"};
         mdb3.addMovie("movie1", actors1);
         movie1.addActor(actor2);
         actor2.addMovie(movie2);
@@ -100,14 +100,10 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieWithActor() {
-
-//        ArrayList<Actor> newActorList;
-//        newActorList = new ArrayList<>(actorList);
-//        newActorList.add(actor3);
         movieList.add(movie2);
 
         String[] actors2;
-        actors2 = new String[] {"actor1", "actor2", "actor3"};
+        actors2 = new String[] {"Ben Affleck", "Adam West", "Christian Bale"};
 
         String[] newActors2 = actors2.clone();
         assertArrayEquals(newActors2, actors2);
@@ -121,7 +117,7 @@ public class MovieDatabaseTest {
     @Test
     public void testAddRating() {
         final Double expectedRating = 7.8;
-        String[] actors = new String[] {"actor1", "actor2"};
+        String[] actors = new String[] {"Ben Affleck", "Adam West"};
         mdb2.addMovie("movie2", actors);
         mdb2.addRating("movie2", expectedRating);
         assertEquals(expectedRating, mdb2.getMovieList().get(0).getRating(), 0);
@@ -132,7 +128,7 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testUpdateRating() {
-        String[] actors = new String[] {"actor1", "actor2"};
+        String[] actors = new String[] {"Ben Affleck", "Adam West"};
         final Double expected1 =  25.10;
         final Double expectedFinal = 32.10;
         mdb2.addMovie("movie2", actors);
@@ -147,19 +143,19 @@ public class MovieDatabaseTest {
     @Test
     public void testGetBestActor() {
         String[] actors1;
-        actors1 = new String[] {"actor1", "actor2"};
+        actors1 = new String[] {"Ben Affleck", "Adam West"};
         final Double expectedRating1 = 5.5;
         mdb1.addMovie("movie1", actors1);
         mdb1.addRating("movie1", expectedRating1);
 
         String[] actors2;
-        actors2 = new String[] {"actor2", "actor1", "actor3"};
+        actors2 = new String[] {"Adam West", "Ben Affleck", "Christian Bale"};
         final Double expectedRating2 = 6.5;
         mdb1.addMovie("movie2", actors2);
         mdb1.addRating("movie2", expectedRating2);
 
         String[] actors3;
-        actors3 = new String[] {"actor2", "actor3"};
+        actors3 = new String[] {"Adam West", "Christian Bale"};
         final Double expectedRating3 = 7.5;
         mdb1.addMovie("movie3", actors3);
         mdb1.addRating("movie3", expectedRating3);
@@ -184,7 +180,7 @@ public class MovieDatabaseTest {
         movie2.setRating(expectedRating2);
         movie3.setRating(expectedRating3);
 
-        assertTrue("actor3".equals(mdb1.getBestActor()));
+        assertTrue("Christian Bale".equals(mdb1.getBestActor()));
         assertTrue("movie3".equals(mdb1.getBestMovie()));
     }
 
@@ -194,19 +190,19 @@ public class MovieDatabaseTest {
     @Test
     public void testGetBestMovie() {
         String[] actors1;
-        actors1 = new String[] {"actor1", "actor2"};
+        actors1 = new String[] {"Ben Affleck", "Adam West"};
         final Double expectedRating1 = 15.5;
         mdb1.addMovie("movie1", actors1);
         mdb1.addRating("movie1", expectedRating1);
 
         String[] actors2;
-        actors2 = new String[] {"actor2", "actor1", "actor3"};
+        actors2 = new String[] {"Adam West", "Ben Affleck", "Christian Bale"};
         final Double expectedRating2 = 16.5;
         mdb1.addMovie("movie2", actors2);
         mdb1.addRating("movie2", expectedRating2);
 
         String[] actors3;
-        actors3 = new String[] {"actor2", "actor3"};
+        actors3 = new String[] {"Adam West", "Christian Bale"};
         final Double expectedRating3 = 17.5;
         mdb1.addMovie("movie3", actors3);
         mdb1.addRating("movie3", expectedRating3);

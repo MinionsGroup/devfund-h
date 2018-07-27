@@ -21,15 +21,15 @@ public class ActorTest {
      */
     @Before
     public void setUpActors() {
-        movie1 = new Movie("movie1");
-        movie2 = new Movie("movie2");
+        movie1 = new Movie("Batman");
+        movie2 = new Movie("Batman and Robin");
 
         movieList1 = new ArrayList<>();
         movieList1.add(movie1);
         movieList2 = new ArrayList<>();
         movieList2.add(movie2);
 
-        actor1 = new Actor("actor1", movieList1);
+        actor1 = new Actor("Christian Bale", movieList1);
     }
 
     /**
@@ -37,7 +37,7 @@ public class ActorTest {
      */
     @Test
     public void testActorConstructor() {
-        assertEquals("actor1", actor1.getName());
+        assertEquals("Christian Bale", actor1.getName());
         assertEquals(movieList1, actor1.getMovies());
     }
 

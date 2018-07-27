@@ -29,8 +29,8 @@ public class MovieTest {
      */
     @Before
     public void setUp() {
-        movie1 = new Movie("movie1");
-        movie2 = new Movie("movie2");
+        movie1 = new Movie("Batman");
+        movie2 = new Movie("Super man");
 
         movieList1 = new ArrayList<>();
         movieList1.add(movie1);
@@ -51,7 +51,7 @@ public class MovieTest {
      */
     @Test
     public void testConstructor() {
-        assertEquals("movie1", movie1.getName());
+        assertEquals("Batman", movie1.getName());
         assertEquals(actor1, movie1.getActors().get(0));
     }
 
