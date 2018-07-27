@@ -4,7 +4,7 @@ package org.minions.devfund.katerinaanzoleaga;
  * WhackAMole game class and main.
  * */
 
-import java.util.Scanner;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -48,7 +48,16 @@ public class WhackAMole {
      * @return bidirectional array moleGrid
      */
     public char[][] getMoleGrid() {
-        return moleGrid;
+        return moleGrid.clone();
+    }
+
+
+    /**
+     * Replaces the mole grid by the parameter.
+     * @param moleGrid new gird
+     */
+    public void setMoleGrid(final char[][] moleGrid) {
+        this.moleGrid = moleGrid.clone();
     }
 
     /**
@@ -65,6 +74,42 @@ public class WhackAMole {
         this.attemptsLeft = numAttempts;
         this.moleGrid = new char[gridDimension][gridDimension];
         this.molesLeft = 0;
+        this.fillMoleGrid();
+    }
+
+    /**
+     * This method fills the grid with '*'.
+     */
+    private void fillMoleGrid() {
+        for (int i = 0; i < this.moleGrid.length; i++) {
+            for (int j = 0; j < this.moleGrid.length; j++) {
+                this.moleGrid[i][j] = '*';
+
+            }
+        }
+    }
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final WhackAMole other = (WhackAMole) obj;
+        for (int i = 0; i < this.moleGrid.length; i++) {
+            for (int j = 0; j < this.moleGrid.length; j++) {
+                if (other.moleGrid[i][j] != this.moleGrid[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(this.moleGrid);
     }
 
     /**
@@ -137,7 +182,7 @@ public class WhackAMole {
         int maxIndex = this.moleGrid.length - 1;
         for (int i = 0; i <= maxIndex; i++) {
             for (int j = 0; j <= maxIndex; j++)  {
-                if (this.moleGrid[i][j] == '\u0000') {
+                if (this.moleGrid[i][j] == '*') {
                     System.out.print("   *");
                 } else {
                     System.out.print("   " + this.moleGrid[i][j]);
@@ -163,49 +208,4 @@ public class WhackAMole {
             }
         }
     }
-
-    /**
-     * Main.
-     * @param args arguments
-     */
-    public static void main(final String[] args) {
-        WhackAMole whackAMole = new WhackAMole(MAX_ATTEMPTS, DIMENSION);
-        whackAMole.placeNMoles(TOTAL_MOLES);
-        System.out.println("Welcome to WhackAMole game. Enter -1 and -1 to exit");
-        System.out.println();
-        whackAMole.printGridToUser();
-        int r = 0;
-        int c = 0;
-        while (whackAMole.getAttemptsLeft() > 0 && whackAMole.getScore() < TOTAL_MOLES) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Enter row number: ");
-            System.out.println();
-            r = scanner.nextInt();
-            System.out.print("Enter column number: ");
-            System.out.println();
-            c = scanner.nextInt();
-            if (r == -1 && c == -1) {
-                System.out.println("Good bye! ");
-                System.out.println();
-                whackAMole.printGrid();
-                break;
-            }
-            whackAMole.whack(r, c);
-            whackAMole.printGridToUser();
-            System.out.println("Remaining attempts: " + whackAMole.getAttemptsLeft());
-            System.out.println("Remaining moles:  " + whackAMole.getMolesLeft());
-            System.out.println("Score:  " + whackAMole.getScore());
-            System.out.println();
-        }
-        if (whackAMole.getScore() == TOTAL_MOLES) {
-            System.out.println("You won! ");
-        }
-        if (whackAMole.getAttemptsLeft() == 0) {
-            System.out.println("You lost! ");
-            System.out.println();
-            whackAMole.printGrid();
-        }
-
-    }
-
 }
