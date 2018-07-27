@@ -6,7 +6,7 @@ import java.util.Arrays;
  * Squarelotron class.
  */
 public class Squarelotron {
-    private final int[][] squarelotron;
+    private final int[][] squarelotronMatrix;
     private int size;
 
     /**
@@ -16,17 +16,17 @@ public class Squarelotron {
      */
     public Squarelotron(int n) {
         this.size = n;
-        this.squarelotron = new int[n][n];
-        initialize(squarelotron);
+        this.squarelotronMatrix = new int[n][n];
+        initialize(squarelotronMatrix);
     }
 
     /**
-     * Gets squarelotron matrix.
+     * Gets squarelotronMatrix matrix.
      *
      * @return matrix.
      */
-    public int[][] getSquarelotron() {
-        return deepCopy(squarelotron);
+    public int[][] getSquarelotronMatrix() {
+        return deepCopy(squarelotronMatrix);
     }
 
     /**
@@ -37,7 +37,7 @@ public class Squarelotron {
      */
     public Squarelotron(final int[][] matrix, int size) {
         this.size = size;
-        this.squarelotron = deepCopy(matrix);
+        this.squarelotronMatrix = deepCopy(matrix);
     }
 
     /**
@@ -55,7 +55,7 @@ public class Squarelotron {
     }
 
     /**
-     * Initializes the squarelotron matrix.
+     * Initializes the squarelotronMatrix matrix.
      *
      * @param matrix matrix to initialize.
      */
@@ -78,21 +78,19 @@ public class Squarelotron {
      * @return true if the position belongs to the ring, false otherwise.
      */
     public boolean belongsToTheRing(int ring, int x, int y) {
-        if (belongsToTheMatrix(ring, x, y)
+        return belongsToTheMatrix(ring, x, y)
                 && !belongsToTheRing(ring - 1, x, y)
                 && (x == ring
                 || y == ring
-                || y == ring + size - odd(ring))) {
-            return true;
-        }
-        return false;
+                || y == ring + size - odd(ring));
     }
 
     /**
      * Verifies if the values belongs the matrix.
+     *
      * @param ring number.
-     * @param x position.
-     * @param y position.
+     * @param x    position.
+     * @param y    position.
      * @return true if belongs the matrix.
      */
     public boolean belongsToTheMatrix(int ring, int x, int y) {
@@ -116,7 +114,7 @@ public class Squarelotron {
      * @return new Squarelotron with the result as a matrix.
      */
     public Squarelotron upsideDownFlip(int ring) {
-        int[][] matrix = deepCopy(squarelotron);
+        int[][] matrix = deepCopy(squarelotronMatrix);
         for (int row = 0; row < matrix.length / 2; row++) {
             for (int col = 0; col < matrix.length; col++) {
                 if (belongsToTheRing(ring, row + 1, col + 1)) {
@@ -149,7 +147,7 @@ public class Squarelotron {
      * @return Squarelotron with the result as its matrix.
      */
     public Squarelotron mainDiagonalFlip(int ring) {
-        int[][] matrix = deepCopy(squarelotron);
+        int[][] matrix = deepCopy(squarelotronMatrix);
         int aux;
         for (int col = ring - 1; col <= matrix.length - ring; col++) {
             aux = matrix[ring - 1][col];
@@ -178,14 +176,14 @@ public class Squarelotron {
             numberOfTurns = (numberOfTurns / sides) < -1 ? numberOfTurns % sides + sides : numberOfTurns + sides;
         }
         while (numberOfTurns > 0) {
-            int[][] copy = deepCopy(squarelotron);
-            int rowIndex = squarelotron.length - 1;
+            int[][] copy = deepCopy(squarelotronMatrix);
+            int rowIndex = squarelotronMatrix.length - 1;
             int indexAux = 0;
             while (rowIndex >= 0) {
                 int[] aux = copy[rowIndex];
 
                 for (int index = 0; index < copy.length; index++) {
-                    squarelotron[index][indexAux] = aux[index];
+                    squarelotronMatrix[index][indexAux] = aux[index];
                 }
                 indexAux++;
                 rowIndex--;
