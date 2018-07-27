@@ -13,6 +13,8 @@ public class ActorTest {
     private Actor actor1;
     private Movie movie2;
     private ArrayList<Movie> movieList1;
+    private String actorBale = "Christian Bale";
+    private String actoreAffleck = "Ben Affleck";
 
     /**
      * Set movie 1 and movie2.
@@ -25,7 +27,7 @@ public class ActorTest {
         movieList1 = new ArrayList<>();
         movieList1.add(movie1);
 
-        actor1 = new Actor("Christian Bale", movieList1);
+        actor1 = new Actor(actorBale, movieList1);
     }
 
     /**
@@ -33,7 +35,7 @@ public class ActorTest {
      */
     @Test
     public void testActorConstructor() {
-        assertEquals("Christian Bale", actor1.getName());
+        assertEquals(actorBale, actor1.getName());
         assertEquals(movieList1, actor1.getMovies());
     }
 
@@ -51,7 +53,23 @@ public class ActorTest {
      */
     @Test
     public void testGetName() {
-        String expectecName = "Christian Bale";
-        assertEquals(expectecName, actor1.getName());
+        assertEquals(actorBale, actor1.getName());
+    }
+    /**
+     * Method to test set name actor.
+     */
+    @Test
+    public void testSetName() {
+        actor1.setName(actoreAffleck);
+        assertEquals(actoreAffleck, actor1.getName());
+    }
+    /**
+     * Method to test add movie.
+     */
+    @Test
+    public void testAddMovieTwoTime() {
+        actor1.addMovie(movie2);
+        actor1.addMovie(movie2);
+        assertEquals(movieList1, actor1.getMovies());
     }
 }

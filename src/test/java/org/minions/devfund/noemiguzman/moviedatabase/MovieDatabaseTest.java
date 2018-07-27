@@ -101,6 +101,7 @@ public class MovieDatabaseTest {
         movieList.add(movie1);
         assertTrue(movieList.equals(moviedb3.getMovieList()));
     }
+
     /**
      *  Method to test add movie.
      */
@@ -186,7 +187,6 @@ public class MovieDatabaseTest {
         movie1.setRating(expectedRating1);
         movie2.setRating(expectedRating2);
         movie3.setRating(expectedRating3);
-        System.out.println(moviedb1.getBestActor());
         assertTrue(expectedBestActor.equals(moviedb1.getBestActor()));
         assertTrue("It".equals(moviedb1.getBestMovie()));
     }
