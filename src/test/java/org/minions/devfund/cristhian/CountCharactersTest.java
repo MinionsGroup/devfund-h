@@ -1,4 +1,4 @@
-package org.minions.devfund.cristhian_arispe;
+package org.minions.devfund.cristhian;
 
 import org.junit.Test;
 

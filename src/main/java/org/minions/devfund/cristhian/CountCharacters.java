@@ -1,4 +1,4 @@
-package org.minions.devfund.cristhian_arispe;
+package org.minions.devfund.cristhian;
 
 /**
  * This is the solution for the first kata.
