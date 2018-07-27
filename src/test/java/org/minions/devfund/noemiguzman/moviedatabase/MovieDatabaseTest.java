@@ -16,14 +16,13 @@ import static org.junit.Assert.assertFalse;
  *  Class to test movie database.
  */
 public class MovieDatabaseTest {
-    private MovieDatabase mdb1;
-    private MovieDatabase mdb2;
-    private MovieDatabase mdb3;
+    private MovieDatabase moviedb1;
+    private MovieDatabase moviedb2;
+    private MovieDatabase moviedb3;
 
-    private Movie movie1;
-    private Movie movie2;
-    private Movie movie3;
-
+    private Movie movie1 = new Movie("Glass");
+    private Movie movie2 = new Movie("Batman");
+    private Movie movie3 = new Movie("It");
     private ArrayList<Movie> movieList1;
     private ArrayList<Movie> movieList2;
     private ArrayList<Movie> movieList3;
@@ -41,13 +40,11 @@ public class MovieDatabaseTest {
 
     @Before
     public void setUpMovieDatabases() {
-        mdb1 = new MovieDatabase();
-        mdb2 = new MovieDatabase();
-        mdb3 = new MovieDatabase();
+        moviedb1 = new MovieDatabase();
+        moviedb2 = new MovieDatabase();
+        moviedb3 = new MovieDatabase();
 
-        movie1 = new Movie("movie1");
-        movie2 = new Movie("movie2");
-        movie3 = new Movie("movie3");
+
 
         movieList1 = new ArrayList<>();
         movieList1.add(movie1);
@@ -73,8 +70,8 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testConstructor() {
-        assertEquals(movieList, mdb1.getMovieList());
-        assertEquals(actorList, mdb2.getActorList());
+        assertEquals(movieList, moviedb1.getMovieList());
+        assertEquals(actorList, moviedb2.getActorList());
     }
 
     /**
@@ -84,17 +81,25 @@ public class MovieDatabaseTest {
     public void testAddMovie() {
 
         String[] actors1 = new String[] {"Ben Affleck", "Adam West"};
-        mdb3.addMovie("movie1", actors1);
-        movie1.addActor(actor2);
-        actor2.addMovie(movie2);
+        moviedb3.addMovie("Glass", actors1);
+
         movieList.add(movie1);
 
-        actorList.add(actor1);
-        actorList.add(actor2);
-
-        assertTrue(movieList.equals(mdb3.getMovieList()));
+        assertTrue(movieList.equals(moviedb3.getMovieList()));
     }
+    /**
+     *  Method to test add movie two time.
+     */
+    @Test
+    public void testAddMovieTwoTime() {
 
+        String[] actors1 = new String[] {"Ben Affleck", "Adam West"};
+        moviedb3.addMovie("Glass", actors1);
+        moviedb3.addMovie("Glass", actors1);
+        movieList.add(movie1);
+
+        assertTrue(movieList.equals(moviedb3.getMovieList()));
+    }
     /**
      *  Method to test add movie.
      */
@@ -108,8 +113,8 @@ public class MovieDatabaseTest {
         String[] newActors2 = actors2.clone();
         assertArrayEquals(newActors2, actors2);
         assertFalse(newActors2 == actors2);
-        mdb3.addMovie("movie2", newActors2);
-        assertTrue(movieList.equals(mdb3.getMovieList()));
+        moviedb3.addMovie("Batman", newActors2);
+        assertTrue(movieList.equals(moviedb3.getMovieList()));
     }
     /**
      *  Method to test add rating.
@@ -118,9 +123,9 @@ public class MovieDatabaseTest {
     public void testAddRating() {
         final Double expectedRating = 7.8;
         String[] actors = new String[] {"Ben Affleck", "Adam West"};
-        mdb2.addMovie("movie2", actors);
-        mdb2.addRating("movie2", expectedRating);
-        assertEquals(expectedRating, mdb2.getMovieList().get(0).getRating(), 0);
+        moviedb2.addMovie("Batman", actors);
+        moviedb2.addRating("Batman", expectedRating);
+        assertEquals(expectedRating, moviedb2.getMovieList().get(0).getRating(), 0);
     }
 
     /**
@@ -131,10 +136,10 @@ public class MovieDatabaseTest {
         String[] actors = new String[] {"Ben Affleck", "Adam West"};
         final Double expected1 =  25.10;
         final Double expectedFinal = 32.10;
-        mdb2.addMovie("movie2", actors);
-        mdb2.addRating("movie2", expected1);
-        mdb2.updateRating("movie2", expectedFinal);
-        assertEquals(expectedFinal, mdb2.getMovieList().get(0).getRating(), 0);
+        moviedb2.addMovie("Batman", actors);
+        moviedb2.addRating("Batman", expected1);
+        moviedb2.updateRating("Batman", expectedFinal);
+        assertEquals(expectedFinal, moviedb2.getMovieList().get(0).getRating(), 0);
     }
 
     /**
@@ -142,23 +147,24 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testGetBestActor() {
-        String[] actors1;
-        actors1 = new String[] {"Ben Affleck", "Adam West"};
+
+        String[] actors1 = new String[] {"Ben Affleck", "Adam West"};
+        String expectedBestActor = "Adam West";
         final Double expectedRating1 = 5.5;
-        mdb1.addMovie("movie1", actors1);
-        mdb1.addRating("movie1", expectedRating1);
+        moviedb1.addMovie("Glass", actors1);
+        moviedb1.addRating("Glass", expectedRating1);
 
         String[] actors2;
         actors2 = new String[] {"Adam West", "Ben Affleck", "Christian Bale"};
         final Double expectedRating2 = 6.5;
-        mdb1.addMovie("movie2", actors2);
-        mdb1.addRating("movie2", expectedRating2);
+        moviedb1.addMovie("Batman", actors2);
+        moviedb1.addRating("Batman", expectedRating2);
 
         String[] actors3;
         actors3 = new String[] {"Adam West", "Christian Bale"};
         final Double expectedRating3 = 7.5;
-        mdb1.addMovie("movie3", actors3);
-        mdb1.addRating("movie3", expectedRating3);
+        moviedb1.addMovie("It", actors3);
+        moviedb1.addRating("It", expectedRating3);
 
         // actor1 movies
         movie1.addActor(actor2);
@@ -179,9 +185,9 @@ public class MovieDatabaseTest {
         movie1.setRating(expectedRating1);
         movie2.setRating(expectedRating2);
         movie3.setRating(expectedRating3);
-
-        assertTrue("Christian Bale".equals(mdb1.getBestActor()));
-        assertTrue("movie3".equals(mdb1.getBestMovie()));
+        System.out.println(moviedb1.getBestActor());
+        assertTrue(expectedBestActor.equals(moviedb1.getBestActor()));
+        assertTrue("It".equals(moviedb1.getBestMovie()));
     }
 
     /**
@@ -192,20 +198,20 @@ public class MovieDatabaseTest {
         String[] actors1;
         actors1 = new String[] {"Ben Affleck", "Adam West"};
         final Double expectedRating1 = 15.5;
-        mdb1.addMovie("movie1", actors1);
-        mdb1.addRating("movie1", expectedRating1);
+        moviedb1.addMovie("Glass", actors1);
+        moviedb1.addRating("Glass", expectedRating1);
 
         String[] actors2;
         actors2 = new String[] {"Adam West", "Ben Affleck", "Christian Bale"};
         final Double expectedRating2 = 16.5;
-        mdb1.addMovie("movie2", actors2);
-        mdb1.addRating("movie2", expectedRating2);
+        moviedb1.addMovie("Batman", actors2);
+        moviedb1.addRating("Batman", expectedRating2);
 
         String[] actors3;
         actors3 = new String[] {"Adam West", "Christian Bale"};
         final Double expectedRating3 = 17.5;
-        mdb1.addMovie("movie3", actors3);
-        mdb1.addRating("movie3", expectedRating3);
+        moviedb1.addMovie("It", actors3);
+        moviedb1.addRating("It", expectedRating3);
 
         // actor1 movies
         movie1.addActor(actor2);
@@ -228,6 +234,8 @@ public class MovieDatabaseTest {
         movie3.setRating(expectedRating3);
 
 
-        assertTrue("movie3".equals(mdb1.getBestMovie()));
+        assertTrue("It".equals(moviedb1.getBestMovie()));
     }
+
+
 }

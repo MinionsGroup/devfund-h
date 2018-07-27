@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotSame;
 
 /**
  *  Class to test Movie.
@@ -69,6 +70,59 @@ public class MovieTest {
         movie2.addActor(actor2);
         assertEquals(actorList, movie2.getActors());
     }
+    /**
+     * Method to test get name movie.
+     */
+    @Test
+    public void testGetName() {
+        String expectedName = "Super man";
+        assertEquals(expectedName, movie2.getName());
+    }
+    /**
+     *  Method to test Igual to null.
+     */
+    @Test
+    public void testIgualToNull() {
+        assertNotSame(movie1, null);
+    }
+    /**
+     *  Method to test Igual to null.
+     */
+    @Test
+    public void testIgualToOtherType() {
+        assertNotSame(movie1, actor1);
+    }
+    /**
+     *  Method to test movie string.
+     */
+    @Test
+    public void testToString() {
+        String movie1Expected = "Batman Rating:0.0";
+        assertEquals(movie1Expected, movie1.toString());
+    }
+    /**
+     *  Method to test compare rating.
+     */
+    @Test
+    public void testCompareRating() {
+        final Double expectedRating = 5.2;
+        movie1.setRating(expectedRating);
+        movie2.setRating(expectedRating);
+        assertEquals(0, movie1.compareTo(movie2));
 
+    }
+    /**
+     *  Method to test compare rating.
+     */
+    @Test
+    public void testHashCode() {
+        final double expectedRating = 15.2;
+        movie1.setRating(expectedRating);
+        movie1.setName("Aquaman");
+        int expectedHash = (int) Math.round(movie1.getRating());
+        expectedHash += movie1.getName().hashCode();
+        assertEquals(expectedHash, movie1.hashCode());
+
+    }
 }
 
