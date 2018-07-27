@@ -1,7 +1,6 @@
 package org.minions.devfund.noemiguzman.moviedatabase;
 
 import java.util.ArrayList;
-
 /**
  * class movie data base.
  */

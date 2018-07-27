@@ -56,6 +56,9 @@ public class Actor {
         for (Movie movie: this.movies) {
             movieNames.add(movie.getName());
         }
+
+        System.out.println("getMovieName");
+        System.out.println(name);
         System.out.println(movieNames.toString());
         return movieNames;
     }

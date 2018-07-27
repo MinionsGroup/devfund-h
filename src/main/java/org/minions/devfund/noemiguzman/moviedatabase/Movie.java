@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * class movie.
  */
 
-public class Movie {
+public class Movie implements Comparable<Movie> {
     private String name;
     private ArrayList<Actor> actors;
     private double rating;
@@ -80,5 +80,45 @@ public class Movie {
      */
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    /**
+     * Compare movie object.
+     * @param object object to compare
+     * @return true if the object are equal
+     */
+    public boolean equals(final Object object) {
+        if (object == null) {
+            return  false;
+        }
+        if (!(object instanceof Movie)) {
+            return  false;
+        }
+        return ((Movie) object).getName().equals(name);
+    }
+
+    /**
+     * Convert to string.
+     * @return name and rating
+     */
+    public String toString() {
+        return name + " Rating:" + rating;
+    }
+
+    /**
+     *  Compare current movie to other.
+     * @param o other movie object
+     * @return
+     */
+    @Override
+    public int compareTo(final Movie o) {
+        return Double.compare(rating, o.getRating());
+    }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
     }
 }
