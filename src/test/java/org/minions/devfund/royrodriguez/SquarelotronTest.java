@@ -24,7 +24,7 @@ public class SquarelotronTest {
                 {1, 2, 3, 4}
         };
         Squarelotron squarelotron = new Squarelotron(FOUR);
-        Assert.assertEquals(expectedResult, squarelotron.upsideDownFlip(1).getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.upsideDownFlip(1).getSquarelotronMatrix());
     }
 
     /**
@@ -39,7 +39,7 @@ public class SquarelotronTest {
                 {13, 14, 15, 16}
         };
         Squarelotron squarelotron = new Squarelotron(FOUR);
-        Assert.assertEquals(expectedResult, squarelotron.upsideDownFlip(2).getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.upsideDownFlip(2).getSquarelotronMatrix());
     }
 
     /**
@@ -53,7 +53,7 @@ public class SquarelotronTest {
                 {1, 2, 3}
         };
         Squarelotron squarelotron = new Squarelotron(THREE);
-        Assert.assertEquals(expectedResult, squarelotron.upsideDownFlip(1).getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.upsideDownFlip(1).getSquarelotronMatrix());
     }
 
     /**
@@ -67,7 +67,7 @@ public class SquarelotronTest {
                 {7, 8, 9}
         };
         Squarelotron squarelotron = new Squarelotron(THREE);
-        Assert.assertEquals(expectedResult, squarelotron.upsideDownFlip(2).getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.upsideDownFlip(2).getSquarelotronMatrix());
     }
 
     /**
@@ -83,7 +83,7 @@ public class SquarelotronTest {
         };
 
         Squarelotron squarelotron = new Squarelotron(FOUR);
-        Assert.assertEquals(expectedResult, squarelotron.mainDiagonalFlip(1).getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.mainDiagonalFlip(1).getSquarelotronMatrix());
     }
 
     /**
@@ -99,7 +99,7 @@ public class SquarelotronTest {
         };
 
         Squarelotron squarelotron = new Squarelotron(FOUR);
-        Assert.assertEquals(expectedResult, squarelotron.mainDiagonalFlip(2).getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.mainDiagonalFlip(2).getSquarelotronMatrix());
     }
 
     /**
@@ -116,7 +116,7 @@ public class SquarelotronTest {
         };
 
         Squarelotron squarelotron = new Squarelotron(FIVE);
-        Assert.assertEquals(expectedResult, squarelotron.mainDiagonalFlip(THREE).getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.mainDiagonalFlip(THREE).getSquarelotronMatrix());
     }
 
     /**
@@ -132,7 +132,7 @@ public class SquarelotronTest {
         };
         Squarelotron squarelotron = new Squarelotron(FOUR);
         squarelotron.rotateRight(1);
-        Assert.assertEquals(expectedResult, squarelotron.getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.getSquarelotronMatrix());
     }
 
     /**
@@ -148,7 +148,7 @@ public class SquarelotronTest {
         };
         Squarelotron squarelotron = new Squarelotron(FOUR);
         squarelotron.rotateRight(THREE);
-        Assert.assertEquals(expectedResult, squarelotron.getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.getSquarelotronMatrix());
     }
 
     /**
@@ -163,7 +163,7 @@ public class SquarelotronTest {
         };
         Squarelotron squarelotron = new Squarelotron(THREE);
         squarelotron.rotateRight(-1);
-        Assert.assertEquals(expectedResult, squarelotron.getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.getSquarelotronMatrix());
     }
 
     /**
@@ -178,7 +178,7 @@ public class SquarelotronTest {
         };
         Squarelotron squarelotron = new Squarelotron(THREE);
         squarelotron.rotateRight(FOUR);
-        Assert.assertEquals(expectedResult, squarelotron.getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.getSquarelotronMatrix());
     }
 
     /**
@@ -193,7 +193,7 @@ public class SquarelotronTest {
         };
         Squarelotron squarelotron = new Squarelotron(THREE);
         squarelotron.rotateRight(-EIGHT);
-        Assert.assertEquals(expectedResult, squarelotron.getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.getSquarelotronMatrix());
     }
 
     /**
@@ -209,7 +209,7 @@ public class SquarelotronTest {
                 {21, 22, 23, 24, 25}
         };
         Squarelotron squarelotron = new Squarelotron(FIVE);
-        Assert.assertEquals(expectedResult, squarelotron.mainDiagonalFlip(2).getSquarelotronMatrix());
+        Assert.assertArrayEquals(expectedResult, squarelotron.mainDiagonalFlip(2).getSquarelotronMatrix());
     }
 
     /**
