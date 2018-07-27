@@ -1,13 +1,20 @@
 package org.minions.devfund.noemiguzman.moviedatabase;
 
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
+
+import static junit.framework.TestCase.assertTrue;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
+/**
+ *  Class to test movie database.
+ */
 public class MovieDatabaseTest {
     private MovieDatabase mdb1;
     private MovieDatabase mdb2;
@@ -21,14 +28,16 @@ public class MovieDatabaseTest {
     private ArrayList<Movie> movieList2;
     private ArrayList<Movie> movieList3;
 
-    private Actor actor_1;
-    private Actor actor_2;
-    private Actor actor_3;
+    private Actor actor1;
+    private Actor actor2;
+    private Actor actor3;
 
     private ArrayList<Movie> movieList;
     private ArrayList<Actor> actorList;
 
-
+    /**
+     * Method to setup movie1 and movie2.
+     */
 
     @Before
     public void setUpMovieDatabases() {
@@ -47,209 +56,182 @@ public class MovieDatabaseTest {
         movieList3 = new ArrayList<>();
         movieList3.add(movie3);
 
-        actor_1 = new Actor("actor_1", movieList1);
-        actor_2 = new Actor("actor_2", movieList2);
-        actor_3 = new Actor("actor_3", movieList3);
+        actor1 = new Actor("actor1", movieList1);
+        actor2 = new Actor("actor2", movieList2);
+        actor3 = new Actor("actor3", movieList3);
 
-        movie1.addActor(actor_1);
-        movie2.addActor(actor_2);
-        movie3.addActor(actor_3);
+        movie1.addActor(actor1);
+        movie2.addActor(actor2);
+        movie3.addActor(actor3);
 
         movieList = new ArrayList<>();
         actorList = new ArrayList<>();
-
     }
 
+    /**
+     *  Method to test constructor movie database.
+     */
     @Test
     public void testConstructor() {
         assertEquals(movieList, mdb1.getMovieList());
         assertEquals(actorList, mdb2.getActorList());
     }
 
+    /**
+     *  Method to test add movie.
+     */
     @Test
     public void testAddMovie() {
-        String [] actors_1;
-        actors_1 = new String[] {"actor_1", "actor_2"};
-        mdb3.addMovie("movie1", actors_1);
-        movie1.addActor(actor_2);
-        actor_2.addMovie(movie2);
+
+        String[] actors1 = new String[] {"actor1", "actor2"};
+        mdb3.addMovie("movie1", actors1);
+        movie1.addActor(actor2);
+        actor2.addMovie(movie2);
         movieList.add(movie1);
-        actorList.add(actor_1);
-        actorList.add(actor_2);
+
+        actorList.add(actor1);
+        actorList.add(actor2);
 
         assertTrue(movieList.equals(mdb3.getMovieList()));
+    }
 
-        String[] actors_2;
-        actors_2 = new String[] {"actor_1","actor_2","actor_3"};
-        ArrayList<Actor> newActorList;
-        newActorList = new ArrayList<>(actorList);
-        newActorList.add(actor_3);
+    /**
+     *  Method to test add movie.
+     */
+    @Test
+    public void testAddMovieWithActor() {
+
+//        ArrayList<Actor> newActorList;
+//        newActorList = new ArrayList<>(actorList);
+//        newActorList.add(actor3);
         movieList.add(movie2);
 
-        mdb3.addMovie("movie2", actors_2);
-        assertTrue(movieList.equals(mdb3.getMovieList()));
-        assertTrue(newActorList.equals(mdb3.getActorList()));
+        String[] actors2;
+        actors2 = new String[] {"actor1", "actor2", "actor3"};
 
-        String[] newActors_2 = actors_2.clone();
-        assertArrayEquals(newActors_2, actors_2);
-        assertFalse(newActors_2 == actors_2);
-        mdb3.addMovie("movie2", newActors_2);
+        String[] newActors2 = actors2.clone();
+        assertArrayEquals(newActors2, actors2);
+        assertFalse(newActors2 == actors2);
+        mdb3.addMovie("movie2", newActors2);
         assertTrue(movieList.equals(mdb3.getMovieList()));
-        assertTrue(newActorList.equals(mdb3.getActorList()));
     }
-
+    /**
+     *  Method to test add rating.
+     */
     @Test
     public void testAddRating() {
-        String[] actors = new String[] {"actor_1", "actor_2"};
+        final Double expectedRating = 7.8;
+        String[] actors = new String[] {"actor1", "actor2"};
         mdb2.addMovie("movie2", actors);
-        mdb2.addRating("movie2", 7.8);
-        assertEquals(7.8, mdb2.getMovieList().get(0).getRating(), 0);
-
+        mdb2.addRating("movie2", expectedRating);
+        assertEquals(expectedRating, mdb2.getMovieList().get(0).getRating(), 0);
     }
+
+    /**
+     *  Method to test update rating.
+     */
     @Test
     public void testUpdateRating() {
-        String[] actors = new String[] {"actor_1", "actor_2"};
+        String[] actors = new String[] {"actor1", "actor2"};
+        final Double expected1 =  25.10;
+        final Double expectedFinal = 32.10;
         mdb2.addMovie("movie2", actors);
-        mdb2.addRating("movie2", 25.10);
-        mdb2.updateRating("movie2", 32.10);
-        assertEquals(32.10, mdb2.getMovieList().get(0).getRating(), 0);
+        mdb2.addRating("movie2", expected1);
+        mdb2.updateRating("movie2", expectedFinal);
+        assertEquals(expectedFinal, mdb2.getMovieList().get(0).getRating(), 0);
     }
 
+    /**
+     * Method to test get best actor.
+     */
     @Test
     public void testGetBestActor() {
-        String[] actors_1;
-        actors_1 = new String[] {"actor_1", "actor_2"};
-        mdb1.addMovie("movie1", actors_1);
-        mdb1.addRating("movie1", 5.5);
+        String[] actors1;
+        actors1 = new String[] {"actor1", "actor2"};
+        final Double expectedRating1 = 5.5;
+        mdb1.addMovie("movie1", actors1);
+        mdb1.addRating("movie1", expectedRating1);
 
-        String[] actors_2;
-        actors_2 = new String[] {"actor_2", "actor_1", "actor_3"};
-        mdb1.addMovie("movie2", actors_2);
-        mdb1.addRating("movie2", 6.5);
+        String[] actors2;
+        actors2 = new String[] {"actor2", "actor1", "actor3"};
+        final Double expectedRating2 = 6.5;
+        mdb1.addMovie("movie2", actors2);
+        mdb1.addRating("movie2", expectedRating2);
 
-        String[] actors_3;
-        actors_3 = new String[] {"actor_2", "actor_3"};
-        mdb1.addMovie("movie3", actors_3);
-        mdb1.addRating("movie3", 7.5);
+        String[] actors3;
+        actors3 = new String[] {"actor2", "actor3"};
+        final Double expectedRating3 = 7.5;
+        mdb1.addMovie("movie3", actors3);
+        mdb1.addRating("movie3", expectedRating3);
 
-        // actor_1 movies
-        movie1.addActor(actor_2);
-        movie2.addActor(actor_1);
-        movie2.addActor(actor_3);
-        movie3.addActor(actor_2);
+        // actor1 movies
+        movie1.addActor(actor2);
+        movie2.addActor(actor1);
+        movie2.addActor(actor3);
+        movie3.addActor(actor2);
 
         movieList1.add(movie2);
 
-        // actor_2 movies
+        // actor2 movies
         movieList2.add(movie1);
         movieList2.add(movie3);
 
-        // actor_3 movies
+        // actor3 movies
         movieList3.add(movie2);
 
         // Test movie ratings
-        movie1.setRating(5.5);
-        movie2.setRating(6.5);
-        movie3.setRating(7.5);
+        movie1.setRating(expectedRating1);
+        movie2.setRating(expectedRating2);
+        movie3.setRating(expectedRating3);
 
-        // Getting the actual and expected lists then sorting
-        // them to enable equality test
-        ArrayList<Movie> actual1 = mdb1.getActorList().get(0).getMovies();
-//        Collections.sort(actual1);
-
-//        Collections.sort(movieList1);
-        //assertArrayEquals(movieList1, actual1);
-        System.out.print(actual1);
-        System.out.print(movieList1);
-
-        assertTrue(movieList1.equals(actual1));
-
-        ArrayList<Movie> actual_2 = mdb1.getActorList().get(1).getMovies();
-//        Collections.sort(movieList2);
-//        Collections.sort(actual_2);
-        assertTrue(movieList2.equals(actual_2));
-
-        ArrayList<Movie> actual_3 = mdb1.getActorList().get(2).getMovies();
-//        Collections.sort(actual_3);
-//        Collections.sort(movieList3);
-        assertTrue(movieList3.equals(actual_3));
-
-        ArrayList<Actor> actualActors = mdb1.getActorList();
-        ArrayList<Actor> actorList = new ArrayList<>();
-        actorList.add(actor_1);
-        actorList.add(actor_2);
-        actorList.add(actor_3);
-//        Collections.sort(actorList);
-//        Collections.sort(actualActors);
-        assertTrue(actorList.equals(actualActors));
-
-        assertTrue("actor_3".equals(mdb1.getBestActor()));
+        assertTrue("actor3".equals(mdb1.getBestActor()));
         assertTrue("movie3".equals(mdb1.getBestMovie()));
     }
+
+    /**
+     * Method to test get best movie.
+     */
     @Test
     public void testGetBestMovie() {
-        String[] actors_1;
-        actors_1 = new String[] {"actor_1", "actor_2"};
-        mdb1.addMovie("movie1", actors_1);
-        mdb1.addRating("movie1", 5.5);
+        String[] actors1;
+        actors1 = new String[] {"actor1", "actor2"};
+        final Double expectedRating1 = 15.5;
+        mdb1.addMovie("movie1", actors1);
+        mdb1.addRating("movie1", expectedRating1);
 
-        String[] actors_2;
-        actors_2 = new String[] {"actor_2", "actor_1", "actor_3"};
-        mdb1.addMovie("movie2", actors_2);
-        mdb1.addRating("movie2", 6.5);
+        String[] actors2;
+        actors2 = new String[] {"actor2", "actor1", "actor3"};
+        final Double expectedRating2 = 16.5;
+        mdb1.addMovie("movie2", actors2);
+        mdb1.addRating("movie2", expectedRating2);
 
-        String[] actors_3;
-        actors_3 = new String[] {"actor_2", "actor_3"};
-        mdb1.addMovie("movie3", actors_3);
-        mdb1.addRating("movie3", 7.5);
+        String[] actors3;
+        actors3 = new String[] {"actor2", "actor3"};
+        final Double expectedRating3 = 17.5;
+        mdb1.addMovie("movie3", actors3);
+        mdb1.addRating("movie3", expectedRating3);
 
-        // actor_1 movies
-        movie1.addActor(actor_2);
-        movie2.addActor(actor_1);
-        movie2.addActor(actor_3);
-        movie3.addActor(actor_2);
+        // actor1 movies
+        movie1.addActor(actor2);
+        movie2.addActor(actor1);
+        movie2.addActor(actor3);
+        movie3.addActor(actor2);
 
         movieList1.add(movie2);
 
-        // actor_2 movies
+        // actor2 movies
         movieList2.add(movie1);
         movieList2.add(movie3);
 
-        // actor_3 movies
+        // actor3 movies
         movieList3.add(movie2);
 
         // Test movie ratings
-        movie1.setRating(5.5);
-        movie2.setRating(6.5);
-        movie3.setRating(7.5);
+        movie1.setRating(expectedRating1);
+        movie2.setRating(expectedRating2);
+        movie3.setRating(expectedRating3);
 
-        // Getting the actual and expected lists then sorting
-        // them to enable equality test
-        ArrayList<Movie> actual1 = mdb1.getActorList().get(0).getMovies();
-//        Collections.sort(actual1);
-//        Collections.sort(movieList1);
-        assertTrue(movieList1.equals(actual1));
 
-        ArrayList<Movie> actual_2 = mdb1.getActorList().get(1).getMovies();
-//        Collections.sort(movieList2);
-//        Collections.sort(actual_2);
-        assertTrue(movieList2.equals(actual_2));
-
-        ArrayList<Movie> actual_3 = mdb1.getActorList().get(2).getMovies();
-//        Collections.sort(actual_3);
-//        Collections.sort(movieList3);
-        assertTrue(movieList3.equals(actual_3));
-
-        ArrayList<Actor> actualActors = mdb1.getActorList();
-        ArrayList<Actor> actorList = new ArrayList<>();
-        actorList.add(actor_1);
-        actorList.add(actor_2);
-        actorList.add(actor_3);
-//        Collections.sort(actorList);
-//        Collections.sort(actualActors);
-        assertTrue(actorList.equals(actualActors));
-
-        assertTrue("actor_3".equals(mdb1.getBestActor()));
         assertTrue("movie3".equals(mdb1.getBestMovie()));
     }
 }

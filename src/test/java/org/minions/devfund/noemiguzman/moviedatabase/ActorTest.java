@@ -1,18 +1,24 @@
 package org.minions.devfund.noemiguzman.moviedatabase;
 
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertEquals;
+
+/**
+ * class to test actor.
+ */
 public class ActorTest {
     private Actor actor1;
-    private Actor actor2;
     private Movie movie1;
     private Movie movie2;
     private ArrayList<Movie> movieList1;
-    private ArrayList<Movie> movieList_2;
+    private ArrayList<Movie> movieList2;
 
+    /**
+     * Set movie 1 and movie2.
+     */
     @Before
     public void setUpActors() {
         movie1 = new Movie("movie1");
@@ -20,19 +26,24 @@ public class ActorTest {
 
         movieList1 = new ArrayList<>();
         movieList1.add(movie1);
-        movieList_2 = new ArrayList<>();
-        movieList_2.add(movie2);
+        movieList2 = new ArrayList<>();
+        movieList2.add(movie2);
 
         actor1 = new Actor("actor1", movieList1);
-        actor2 = new Actor("actor2", movieList_2);
     }
 
+    /**
+     * method to test actor constructor.
+     */
     @Test
     public void testActorConstructor() {
         assertEquals("actor1", actor1.getName());
         assertEquals(movieList1, actor1.getMovies());
     }
 
+    /**
+     * Method to test add movie.
+     */
     @Test
     public void testAddMovie() {
         actor1.addMovie(movie2);
