@@ -21,15 +21,15 @@ public class MovieDatabaseTest {
     public void testGetBestActor() {
         final MovieDatabase movieDatabase = new MovieDatabase();
 
-        final String movie1 = "Monster";
-        final String[] movie1WithActors = {"Denzel Washington"};
+        final String movie1 = "Monster1";
+        final String[] movie1WithActors = {"Denzel Washington2"};
         final int movie1WithRating = 20;
 
         final String movie2 = "The Pianist";
         final String[] movie2WithActors = new String[]{"Adrien Brody", "Chris Pine"};
         final int movie2WithRating = 5;
 
-        final String expectedBestActor = "Denzel Washington";
+        final String expectedBestActor = "Denzel Washington2";
         movieDatabase.addMovie(movie1, movie1WithActors);
         movieDatabase.addMovie(movie2, movie2WithActors);
         movieDatabase.updateRating(movie1, movie1WithRating);
@@ -44,7 +44,7 @@ public class MovieDatabaseTest {
     public void testGetBestMovie() {
         final MovieDatabase movieDatabase = new MovieDatabase();
 
-        final String movie1 = "Monster";
+        final String movie1 = "Monster2";
         final String[] movie1WithActors = {"Denzel Washington", "Charlize Theron"};
         final int movie1WithRating = 20;
 
@@ -52,7 +52,7 @@ public class MovieDatabaseTest {
         final String[] movie2WithActors = new String[]{"Adrien Brody", "Chris Pine"};
         final int movie2WithRating = 5;
 
-        final String expectedBestMovie = "Monster";
+        final String expectedBestMovie = "Monster2";
 
         movieDatabase.addMovie(movie1, movie1WithActors);
         movieDatabase.addMovie(movie2, movie2WithActors);
