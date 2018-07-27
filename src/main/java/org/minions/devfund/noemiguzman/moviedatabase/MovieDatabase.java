@@ -55,7 +55,6 @@ public class MovieDatabase {
      */
     public void addMovie(final String name, final String[] actors) {
         if (!this.getMovieNames().contains(name)) {
-           // ArrayList<Movie> movieList = new ArrayList<>();
             Movie newMovie = new Movie(name);
             this.movieList.add(newMovie);
             for (String actorName: actors) {
@@ -72,7 +71,6 @@ public class MovieDatabase {
                     this.actorList.add(newActor);
                 }
             }
-          //  this.movieList.add(newMovie);
         }
     }
 
