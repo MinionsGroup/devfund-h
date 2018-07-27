@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotSame;
 
 /**
@@ -21,8 +22,7 @@ public class MovieTest {
     private Actor actor2;
     private Movie movie1;
     private Movie movie2;
-    private ArrayList<Movie> movieList1;
-    private ArrayList<Movie> movieList2;
+
     private ArrayList<Actor> actorList;
 
     /**
@@ -30,12 +30,13 @@ public class MovieTest {
      */
     @Before
     public void setUp() {
+
         movie1 = new Movie("Batman");
         movie2 = new Movie("Super man");
 
-        movieList1 = new ArrayList<>();
+        ArrayList<Movie> movieList1 = new ArrayList<>();
         movieList1.add(movie1);
-        movieList2 = new ArrayList<>();
+        ArrayList<Movie> movieList2 = new ArrayList<>();
         movieList2.add(movie2);
 
         actorList = new ArrayList<>();
@@ -123,6 +124,29 @@ public class MovieTest {
         expectedHash += movie1.getName().hashCode();
         assertEquals(expectedHash, movie1.hashCode());
 
+    }
+    /**
+     *  Method to test movie.Igual to null.
+     */
+    @Test
+    public void testMovieEgualToNull() {
+        assertFalse(movie1.equals(null));
+    }
+    /**
+     *  Method to test igaul.Igual to null.
+     */
+    @Test
+    public void testMoviealEgualToOtherType() {
+        assertFalse(movie1.equals(actor1));
+    }
+    /**
+     * Method to test get name movie.
+     */
+    @Test
+    public void testSetName() {
+        movie2.setName("The Shape of Water");
+        String expectedName = "The Shape of Water";
+        assertEquals(expectedName, movie2.getName());
     }
 }
 
