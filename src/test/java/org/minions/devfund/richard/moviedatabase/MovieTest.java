@@ -4,7 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Test Class.
@@ -43,8 +44,7 @@ public class MovieTest {
      */
     @Test
     public void testEquals() {
-        assertFalse(movie.equals(null));
-        assertFalse(movie.equals(new Actor()));
-
+        assertNotNull(movie);
+        assertNotEquals(movie, new Actor());
     }
 }

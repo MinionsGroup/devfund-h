@@ -13,6 +13,8 @@ public class MovieDatabaseTest {
     private MovieDatabase movieDatabase;
     private static final String MOVIE_ONE = "Movie1";
     private static final String MOVIE_TWO = "Movie2";
+    private static final String ACTOR_ONE = "Actor1";
+    private static final String ACTOR_TWO = "Actor2";
     private static final double TEN = 10.0;
     private static final double TWENTY = 20.0;
 
@@ -29,11 +31,11 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testGetBestActor() {
-        movieDatabase.addMovie(MOVIE_ONE, new String[]{"Actor1", "Actor2"});
-        movieDatabase.addMovie(MOVIE_TWO, new String[]{"Actor1"});
+        movieDatabase.addMovie(MOVIE_ONE, new String[]{ACTOR_ONE, ACTOR_TWO});
+        movieDatabase.addMovie(MOVIE_TWO, new String[]{ACTOR_ONE});
         movieDatabase.addRating(MOVIE_ONE, TEN);
         movieDatabase.addRating(MOVIE_TWO, TWENTY);
-        assertEquals("Actor1", movieDatabase.getBestActor());
+        assertEquals(ACTOR_ONE, movieDatabase.getBestActor());
     }
 
     /**
@@ -41,11 +43,11 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testGetBestMovie() {
-        movieDatabase.addMovie(MOVIE_ONE, new String[]{"Actor1", "Actor2"});
-        movieDatabase.addMovie(MOVIE_TWO, new String[]{"Actor1"});
+        movieDatabase.addMovie(MOVIE_ONE, new String[]{ACTOR_ONE, ACTOR_TWO});
+        movieDatabase.addMovie(MOVIE_TWO, new String[]{ACTOR_ONE});
         movieDatabase.addRating(MOVIE_ONE, TEN);
         movieDatabase.addRating(MOVIE_TWO, TWENTY);
-        assertEquals("Movie2", movieDatabase.getBestMovie());
+        assertEquals(MOVIE_TWO, movieDatabase.getBestMovie());
     }
 
     /**
@@ -53,17 +55,16 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieActorExist() {
-        movieDatabase.addMovie(MOVIE_ONE, new String[]{"Actor1", "Actor2"});
-        movieDatabase.addMovie(MOVIE_ONE, new String[]{"Actor1", "Actor2"});
-        movieDatabase.addMovie(MOVIE_TWO, new String[]{"Actor1", "Actor2"});
-        movieDatabase.addMovie(MOVIE_TWO, new String[]{"Actor1", "Actor2"});
+        movieDatabase.addMovie(MOVIE_ONE, new String[]{ACTOR_ONE, ACTOR_TWO});
+        movieDatabase.addMovie(MOVIE_ONE, new String[]{ACTOR_ONE, ACTOR_TWO});
+        movieDatabase.addMovie(MOVIE_TWO, new String[]{ACTOR_ONE, ACTOR_TWO});
+        movieDatabase.addMovie(MOVIE_TWO, new String[]{ACTOR_ONE, ACTOR_TWO});
         assertEquals(2, movieDatabase.getMovieList().size());
         assertEquals(2, movieDatabase.getActorList().size());
         assertEquals(MOVIE_ONE, movieDatabase.getMovieList().get(0).getName());
         assertEquals(MOVIE_TWO, movieDatabase.getMovieList().get(1).getName());
-        assertEquals("Actor1", movieDatabase.getActorList().get(0).getName());
-        assertEquals("Actor2", movieDatabase.getActorList().get(1).getName());
-
+        assertEquals(ACTOR_ONE, movieDatabase.getActorList().get(0).getName());
+        assertEquals(ACTOR_TWO, movieDatabase.getActorList().get(1).getName());
     }
 
     /**
@@ -71,16 +72,16 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieAlreadyExist() {
-        movieDatabase.addMovie(MOVIE_ONE, new String[]{"Actor1", "Actor2"});
-        movieDatabase.addMovie(MOVIE_TWO, new String[]{"Actor1", "Actor2"});
-        movieDatabase.addMovie(MOVIE_ONE, new String[]{"Actor1", "Actor2"});
-        movieDatabase.addMovie(MOVIE_TWO, new String[]{"Actor1", "Actor2"});
+        movieDatabase.addMovie(MOVIE_ONE, new String[]{ACTOR_ONE, ACTOR_TWO});
+        movieDatabase.addMovie(MOVIE_TWO, new String[]{ACTOR_ONE, ACTOR_TWO});
+        movieDatabase.addMovie(MOVIE_ONE, new String[]{ACTOR_ONE, ACTOR_TWO});
+        movieDatabase.addMovie(MOVIE_TWO, new String[]{ACTOR_ONE, ACTOR_TWO});
         assertEquals(2, movieDatabase.getMovieList().size());
         assertEquals(2, movieDatabase.getActorList().size());
         assertEquals(MOVIE_ONE, movieDatabase.getMovieList().get(0).getName());
         assertEquals(MOVIE_TWO, movieDatabase.getMovieList().get(1).getName());
-        assertEquals("Actor1", movieDatabase.getActorList().get(0).getName());
-        assertEquals("Actor2", movieDatabase.getActorList().get(1).getName());
+        assertEquals(ACTOR_ONE, movieDatabase.getActorList().get(0).getName());
+        assertEquals(ACTOR_TWO, movieDatabase.getActorList().get(1).getName());
     }
 
     /**
@@ -88,8 +89,8 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testUpdateRating() {
-        movieDatabase.addMovie(MOVIE_ONE, new String[]{"Actor1", "Actor2"});
-        movieDatabase.addMovie(MOVIE_TWO, new String[]{"Actor1"});
+        movieDatabase.addMovie(MOVIE_ONE, new String[]{ACTOR_ONE, ACTOR_TWO});
+        movieDatabase.addMovie(MOVIE_TWO, new String[]{ACTOR_ONE});
         movieDatabase.addRating(MOVIE_ONE, TEN);
         movieDatabase.updateRating(MOVIE_TWO, TWENTY);
         assertEquals(TEN, movieDatabase.getMovieList().get(0).getRating(), 0.0);
@@ -100,7 +101,7 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testRating() {
-        movieDatabase.addMovie(MOVIE_ONE, new String[]{"Actor1", "Actor2"});
+        movieDatabase.addMovie(MOVIE_ONE, new String[]{ACTOR_ONE, ACTOR_TWO});
         movieDatabase.addRating(MOVIE_ONE, TEN);
         assertEquals(TEN, movieDatabase.getMovieList().get(0).getRating(), 0.0);
     }
