@@ -2,6 +2,9 @@ package org.minions.devfund.noemiguzman.moviedatabase;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * class movie.
@@ -9,7 +12,7 @@ import java.util.ArrayList;
 
 public class Movie implements Comparable<Movie> {
     private String name;
-    private ArrayList<Actor> actors;
+    private List<Actor> actors;
     private double rating;
 
     /**
@@ -36,13 +39,7 @@ public class Movie implements Comparable<Movie> {
         this.name = name;
     }
 
-    /**
-     * Getter for the movie's list of actors.
-     * @return ArrayList of Actor objects
-     */
-    public ArrayList<Actor> getActors() {
-        return actors;
-    }
+
 
     /**
      * Getter for the names of the actors of this movie.
@@ -118,5 +115,30 @@ public class Movie implements Comparable<Movie> {
     public int hashCode() {
         int result = (int) Math.round(rating) + ((name == null) ? 0 : name.hashCode());
         return result;
+    }
+    /**
+     * Methods that add the actor.
+     * @param actors list.
+     */
+    public void addActor(final String[] actors) {
+        setActors(Arrays.stream(actors)
+                .map(Actor::new)
+                .collect(Collectors.toList()));
+    }
+    /**
+     * Sets the actors list.
+     *
+     * @param actors new actor list.
+     */
+    public void setActors(final List<Actor> actors) {
+        this.actors = actors;
+    }
+    /**
+     * Gets the collection actors.
+     *
+     * @return actor list.
+     */
+    public List<Actor> getActors() {
+        return actors;
     }
 }

@@ -1,6 +1,8 @@
 package org.minions.devfund.noemiguzman.moviedatabase;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class Actor.
@@ -8,7 +10,7 @@ import java.util.ArrayList;
 
 public class Actor {
     private String name;
-    private ArrayList<Movie> movies;
+    private List<Movie> movies;
 
     /**
      * Overloaded constructor that takes the arguments.
@@ -21,7 +23,14 @@ public class Actor {
         this.movies = new ArrayList<>();
         this.movies.addAll(movies);
     }
-
+    /**
+     * Constructor for the Actor Class.     *
+     * @param name actor.
+     */
+    public Actor(final String name) {
+        this.name = name;
+        movies = new ArrayList<>();
+    }
     /**
      * Getter for the actor's name.
      * @return String name
@@ -38,14 +47,6 @@ public class Actor {
         this.name = name;
     }
 
-    /**
-     * Getter for the actor's list of movies.
-     * @return an ArrayList of movie objects
-     */
-    public ArrayList<Movie> getMovies() {
-
-        return movies;
-    }
 
     /**
      * Getter for movie names.
@@ -68,4 +69,21 @@ public class Actor {
             this.movies.add(movie);
         }
     }
+    /**
+     * Rating averages of the actor on the list.
+     *
+     * @return movie rating average.
+     */
+    public double movieRatingAverage() {
+        return movies.stream()
+                .collect(Collectors.averagingDouble(Movie::getRating));
+    }
+    /**
+     * Gets the collection movies.
+     * @return list for movie save.
+     */
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
 }

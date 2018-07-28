@@ -1,12 +1,16 @@
 package org.minions.devfund.noemiguzman.moviedatabase;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Stream;
+
 /**
  * class movie data base.
  */
 public class MovieDatabase {
-    private ArrayList<Movie> movieList;
-    private ArrayList<Actor> actorList;
+    private List<Movie> movieList;
+    private List<Actor> actorList;
 
     /**
      * Initializes the MovieDatabase object.
@@ -20,7 +24,7 @@ public class MovieDatabase {
      * Getter for the movies in the database.
      * @return  all the movies in the bd
      */
-    public ArrayList<Movie> getMovieList() {
+    public List<Movie> getMovieList() {
         return this.movieList;
     }
 
@@ -29,7 +33,7 @@ public class MovieDatabase {
      * @return an ArrayList of all the actors in the
      * database
      */
-    public ArrayList<Actor> getActorList() {
+    public List<Actor> getActorList() {
         return this.actorList;
     }
 
@@ -48,32 +52,32 @@ public class MovieDatabase {
 
 
     /**
-     * Add a movie to the database.
-     * @param name String for the movie's name
-     * @param actors Array of Strings for the actors'
-     *               names.
+     * Adds a movie in the movie list.
+     *
+     * @param name   movie name.
+     * @param actors array for the actor.
      */
     public void addMovie(final String name, final String[] actors) {
-        if (!this.getMovieNames().contains(name)) {
+        if (movieList.stream().noneMatch(movieObject -> movieObject.getName().equals(name))) {
             Movie newMovie = new Movie(name);
-            this.movieList.add(newMovie);
-            for (String actorName: actors) {
-                Actor newActor = new Actor(actorName, this.movieList);
-                newMovie.addActor(newActor);
-                boolean added = false;
-                for (Actor actor: this.actorList) {
-                    if (actorName.equals(actor.getName())) {
-                        actor.addMovie(newMovie);
-                        added = true;
-                    }
-                }
-                if (!added) {
-                    this.actorList.add(newActor);
-                }
-            }
+            newMovie.addActor(actors);
+            movieList.add(newMovie);
+            addNewActors(actors);
         }
     }
 
+    /**
+     * Adds the new actor.
+     *
+     * @param actors list.
+     */
+    private void addNewActors(final String[] actors) {
+        boolean verify = actorList.stream().noneMatch(actor -> actor.getName().equals(actor.getName()));
+        Stream.of(actors)
+                .map(Actor::new)
+                .filter(actor -> verify)
+                .forEach(actor -> actorList.add(actor));
+    }
     /**
      * Add a rating to a particular movie.
      * @param name The String name of the movie
@@ -90,51 +94,36 @@ public class MovieDatabase {
     }
 
     /**
-     * Update a particular movie's rating.
-     * @param name The String name of the movie
-     * @param newRating The double representing the new
-     *                  value for the movie's rating
+     * Updates the rating for a movie.
+     *
+     * @param name      movie name.
+     * @param rating new rating.
      */
-    public void updateRating(final String name, double newRating) {
-        this.addRating(name, newRating);
+    public void updateRating(final String name, final double rating) {
+        movieList.stream()
+                .filter(movie -> movie.getName().equals(name))
+                .forEach(movie -> movie.setRating(rating));
     }
-
     /**
-     * Get the actor with the best average rating.
-     * @return String of the name of the actor
-     */
-    public String getBestActor() {
-        String actorName = "";
-        double averageRating = 0.0;
-
-        for (Actor actor: actorList) {
-            double totalRating = 0.0;
-            for (Movie movie: actor.getMovies()) {
-                totalRating += movie.getRating();
-            }
-            double average = totalRating / actor.getMovies().size();
-
-            if (average > averageRating) {
-                averageRating = average;
-                actorName = actor.getName();
-            }
-        }
-        return actorName;
-    }
-
-    /**
-     * Get the movie with the highest rating.
-     * @return String of the name of the movie.
+     * Gets the best name of the movie.
+     *
+     * @return string best movie.
      */
     public String getBestMovie() {
-        double bestRating = 0.0;
-        String movieName = "";
-        for (Movie movie: this.movieList) {
-            if (movie.getRating() > bestRating) {
-                bestRating = movie.getRating();
-                movieName = movie.getName();
-            }
-        }
-        return movieName;
+        return movieList.stream()
+                .max(Comparator.comparing(Movie::getRating))
+                .map(Movie::getName).orElse("");
+    }
+
+
+    /**
+     * Gets the best name of the actor.
+     *
+     * @return best actor.
+     */
+    public String getBestActor() {
+        return actorList.stream()
+                .max(Comparator.comparing(Actor::movieRatingAverage))
+                .map(Actor::getName).orElse("");
     }
 }
