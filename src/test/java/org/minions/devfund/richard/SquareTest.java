@@ -75,7 +75,7 @@ public class SquareTest {
     @Test
     public void testConstructorFillsArray() {
         Square square = new Square(TWO);
-        final int[][] expected = new int[][]{{1, 2}, {3, 4}};
+        final int[][] expected = {{1, 2}, {3, 4}};
         assertArrayEquals(expected, square.getMatrix());
     }
 
@@ -130,7 +130,7 @@ public class SquareTest {
     @Test
     public void testUpsideDownFlipSizeThreeRingTwo() {
         Square square = new Square(THREE);
-        final int[][] expected = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        final int[][] expected = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         assertArrayEquals(expected, square.upsideDownFlip(TWO).getMatrix());
     }
 
