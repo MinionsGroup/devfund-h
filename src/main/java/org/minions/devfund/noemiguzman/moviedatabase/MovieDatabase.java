@@ -36,21 +36,6 @@ public class MovieDatabase {
     public List<Actor> getActorList() {
         return this.actorList;
     }
-
-    /**
-     * Getter for the String names of the movies.
-     * @return ArrayList of Strings of the names of all
-     * the movies in the database.
-     */
-    private List<String> getMovieNames() {
-        List<String> movieNames = new ArrayList<>();
-        for (Movie movie: this.movieList) {
-            movieNames.add(movie.getName());
-        }
-        return movieNames;
-    }
-
-
     /**
      * Adds a movie in the movie list.
      *

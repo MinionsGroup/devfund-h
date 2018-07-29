@@ -23,8 +23,6 @@ public class MovieDatabaseTest {
     private String movieIt = "It";
     private Movie movie1;
 
-    private List<Movie> movieList1;
-    private Actor actor1;
 
 
     /**
@@ -33,15 +31,16 @@ public class MovieDatabaseTest {
 
     @Before
     public void setUpMovieDatabases() {
+
         moviedb1 = new MovieDatabase();
         moviedb2 = new MovieDatabase();
 
         movie1 = new Movie(movieGlass);
 
-        movieList1 = new ArrayList<>();
+        List<Movie> movieList1 = new ArrayList<>();
         movieList1.add(movie1);
 
-        actor1 = new Actor(actorAffleck, movieList1);
+        Actor actor1 = new Actor(actorAffleck, movieList1);
         movie1.addActor(actor1);
 
     }
