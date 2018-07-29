@@ -9,9 +9,8 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNotSame;
+import static org.junit.Assert.assertEquals;
+
 
 /**
  *  Class to test Movie.
@@ -88,17 +87,7 @@ public class MovieTest {
         String movie1Expected = "Batman Rating:0.0";
         assertEquals(movie1Expected, movie1.toString());
     }
-    /**
-     *  Method to test compare rating.
-     */
-    @Test
-    public void testCompareRating() {
-        final Double expectedRating = 5.2;
-        movie1.setRating(expectedRating);
-        movie2.setRating(expectedRating);
-        assertEquals(0, movie1.compareTo(movie2));
 
-    }
 
     /**
      * Method to test get name movie.

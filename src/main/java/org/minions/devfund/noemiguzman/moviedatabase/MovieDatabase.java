@@ -42,8 +42,8 @@ public class MovieDatabase {
      * @return ArrayList of Strings of the names of all
      * the movies in the database.
      */
-    private ArrayList<String> getMovieNames() {
-        ArrayList<String> movieNames = new ArrayList<>();
+    private List<String> getMovieNames() {
+        List<String> movieNames = new ArrayList<>();
         for (Movie movie: this.movieList) {
             movieNames.add(movie.getName());
         }
@@ -79,7 +79,7 @@ public class MovieDatabase {
                 .forEach(actor -> actorList.add(actor));
     }
     /**
-     * Add a rating to a particular movie.
+     * Add a rating given movie name.
      * @param name The String name of the movie
      * @param rating the rating value
      */

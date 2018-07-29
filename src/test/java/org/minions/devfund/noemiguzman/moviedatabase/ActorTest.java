@@ -14,7 +14,7 @@ public class ActorTest {
     private Movie movie2;
     private ArrayList<Movie> movieList1;
     private String actorBale = "Christian Bale";
-    private String actoreAffleck = "Ben Affleck";
+    private String actorAffect = "Ben Affleck";
 
     /**
      * Set movie 1 and movie2.
@@ -60,7 +60,7 @@ public class ActorTest {
      */
     @Test
     public void testSetName() {
-        actor1.setName(actoreAffleck);
-        assertEquals(actoreAffleck, actor1.getName());
+        actor1.setName(actorAffect);
+        assertEquals(actorAffect, actor1.getName());
     }
 }

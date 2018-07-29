@@ -1,6 +1,5 @@
 package org.minions.devfund.noemiguzman.moviedatabase;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.stream.Collectors;
  * class movie.
  */
 
-public class Movie implements Comparable<Movie> {
+public class Movie {
     private String name;
     private List<Actor> actors;
     private double rating;
@@ -45,8 +44,8 @@ public class Movie implements Comparable<Movie> {
      * Getter for the names of the actors of this movie.
      * @return ArrayList of Strings of the actors' names
      */
-    private ArrayList<String> getActorNames() {
-        ArrayList<String> actorNames = new ArrayList<>();
+    private List<String> getActorNames() {
+        List<String> actorNames = new ArrayList<>();
         for (Actor actor: this.actors) {
             actorNames.add(actor.getName());
         }
@@ -79,22 +78,7 @@ public class Movie implements Comparable<Movie> {
         this.rating = rating;
     }
 
-    /**
-     * Compare movie object.
-     * @param object object to compare
-     * @return true if the object are equal
-     */
-    public boolean equals(final Object object) {
-        if (object == null) {
-            return  false;
-        }
-        if (!(object instanceof Movie)) {
-            return  false;
-        }
-        return ((Movie) object).getName().equals(name);
-    }
-
-    /**
+     /**
      * Convert to string.
      * @return name and rating
      */
@@ -102,20 +86,6 @@ public class Movie implements Comparable<Movie> {
         return name + " Rating:" + rating;
     }
 
-    /**
-     *  Compare current movie to other.
-     * @param o other movie object
-     * @return
-     */
-    @Override
-    public int compareTo(final Movie o) {
-        return Double.compare(rating, o.getRating());
-    }
-    @Override
-    public int hashCode() {
-        int result = (int) Math.round(rating) + ((name == null) ? 0 : name.hashCode());
-        return result;
-    }
     /**
      * Methods that add the actor.
      * @param actors list.

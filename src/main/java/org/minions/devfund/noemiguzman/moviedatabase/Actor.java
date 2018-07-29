@@ -11,14 +11,13 @@ import java.util.stream.Collectors;
 public class Actor {
     private String name;
     private List<Movie> movies;
-
     /**
      * Overloaded constructor that takes the arguments.
      * @param name  name of the actor
      * @param movies ArrayList of Movies that the actor
      *               has acted in.
      */
-    public Actor(final String name, final ArrayList<Movie> movies) {
+    public Actor(final String name, final List<Movie> movies) {
         this.name = name;
         this.movies = new ArrayList<>();
         this.movies.addAll(movies);
@@ -52,8 +51,8 @@ public class Actor {
      * Getter for movie names.
      * @return ArrayList of Strings of the movie names
      */
-    private ArrayList<String> getMovieNames() {
-        ArrayList<String> movieNames = new ArrayList<>();
+    private List<String> getMovieNames() {
+        List<String> movieNames = new ArrayList<>();
         for (Movie movie: this.movies) {
             movieNames.add(movie.getName());
         }
@@ -71,7 +70,6 @@ public class Actor {
     }
     /**
      * Rating averages of the actor on the list.
-     *
      * @return movie rating average.
      */
     public double movieRatingAverage() {
@@ -79,7 +77,7 @@ public class Actor {
                 .collect(Collectors.averagingDouble(Movie::getRating));
     }
     /**
-     * Gets the collection movies.
+     * Gets the movies list.
      * @return list for movie save.
      */
     public List<Movie> getMovies() {
