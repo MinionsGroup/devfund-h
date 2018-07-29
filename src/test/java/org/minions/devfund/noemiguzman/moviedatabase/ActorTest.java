@@ -49,6 +49,16 @@ public class ActorTest {
         assertEquals(movieList1, actor1.getMovies());
     }
     /**
+     * Method to test add movie.
+     */
+    @Test
+    public void testAddMovieTwoTime() {
+        actor1.addMovie(movie2);
+        movieList1.add(movie2);
+        actor1.addMovie(movie2);
+        assertEquals(movieList1, actor1.getMovies());
+    }
+    /**
      * Method to test get name actor.
      */
     @Test

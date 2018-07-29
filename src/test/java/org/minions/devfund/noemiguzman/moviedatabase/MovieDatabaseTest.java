@@ -60,6 +60,20 @@ public class MovieDatabaseTest {
      *  Method to test add movie.
      */
     @Test
+    public void testAddMovieTwoTime() {
+        List<Movie> movieList = new ArrayList<>();
+        MovieDatabase moviedb3 = new MovieDatabase();
+        String[] actors1 = new String[] {actorAffleck, actorWest};
+        moviedb3.addMovie(movieGlass, actors1);
+        moviedb3.addMovie(movieGlass, actors1);
+        movieList.add(movie1);
+        List<Movie> actualMovies = moviedb3.getMovieList();
+        assertEquals(movieList.toString(), actualMovies.toString());
+    }
+    /**
+     *  Method to test add movie.
+     */
+    @Test
     public void testAddMovie() {
         List<Movie> movieList = new ArrayList<>();
         MovieDatabase moviedb3 = new MovieDatabase();
