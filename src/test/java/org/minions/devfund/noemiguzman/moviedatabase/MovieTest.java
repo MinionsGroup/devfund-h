@@ -79,20 +79,7 @@ public class MovieTest {
         String expectedName = "Super man";
         assertEquals(expectedName, movie2.getName());
     }
-    /**
-     *  Method to test Igual to null.
-     */
-    @Test
-    public void testIgualToNull() {
-        assertNotSame(movie1, null);
-    }
-    /**
-     *  Method to test Igual to null.
-     */
-    @Test
-    public void testIgualToOtherType() {
-        assertNotSame(movie1, actor1);
-    }
+
     /**
      *  Method to test movie string.
      */
@@ -112,33 +99,7 @@ public class MovieTest {
         assertEquals(0, movie1.compareTo(movie2));
 
     }
-    /**
-     *  Method to test compare rating.
-     */
-    @Test
-    public void testHashCode() {
-        final double expectedRating = 15.2;
-        movie1.setRating(expectedRating);
-        movie1.setName("Aquaman");
-        int expectedHash = (int) Math.round(movie1.getRating());
-        expectedHash += movie1.getName().hashCode();
-        assertEquals(expectedHash, movie1.hashCode());
 
-    }
-    /**
-     *  Method to test movie.Igual to null.
-     */
-    @Test
-    public void testMovieEgualToNull() {
-        assertFalse(movie1.equals(null));
-    }
-    /**
-     *  Method to test igaul.Igual to null.
-     */
-    @Test
-    public void testMoviealEgualToOtherType() {
-        assertFalse(movie1.equals(actor1));
-    }
     /**
      * Method to test get name movie.
      */

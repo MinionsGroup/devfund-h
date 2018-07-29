@@ -63,13 +63,4 @@ public class ActorTest {
         actor1.setName(actoreAffleck);
         assertEquals(actoreAffleck, actor1.getName());
     }
-    /**
-     * Method to test add movie.
-     */
-    @Test
-    public void testAddMovieTwoTime() {
-        actor1.addMovie(movie2);
-        actor1.addMovie(movie2);
-        assertEquals(movieList1, actor1.getMovies());
-    }
 }
