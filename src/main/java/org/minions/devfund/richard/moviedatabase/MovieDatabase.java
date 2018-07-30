@@ -30,9 +30,10 @@ public class MovieDatabase {
     void addMovie(final String name, final String[] actors) {
         Movie newMovie = new Movie();
         Arrays.asList(actors)
-                .forEach(actorName -> movieHash.add(newMovie.setName(name).setActors(new Actor().setName(actorName))));
-        Arrays.asList(actors)
-                .forEach(actorName -> actorHash.add(new Actor().setName(actorName).setMovies(newMovie)));
+                .forEach(actorName -> {
+                    movieHash.add(newMovie.setName(name).setActors(new Actor().setName(actorName)));
+                    actorHash.add(new Actor().setName(actorName).setMovies(newMovie));
+                });
     }
 
     /**
