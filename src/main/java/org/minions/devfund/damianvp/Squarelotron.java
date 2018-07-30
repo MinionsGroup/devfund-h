@@ -4,9 +4,9 @@ package org.minions.devfund.damianvp;
  * Squalerotron class.
  */
 public class Squarelotron {
-    protected int[][] squarelotron;
-    protected int size;
-    public static final int MODULE_NUMBER = 4;
+    private int[][] squarelotron;
+    private int size;
+    private static final int MODULE_NUMBER = 4;
 
     /**
      * Squalerotron constructor.
@@ -15,6 +15,22 @@ public class Squarelotron {
     Squarelotron(int n) {
         this.size = n;
         this.squarelotron = loadIntegerMatrix();
+    }
+
+    /**
+     * Method to return the squarelotron size.
+     * @return size of squarelotron.
+     */
+    int getSize() {
+        return this.size;
+    }
+
+    /**
+     * Method to get the squarelotron matrix.
+     * @return squarelotron matrix.
+     */
+    int[][] getSquarelotron() {
+        return this.squarelotron;
     }
 
     /**
