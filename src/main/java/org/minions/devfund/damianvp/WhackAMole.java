@@ -70,14 +70,12 @@ public class WhackAMole {
         Random random = new Random();
         int max = this.moleGrid.length;
         int min = 0;
-        boolean moleIsPlaced;
         int limitGrid = this.moleGrid.length * this.moleGrid.length;
         if (moles <= limitGrid) {
             while (moles > 0) {
                 int x = random.nextInt(max - min);
                 int y = random.nextInt(max - min);
-                moleIsPlaced = place(x, y);
-                if (moleIsPlaced) {
+                if (place(x, y)) {
                     moles--;
                 }
             }
@@ -136,10 +134,9 @@ public class WhackAMole {
                 return false;
             }
             return true;
-        } else {
-            LOGGER.log(Level.WARNING, "valid coordinates should be between 0 - {0} ", this.moleGrid.length - 1);
-            return false;
         }
+        LOGGER.log(Level.WARNING, "valid coordinates should be between 0 - {0} ", this.moleGrid.length - 1);
+        return false;
     }
 
     /**
