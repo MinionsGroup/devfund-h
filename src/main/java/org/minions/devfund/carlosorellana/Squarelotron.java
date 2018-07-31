@@ -152,22 +152,23 @@ public class Squarelotron {
                 for (int i = 0; i < size; i++) {
                     for (int j = 0; j < size; j++) {
 
-                        if (i == first) {
-                            if (j >= first && j <= last) {
+                        if ((i == first) && (j >= first && j <= last)) {
                                 this.squarelotron[i][j] = (right) ? temporalSquarelotron[size - 1 - j][first]
                                         : temporalSquarelotron[j][last];
-                            }
-                        } else if (i == last) {
-                            if (j >= first && j <= last) {
+                        }
+
+                        if ((i == last) && (j >= first && j <= last)) {
                                 this.squarelotron[i][j] = (right) ? temporalSquarelotron[size - 1 - j][last]
                                         : temporalSquarelotron[j][first];
-                            }
-                        } else if (i > first && i < last) {
+                        }
+
+                        if (i > first && i < last) {
                             if (j == last) {
 
                                 this.squarelotron[i][j] = (right) ? temporalSquarelotron[first][i]
                                         : temporalSquarelotron[last][size - 1 - i];
-                            } else if (j == first) {
+                            }
+                            else if (j == first) {
                                 this.squarelotron[i][j] = (right) ? temporalSquarelotron[last][i]
                                         : temporalSquarelotron[first][size - 1 - i];
                             }
