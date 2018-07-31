@@ -21,15 +21,6 @@ public class Squarelotron {
     }
 
     /**
-     * Sets Squarelotron Matrix.
-     *
-     * @param squarelotron - Squarelotron Matrix.
-     */
-    public void setSquarelotron(final int[][] squarelotron) {
-        this.squarelotron = squarelotron;
-    }
-
-    /**
      * Constructor Sqarelotron.
      *
      * @param n - Size of squarelotron array.
@@ -69,14 +60,25 @@ public class Squarelotron {
 
         int first = ring - 1;
         int last = size - ring;
+        boolean valA;
+        boolean valB;
+        boolean valC;
+        boolean valD;
 
         for (int i = 0; i <= size - 1; i++) {
             for (int j = 0; j <= size - 1; j++) {
-                if ((i == first || i == last) && (j >= first && j <= last)) {
+
+                valA = i == first || i == last;
+                valB = j >= first && j <= last;
+                valC = i > first && i < last;
+                valD = j == first || j == last;
+
+                if (valA && valB) {
                     squarelotronTemporal.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
                 }
 
-                if ((i > first && i < last) && (j == first || j == last)) {
+
+                if (valC && valD) {
                     squarelotronTemporal.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
                 }
             }
@@ -100,15 +102,24 @@ public class Squarelotron {
 
         int first = ring - 1; // 0
         int last = size - ring; // 3
+        boolean valA;
+        boolean valB;
+        boolean valC;
+        boolean valD;
 
         for (int i = 0; i <= size - 1; i++) {
             for (int j = 0; j <= size - 1; j++) {
 
-                if ((i == first || i == last) && (j >= first && j <= last)) {
+                valA = i == first || i == last;
+                valB = j >= first && j <= last;
+                valC = i > first && i < last;
+                valD = j == first || j == last;
+
+                if (valA && valB) {
                     squarelotronTemporal.squarelotron[j][i] = this.squarelotron[i][j];
                 }
 
-                if ((i > first && i < last) && (j == first || j == last)) {
+                if (valC && valD) {
                     squarelotronTemporal.squarelotron[j][i] = this.squarelotron[i][j];
                 }
             }
@@ -127,6 +138,10 @@ public class Squarelotron {
         int ring;
         boolean right = true;
         int maxRing = getMaxRings();
+        boolean valA;
+        boolean valB;
+        boolean valC;
+        boolean valD;
 
         // New Temporal Squarelotron
         int[][] temporalSquarelotron = new int[size][size];
@@ -152,24 +167,30 @@ public class Squarelotron {
                 for (int i = 0; i < size; i++) {
                     for (int j = 0; j < size; j++) {
 
-                        if ((i == first) && (j >= first && j <= last)) {
-                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[size - 1 - j][first]
+                        valA = i == first;
+                        valB = j >= first && j <= last;
+                        valC = i == last;
+                        valD = j >= first && j <= last;
+
+                        if (valA && valB) {
+                                this.squarelotron[i][j] = right ? temporalSquarelotron[size - 1 - j][first]
                                         : temporalSquarelotron[j][last];
                         }
 
-                        if ((i == last) && (j >= first && j <= last)) {
-                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[size - 1 - j][last]
+                        if (valC && valD) {
+                                this.squarelotron[i][j] = right ? temporalSquarelotron[size - 1 - j][last]
                                         : temporalSquarelotron[j][first];
                         }
 
                         if (i > first && i < last) {
                             if (j == last) {
 
-                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[first][i]
+                                this.squarelotron[i][j] = right ? temporalSquarelotron[first][i]
                                         : temporalSquarelotron[last][size - 1 - i];
                             }
-                            else if (j == first) {
-                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[last][i]
+
+                            if (j == first) {
+                                this.squarelotron[i][j] = right ? temporalSquarelotron[last][i]
                                         : temporalSquarelotron[first][size - 1 - i];
                             }
                         }
