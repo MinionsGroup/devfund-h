@@ -12,6 +12,24 @@ public class Squarelotron {
     private int size;
 
     /**
+     * Gets Squarelotron Matrix.
+     *
+     * @return Squarelotron Matrix.
+     */
+    public int[][] getSquarelotron() {
+        return squarelotron.clone();
+    }
+
+    /**
+     * Sets Squarelotron Matrix.
+     *
+     * @return Squarelotron Matrix.
+     */
+    public void setSquarelotron(int[][] squarelotron) {
+        this.squarelotron = squarelotron;
+    }
+
+    /**
      * Constructor Sqarelotron.
      *
      * @param n - Size of squarelotron array.
@@ -28,14 +46,12 @@ public class Squarelotron {
     }
 
     /**
-     * Finds the Maximum Rings number.
+     * Gets the maximum number of ring in the squarelotron.
      *
      * @return Numbers maximum of rings.
      */
-    public int findMaxRings() {
-        return (this.size % 2 == 0)
-                ? size / 2
-                : size / 2 + 1;
+    public int getMaxRings() {
+        return (this.size % 2 == 0) ? size / 2 : size / 2 + 1;
     }
     /**
       * Modifies A Upside-Down Flip of the outer ring of Squarelotron.
@@ -45,7 +61,7 @@ public class Squarelotron {
       */
     public Squarelotron upsideDownFlip(int ring) {
 
-        if (ring > this.findMaxRings() || ring < 1) {
+        if (ring > this.getMaxRings() || ring < 1) {
             throw new NumberFormatException();
         }
 
@@ -56,25 +72,27 @@ public class Squarelotron {
 
         for (int i = 0; i <= size - 1; i++) {
             for (int j = 0; j <= size - 1; j++) {
-                if (i == first || i == last) {
-                    if (j >= first && j <= last) {
+                if ((i == first || i == last) && (j >= first && j <= last)) {
                         squarelotron.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
-                    }
                 }
 
-                if (i > first && i < last) {
-                    if (j == first || j == last) {
+                if ((i > first && i < last) && (j == first || j == last)) {
                         squarelotron.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
-                    }
                 }
             }
         }
         return squarelotron;
     }
 
-    public Squarelotron mainDiagonarlFlip(int ring) {
+    /**
+     * Modifies the matrix - move the number diagonally in the Matrix.
+     *
+     * @param ring - Number the ring affected.
+     * @return New instance of Squarelotron
+     */
+    public Squarelotron mainDiagonalFlip(int ring) {
 
-        if (ring > this.findMaxRings() || ring < 1) {
+        if (ring > this.getMaxRings() || ring < 1) {
             throw new NumberFormatException();
         }
 
@@ -86,16 +104,12 @@ public class Squarelotron {
         for (int i = 0; i <= size - 1; i++) {
             for (int j = 0; j <= size - 1; j++) {
 
-                if (i == first || i == last) {
-                    if (j >= first && j <= last) {
+                if ((i == first || i == last) && (j >= first && j <= last)) {
                         squarelotron.squarelotron[j][i] = this.squarelotron[i][j];
-                    }
                 }
 
-                if (i > first && i < last) {
-                    if (j == first || j == last) {
+                if ((i > first && i < last) && (j == first || j == last)) {
                         squarelotron.squarelotron[j][i] = this.squarelotron[i][j];
-                    }
                 }
             }
         }
@@ -111,56 +125,62 @@ public class Squarelotron {
 
         int ring;
         boolean right = true;
-        int maxRing = findMaxRings();
+        int maxRing = getMaxRings();
 
-        // Temporal Squarelotron
+        // New Temporal Squarelotron
         int[][] temporalSquarelotron = new int[size][size];
 
-        // Duplicate the squarelotron matrix.
+        // Duplicates the squarelotron matrix.
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 temporalSquarelotron[i][j] = this.squarelotron[i][j];
             }
         }
+
         if (numberOfTurns < 0) {
             right = false;
             numberOfTurns = numberOfTurns * (-1);
         }
 
         for (int x = 0; x < numberOfTurns; x++) { // Move the ring in base the number of turns.
-            for (int l = 1; l <= maxRing; l++) { // Mode on the ring selected
-                ring = l;
+            for (int y = 1; y <= maxRing; y++) { // Mode on the ring selected
+                ring = y;
                 int first = ring - 1;
                 int last = size - ring;
+
                 for (int i = 0; i < size; i++) {
                     for (int j = 0; j < size; j++) {
+
                         if (i == first) {
                             if (j >= first && j <= last) {
-                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[size - 1 - j][first] : temporalSquarelotron[j][last];
+                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[size - 1 - j][first]
+                                        : temporalSquarelotron[j][last];
                             }
                         } else if (i == last) {
                             if (j >= first && j <= last) {
-                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[size - 1 - j][last] : temporalSquarelotron[j][first];
+                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[size - 1 - j][last]
+                                        : temporalSquarelotron[j][first];
                             }
                         } else if (i > first && i < last) {
                             if (j == last) {
 
-                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[first][i] :
-                                        temporalSquarelotron[last][size - 1 - i];
+                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[first][i]
+                                        : temporalSquarelotron[last][size - 1 - i];
                             } else if (j == first) {
-                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[last][i] :
-                                        temporalSquarelotron[first][size - 1 - i];
+                                this.squarelotron[i][j] = (right) ? temporalSquarelotron[last][i]
+                                        : temporalSquarelotron[first][size - 1 - i];
                             }
                         }
                     }
                 }
             }
-            // replace array to temporal array
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
-                    temporalSquarelotron[i][j] = this.squarelotron[i][j];
-                }
-            }
+
+//            // replace array to temporal array
+//            for (int i = 0; i < size; i++) {
+//                for (int j = 0; j < size; j++) {
+//                    temporalSquarelotron[i][j] = this.squarelotron[i][j];
+//                }
+//            }
         }
     }
 
@@ -171,10 +191,10 @@ public class Squarelotron {
      */
     @Override
     public String toString() {
-        StringBuffer sqString = new StringBuffer();
+        StringBuilder sqString = new StringBuilder();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                sqString.append(squarelotron[i][j] + "\t");
+                sqString.append(this.squarelotron[i][j] + "\t");
             }
 
             sqString.append("\n");
