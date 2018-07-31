@@ -52,7 +52,6 @@ public class SquarelotronTest {
         final int ring = 1;
         Squarelotron squarelotron = new Squarelotron(size);
         Squarelotron squarelotron1 = squarelotron.upsideDownFlip(ring);
-        System.out.println(squarelotron1.toString());
         assertArrayEquals(expectedMatrix, squarelotron1.getSquarelotron());
     }
 
@@ -73,7 +72,6 @@ public class SquarelotronTest {
         final int ring = 2;
         Squarelotron squarelotron = new Squarelotron(size);
         Squarelotron squarelotron1 = squarelotron.upsideDownFlip(ring);
-        System.out.println(squarelotron1.toString());
         assertArrayEquals(expectedMatrix, squarelotron1.getSquarelotron());
     }
 
@@ -94,7 +92,6 @@ public class SquarelotronTest {
         final int ring = 1;
         Squarelotron squarelotron = new Squarelotron(size);
         Squarelotron squarelotron1 = squarelotron.mainDiagonalFlip(ring);
-        System.out.println(squarelotron1.toString());
         assertArrayEquals(expectedMatrix, squarelotron1.getSquarelotron());
     }
 
@@ -114,7 +111,6 @@ public class SquarelotronTest {
         final int ring = 2;
         Squarelotron squarelotron = new Squarelotron(size);
         Squarelotron squarelotron1 = squarelotron.mainDiagonalFlip(ring);
-        System.out.println(squarelotron1.toString());
         assertArrayEquals(expectedMatrix, squarelotron1.getSquarelotron());
     }
 
@@ -135,7 +131,6 @@ public class SquarelotronTest {
 
         Squarelotron squarelotron = new Squarelotron(size);
         squarelotron.rotateRight(turn);
-        System.out.println(squarelotron.toString());
         assertArrayEquals(expectedMatrix, squarelotron.getSquarelotron());
     }
 
@@ -156,7 +151,6 @@ public class SquarelotronTest {
 
         Squarelotron squarelotron = new Squarelotron(size);
         squarelotron.rotateRight(turn);
-        System.out.println(squarelotron.toString());
         assertArrayEquals(expectedMatrix, squarelotron.getSquarelotron());
     }
 }

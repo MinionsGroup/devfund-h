@@ -59,13 +59,13 @@ public class Squarelotron {
       * @param ring - Number of ring.
       * @return Instance new Squarelotron.
       */
-    public Squarelotron upsideDownFlip(int ring) {
+    public Squarelotron upsideDownFlip(final int ring) {
 
         if (ring > this.getMaxRings() || ring < 1) {
             throw new NumberFormatException();
         }
 
-        Squarelotron squarelotron = new Squarelotron(this.size);
+        Squarelotron squarelotronTemporal = new Squarelotron(this.size);
 
         int first = ring - 1;
         int last = size - ring;
@@ -73,15 +73,15 @@ public class Squarelotron {
         for (int i = 0; i <= size - 1; i++) {
             for (int j = 0; j <= size - 1; j++) {
                 if ((i == first || i == last) && (j >= first && j <= last)) {
-                        squarelotron.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
+                    squarelotronTemporal.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
                 }
 
                 if ((i > first && i < last) && (j == first || j == last)) {
-                        squarelotron.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
+                    squarelotronTemporal.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
                 }
             }
         }
-        return squarelotron;
+        return squarelotronTemporal;
     }
 
     /**
@@ -90,13 +90,13 @@ public class Squarelotron {
      * @param ring - Number the ring affected.
      * @return New instance of Squarelotron
      */
-    public Squarelotron mainDiagonalFlip(int ring) {
+    public Squarelotron mainDiagonalFlip(final int ring) {
 
         if (ring > this.getMaxRings() || ring < 1) {
             throw new NumberFormatException();
         }
 
-        Squarelotron squarelotron = new Squarelotron(this.size);
+        Squarelotron squarelotronTemporal = new Squarelotron(this.size);
 
         int first = ring - 1; // 0
         int last = size - ring; // 3
@@ -105,15 +105,15 @@ public class Squarelotron {
             for (int j = 0; j <= size - 1; j++) {
 
                 if ((i == first || i == last) && (j >= first && j <= last)) {
-                        squarelotron.squarelotron[j][i] = this.squarelotron[i][j];
+                    squarelotronTemporal.squarelotron[j][i] = this.squarelotron[i][j];
                 }
 
                 if ((i > first && i < last) && (j == first || j == last)) {
-                        squarelotron.squarelotron[j][i] = this.squarelotron[i][j];
+                    squarelotronTemporal.squarelotron[j][i] = this.squarelotron[i][j];
                 }
             }
         }
-        return squarelotron;
+        return squarelotronTemporal;
     }
 
     /**
@@ -121,8 +121,9 @@ public class Squarelotron {
      *
      * @param numberOfTurns Number or rotations.
      */
-    public void rotateRight(int numberOfTurns) {
+    public void rotateRight(final int numberOfTurns) {
 
+        int turns = numberOfTurns;
         int ring;
         boolean right = true;
         int maxRing = getMaxRings();
@@ -139,10 +140,10 @@ public class Squarelotron {
 
         if (numberOfTurns < 0) {
             right = false;
-            numberOfTurns = numberOfTurns * (-1);
+            turns = turns * (-1);
         }
 
-        for (int x = 0; x < numberOfTurns; x++) { // Move the ring in base the number of turns.
+        for (int x = 0; x < turns; x++) { // Move the ring in base the number of turns.
             for (int y = 1; y <= maxRing; y++) { // Mode on the ring selected
                 ring = y;
                 int first = ring - 1;
@@ -174,13 +175,6 @@ public class Squarelotron {
                     }
                 }
             }
-
-//            // replace array to temporal array
-//            for (int i = 0; i < size; i++) {
-//                for (int j = 0; j < size; j++) {
-//                    temporalSquarelotron[i][j] = this.squarelotron[i][j];
-//                }
-//            }
         }
     }
 
