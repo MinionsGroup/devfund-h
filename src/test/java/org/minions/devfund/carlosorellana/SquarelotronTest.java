@@ -1,6 +1,5 @@
 package org.minions.devfund.carlosorellana;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -40,13 +39,13 @@ public class SquarelotronTest {
      * Verify that UpsideDowFlip method return the expected result when select the Ring 1.
      */
     @Test
-    public void TestUpsideDownFlipMethodRingOne() {
-        final int [][] expectedMatrix = {
-                {21,22,23,24,25},
-                {16,7,8,9,20},
-                {11,12,13,14,15},
-                {6,17,18,19,10},
-                {1,2,3,4,5}
+    public void testUpsideDownFlipMethodRingOne() {
+        final int[][] expectedMatrix = {
+                {21, 22, 23, 24, 25},
+                {16, 7, 8, 9, 20},
+                {11, 12, 13, 14, 15},
+                {6, 17, 18, 19, 10},
+                {1, 2, 3, 4, 5}
         };
 
         final int size = 5;
@@ -61,13 +60,13 @@ public class SquarelotronTest {
      * Verify that UpsideDowFlip method return the expected result when select the Ring 2.
      */
     @Test
-    public void TestUpsideDownFlipMethodRinTwo() {
-        final int [][] expectedMatrix = {
-                {1,2,3,4,5},
-                {6,17,18,19,10},
-                {11,12,13,14,15},
-                {16,7,8,9,20},
-                {21,22,23,24,25}
+    public void testUpsideDownFlipMethodRingTwo() {
+        final int[][] expectedMatrix = {
+                {1, 2, 3, 4, 5},
+                {6, 17, 18, 19, 10},
+                {11, 12, 13, 14, 15},
+                {16, 7, 8, 9, 20},
+                {21, 22, 23, 24, 25}
         };
 
         final int size = 5;
@@ -82,13 +81,13 @@ public class SquarelotronTest {
      * Verify that MainDiagonalFlip method return the expected result when select the Ring 1.
      */
     @Test
-    public void TestMainDiagonalFlipMethodRingOne() {
-        final int [][] expectedMatrix = {
-                {1,6,11,16,21},
-                {2,7,8,9,22},
-                {3,12,13,14,23},
-                {4,17,18,19,24},
-                {5,10,15,20,25}
+    public void testMainDiagonalFlipMethodRingOne() {
+        final int[][] expectedMatrix = {
+                {1, 6, 11, 16, 21},
+                {2, 7, 8, 9, 22},
+                {3, 12, 13, 14, 23},
+                {4, 17, 18, 19, 24},
+                {5, 10, 15, 20, 25}
         };
 
         final int size = 5;
@@ -103,13 +102,13 @@ public class SquarelotronTest {
      * Verify that rotateRight method return the expected result when select the Ring 1.
      */
     @Test
-    public void TestMainDiagonalFlipMethodRinTwo() {
-        final int [][] expectedMatrix = {
-                {1,2,3,4,5},
-                {6,7,12,17,10},
-                {11,8,13,18,15},
-                {16,9,14,19,20},
-                {21,22,23,24,25}
+    public void testMainDiagonalFlipMethodRingTwo() {
+        final int[][] expectedMatrix = {
+                {1, 2, 3, 4, 5},
+                {6, 7, 12, 17, 10},
+                {11, 8, 13, 18, 15},
+                {16, 9, 14, 19, 20},
+                {21, 22, 23, 24, 25}
         };
         final int size = 5;
         final int ring = 2;
@@ -123,15 +122,15 @@ public class SquarelotronTest {
      * Verify that MainDiagonalFlip method return the expected result when select the Ring 1.
      */
     @Test
-    public void TestRotateRightMethodRingOneRotate90Grades() {
+    public void testRotateRightMethodRotate90Grades() {
         final int size = 5;
         final int turn = 1;
-        final int [][] expectedMatrix = {
-                {21,16,11,6,1},
-                {22,17,12,7,2},
-                {23,18,13,8,3},
-                {24,19,14,9,4},
-                {25,20,15,10,5}
+        final int[][] expectedMatrix = {
+                {21, 16, 11, 6, 1},
+                {22, 17, 12, 7, 2},
+                {23, 18, 13, 8, 3},
+                {24, 19, 14, 9, 4},
+                {25, 20, 15, 10, 5}
         };
 
         Squarelotron squarelotron = new Squarelotron(size);
@@ -144,15 +143,15 @@ public class SquarelotronTest {
      * Verify that rotateRight method return the expected result when select the Ring 2.
      */
     @Test
-    public void TestRotateRightMethodRinOneRotate270Grades() {
+    public void testRotateRightMethodRotate270Grades() {
         final int size = 5;
         final int turn = 3;
-        final int [][] expectedMatrix = {
-                {21,16,11,6,1},
-                {22,17,12,7,2},
-                {23,18,13,8,3},
-                {24,19,14,9,4},
-                {25,20,15,10,5}
+        final int[][] expectedMatrix = {
+                {21, 16, 11, 6, 1},
+                {22, 17, 12, 7, 2},
+                {23, 18, 13, 8, 3},
+                {24, 19, 14, 9, 4},
+                {25, 20, 15, 10, 5}
         };
 
         Squarelotron squarelotron = new Squarelotron(size);

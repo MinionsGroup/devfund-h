@@ -23,9 +23,9 @@ public class Squarelotron {
     /**
      * Sets Squarelotron Matrix.
      *
-     * @return Squarelotron Matrix.
+     * @param squarelotron - Squarelotron Matrix.
      */
-    public void setSquarelotron(int[][] squarelotron) {
+    public void setSquarelotron(final int[][] squarelotron) {
         this.squarelotron = squarelotron;
     }
 
