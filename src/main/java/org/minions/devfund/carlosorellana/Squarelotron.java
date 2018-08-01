@@ -44,12 +44,13 @@ public class Squarelotron {
     public int getMaxRings() {
         return (this.size % 2 == 0) ? size / 2 : size / 2 + 1;
     }
+
     /**
-      * Modifies A Upside-Down Flip of the outer ring of Squarelotron.
-      *
-      * @param ring - Number of ring.
-      * @return Instance new Squarelotron.
-      */
+     * Modifies A Upside-Down Flip of the outer ring of Squarelotron.
+     *
+     * @param ring - Number of ring.
+     * @return Instance new Squarelotron.
+     */
     public Squarelotron upsideDownFlip(final int ring) {
 
         if (ring > this.getMaxRings() || ring < 1) {
@@ -60,38 +61,58 @@ public class Squarelotron {
 
         int first = ring - 1;
         int last = size - ring;
-        boolean valA;
-        boolean valB;
-        boolean valC;
-        boolean valD;
 
         for (int i = 0; i <= size - 1; i++) {
             for (int j = 0; j <= size - 1; j++) {
 
-                valA = i == first || i == last;
-                valB = j >= first && j <= last;
-                valC = i > first && i < last;
-                valD = j == first || j == last;
-
-                if (valA && valB) {
-                    squarelotronTemporal.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
-                }
-
-
-                if (valC && valD) {
-                    squarelotronTemporal.squarelotron[i][j] = this.squarelotron[size - 1 - i][j];
-                }
+                squarelotronTemporal = createNewMatrixToUpsideDownFlip(i, j, first, last, squarelotronTemporal);
             }
         }
+
         return squarelotronTemporal;
     }
 
     /**
-     * Modifies the matrix - move the number diagonally in the Matrix.
+     * Creates a new matrix to Upside Down Flip values.
      *
-     * @param ring - Number the ring affected.
-     * @return New instance of Squarelotron
+     * @param positionX            - Position X.
+     * @param positionY            - Position Y.
+     * @param first                - Value get to (ring - 1).
+     * @param last                 - Value get to (size - ring).
+     * @param squarelotronTemporal - New Squarelotron Object.
+     * @return Instance of Squarelotron.
      */
+    private Squarelotron createNewMatrixToUpsideDownFlip(final int positionX, final int positionY,
+                                                         final int first, final int last,
+                                                         final Squarelotron squarelotronTemporal) {
+
+        boolean valA = positionX == first || positionX == last;
+        boolean valB = positionY >= first && positionY <= last;
+        boolean valC = positionX > first && positionX < last;
+        boolean valD = positionY == first || positionY == last;
+
+        if (valA && valB) {
+            squarelotronTemporal.squarelotron[positionX][positionY] =
+                    this.squarelotron[size - 1 - positionX][positionY];
+        }
+
+
+        if (valC && valD) {
+            squarelotronTemporal.squarelotron[positionX][positionY] =
+                    this.squarelotron[size - 1 - positionX][positionY];
+        }
+
+        return squarelotronTemporal;
+    }
+
+
+        /**
+         * Modifies the matrix - move the number diagonally in the Matrix.
+         *
+         * @param ring - Number the ring affected.
+         * @return New instance of Squarelotron
+         */
+
     public Squarelotron mainDiagonalFlip(final int ring) {
 
         if (ring > this.getMaxRings() || ring < 1) {
@@ -102,27 +123,40 @@ public class Squarelotron {
 
         int first = ring - 1; // 0
         int last = size - ring; // 3
-        boolean valA;
-        boolean valB;
-        boolean valC;
-        boolean valD;
+
 
         for (int i = 0; i <= size - 1; i++) {
             for (int j = 0; j <= size - 1; j++) {
-
-                valA = i == first || i == last;
-                valB = j >= first && j <= last;
-                valC = i > first && i < last;
-                valD = j == first || j == last;
-
-                if (valA && valB) {
-                    squarelotronTemporal.squarelotron[j][i] = this.squarelotron[i][j];
-                }
-
-                if (valC && valD) {
-                    squarelotronTemporal.squarelotron[j][i] = this.squarelotron[i][j];
-                }
+                squarelotronTemporal = createNewMatrixToMainDiagonalFlip(i, j, first, last, squarelotronTemporal);
             }
+        }
+        return squarelotronTemporal;
+    }
+
+    /**
+     * Creates a new matrix to Main Diagonal Flip values.
+     *
+     * @param positionX            - Position X.
+     * @param positionY            - Position Y.
+     * @param first                - Value get to (ring - 1).
+     * @param last                 - Value get to (size - ring).
+     * @param squarelotronTemporal - New Squarelotron Object.
+     * @return Instance of Squarelotron.
+     */
+    private Squarelotron createNewMatrixToMainDiagonalFlip(final int positionX, final int positionY,
+                                                           final int first, final int last,
+                                                           final Squarelotron squarelotronTemporal) {
+        boolean valA = positionX == first || positionX == last;
+        boolean valB = positionY >= first && positionY <= last;
+        boolean valC = positionX > first && positionX < last;
+        boolean valD = positionY == first || positionY == last;
+
+        if (valA && valB) {
+            squarelotronTemporal.squarelotron[positionY][positionX] = this.squarelotron[positionX][positionY];
+        }
+
+        if (valC && valD) {
+            squarelotronTemporal.squarelotron[positionY][positionX] = this.squarelotron[positionX][positionY];
         }
         return squarelotronTemporal;
     }
@@ -173,13 +207,13 @@ public class Squarelotron {
                         valD = j >= first && j <= last;
 
                         if (valA && valB) {
-                                this.squarelotron[i][j] = right ? temporalSquarelotron[size - 1 - j][first]
-                                        : temporalSquarelotron[j][last];
+                            this.squarelotron[i][j] = right ? temporalSquarelotron[size - 1 - j][first]
+                                    : temporalSquarelotron[j][last];
                         }
 
                         if (valC && valD) {
-                                this.squarelotron[i][j] = right ? temporalSquarelotron[size - 1 - j][last]
-                                        : temporalSquarelotron[j][first];
+                            this.squarelotron[i][j] = right ? temporalSquarelotron[size - 1 - j][last]
+                                    : temporalSquarelotron[j][first];
                         }
 
                         if (i > first && i < last) {
