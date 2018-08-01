@@ -172,20 +172,11 @@ public class Squarelotron {
         int ring;
         boolean right = true;
         int maxRing = getMaxRings();
-        boolean valA;
-        boolean valB;
-        boolean valC;
-        boolean valD;
 
         // New Temporal Squarelotron
         int[][] temporalSquarelotron = new int[size][size];
+        temporalSquarelotron = duplicateSquarelotronMatrix(temporalSquarelotron);
 
-        // Duplicates the squarelotron matrix.
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                temporalSquarelotron[i][j] = this.squarelotron[i][j];
-            }
-        }
 
         if (numberOfTurns < 0) {
             right = false;
@@ -195,43 +186,74 @@ public class Squarelotron {
         for (int x = 0; x < turns; x++) { // Move the ring in base the number of turns.
             for (int y = 1; y <= maxRing; y++) { // Mode on the ring selected
                 ring = y;
-                int first = ring - 1;
-                int last = size - ring;
 
                 for (int i = 0; i < size; i++) {
                     for (int j = 0; j < size; j++) {
 
-                        valA = i == first;
-                        valB = j >= first && j <= last;
-                        valC = i == last;
-                        valD = j >= first && j <= last;
-
-                        if (valA && valB) {
-                            this.squarelotron[i][j] = right ? temporalSquarelotron[size - 1 - j][first]
-                                    : temporalSquarelotron[j][last];
-                        }
-
-                        if (valC && valD) {
-                            this.squarelotron[i][j] = right ? temporalSquarelotron[size - 1 - j][last]
-                                    : temporalSquarelotron[j][first];
-                        }
-
-                        if (i > first && i < last) {
-                            if (j == last) {
-
-                                this.squarelotron[i][j] = right ? temporalSquarelotron[first][i]
-                                        : temporalSquarelotron[last][size - 1 - i];
-                            }
-
-                            if (j == first) {
-                                this.squarelotron[i][j] = right ? temporalSquarelotron[last][i]
-                                        : temporalSquarelotron[first][size - 1 - i];
-                            }
-                        }
+                        createNewMatrixToRotateRight(right, temporalSquarelotron, ring, i, j);
                     }
                 }
             }
         }
+    }
+
+    /**
+     * Updates the original Matrix with the values assigned to rotate the matrix.
+     *
+     * @param right - Directions to rotate the matrix.
+     * @param temporalSquarelotron - Clone Squarelotron Matrix.
+     * @param ring - Number ring.
+     * @param i - Position i.
+     * @param j - Position j.
+     */
+    private void createNewMatrixToRotateRight(final boolean right, final int[][] temporalSquarelotron,
+                                              final int ring, final int i, final int j) {
+        int first = ring - 1;
+        int last = size - ring;
+
+        boolean valA = i == first;
+        boolean valB = j >= first && j <= last;
+        boolean valC = i == last;
+        boolean valD = j >= first && j <= last;
+
+        if (valA && valB) {
+            this.squarelotron[i][j] = right ? temporalSquarelotron[size - 1 - j][first]
+                    : temporalSquarelotron[j][last];
+        }
+
+        if (valC && valD) {
+            this.squarelotron[i][j] = right ? temporalSquarelotron[size - 1 - j][last]
+                    : temporalSquarelotron[j][first];
+        }
+
+        if (i > first && i < last) {
+            if (j == last) {
+
+                this.squarelotron[i][j] = right ? temporalSquarelotron[first][i]
+                        : temporalSquarelotron[last][size - 1 - i];
+            }
+
+            if (j == first) {
+                this.squarelotron[i][j] = right ? temporalSquarelotron[last][i]
+                        : temporalSquarelotron[first][size - 1 - i];
+            }
+        }
+    }
+
+    /**
+     * Duplicates the int[][] squarelotron matrix.
+     *
+     * @param temporalSquarelotron - Matrix to be duplicate.
+     * @return Duplicate Matrix;
+     */
+    private int[][] duplicateSquarelotronMatrix(final int[][] temporalSquarelotron) {
+        // Duplicates the squarelotron matrix.
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                temporalSquarelotron[i][j] = this.squarelotron[i][j];
+            }
+        }
+        return temporalSquarelotron;
     }
 
     /**
