@@ -175,8 +175,8 @@ public class Squarelotron {
 
         // New Temporal Squarelotron
         int[][] temporalSquarelotron = new int[size][size];
-        temporalSquarelotron = duplicateSquarelotronMatrix(temporalSquarelotron);
 
+        duplicateSquarelotronMatrix(temporalSquarelotron);
 
         if (numberOfTurns < 0) {
             right = false;
@@ -208,6 +208,49 @@ public class Squarelotron {
      */
     private void createNewMatrixToRotateRight(final boolean right, final int[][] temporalSquarelotron,
                                               final int ring, final int i, final int j) {
+        assignValuesPositionY(right, temporalSquarelotron, ring, i, j);
+        assignValuesPositionX(right, temporalSquarelotron, ring, i, j);
+    }
+
+    /**
+     * Updates the original Matrix with the values assigned to rotate the matrix on position Y.
+     *
+     * @param right - Directions to rotate the matrix.
+     * @param temporalSquarelotron - Clone Squarelotron Matrix.
+     * @param ring - Number ring.
+     * @param i - Position i.
+     * @param j - Position j.
+     */
+    private void assignValuesPositionX(final boolean right, final int[][] temporalSquarelotron,
+                                        final int ring, final int i, final int j) {
+        int first = ring - 1;
+        int last = size - ring;
+
+        if (i > first && i < last) {
+            if (j == last) {
+
+                this.squarelotron[i][j] = right ? temporalSquarelotron[first][i]
+                        : temporalSquarelotron[last][size - 1 - i];
+            }
+
+            if (j == first) {
+                this.squarelotron[i][j] = right ? temporalSquarelotron[last][i]
+                        : temporalSquarelotron[first][size - 1 - i];
+            }
+        }
+    }
+
+    /**
+     * Updates the original Matrix with the values assigned to rotate the matrix on position X.
+     *
+     * @param right - Directions to rotate the matrix.
+     * @param temporalSquarelotron - Clone Squarelotron Matrix.
+     * @param ring - Number ring.
+     * @param i - Position i.
+     * @param j - Position j.
+     */
+    private void assignValuesPositionY(final boolean right, final int[][] temporalSquarelotron,
+                                        final int ring, final int i, final int j) {
         int first = ring - 1;
         int last = size - ring;
 
@@ -224,19 +267,6 @@ public class Squarelotron {
         if (valC && valD) {
             this.squarelotron[i][j] = right ? temporalSquarelotron[size - 1 - j][last]
                     : temporalSquarelotron[j][first];
-        }
-
-        if (i > first && i < last) {
-            if (j == last) {
-
-                this.squarelotron[i][j] = right ? temporalSquarelotron[first][i]
-                        : temporalSquarelotron[last][size - 1 - i];
-            }
-
-            if (j == first) {
-                this.squarelotron[i][j] = right ? temporalSquarelotron[last][i]
-                        : temporalSquarelotron[first][size - 1 - i];
-            }
         }
     }
 
