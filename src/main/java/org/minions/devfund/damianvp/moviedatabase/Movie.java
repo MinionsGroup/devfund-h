@@ -25,22 +25,16 @@ public class Movie {
         return this.rating;
     }
 
+    void setRating(double rating) {
+        this.rating = rating;
+    }
+
     void addActor(Actor actor) {
         if (!actorExists(actor.getName())) {
-
             Actor newActor = new Actor(actor.getName());
             newActor.addMovie(this);
             this.actors.add(actor);
         }
-
-        System.out.println("--------addedActor on movie class----------");
-//        for(int i = 0; i < actors.length; i++) {
-//            System.out.println(actorExists(actors[i]));
-//            if (!actorExists(actors[i])) {
-//                Actor newActor = new Actor(actors[i]);
-//                this.actors.add(newActor);
-//            }
-//        }
     }
 
 
