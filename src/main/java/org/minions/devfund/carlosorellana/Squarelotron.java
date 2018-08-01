@@ -65,7 +65,7 @@ public class Squarelotron {
         for (int i = 0; i <= size - 1; i++) {
             for (int j = 0; j <= size - 1; j++) {
 
-                squarelotronTemporal = createNewMatrixToUpsideDownFlip(i, j, first, last, squarelotronTemporal);
+                createNewMatrixToUpsideDownFlip(i, j, first, last, squarelotronTemporal);
             }
         }
 
@@ -127,7 +127,7 @@ public class Squarelotron {
 
         for (int i = 0; i <= size - 1; i++) {
             for (int j = 0; j <= size - 1; j++) {
-                squarelotronTemporal = createNewMatrixToMainDiagonalFlip(i, j, first, last, squarelotronTemporal);
+                createNewMatrixToMainDiagonalFlip(i, j, first, last, squarelotronTemporal);
             }
         }
         return squarelotronTemporal;
