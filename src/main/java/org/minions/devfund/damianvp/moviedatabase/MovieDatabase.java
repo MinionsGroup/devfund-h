@@ -1,87 +1,150 @@
 package org.minions.devfund.damianvp.moviedatabase;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Scanner;
 
+/**
+ * MovieDatabase class.
+ */
 public class MovieDatabase {
-
     private ArrayList<Movie> movieList;
     private ArrayList<Actor> actorList;
 
+    /**
+     * Constructor class.
+     */
     MovieDatabase() {
         this.movieList = new ArrayList<>();
         this.actorList = new ArrayList<>();
     }
 
+    /**
+     * Method to get the movie list.
+     * @return ArrayList<Movie>, movieList.
+     */
     ArrayList<Movie> getMovieList() {
         return this.movieList;
     }
 
+    /**
+     * Method to get the actor list.
+     * @return ArrayList<Actor>, actorList.
+     */
     ArrayList<Actor> getActorList() {
         return this.actorList;
     }
 
-    void addMovie(String name, String[] actors) {
+    /**
+     * Method to add a Movie.
+     * @param name String type.
+     * @param actors String List type
+     */
+    void addMovie(final String name, final String[] actors) {
         if (!containsMovie(name)) {
-            Movie newMovie = new Movie(name);
-            for(int i = 0; i < actors.length; i++) {
-                Actor actor;
-                if (!containsActor(actors[i])) {
-                    actor = new Actor(actors[i]);
-                    this.actorList.add(actor);
+            Movie movie = getMovieObject(name);
+            for (int i = 0; i < actors.length; i++) {
+                if (containsActor(actors[i])) {
+                    for (int j = 0; j < this.actorList.size(); j++) {
+                        if (this.actorList.get(j).getName().equals(actors[i])) {
+                            this.actorList.get(j).addMovie(movie);
+                            movie.addActor(this.actorList.get(j));
+                        }
+                    }
+
+
                 } else {
-                    actor = getExistentActorObject(actors[i]);
+                    Actor actor = getActorObject(actors[i]);
+                    actor.addMovie(movie);
+                    movie.addActor(actor);
+                    this.actorList.add(actor);
                 }
-                actor.addMovie(newMovie);
-                newMovie.addActor(actor);
+            }
+            this.movieList.add(movie);
+        }
+    }
+
+    /**
+     * Method to check if movie already exist in class.
+     * @param name String type.
+     * @return true: if movie exist.
+     *         false: if movie does not exist.
+     */
+    public boolean containsMovie(final String name) {
+        return this.movieList.stream().anyMatch(o -> o.getName().equals(name));
+    }
+
+    /**
+     * Method to check if actor already exist in class.
+     * @param name String type.
+     * @return true: if actor exist.
+     *         false: if actor does not exist.
+     */
+    public boolean containsActor(final String name) {
+        return this.actorList.stream().anyMatch(o -> o.getName().equals(name));
+    }
+
+    /**
+     * Method to get the Actor object.
+     * @param name String type.
+     * @return Actor object.
+     */
+    public Actor getActorObject(final String name) {
+        return this.actorList.stream().findAny().filter(o -> o.getName().equals(name)).orElse(new Actor(name));
+    }
+
+    /**
+     * Method to get the Movie object form the list by movie name.
+     * @param name String type.
+     * @return Movie object from list: if movie already exists.
+     *         new Movie object: if movie does not exists.
+     */
+    public Movie getMovieObject(final String name) {
+        Movie ob = this.movieList.stream().findAny().filter(o -> o.getName().equals(name)).orElse(new Movie(name));
+        return ob;
+    }
+
+    /**
+     * Method to add a rating to a specific movie.
+     * @param name String type, name of movie.
+     * @param rating double type, rating to set.
+     */
+    void addRating(final String name, double rating) {
+        for (int i = 0; i < this.movieList.size(); i++) {
+            if (this.movieList.get(i).getName().equals(name)) {
+                this.movieList.get(i).setRating(rating);
+                return;
             }
         }
     }
 
-    public boolean containsMovie(final String name){
-        return this.movieList.stream().anyMatch(o -> o.getName().equals(name));
-    }
-
-    public boolean containsActor(final String name){
-        return this.actorList.stream().anyMatch(o -> o.getName().equals(name));
-    }
-    
-    public Actor getExistentActorObject(String name) {
-        int i = 0;
-        while (this.actorList.get(i).getName() != name) {
-            i++;
-        }
-        return this.actorList.get(i);
-    }
-
-    public Movie getExistentMovieObject(String name) {
-        int i = 0;
-        while (this.movieList.get(i).getName() != name) {
-            i++;
-        }
-        return this.movieList.get(i);
-    }
-
-    void addRating(String name, double rating) {
-        if (!containsMovie(name)) {
-            Movie movie = getExistentMovieObject(name);
-            movie.setRating(rating);
-        }
-    }
-
-    void updateRating(String name, double newRating) {
+    /**
+     * Method to update the rating of a specific movie.
+     * @param name String type, name of movie.
+     * @param newRating double type, rating to update.
+     */
+    void updateRating(final String name, double newRating) {
         addRating(name, newRating);
     }
 
+    /**
+     * Method to get the nest actor of class.
+     * @return String type, name of the best actor.
+     */
     String getBestActor() {
-        Comparator<Actor> comparator = Comparator.comparing(Actor::getActorRatingAverage);
-        return this.actorList.stream().max(comparator).getClass().getName();
+        Comparator<Actor> comparator = Comparator.comparing(Actor::getRatingAverage);
+        String name = this.actorList.stream().max(comparator).get().getName();
+        Actor actor = getActorObject(name);
+        return actor.getName();
     }
 
+    /**
+     * Method to get the best movie of the class.
+     * @return String type, name of best movie.
+     */
     String getBestMovie() {
         Comparator<Movie> comparator = Comparator.comparing(Movie::getRating);
-        return this.movieList.stream().max(comparator).getClass().getName();
+        return this.movieList.stream().max(comparator).get().getName();
     }
+
 }
+
