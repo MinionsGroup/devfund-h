@@ -39,14 +39,14 @@ public class MovieTest {
      */
     @Test
     public void testMovieConstructor() {
-        final ArrayList<Movie> emptyMovieList = new ArrayList<>();
-        karateMovie.equals(movie1.getName());
+        final ArrayList<Actor> emptyMovieList = new ArrayList<>();
+        assertEquals(karateMovie, movie1.getName());
         assertEquals(emptyMovieList, movie1.getActors());
-        gloryMovie.equals(movie2.getName());
+        assertEquals(gloryMovie, movie2.getName());
         assertEquals(emptyMovieList, movie2.getActors());
-        sevenMovie.equals(movie3.getName());
+        assertEquals(sevenMovie, movie3.getName());
         assertEquals(emptyMovieList, movie3.getActors());
-        theShawshankRedemtionMovie.equals(movie4.getName());
+        assertEquals(theShawshankRedemtionMovie, movie4.getName());
         assertEquals(emptyMovieList, movie4.getActors());
     }
 
