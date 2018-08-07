@@ -57,7 +57,7 @@ public class Actor {
      * @return Double, average of Movie ratings.
      */
     Double getRatingAverage() {
-        return this.movies.stream().mapToDouble(Movie::getRating).average().getAsDouble();
+        return this.movies.stream().mapToDouble(Movie::getRating).average().orElseThrow();
     }
 
     /**

@@ -9,9 +9,6 @@ import static org.junit.Assert.assertEquals;
  * class to test the Movie class.
  */
 public class MovieTest {
-
-    private Actor actor1;
-    private Actor actor2;
     private Movie movie1;
     private Movie movie2;
     private Movie movie3;
@@ -58,9 +55,8 @@ public class MovieTest {
         final ArrayList<Actor> expectedList1 = new ArrayList<>();
         final ArrayList<Actor> expectedList2 = new ArrayList<>();
         final ArrayList<Actor> expectedList3 = new ArrayList<>();
-
-        actor1 = new Actor(actorMacchio);
-        actor2 = new Actor(actorFreeman);
+        Actor actor1 = new Actor(actorMacchio);
+        Actor actor2 = new Actor(actorFreeman);
 
         movie1.addActor(actor1);
         movie1.addActor(actor2);

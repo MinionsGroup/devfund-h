@@ -103,7 +103,9 @@ public class MovieDataBaseTest {
         movieDatabase.addRating(karateMovie, rating1);
         movieDatabase.addRating(gloryMovie, rating2);
         movieDatabase.addRating(sevenMovie, rating3);
+
         assertEquals(actorFreeman, movieDatabase.getBestActor());
+
     }
     /**
      * Method to test detBestMovie method..

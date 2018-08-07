@@ -1,7 +1,9 @@
 package org.minions.devfund.damianvp.moviedatabase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Optional;
 
 /**
  * MovieDatabase class.
@@ -42,23 +44,12 @@ public class MovieDatabase {
     void addMovie(final String name, final String[] actors) {
         if (!containsMovie(name)) {
             Movie movie = getMovieObject(name);
-            for (int i = 0; i < actors.length; i++) {
-                if (containsActor(actors[i])) {
-                    for (int j = 0; j < this.actorList.size(); j++) {
-                        if (this.actorList.get(j).getName().equals(actors[i])) {
-                            this.actorList.get(j).addMovie(movie);
-                            movie.addActor(this.actorList.get(j));
-                        }
-                    }
-
-
-                } else {
-                    Actor actor = getActorObject(actors[i]);
-                    actor.addMovie(movie);
-                    movie.addActor(actor);
-                    this.actorList.add(actor);
-                }
-            }
+            Arrays.stream(actors).forEach(actor -> {
+                Actor actorObject = getActorObject(actor);
+                int index = this.actorList.indexOf(actorObject);
+                this.actorList.get(index).addMovie(movie);
+                movie.addActor(this.actorList.get(index));
+            });
             this.movieList.add(movie);
         }
     }
@@ -74,22 +65,18 @@ public class MovieDatabase {
     }
 
     /**
-     * Method to check if actor already exist in class.
-     * @param name String type.
-     * @return true: if actor exist.
-     *         false: if actor does not exist.
-     */
-    public boolean containsActor(final String name) {
-        return this.actorList.stream().anyMatch(o -> o.getName().equals(name));
-    }
-
-    /**
      * Method to get the Actor object.
      * @param name String type.
      * @return Actor object.
      */
     public Actor getActorObject(final String name) {
-        return this.actorList.stream().findAny().filter(o -> o.getName().equals(name)).orElse(new Actor(name));
+        Optional<Actor> actor = this.actorList.stream().filter(o -> o.getName().equals(name)).findAny();
+        if (actor.isPresent()) {
+            return actor.get();
+        }
+        Actor newActor = new Actor(name);
+        this.actorList.add(newActor);
+        return newActor;
     }
 
     /**
@@ -99,8 +86,7 @@ public class MovieDatabase {
      *         new Movie object: if movie does not exists.
      */
     public Movie getMovieObject(final String name) {
-        Movie ob = this.movieList.stream().findAny().filter(o -> o.getName().equals(name)).orElse(new Movie(name));
-        return ob;
+        return this.movieList.stream().findAny().filter(o -> o.getName().equals(name)).orElse(new Movie(name));
     }
 
     /**
@@ -132,9 +118,7 @@ public class MovieDatabase {
      */
     String getBestActor() {
         Comparator<Actor> comparator = Comparator.comparing(Actor::getRatingAverage);
-        String name = this.actorList.stream().max(comparator).get().getName();
-        Actor actor = getActorObject(name);
-        return actor.getName();
+        return this.actorList.stream().max(comparator).orElseThrow().getName();
     }
 
     /**
@@ -143,7 +127,7 @@ public class MovieDatabase {
      */
     String getBestMovie() {
         Comparator<Movie> comparator = Comparator.comparing(Movie::getRating);
-        return this.movieList.stream().max(comparator).get().getName();
+        return this.movieList.stream().max(comparator).orElseThrow().getName();
     }
 
 }
