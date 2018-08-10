@@ -83,7 +83,7 @@ public class Movie {
      * @return name and rating
      */
     public String toString() {
-        return name + " Rating:" + rating;
+        return String.format("%s Rating:%.1f", name, rating);
     }
 
     /**

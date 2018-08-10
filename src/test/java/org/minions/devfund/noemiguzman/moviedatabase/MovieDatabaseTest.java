@@ -14,24 +14,15 @@ import static org.junit.Assert.assertEquals;
 public class MovieDatabaseTest {
     private MovieDatabase moviedb1;
     private MovieDatabase moviedb2;
-
-    private String actorBale = "Christian Bale";
-    private String actorWest = "Adam West";
-    private String actorAffleck = "Ben Affleck";
-    private String movieGlass = "Glass";
-    private String movieBatman = "Batman";
-    private String movieIt = "It";
     private Movie movie1;
-
-
-
     /**
      * Method to setup movie1 and movie2.
      */
 
     @Before
     public void setUpMovieDatabases() {
-
+        String actorAffleck = "Ben Affleck";
+        String movieGlass = "Glass";
         moviedb1 = new MovieDatabase();
         moviedb2 = new MovieDatabase();
 
@@ -61,6 +52,9 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieTwoTime() {
+        String actorAffleck = "Ben Affleck";
+        String actorWest = "Adam West";
+        String movieGlass = "Glass";
         List<Movie> movieList = new ArrayList<>();
         MovieDatabase moviedb3 = new MovieDatabase();
         String[] actors1 = new String[] {actorAffleck, actorWest};
@@ -75,6 +69,9 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovie() {
+        String actorWest = "Adam West";
+        String actorAffleck = "Ben Affleck";
+        String movieGlass = "Glass";
         List<Movie> movieList = new ArrayList<>();
         MovieDatabase moviedb3 = new MovieDatabase();
         String[] actors1 = new String[] {actorAffleck, actorWest};
@@ -89,6 +86,9 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddRating() {
+        String actorWest = "Adam West";
+        String actorAffleck = "Ben Affleck";
+        String movieBatman = "Batman";
         final Double expectedRating = 7.8;
         String[] actors = new String[] {actorAffleck, actorWest};
         moviedb2.addMovie(movieBatman, actors);
@@ -101,6 +101,9 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testUpdateRating() {
+        String actorWest = "Adam West";
+        String actorAffleck = "Ben Affleck";
+        String movieBatman = "Batman";
         String[] actors = new String[] {actorAffleck, actorWest};
         final Double expected1 =  25.10;
         final Double expectedFinal = 32.10;
@@ -115,6 +118,12 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testGetBestActor() {
+        String actorWest = "Adam West";
+        String actorBale = "Christian Bale";
+        String actorAffleck = "Ben Affleck";
+        String movieGlass = "Glass";
+        String movieBatman = "Batman";
+        String movieIt = "It";
         String[] actors1 = new String[] {actorAffleck, actorWest};
         String expectedBestActor = actorAffleck;
         final Double expectedRating1 = 5.5;
@@ -139,7 +148,12 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testGetBestMovie() {
-
+        String actorBale = "Christian Bale";
+        String actorWest = "Adam West";
+        String actorAffleck = "Ben Affleck";
+        String movieBatman = "Batman";
+        String movieGlass = "Glass";
+        String movieIt = "It";
         String[] actors1 = new String[] {actorAffleck, actorWest};
         final Double expectedRating1 = 15.5;
         moviedb1.addMovie(movieGlass, actors1);
