@@ -160,42 +160,5 @@ public class OceanTest {
         }
 
         assertEquals(sb.toString(), ocean.toString());
-
-    }
-
-    @Test
-    public void testToString3() {
-        Ocean ocean = new Ocean();
-        BattleShip ship = new BattleShip();
-        ship.placeShipAt(0, 0, true, ocean);
-        for (int j = 0; j < 7; j++) {
-            ocean.shootAt(1, j);
-        }
-        ocean.shootAt(1, 1);
-        assertEquals(0, ocean.getHitCount());
-        assertEquals(0, ocean.getShipsSunk());
-        assertEquals(8, ocean.getShotsFired());
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(" ");
-        for (int i = 0; i < 20; i++) {
-            sb.append(String.format("%3d", i));
-        }
-        sb.append("\n");
-
-        for (int i = 0; i < 20; i++) {
-            sb.append(String.format("%2d ", i));
-            for (int j = 0; j < 20; j++) {
-                if (i == 1 && j < 7) {
-                    sb.append("-  ");
-                } else {
-                    sb.append(".  ");
-                }
-            }
-            sb.append("\n");
-        }
-
-        assertEquals(sb.toString(), ocean.toString());
-
     }
 }

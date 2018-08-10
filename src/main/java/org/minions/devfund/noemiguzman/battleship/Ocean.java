@@ -1,18 +1,15 @@
 package org.minions.devfund.noemiguzman.battleship;
 
-import java.util.Random;
-
 public class Ocean {
     private int SIZE_OCEAN = 20;
     private int NRO_SHIPS = 13;
-    private Ship[][] ships = new Ship[SIZE_OCEAN][SIZE_OCEAN]; // Used to quickly determine which ship is in any given location.
-    private int shotsFired; // The total number of shots fired by the user.
-    private int hitCount; // The number of times a shot hit a ship. If the user shoots the same part of a ship more than once, every hit is counted, even though the additional ”hits” don’t do the user any good.
-    private int shipsSunk; // The number of ships sunk. Remember that you have a total of 13 ships.
-
+    private Ship[][] ships = new Ship[SIZE_OCEAN][SIZE_OCEAN];
+    private int shotsFired;
+    private int hitCount;
+    private int shipsSunk;
 
     /*
-     * Creates an ”empty” ocean (fills the ships array with a bunch of EmptySea instances).
+     * Creates an empty ocean (fills the ships array with a bunch of EmptySea instances).
      * Also initializes any game variables, such as how many shots have been fired.
      */
     public Ocean() {
@@ -65,10 +62,10 @@ public class Ocean {
     }
 
     /*
-     * Returns true if the given location contains a ”real” ship, still afloat, (not an EmptySea), false if it does not.
+     * Returns true if the given location contains a real ship, still afloat, (not an EmptySea), false if it does not.
      * In addition, this method updates the number of shots that have been fired, and the number of hits.
-     * Note: If a location contains a ”real” ship, shootAt should return true every time the user shoots at that same location.
-     * Once a ship has been ”sunk”, additional shots at its location should return false.
+     * Note: If a location contains a real ship, shootAt should return true every time the user shoots at that same location.
+     * Once a ship has been sunk, additional shots at its location should return false.
      */
     public boolean shootAt(int row, int column) {
         this.shotsFired++;
@@ -82,8 +79,6 @@ public class Ocean {
                 return true;
             }
             return false;
-        } else {
-            ships[row][column].shootAt(row, column);
         }
         return false;
     }

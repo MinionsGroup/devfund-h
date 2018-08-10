@@ -1,11 +1,19 @@
 package org.minions.devfund.noemiguzman.battleship;
 
 import java.util.Arrays;
-
+/**
+* Battle Cruiser class
+*/
 public class BattleCruiser extends Ship {
+
+
+    private final int lengthBc = 7;
+    /**
+     * constructor on battle cruiser
+     */
     public BattleCruiser() {
-        this.setLength(7);
-        this.setHit(new boolean[7]);
+        this.setLength(lengthBc);
+        this.setHit(new boolean[lengthBc]);
         Arrays.fill(this.getHit(), false);
     }
 
