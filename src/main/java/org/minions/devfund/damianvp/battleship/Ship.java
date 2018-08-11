@@ -1,5 +1,7 @@
 package org.minions.devfund.damianvp.battleship;
 
+import java.util.Arrays;
+
 public abstract class Ship {
     private int bowRow; //the row (0 to 19) which contains the bow (front) of the ship.
     private int bowColumn; //- the column which contains the bow (front) of the ship.
@@ -50,18 +52,29 @@ public abstract class Ship {
     abstract String getShipType();
 
     boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-        if (row > 20 || column > 20) {
-            return false;
-        }
+        System.out.println("------------");
+        System.out.println(row);
+        System.out.println(column);
+        System.out.println(horizontal);
+        System.out.println(this.length);
+//        if (row > 20 || column > 20) {
+//            return false;
+//        }
 
         if (horizontal) {
-            for (int i = column - 1; i < this.getLength(); i++) {
+            if (column + this.getLength() >= 20) {
+                return false;
+            }
+            for (int i = column; i < column + this.getLength(); i++) {
                 if (!ocean.getShipArray()[row][i].getShipType().equals("empty")) {
                     return false;
                 }
             }
         } else {
-            for (int i = row - 1; i < this.getLength(); i++) {
+            if (row + this.getLength() >= 20) {
+                return false;
+            }
+            for (int i = row; i < row + this.getLength(); i++) {
                 if (!ocean.getShipArray()[i][column].getShipType().equals("empty")) {
                     return false;
                 }
@@ -76,11 +89,13 @@ public abstract class Ship {
         this.horizontal = horizontal;
 
         if (this.horizontal) {
-            for (int i = column - 1; i < this.getLength(); i++) {
+            for (int i = column; i < column + this.getLength(); i++) {
+                System.out.println("placed");
                 ocean.getShipArray()[row][i] = this;
             }
         } else {
-            for (int i = row - 1; i < this.getLength(); i++) {
+            for (int i = row; i < row + this.getLength(); i++) {
+                System.out.println("placed");
                 ocean.getShipArray()[i][column] = this;
             }
         }
@@ -119,5 +134,27 @@ public abstract class Ship {
         }
         return "S";
 //        return isSunk() ? "x" : "S";
+    }
+
+
+
+
+
+    /*
+     * Return true if the part of the ship was hit, false otherwise
+     */
+    public boolean wasShootAt(int row, int column) {
+        System.out.println("********");
+        for (int i=0; i<this.hit.length;i++) {
+            System.out.println(this.hit[i]);
+        }
+
+        if (horizontal) {
+            System.out.println(column - this.bowColumn);
+            return hit[column - this.bowColumn] == true;
+        } else {
+            System.out.println(row - this.bowRow);
+            return hit[row - this.bowRow] == true;
+        }
     }
 }

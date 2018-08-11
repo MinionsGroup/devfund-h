@@ -43,6 +43,7 @@ public class Ocean {
                 ships[i] = new Submarine();
             }
         }
+        int i=1;
 
         for (Ship ship : ships) {
             while (true) {
@@ -51,20 +52,37 @@ public class Ocean {
                 boolean horizontal = random.nextBoolean();
 //				System.out.println(ship.getShipType() + " "+ row + " " + column + " horizontal? " + horizontal + " ok? "+ ship.okToPlaceShipAt(row, column, horizontal, this));
                 if (ship.okToPlaceShipAt(row, column, horizontal, this)) {
+
                     ship.placeShipAt(row, column, horizontal, this);
+                    System.out.println("placed ship:---" + i);
+                    i++;
                     break;
                 }
             }
         }
 
+        System.out.println("print game board///////");
+
+        for (int ii = 0; ii < 20; ii++) {
+            for (int j = 0; j < 20; j++) {
+                System.out.println(this.getShipArray()[ii][j].getShipType());
+//                if (!this.getShipArray()[ii][j].getShipType().equals("empty")) {
+//                    shipCount++;
+//                }
+
+            }
+        }
+
+//        System.out.println(Arrays.deepToString(getShipArray()));
 
     }
 
     boolean isOccupied(int row, int column) {
-        if (!this.ships[row][column].getShipType().equals("empty")) {
-            return false;
-        }
-        return true;
+//        if (!this.ships[row][column].getShipType().equals("empty")) {
+//            return false;
+//        }
+//        return true;
+        return !ships[row][column].getShipType().equals("empty");
     }
 
     boolean shootAt(int row, int column) {
@@ -75,6 +93,7 @@ public class Ocean {
                     shipsSunk++;
                 }
                 hitCount++;
+                System.out.println(hitCount);
                 return true;
             }
             return false;
@@ -86,6 +105,10 @@ public class Ocean {
 
     public Ship[][] getShips() {
         return ships;
+    }
+
+    public int getShotsFired() {
+        return shotsFired;
     }
 
     public int getHitCount() {
@@ -104,8 +127,46 @@ public class Ocean {
         return ships;
     }
 
-    void print() {
 
+//    void print() {
+//
+//    }
+
+    public void print() {
+        System.out.println(toString());
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ");
+        for (int i = 0; i < 20; i++) {
+            sb.append(String.format("%3d", i));
+        }
+        sb.append("\n");
+
+        for (int i = 0; i < 20; i++) {
+            sb.append(String.format("%2d ", i));
+            for (int j = 0; j < 20; j++) {
+//				sb.append(ships[i][j].toString());
+
+                if (!ships[i][j].wasShootAt(i, j)) { // never been fired
+                    sb.append(".");
+                } else {
+                    sb.append(ships[i][j].toString());
+//					if (!isOccupied(i, j)) { // fired, but nothing there
+//						sb.append("-");
+//					} else {
+//						sb.append(ships[i][j].toString());
+//					}
+                }
+
+
+
+                sb.append("  ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 
 

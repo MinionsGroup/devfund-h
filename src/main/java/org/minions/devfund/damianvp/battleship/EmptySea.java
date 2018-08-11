@@ -21,7 +21,8 @@ public class EmptySea extends Ship{
 
     @Override
     public String toString() {
-        return "E";
+        return this.getHit()[0] ? "-" : ".";
+//        return "E";
 //        return super.toString();
     }
 
