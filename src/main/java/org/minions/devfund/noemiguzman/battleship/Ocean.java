@@ -60,7 +60,6 @@ public class Ocean {
         final int iLC = 4;
         final int iDES = 7;
 
-      //  enum Choice { Choice1, Choice2, Choice3 }
         Ship ship1;
         switch (i) {
             case 0:  ship1  = new BattleShip();
@@ -143,14 +142,11 @@ public class Ocean {
         for (int i = 0; i < SIZE_OCEAN; i++) {
             sb.append(String.format("%2d ", i));
             for (int j = 0; j < SIZE_OCEAN; j++) {
-                if (!ships[i][j].wasShootAt(i, j)) { // never been fired
+                if (!ships[i][j].wasShootAt(i, j)) {
                     sb.append(".");
                 } else {
                     sb.append(ships[i][j].toString());
                 }
-
-
-
                 sb.append("  ");
             }
             sb.append("\n");
