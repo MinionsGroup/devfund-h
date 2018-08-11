@@ -7,14 +7,14 @@ import java.util.Arrays;
  */
 
 public class LightCruiser extends Ship {
-    private final int lengthLC = 5;
+    private static final int LENGTH_LC = 5;
 
     /**
      * Constructor.
      */
     public LightCruiser() {
-        this.setLength(lengthLC);
-        this.setHit(new boolean[lengthLC]);
+        this.setLength(LENGTH_LC);
+        this.setHit(new boolean[LENGTH_LC]);
         Arrays.fill(this.getHit(), false);
     }
 

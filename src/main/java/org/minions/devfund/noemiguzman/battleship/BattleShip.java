@@ -5,14 +5,14 @@ import java.util.Arrays;
 * Battleship class.
 */
 public class BattleShip extends Ship {
-    private final int length = 8;
+    static final int LENGTHBS = 8;
 
     /**
      * constructor battleship.
      */
     public BattleShip() {
-        this.setLength(length);
-        this.setHit(new boolean[length]);
+        this.setLength(LENGTHBS);
+        this.setHit(new boolean[LENGTHBS]);
         Arrays.fill(this.getHit(), false);
     }
 

@@ -1,54 +1,75 @@
 package org.minions.devfund.noemiguzman.battleship;
 
-import static org.junit.Assert.*;
+
 
 import org.junit.Test;
 
-public class ShipTest {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+/**
+ * class to test ship methods.
+ */
+public class ShipTest {
+    /**
+     * test get ship type.
+     */
     @Test
     public void testGetShipType() {
+        final int expectedLength = 8;
         Ship ship = new BattleShip();
         assertEquals("battleship", ship.getShipType());
-        assertEquals(8, ship.getLength());
+        assertEquals(expectedLength, ship.getLength());
     }
 
-    @Test
-    public void testGetShipType2() {
-        Ship ship = new BattleCruiser();
-        assertEquals("battlecruiser", ship.getShipType());
-        assertEquals(7, ship.getLength());
-    }
-
+    /**
+     * method to test ok to place ship.
+     */
     @Test
     public void testOkToPlaceShipAt() {
+        final int column17 = 17;
+        final int row12 = 12;
+        final int row15 = 15;
+        final int column10 = 10;
         Ship ship = new BattleShip();
         Ocean ocean = new Ocean();
-        assertFalse(ship.okToPlaceShipAt(0, 17, true, ocean));
-        assertTrue(ship.okToPlaceShipAt(0, 10, true, ocean));
-        assertFalse(ship.okToPlaceShipAt(15, 17, false, ocean));
-        assertTrue(ship.okToPlaceShipAt(12, 10, false, ocean));
+        assertFalse(ship.okToPlaceShipAt(0, column17, true, ocean));
+        assertTrue(ship.okToPlaceShipAt(0, column10, true, ocean));
+        assertFalse(ship.okToPlaceShipAt(row15, column17, false, ocean));
+        assertTrue(ship.okToPlaceShipAt(row12, column10, false, ocean));
     }
 
+    /**
+     * method to test ok place ship.
+     */
     @Test
     public void testOkToPlaceShipAt2() {
+        final int column10 = 10;
+        final int column13 = 13;
+        final int column4 = 4;
+
         Ship ship1 = new BattleShip();
         Ship ship2 = new BattleShip();
         Ocean ocean = new Ocean();
-        assertTrue(ship1.okToPlaceShipAt(0, 10, true, ocean));
-        ship1.placeShipAt(0, 10, true, ocean);
+        assertTrue(ship1.okToPlaceShipAt(0, column10, true, ocean));
+        ship1.placeShipAt(0, column10, true, ocean);
         assertTrue(ship2.okToPlaceShipAt(1, 0, false, ocean));
         assertTrue(ship2.okToPlaceShipAt(1, 0, true, ocean));
-        assertFalse(ship2.okToPlaceShipAt(1, 4, true, ocean));
-        assertFalse(ship2.okToPlaceShipAt(1, 13, false, ocean));
+        assertFalse(ship2.okToPlaceShipAt(1, column4, true, ocean));
+        assertFalse(ship2.okToPlaceShipAt(1, column13, false, ocean));
     }
 
+    /**
+     * method to test is sunk.
+     */
     @Test
     public void testIsSunk() {
+        final int place8 = 8;
         Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
-        for (int j = 0; j < 8; j++) {
+        for (int j = 0; j < place8; j++) {
             ocean.shootAt(0, j);
         }
 
@@ -56,12 +77,16 @@ public class ShipTest {
 
     }
 
+    /**
+     * method to test sunk.
+     */
     @Test
     public void testIsSunk2() {
+        final int place7 = 7;
         Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
-        for (int j = 0; j < 7; j++) {
+        for (int j = 0; j < place7; j++) {
             ocean.shootAt(0, j);
         }
 
@@ -69,12 +94,16 @@ public class ShipTest {
 
     }
 
+    /**
+     * method to test to string.
+     */
     @Test
     public void testToString() {
+        final int place8 = 8;
         Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
-        for (int j = 0; j < 8; j++) {
+        for (int j = 0; j < place8; j++) {
             ocean.shootAt(0, j);
         }
 
@@ -82,12 +111,16 @@ public class ShipTest {
 
     }
 
+    /**
+     * method to test to string with battleship.
+     */
     @Test
-    public void testToString2() {
+    public void testToStringWithShip() {
         Ocean ocean = new Ocean();
+        final int place7 = 7;
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
-        for (int j = 0; j < 7; j++) {
+        for (int j = 0; j < place7; j++) {
             ocean.shootAt(0, j);
         }
 
@@ -95,31 +128,41 @@ public class ShipTest {
 
     }
 
+    /**
+     * method to test shootat.
+     */
     @Test
     public void testShootAt() {
         Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
+        final int column4 = 4;
+        final int column3 = 3;
         ship.placeShipAt(0, 0, true, ocean);
 
-        assertTrue(ship.shootAt(0, 3));
-        assertTrue(ship.shootAt(0, 4));
-        assertFalse(ship.shootAt(1, 4));
+        assertTrue(ship.shootAt(0, column3));
+        assertTrue(ship.shootAt(0, column4));
+        assertFalse(ship.shootAt(1, column4));
 
     }
 
+    /**
+     * method to test shoot at with battleship.
+     */
     @Test
-    public void testShootAt2() {
+    public void testShootAtWithShip() {
         Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
+        final int column8 = 8;
+        final int column4 = 4;
+        final int column3 = 3;
         ship.placeShipAt(0, 0, true, ocean);
-        for (int j = 0; j < 8; j++) {
+        for (int j = 0; j < column8; j++) {
             ocean.shootAt(0, j);
         }
 
-        assertFalse(ship.shootAt(0, 3));
-        assertFalse(ship.shootAt(0, 4));
-        assertFalse(ship.shootAt(1, 4));
+        assertFalse(ship.shootAt(0, column3));
+        assertFalse(ship.shootAt(0, column4));
+        assertFalse(ship.shootAt(1, column4));
 
     }
-
 }

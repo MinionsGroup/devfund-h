@@ -21,17 +21,35 @@ public class BattleshipGame {
      *  All input output is done here (although some of it is done by calling a print() method in the Ocean class.)
      *  All computation will be done in the Ocean class and the various Ship classes.
      */
-    public static void main(final String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Ocean ocean = new Ocean();
+    public BattleshipGame() {
         System.out.println("Welcome to BattleShip Game! \n");
+    }
+
+    /**
+     * main method.
+     * @param args string
+     */
+    public static void main(final String[] args) {
+
+        BattleshipGame  game = new BattleshipGame();
+        game.payGame();
+    }
+
+    /**
+     * method to play battleship game.
+     */
+
+    private void payGame() {
+        Scanner scanner = new Scanner(System.in, "UTF-8");
+        Ocean ocean = new Ocean();
+
         ocean.placeAllShipsRandomly();
 
         while (true) {
             System.out.println("Shot fired: " + ocean.getShotsFired());
             System.out.println("Hits: " + ocean.getHitCount());
             System.out.println("Ships sunk: " + ocean.getShipsSunk());
-            System.out.println();
+
             ocean.print();
 
             String input = scanner.nextLine();

@@ -7,13 +7,13 @@ import java.util.Arrays;
  *  Destroyer class.
  */
 public class Destroyer extends Ship {
-    private final int lengthD = 4;
+    private static final int LENGTH_D = 4;
     /**
      * constructor.
      */
     public Destroyer() {
-        this.setLength(lengthD);
-        this.setHit(new boolean[lengthD]);
+        this.setLength(LENGTH_D);
+        this.setHit(new boolean[LENGTH_D]);
         Arrays.fill(this.getHit(), false);
     }
 

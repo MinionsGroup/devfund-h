@@ -3,34 +3,46 @@ package org.minions.devfund.noemiguzman.battleship;
 
 import java.util.Random;
 
+/**
+ * Ship class.
+ */
 public abstract class Ship {
     private int length;
     private boolean horizontal;
     private int bowRow;
     private int bowColumn;
+    private static final int SIZE_OCEAN = 20;
+    private boolean[] hit;
 
-    boolean[] hit;
-
-    /*
+    /**
      * This is an abstract method and therefore has no body.
+     * @return ship string
      */
     public abstract String getShipType();
 
-    /*
-     * Returns true if it is okay to put a ship of this length with its bow in this location, with the given orientation, and returns false otherwise.
-     * The ship must not overlap another ship, or touch another ship (vertically, horizontally, or diagonally), and it must not stickout beyond the array.
+
+    /**
+     * Returns true if it is okay to put a ship of this length with its bow in this location,
+     * with the given orientation, and returns false otherwise.
+     * The ship must not overlap another ship, or touch another ship (vertically, horizontally, or diagonally),
+     * and it must not stickout beyond the array.
      * Do not actually change either the ship or the Ocean, just says whether it is legal to do so.
+     * @param row numeric
+     * @param column numeric
+     * @param horizontal true
+     * @param ocean object
+     * @return true
      */
-    public boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-//		System.out.println("ship at " + row + " " + column  + " " + horizontal);
+    public boolean okToPlaceShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
+
         if (horizontal) {
-            if (column + getLength() > 20) {
+            if (column + getLength() > SIZE_OCEAN) {
                 return false;
             }
             for (int i = row - 1; i <= row + 1; i++) {
                 for (int j = column - 1; j < column + getLength() + 1; j++) {
                     try {
-//						System.out.println(i + " " + j + " " + ocean.getShipArray()[i][j].getShipType().equals("empty"));
+
                         if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
                             return false;
                         }
@@ -40,13 +52,13 @@ public abstract class Ship {
                 }
             }
         } else {
-            if (row + getLength() > 20) {
+            if (row + getLength() > SIZE_OCEAN) {
                 return false;
             }
             for (int i = row - 1; i < row + getLength() + 1; i++) {
                 for (int j = column - 1; j <= column + 1; j++) {
                     try {
-//						System.out.println(i + " " + j + " " + ocean.getShipArray()[i][j].getShipType().equals("empty"));
+
                         if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
                             return false;
                         }
@@ -56,15 +68,19 @@ public abstract class Ship {
                 }
             }
         }
-//		System.out.println("");
+
         return true;
     }
 
-    /*
+    /**
      * Puts the ship in the ocean.
      * This involves giving values to the bowRow, bowColumn, and horizontal instance variables in the ship.
+     * @param row number
+     * @param column number
+     * @param horizontal true
+     * @param ocean object
      */
-    public void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+    public void placeShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
         bowRow = row;
         bowColumn = column;
         this.horizontal = horizontal;
@@ -83,21 +99,28 @@ public abstract class Ship {
         }
     }
 
-    /*
-     * Return true if the part of the ship was hit, false otherwise
+
+    /**
+     * Return true if the part of the ship was hit, false otherwise.
+     * @param row number
+     * @param column number
+     * @return true
      */
     public boolean wasShootAt(int row, int column) {
         if (horizontal) {
-            return hit[column - this.bowColumn] == true;
+            return hit[column - this.bowColumn];
         } else {
-            return hit[row - this.bowRow] == true;
+            return hit[row - this.bowRow];
         }
     }
 
-    /*
+    /**
      * If a part of the ship occupies the given row and column, and the ship hasnot been sunk,
      * mark that part of the ship as hit (in the hit array, 0 indicates the bow) and return true,
      * otherwise return false.
+     * @param row number
+     * @param column number
+     * @return true
      */
     public boolean shootAt(int row, int column) {
         if (!isSunk()) {
@@ -117,12 +140,16 @@ public abstract class Ship {
     }
 
 
-
-    /*
+    /**
      * Return true if every part of the ship has been hit, false otherwise.
+     * @return true
      */
     public boolean isSunk() {
-        for (boolean b : hit) if (!b) return false;
+        for (boolean b : hit) {
+            if (!b) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -136,28 +163,50 @@ public abstract class Ship {
         return isSunk() ? "x" : "S";
     }
 
+    /**
+     * returns length.
+     * @return int size
+     */
     public int getLength() {
         return length;
     }
+
+    /**
+     * set size.
+     * @param length int
+     */
     public void setLength(int length) {
         this.length = length;
     }
 
+    /**
+     * returns hit.
+     * @return true hit
+     */
     public boolean[] getHit() {
-        return hit;
-    }
-    public void setHit(boolean[] hit) {
-        this.hit = hit;
+        return hit.clone();
     }
 
-    public void putRandom(Ocean ocean) {
+    /**
+     * set hit.
+     * @param hit object
+     */
+    public void setHit(final boolean[] hit) {
+        this.hit = hit.clone();
+    }
+
+    /**
+     * put ship on ocean.
+     * @param ocean object
+     */
+    public void putRandom(final Ocean ocean) {
         Random random = new Random();
         int row;
         int column;
         boolean horizontal;
         while (true) {
-            row = random.nextInt(20);
-            column = random.nextInt(20);
+            row = random.nextInt(SIZE_OCEAN);
+            column = random.nextInt(SIZE_OCEAN);
             horizontal = random.nextBoolean();
             if (this.okToPlaceShipAt(row, column, horizontal, ocean)) {
                 this.placeShipAt(row, column, horizontal, ocean);

@@ -4,16 +4,16 @@ package org.minions.devfund.noemiguzman.battleship;
 import java.util.Arrays;
 
 /**
- * cruiser class
+ * cruiser class.
  */
 public class Cruiser extends Ship {
-    private final int lenghtCruiser = 6;
+    private static final int LENGHT_CRUISER = 6;
     /**
     * constructor .
     */
     public Cruiser() {
-        this.setLength(lenghtCruiser);
-        this.setHit(new boolean[lenghtCruiser]);
+        this.setLength(LENGHT_CRUISER);
+        this.setHit(new boolean[LENGHT_CRUISER]);
         Arrays.fill(this.getHit(), false);
     }
 

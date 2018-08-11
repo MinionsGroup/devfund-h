@@ -2,7 +2,7 @@ package org.minions.devfund.noemiguzman.battleship;
 
 import java.util.Arrays;
 
-/*
+/**
  * the Ocean contains a Ship array, every location of which is, or can be, a reference to some Ship.
  * If a particular location is empty, the obvious thing to do is to put a null in that location.
  * But this obvious approach has the problem that, every time we look at some location in the array,
@@ -11,7 +11,7 @@ import java.util.Arrays;
 */
 
 public class EmptySea extends Ship {
-    /*
+    /**
      * This constructor sets the inherited length variable to 1.
      */
     public EmptySea() {
@@ -43,12 +43,12 @@ public class EmptySea extends Ship {
         return false;
     }
 
-    /*
+    /**
      * Returns a single-character String to use in the Ocean’s print method.
      */
     @Override
     public String toString() {
-        return this.getHit()[0] == true ? "-" : ".";
+        return this.getHit()[0] ? "-" : ".";
     }
 
 }
