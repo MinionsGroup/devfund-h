@@ -1,20 +1,36 @@
 package org.minions.devfund.katerinaanzoleaga.battleship;
 import java.util.Arrays;
 
+/**
+ * BattleCruiser class definition.
+ * This extends Ship, with a length equal to 7
+ */
 public class BattleCruiser extends Ship {
 
-    public BattleCruiser() {
-        this.setLength(7);
-        this.fillHitArray();
+    private static final int LENGTH = 7;
 
+    /**
+     * Class constructor.
+     */
+    public BattleCruiser() {
+
+        this.setLength(LENGTH);
+        this.fillHitArray();
     }
 
-    private void fillHitArray () {
-        boolean[] aHit = new boolean[8];
-        Arrays.fill(aHit, 0, 6, false);
+    /**
+     * Initializes HitArray with false values.
+     */
+    private void fillHitArray() {
+        boolean[] aHit = new boolean[HITLENGTH];
+        Arrays.fill(aHit, 0, LENGTH - 1, false);
         this.setHit(aHit);
     }
 
+    /**
+     * Ship type getter.
+     * @return battlecursier
+     */
     @Override
     String getShipType() {
         return "battlecruiser";
