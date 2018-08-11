@@ -17,8 +17,6 @@ public class OceanTest {
 
     @Test
     public void testConstructor() {
-        String[] expected = new String[20];
-        Arrays.fill(expected, ".");
         for (Ship[] row : theOcean.getShips()) {
             for (Ship elem : row) {
                 assertEquals(".", elem.toString());
