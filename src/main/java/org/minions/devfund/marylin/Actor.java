@@ -18,16 +18,6 @@ public class Actor {
     }
 
     /**
-     * Constructor with actor name.
-     *
-     * @param name actor name.
-     */
-    public Actor(final String name) {
-        this.name = name;
-        this.movies = new ArrayList<>();
-    }
-
-    /**
      * Gets actor name.
      *
      * @return actor name.

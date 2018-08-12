@@ -33,7 +33,7 @@ public class MovieDatabaseTest {
         movieDatabase = new MovieDatabase();
         String[] actors = {actor1, actor2, actor3};
         movieDatabase.addMovie(movie1, actors);
-        String[] actors1 = {actor1,actor4 , actor5};
+        String[] actors1 = {actor1, actor4, actor5};
         movieDatabase.addMovie(movie2, actors1);
         String[] actors2 = {actor6};
         movieDatabase.addMovie(movie3, actors2);

@@ -20,26 +20,17 @@ public class Movie {
     }
 
     /**
-     * Constructor with movie name.
-     *
-     * @param name movie name.
-     */
-    public Movie(final String name) {
-        this.name = name;
-        this.actors = new ArrayList<>();
-        this.rating = 0;
-    }
-
-    /**
      * Constructor with movie name and actors.
      *
      * @param name   movie name.
      * @param actors actors array.
+     * @return Movie.
      */
-    public Movie(final String name, final String[] actors) {
-        this.name = name;
-        this.actors = getActorsList(actors);
-        this.rating = 0;
+    public Movie setMovie(final String name, final String[] actors) {
+        setName(name);
+        setRating(0);
+        setActorsList(actors);
+        return this;
     }
 
 
@@ -99,19 +90,17 @@ public class Movie {
         this.rating = rating;
     }
 
-
     /**
      * Gets Actors array into list.
      *
      * @param actors array.
-     * @return actors list.
      */
-    private ArrayList<Actor> getActorsList(final String[] actors) {
-        ArrayList<Actor> actorsList = new ArrayList<>();
-        for (String actor : actors) {
-            actorsList.add(new Actor(actor));
+    private void setActorsList(final String[] actors) {
+        for (String actorName : actors) {
+            Actor actor = new Actor();
+            actor.setName(actorName);
+            this.actors.add(actor);
         }
-        return actorsList;
     }
 
     /**

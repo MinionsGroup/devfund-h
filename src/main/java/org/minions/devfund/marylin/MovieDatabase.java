@@ -73,12 +73,13 @@ public class MovieDatabase {
      */
     void addMovie(final String name, final String[] actors) {
         if (!isMovie(name)) {
-            movieList.add(new Movie(name, actors));
+            movieList.add(new Movie().setMovie(name, actors));
         }
         for (String actor : actors) {
             if (!isActor(actor)) {
-                Actor actorTemp = new Actor(actor);
-                actorTemp.addMovie(new Movie(name, actors));
+                Actor actorTemp = new Actor();
+                actorTemp.setName(actor);
+                actorTemp.addMovie(new Movie().setMovie(name, actors));
                 actorList.add(actorTemp);
             }
         }
