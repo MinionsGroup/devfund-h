@@ -20,7 +20,6 @@ public class MovieDatabaseTest {
         final double rating1 = 50.0;
         final double rating2 = 25.0;
         final double rating3 = 35.0;
-        final double rating4 = 30.0;
         final String movie1 = "Sleepers";
         final String movie2 = "Troy";
         final String movie3 = "Casablanca";
@@ -41,7 +40,6 @@ public class MovieDatabaseTest {
         movieDatabase.addRating(movie1, rating1);
         movieDatabase.addRating(movie2, rating2);
         movieDatabase.addRating(movie3, rating3);
-        movieDatabase.addRating(movie2, rating4);
     }
 
     /**
@@ -82,5 +80,12 @@ public class MovieDatabaseTest {
         String[] actors = {"Dustin Hoffman"};
         movieDatabase.addMovie(testMovie, actors);
         assertTrue(movieDatabase.getMovieCount(testMovie) == 1);
+    }
+
+    public void testUpdateMovieRating() {
+        final double rating4 = 30.0;
+        final String testMovie = "Sleepers";
+        movieDatabase.updateRating(testMovie,rating4);
+        assertEquals(movieDatabase.getMovie(testMovie).getRating(), rating4, 0);
     }
 }

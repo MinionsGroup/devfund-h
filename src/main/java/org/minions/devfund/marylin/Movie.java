@@ -33,7 +33,6 @@ public class Movie {
         return this;
     }
 
-
     /**
      * Gets movie name.
      *

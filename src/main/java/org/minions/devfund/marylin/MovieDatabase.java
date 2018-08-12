@@ -172,4 +172,19 @@ public class MovieDatabase {
         }
         return count;
     }
+
+    /**
+     * Verifies if the movie is saved.
+     *
+     * @param movieName movie name.
+     * @return Movie.
+     */
+    public Movie getMovie(final String movieName) {
+        for (Movie movie : movieList) {
+            if (movie.getName().equals(movieName)) {
+                return movie;
+            }
+        }
+        return null;
+    }
 }
