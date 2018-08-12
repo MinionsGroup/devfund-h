@@ -11,10 +11,6 @@ import static org.junit.Assert.assertEquals;
 public class WhackAMoleTest {
 
     private WhackAMole myWhackAMole;
-    private static final int ONE_NE = -1;
-    private static final int ONE = 1;
-    private static final int THREE = 3;
-    private static final int FIVE = 5;
     private static final String GRID = "* * * * * ";
 
     /**
@@ -22,7 +18,8 @@ public class WhackAMoleTest {
      */
     @Before
     public void setUp() {
-        myWhackAMole = new WhackAMole(FIVE, FIVE);
+        final int five = 5;
+        myWhackAMole = new WhackAMole(five, five);
     }
 
     /**
@@ -30,7 +27,7 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPrintGridMethod() {
-        String expectedResult = GRID
+        final String expectedResult = GRID
                 + GRID
                 + GRID
                 + GRID
@@ -43,12 +40,13 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPlaceMethod() {
-        myWhackAMole.place(THREE, THREE);
-        String expectedResult = GRID
+        final int three = 3;
+        final String expectedResult = GRID
                 + GRID
                 + GRID
                 + "* * * M * "
                 + GRID;
+        myWhackAMole.place(three, three);
         assertEquals(expectedResult, myWhackAMole.printGrid());
     }
 
@@ -57,13 +55,16 @@ public class WhackAMoleTest {
      */
     @Test
     public void testNegativePlaceMethod() {
-        myWhackAMole.place(FIVE, FIVE);
-        myWhackAMole.place(FIVE, ONE);
-        myWhackAMole.place(ONE, FIVE);
-        myWhackAMole.place(ONE_NE, ONE);
-        myWhackAMole.place(ONE, ONE_NE);
-        myWhackAMole.place(ONE_NE, ONE_NE);
-        String expectedResult = GRID
+        final int five = 5;
+        final int one = 1;
+        final int oneNe = -1;
+        myWhackAMole.place(five, five);
+        myWhackAMole.place(five, one);
+        myWhackAMole.place(one, five);
+        myWhackAMole.place(oneNe, one);
+        myWhackAMole.place(one, oneNe);
+        myWhackAMole.place(oneNe, oneNe);
+        final String expectedResult = GRID
                 + GRID
                 + GRID
                 + GRID
@@ -76,8 +77,9 @@ public class WhackAMoleTest {
      */
     @Test
     public void testWhackMethodOne() {
-        myWhackAMole.place(THREE, THREE);
-        myWhackAMole.whack(THREE, THREE);
+        final int three = 3;
+        myWhackAMole.place(three, three);
+        myWhackAMole.whack(three, three);
         String expectedResult = GRID
                 + GRID
                 + GRID
@@ -91,8 +93,10 @@ public class WhackAMoleTest {
      */
     @Test
     public void testWhackMethodTwo() {
-        myWhackAMole.place(THREE, THREE);
-        myWhackAMole.whack(ONE, ONE);
+        final int three = 3;
+        final int one = 1;
+        myWhackAMole.place(three, three);
+        myWhackAMole.whack(one, one);
         String expectedResult = GRID
                 + GRID
                 + GRID
@@ -106,11 +110,14 @@ public class WhackAMoleTest {
      */
     @Test
     public void testNegativeWhackMethod() {
-        myWhackAMole.whack(FIVE, FIVE);
-        myWhackAMole.whack(FIVE, ONE);
-        myWhackAMole.whack(ONE, FIVE);
-        myWhackAMole.whack(ONE_NE, FIVE);
-        myWhackAMole.whack(ONE_NE, ONE_NE);
+        final int five = 5;
+        final int one = 1;
+        final int oneNe = -1;
+        myWhackAMole.whack(five, five);
+        myWhackAMole.whack(five, one);
+        myWhackAMole.whack(one, five);
+        myWhackAMole.whack(oneNe, five);
+        myWhackAMole.whack(oneNe, oneNe);
         String expectedResult = GRID
                 + GRID
                 + GRID
@@ -124,7 +131,8 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPrintGridToUserMethod() {
-        myWhackAMole.place(THREE, THREE);
+        final int three = 3;
+        myWhackAMole.place(three, three);
         String expectedResult = GRID
                 + GRID
                 + GRID
@@ -138,8 +146,10 @@ public class WhackAMoleTest {
      */
     @Test
     public void testGetMolesLeftMethod() {
-        myWhackAMole.place(THREE, THREE);
-        assertEquals(ONE, myWhackAMole.getMolesLeft());
+        final int three = 3;
+        final int expectedResult = 1;
+        myWhackAMole.place(three, three);
+        assertEquals(expectedResult, myWhackAMole.getMolesLeft());
     }
 
     /**
@@ -147,7 +157,8 @@ public class WhackAMoleTest {
      */
     @Test
     public void testGetAttemptsLeftMethod() {
-        assertEquals(FIVE, myWhackAMole.getAttemptsLeft());
+        final int expectedResult = 5;
+        assertEquals(expectedResult, myWhackAMole.getAttemptsLeft());
     }
 
     /**
@@ -155,8 +166,10 @@ public class WhackAMoleTest {
      */
     @Test
     public void testGetScoreMethod() {
-        myWhackAMole.place(THREE, THREE);
-        myWhackAMole.whack(THREE, THREE);
-        assertEquals(ONE, myWhackAMole.getScore());
+        final int three = 3;
+        final int expectedResult = 1;
+        myWhackAMole.place(three, three);
+        myWhackAMole.whack(three, three);
+        assertEquals(expectedResult, myWhackAMole.getScore());
     }
 }
