@@ -27,22 +27,6 @@ public class Squarelotron {
     }
 
     /**
-     * Constructor of Squarelotron given a grid.
-     *
-     * @param squarelotron returns a Squarelotron.
-     */
-    public Squarelotron(final int[][] squarelotron) {
-        this.size = squarelotron.length;
-        this.numberOfRings = this.size - (this.size / 2);
-        this.squarelotron = new int[this.size][this.size];
-        for (int i = 0; i < this.size; i++) {
-            for (int j = 0; j < this.size; j++) {
-                this.squarelotron[i][j] = squarelotron[i][j];
-            }
-        }
-    }
-
-    /**
      * Gets the Squarelotron grid.
      *
      * @return the Squarelotron grid.
