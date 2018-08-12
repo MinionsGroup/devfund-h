@@ -225,6 +225,8 @@ public class Squarelotron {
         while (numberOfTurns-- > 0) {
             for (int i = 1; i <= numberOfRings; i++) {
                 squarelotron = upsideDownFlipHelper(i);
+            }
+            for (int i = 1; i <= numberOfRings; i++) {
                 squarelotron = mainDiagonalFlipHelper(i);
             }
         }
@@ -239,6 +241,8 @@ public class Squarelotron {
         while (numberOfTurns++ < 0) {
             for (int i = 1; i <= numberOfRings; i++) {
                 squarelotron = mainDiagonalFlipHelper(i);
+            }
+            for (int i = 1; i <= numberOfRings; i++) {
                 squarelotron = upsideDownFlipHelper(i);
             }
         }

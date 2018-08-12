@@ -8,8 +8,6 @@ import static org.junit.Assert.assertArrayEquals;
  * SquarelotronTest class.
  */
 public class SquarelotronTest {
-    final String ASSERTIONMESSAGE = "Grid is not the expected.";
-
     /**********************************************************
      **********************upsideDownFlip**********************
      *********************************************************/
@@ -24,7 +22,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{3, 4}, {1, 2}};
         Squarelotron initialSquarelotronTwoByTwo = new Squarelotron(two);
         Squarelotron actualSquarelotron = initialSquarelotronTwoByTwo.upsideDownFlip(one);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -37,7 +35,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{7, 8, 9}, {4, 5, 6}, {1, 2, 3}};
         Squarelotron initialSquarelotronThreeByThree = new Squarelotron(three);
         Squarelotron actualSquarelotron = initialSquarelotronThreeByThree.upsideDownFlip(one);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -50,7 +48,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         Squarelotron initialSquarelotronThreeByThree = new Squarelotron(three);
         Squarelotron actualSquarelotron = initialSquarelotronThreeByThree.upsideDownFlip(two);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -63,7 +61,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{13, 14, 15, 16}, {9, 6, 7, 12}, {5, 10, 11, 8}, {1, 2, 3, 4}};
         Squarelotron initialSquarelotronFourByFour = new Squarelotron(four);
         Squarelotron actualSquarelotron = initialSquarelotronFourByFour.upsideDownFlip(one);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
 
@@ -77,7 +75,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 2, 3, 4}, {5, 10, 11, 8}, {9, 6, 7, 12}, {13, 14, 15, 16}};
         Squarelotron initialSquarelotronFourByFour = new Squarelotron(four);
         Squarelotron actualSquarelotron = initialSquarelotronFourByFour.upsideDownFlip(two);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -91,7 +89,7 @@ public class SquarelotronTest {
                 {11, 12, 13, 14, 15}, {6, 17, 18, 19, 10}, {1, 2, 3, 4, 5}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.upsideDownFlip(one);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -105,7 +103,7 @@ public class SquarelotronTest {
                 {11, 12, 13, 14, 15}, {16, 7, 8, 9, 20}, {21, 22, 23, 24, 25}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.upsideDownFlip(two);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
 
     }
 
@@ -120,7 +118,7 @@ public class SquarelotronTest {
                 {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.upsideDownFlip(three);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**********************************************************
@@ -137,7 +135,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 3}, {2, 4}};
         Squarelotron initialSquarelotronTwoByTwo = new Squarelotron(two);
         Squarelotron actualSquarelotron = initialSquarelotronTwoByTwo.mainDiagonalFlip(one);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -150,7 +148,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 4, 7}, {2, 5, 8}, {3, 6, 9}};
         Squarelotron initialSquarelotronThreeByThree = new Squarelotron(three);
         Squarelotron actualSquarelotron = initialSquarelotronThreeByThree.mainDiagonalFlip(one);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -163,7 +161,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         Squarelotron initialSquarelotronThreeByThree = new Squarelotron(three);
         Squarelotron actualSquarelotron = initialSquarelotronThreeByThree.mainDiagonalFlip(two);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -176,7 +174,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 5, 9, 13}, {2, 6, 7, 14}, {3, 10, 11, 15}, {4, 8, 12, 16}};
         Squarelotron initialSquarelotronFourByFour = new Squarelotron(four);
         Squarelotron actualSquarelotron = initialSquarelotronFourByFour.mainDiagonalFlip(one);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
 
@@ -190,7 +188,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 2, 3, 4}, {5, 6, 10, 8}, {9, 7, 11, 12}, {13, 14, 15, 16}};
         Squarelotron initialSquarelotronFourByFour = new Squarelotron(four);
         Squarelotron actualSquarelotron = initialSquarelotronFourByFour.mainDiagonalFlip(two);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -204,7 +202,7 @@ public class SquarelotronTest {
                 {3, 12, 13, 14, 23}, {4, 17, 18, 19, 24}, {5, 10, 15, 20, 25}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.mainDiagonalFlip(one);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
     /**
@@ -218,7 +216,7 @@ public class SquarelotronTest {
                 {11, 8, 13, 18, 15}, {16, 9, 14, 19, 20}, {21, 22, 23, 24, 25}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.mainDiagonalFlip(two);
-        assertArrayEquals(ASSERTIONMESSAGE, expectedGrid, actualSquarelotron.getSquarelotron());
+        assertArrayEquals("Grid is not the expected.", expectedGrid, actualSquarelotron.getSquarelotron());
 
     }
 
@@ -233,7 +231,7 @@ public class SquarelotronTest {
                 {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         Squarelotron actualSquarelotron = initialSquarelotronFiveByFive.mainDiagonalFlip(three);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, actualSquarelotron.getSquarelotron());
     }
 
@@ -251,7 +249,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{3, 1}, {4, 2}};
         Squarelotron initialSquarelotronTwoByTwo = new Squarelotron(two);
         initialSquarelotronTwoByTwo.rotateRight(one);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron());
     }
 
@@ -264,7 +262,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{4, 3}, {2, 1}};
         Squarelotron initialSquarelotronTwoByTwo = new Squarelotron(two);
         initialSquarelotronTwoByTwo.rotateRight(two);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron());
     }
 
@@ -278,7 +276,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{2, 4}, {1, 3}};
         Squarelotron initialSquarelotronTwoByTwo = new Squarelotron(two);
         initialSquarelotronTwoByTwo.rotateRight(three);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron());
     }
 
@@ -292,7 +290,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 2}, {3, 4}};
         Squarelotron initialSquarelotronTwoByTwo = new Squarelotron(two);
         initialSquarelotronTwoByTwo.rotateRight(four);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron());
     }
 
@@ -306,7 +304,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 2}, {3, 4}};
         Squarelotron initialSquarelotronTwoByTwo = new Squarelotron(two);
         initialSquarelotronTwoByTwo.rotateRight(zero);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronTwoByTwo.getSquarelotron());
     }
 
@@ -320,7 +318,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{7, 4, 1}, {8, 5, 2}, {9, 6, 3}};
         Squarelotron initialSquarelotronThreeByThree = new Squarelotron(three);
         initialSquarelotronThreeByThree.rotateRight(one);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronThreeByThree.getSquarelotron());
     }
 
@@ -334,7 +332,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
         Squarelotron initialSquarelotronThreeByThree = new Squarelotron(three);
         initialSquarelotronThreeByThree.rotateRight(two);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronThreeByThree.getSquarelotron());
     }
 
@@ -347,7 +345,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{3, 6, 9}, {2, 5, 8}, {1, 4, 7}};
         Squarelotron initialSquarelotronThreeByThree = new Squarelotron(three);
         initialSquarelotronThreeByThree.rotateRight(three);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronThreeByThree.getSquarelotron());
     }
 
@@ -361,7 +359,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         Squarelotron initialSquarelotronThreeByThree = new Squarelotron(three);
         initialSquarelotronThreeByThree.rotateRight(four);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronThreeByThree.getSquarelotron());
     }
 
@@ -375,7 +373,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         Squarelotron initialSquarelotronThreeByThree = new Squarelotron(three);
         initialSquarelotronThreeByThree.rotateRight(zero);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronThreeByThree.getSquarelotron());
     }
 
@@ -389,7 +387,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{13, 9, 5, 1}, {14, 10, 6, 2}, {15, 11, 7, 3}, {16, 12, 8, 4}};
         Squarelotron initialSquarelotronFourByFour = new Squarelotron(four);
         initialSquarelotronFourByFour.rotateRight(one);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFourByFour.getSquarelotron());
     }
 
@@ -403,7 +401,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{16, 15, 14, 13}, {12, 11, 10, 9}, {8, 7, 6, 5}, {4, 3, 2, 1}};
         Squarelotron initialSquarelotronFourByFour = new Squarelotron(four);
         initialSquarelotronFourByFour.rotateRight(two);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFourByFour.getSquarelotron());
     }
 
@@ -417,7 +415,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{4, 8, 12, 16}, {3, 7, 11, 15}, {2, 6, 10, 14}, {1, 5, 9, 13}};
         Squarelotron initialSquarelotronFourByFour = new Squarelotron(four);
         initialSquarelotronFourByFour.rotateRight(three);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFourByFour.getSquarelotron());
     }
 
@@ -430,7 +428,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
         Squarelotron initialSquarelotronFourByFour = new Squarelotron(four);
         initialSquarelotronFourByFour.rotateRight(four);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFourByFour.getSquarelotron());
     }
 
@@ -444,7 +442,7 @@ public class SquarelotronTest {
         final int[][] expectedGrid = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
         Squarelotron initialSquarelotronFourByFour = new Squarelotron(four);
         initialSquarelotronFourByFour.rotateRight(zero);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFourByFour.getSquarelotron());
     }
 
@@ -459,7 +457,7 @@ public class SquarelotronTest {
                 {23, 18, 13, 8, 3}, {24, 19, 14, 9, 4}, {25, 20, 15, 10, 5}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         initialSquarelotronFiveByFive.rotateRight(one);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
@@ -474,7 +472,7 @@ public class SquarelotronTest {
                 {15, 14, 13, 12, 11}, {10, 9, 8, 7, 6}, {5, 4, 3, 2, 1}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         initialSquarelotronFiveByFive.rotateRight(two);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
@@ -489,7 +487,7 @@ public class SquarelotronTest {
                 {3, 8, 13, 18, 23}, {2, 7, 12, 17, 22}, {1, 6, 11, 16, 21}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         initialSquarelotronFiveByFive.rotateRight(three);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
@@ -504,7 +502,7 @@ public class SquarelotronTest {
                 {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         initialSquarelotronFiveByFive.rotateRight(four);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
@@ -519,7 +517,7 @@ public class SquarelotronTest {
                 {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         initialSquarelotronFiveByFive.rotateRight(zero);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
@@ -534,7 +532,7 @@ public class SquarelotronTest {
                 {3, 8, 13, 18, 23}, {2, 7, 12, 17, 22}, {1, 6, 11, 16, 21}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         initialSquarelotronFiveByFive.rotateRight(negativeOne);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
@@ -549,7 +547,7 @@ public class SquarelotronTest {
                 {15, 14, 13, 12, 11}, {10, 9, 8, 7, 6}, {5, 4, 3, 2, 1}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         initialSquarelotronFiveByFive.rotateRight(negativeTwo);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
@@ -564,7 +562,7 @@ public class SquarelotronTest {
                 {23, 18, 13, 8, 3}, {24, 19, 14, 9, 4}, {25, 20, 15, 10, 5}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         initialSquarelotronFiveByFive.rotateRight(negativeThree);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 
@@ -579,7 +577,7 @@ public class SquarelotronTest {
                 {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}};
         Squarelotron initialSquarelotronFiveByFive = new Squarelotron(five);
         initialSquarelotronFiveByFive.rotateRight(negativeFour);
-        assertArrayEquals(ASSERTIONMESSAGE,
+        assertArrayEquals("Grid is not the expected.",
                 expectedGrid, initialSquarelotronFiveByFive.getSquarelotron());
     }
 }
