@@ -18,24 +18,6 @@ public class MovieDatabase {
     }
 
     /**
-     * Gets movie list.
-     *
-     * @return movies list.
-     */
-    public ArrayList<Movie> getMovieList() {
-        return movieList;
-    }
-
-    /**
-     * Get Actor list.
-     *
-     * @return actors list.
-     */
-    public ArrayList<Actor> getActorList() {
-        return actorList;
-    }
-
-    /**
      * Verifies if the movie is saved.
      *
      * @param movieName movie name.

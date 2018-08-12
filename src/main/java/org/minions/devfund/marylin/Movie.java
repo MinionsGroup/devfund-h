@@ -62,17 +62,6 @@ public class Movie {
     }
 
     /**
-     * add Actor to actors list.
-     *
-     * @param actor actor name.
-     */
-    public void addActor(final Actor actor) {
-        if (!isActorSaved(actor.getName())) {
-            actors.add(actor);
-        }
-    }
-
-    /**
      * Gets rating.
      *
      * @return rating.
@@ -101,15 +90,5 @@ public class Movie {
             actor.setName(actorName);
             this.actors.add(actor);
         }
-    }
-
-    /**
-     * Verify if the Actors is saved.
-     *
-     * @param actorName actor name.
-     * @return true if actor is saved, false otherwise.
-     */
-    public boolean isActorSaved(final String actorName) {
-        return getActors().stream().filter(actor -> actorName.equals(actor.getName())).findFirst().orElse(null) == null;
     }
 }
