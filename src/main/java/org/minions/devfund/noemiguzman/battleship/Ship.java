@@ -156,10 +156,6 @@ public abstract class Ship {
         return true;
     }
 
-    /*
-     * Return X if the ship has been sunk,  S if it has not been sunk.
-     * This method can be used to print out locations in the ocean that have been shot at;
-     */
     @Override
     public String toString() {
         return isSunk() ? "x" : "S";

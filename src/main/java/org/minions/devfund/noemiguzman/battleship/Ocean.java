@@ -32,8 +32,8 @@ public class Ocean {
      * Place larger ships before smaller ones, or you may end up with no legal place to put a large ship.
      */
     public void placeAllShipsRandomly() {
-        Ship[] ships =  newShips();
-        for (Ship ship : ships) {
+        Ship[] shipsEmpty =  newShips();
+        for (Ship ship : shipsEmpty) {
             ship.putRandom(this);
         }
     }
@@ -43,11 +43,11 @@ public class Ocean {
      * @return ship list
      */
     private Ship[] newShips() {
-        Ship[] ships = new Ship[NRO_SHIPS];
+        Ship[] shipsShips = new Ship[NRO_SHIPS];
         for (int i = 0; i < NRO_SHIPS; i++) {
-            ships[i] = selectShip(i);
+            shipsShips[i] = selectShip(i);
         }
-        return ships;
+        return shipsShips;
     }
 
     /**
@@ -111,20 +111,6 @@ public class Ocean {
             return false;
         }
         return false;
-    }
-
-    /**
-     * Prints the ocean. To aid the user, row numbers should be displayed along the left edge of the array.
-     * and column numbers should be displayed along the top.
-     * Numbers should be 00 to 19, not 1 to 20.
-     * The top left corner square should be 0, 0.
-     * Use ’S’ to indicate a location that you have fired upon and hit a (real) ship,
-     * ’-’ to indicate a location that you have fired upon and found nothing there,
-     * ’x’ to indicate a location containing a sunken ship,
-     * and ’.’ (a period) to indicate a location that you have never fired upon.
-     */
-    public void print() {
-        System.out.println(toString());
     }
 
     /**
