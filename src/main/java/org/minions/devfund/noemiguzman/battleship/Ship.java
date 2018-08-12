@@ -8,9 +8,9 @@ import java.util.Random;
  */
 public abstract class Ship {
     private int length;
-    private boolean horizontal;
     private int bowRow;
     private int bowColumn;
+    private boolean horizontal;
     private static final int SIZE_OCEAN = 20;
     private boolean[] hit;
 
@@ -35,40 +35,45 @@ public abstract class Ship {
      */
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
 
+
         if (horizontal) {
             if (column + getLength() > SIZE_OCEAN) {
                 return false;
             }
-            for (int i = row - 1; i <= row + 1; i++) {
-                for (int j = column - 1; j < column + getLength() + 1; j++) {
-                    try {
+            return helpToPlaceShipAt(column,  row,  1,   getLength() + 1, ocean);
 
-                        if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
-                            return false;
-                        }
-                    } catch (Exception e) {
-                        continue;
-                    }
-                }
-            }
         } else {
             if (row + getLength() > SIZE_OCEAN) {
                 return false;
             }
-            for (int i = row - 1; i < row + getLength() + 1; i++) {
-                for (int j = column - 1; j <= column + 1; j++) {
-                    try {
+            return helpToPlaceShipAt(column,  row,  getLength(),   1, ocean);
 
-                        if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
-                            return false;
-                        }
-                    } catch (Exception e) {
-                        continue;
+        }
+    }
+
+    /**
+     * help to ask to place ship at.
+     * @param column numeric
+     * @param row numeric
+     * @param lenghtRow maxrow
+     * @param lengthColumn maxcolumn
+     * @param ocean object
+     * @return true
+     */
+    private boolean helpToPlaceShipAt(int column, int row, int lenghtRow, int lengthColumn, final Ocean ocean) {
+
+        for (int i = row - 1; i <= row + lenghtRow; i++) {
+            for (int j = column - 1; j < column + lengthColumn; j++) {
+                try {
+
+                    if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
+                        return false;
                     }
+                } catch (Exception e) {
+                    continue;
                 }
             }
         }
-
         return true;
     }
 
@@ -156,7 +161,6 @@ public abstract class Ship {
     /*
      * Return X if the ship has been sunk,  S if it has not been sunk.
      * This method can be used to print out locations in the ocean that have been shot at;
-     * it should not be used to print locations that have not been shot at.
      */
     @Override
     public String toString() {
@@ -203,13 +207,13 @@ public abstract class Ship {
         Random random = new Random();
         int row;
         int column;
-        boolean horizontal;
+        boolean horizontalRando;
         while (true) {
             row = random.nextInt(SIZE_OCEAN);
             column = random.nextInt(SIZE_OCEAN);
-            horizontal = random.nextBoolean();
-            if (this.okToPlaceShipAt(row, column, horizontal, ocean)) {
-                this.placeShipAt(row, column, horizontal, ocean);
+            horizontalRando = random.nextBoolean();
+            if (this.okToPlaceShipAt(row, column, horizontalRando, ocean)) {
+                this.placeShipAt(row, column, horizontalRando, ocean);
 
                 break;
             }
