@@ -21,17 +21,17 @@ public class MovieDatabaseTest {
 
     @Before
     public void setUpMovieDatabases() {
-        String actorWilson = "Desmond Wilson";
-        String movieGlass = "Glass";
+        String actorScarlett = "Scarlett Johansson";
+        String movieSkin = "Under the skin";
         moviedb1 = new MovieDatabase();
         moviedb2 = new MovieDatabase();
 
-        movie1 = new Movie(movieGlass);
+        movie1 = new Movie(movieSkin);
 
         List<Movie> movieList1 = new ArrayList<>();
         movieList1.add(movie1);
 
-        Actor actor1 = new Actor(actorWilson, movieList1);
+        Actor actor1 = new Actor(actorScarlett, movieList1);
         movie1.addActor(actor1);
 
     }
@@ -69,13 +69,13 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovie() {
-        String actorWest = "Adam West";
-        String actorAffleck = "Ben Affleck";
-        String movieGlass = "Glass";
+        String actorNeve = "Neve Campbell";
+        String actorCox = "Courtney Cox";
+        String movieScream = "Scream";
         List<Movie> movieList = new ArrayList<>();
         MovieDatabase moviedb3 = new MovieDatabase();
-        String[] actors1 = new String[] {actorAffleck, actorWest};
-        moviedb3.addMovie(movieGlass, actors1);
+        String[] actors1 = new String[] {actorCox, actorNeve};
+        moviedb3.addMovie(movieScream, actors1);
         movieList.add(movie1);
         List<Movie> actualMovies = moviedb3.getMovieList();
         assertEquals(movieList.toString(), actualMovies.toString());
@@ -101,15 +101,15 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testUpdateRating() {
-        String actorWest = "Adam West";
-        String actorAffleck = "Ben Affleck";
-        String movieBatman = "Batman";
-        String[] actors = new String[] {actorAffleck, actorWest};
+        String actorSykes = "Eric Sykes";
+        String actorKidman = "Nicole Kidman";
+        String movieOther = "The Others";
+        String[] actors = new String[] {actorKidman, actorSykes};
         final Double expected1 =  25.10;
         final Double expectedFinal = 32.10;
-        moviedb2.addMovie(movieBatman, actors);
-        moviedb2.addRating(movieBatman, expected1);
-        moviedb2.updateRating(movieBatman, expectedFinal);
+        moviedb2.addMovie(movieOther, actors);
+        moviedb2.addRating(movieOther, expected1);
+        moviedb2.updateRating(movieOther, expectedFinal);
         assertEquals(expectedFinal, moviedb2.getMovieList().get(0).getRating(), 0);
     }
 
