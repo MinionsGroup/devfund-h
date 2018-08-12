@@ -113,33 +113,35 @@ public class Squarelotron {
      * @return an instance of Squarelotron.
      */
     Squarelotron upsideDownFlip(int ring) {
-        int[][] resultGrid = upsideDownFlipHelper(ring);
-        return new Squarelotron(resultGrid);
+        Squarelotron squarelotronResult = new Squarelotron(this.size);
+        squarelotronResult.squarelotron = upsideDownFlipHelper(ring, squarelotronResult.squarelotron);
+        return squarelotronResult;
     }
 
     /**
      * upsideDownFlipHelper.
      *
      * @param ring ring number.
+     * @param squarelotron matrix.
      * @return a grid.
      */
-    private int[][] upsideDownFlipHelper(int ring) {
+    private int[][] upsideDownFlipHelper(int ring, final int[][] squarelotron) {
 
         //Returns the same squarelotron if the ring number is equal to the number of rings of a matrix n x n.
         if (Math.abs(this.size) % 2 == 1 && ring == this.numberOfRings) {
-            return this.squarelotron;
+            return squarelotron;
         }
         //If the ring is the internal rings.
         if (ring != 1) {
-            return upsideDownFlipInternalMatrix(this.squarelotron);
+            return upsideDownFlipInternalMatrix(squarelotron);
         }
         //complete Upside Down Flip.
-        int[][] resultGrid = upsideDownFlipCompleteMatrix(this.squarelotron);
+        int[][] resultGrid = upsideDownFlipCompleteMatrix(squarelotron);
 
         // Restore values of the internal rings if there are.
         for (int i = 1; i < size - 1; i++) {
             for (int j = 1; j < size - 1; j++) {
-                resultGrid[i][j] = this.squarelotron[i][j];
+                resultGrid[i][j] = squarelotron[i][j];
             }
         }
         return resultGrid;
@@ -197,23 +199,24 @@ public class Squarelotron {
      * @return a Squarelotron.
      */
     Squarelotron mainDiagonalFlip(int ring) {
-        int[][] resultGrid = mainDiagonalFlipHelper(ring);
-        return new Squarelotron(resultGrid);
+        Squarelotron squarelotronResult = new Squarelotron(this.size);
+        squarelotronResult.squarelotron = mainDiagonalFlipHelper(ring, squarelotronResult.squarelotron);
+        return squarelotronResult;
     }
 
     /**
      * mainDiagonalFlipHelper.
      *
      * @param ring ring number.
+     * @param squarelotron matrix.
      * @return a grid.
      */
-    private int[][] mainDiagonalFlipHelper(int ring) {
-        int[][] resultGrid;
+    private int[][] mainDiagonalFlipHelper(int ring, final int[][] squarelotron) {
         // returns the same squarelotron if the ring number is equal to the number of rings.
         if (Math.abs(this.size) % 2 == 1 && ring == this.numberOfRings) {
-            return this.squarelotron;
+            return squarelotron;
         }
-        return ring != 1 ? flipInternalRing(this.squarelotron) : flipExternalRing(this.squarelotron);
+        return ring != 1 ? flipInternalRing(squarelotron) : flipExternalRing(squarelotron);
     }
 
     /**
@@ -224,10 +227,8 @@ public class Squarelotron {
     private void rotateEast(int numberOfTurns) {
         while (numberOfTurns-- > 0) {
             for (int i = 1; i <= numberOfRings; i++) {
-                squarelotron = upsideDownFlipHelper(i);
-            }
-            for (int i = 1; i <= numberOfRings; i++) {
-                squarelotron = mainDiagonalFlipHelper(i);
+                squarelotron = upsideDownFlipHelper(i, squarelotron);
+                squarelotron = mainDiagonalFlipHelper(i, squarelotron);
             }
         }
     }
@@ -240,10 +241,8 @@ public class Squarelotron {
     private void rotateWest(int numberOfTurns) {
         while (numberOfTurns++ < 0) {
             for (int i = 1; i <= numberOfRings; i++) {
-                squarelotron = mainDiagonalFlipHelper(i);
-            }
-            for (int i = 1; i <= numberOfRings; i++) {
-                squarelotron = upsideDownFlipHelper(i);
+                squarelotron = mainDiagonalFlipHelper(i, squarelotron);
+                squarelotron = upsideDownFlipHelper(i, squarelotron);
             }
         }
     }
