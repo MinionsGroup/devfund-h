@@ -13,8 +13,8 @@ public class MovieDatabase {
      * Constructor.
      */
     public MovieDatabase() {
-        this.movieList = new ArrayList<Movie>();
-        this.actorList = new ArrayList<Actor>();
+        this.movieList = new ArrayList<>();
+        this.actorList = new ArrayList<>();
     }
 
     /**
@@ -129,8 +129,12 @@ public class MovieDatabase {
                     }
                 }
             }
-            if ((totalRating / countMovies) > bestRatingAverage) {
-                bestRatingAverage = totalRating / countMovies;
+            double tempRaitingAverage = 0;
+            if (countMovies > 0) {
+                tempRaitingAverage = totalRating / countMovies;
+            }
+            if (tempRaitingAverage > bestRatingAverage) {
+                bestRatingAverage = tempRaitingAverage;
                 actorNameWithBestAverage = actor.getName();
             }
         }

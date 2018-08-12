@@ -20,17 +20,26 @@ public class MovieDatabaseTest {
         final double rating1 = 50.0;
         final double rating2 = 25.0;
         final double rating3 = 35.0;
-        movieDatabase = new MovieDatabase();
-        String[] actors = {"Brad Pitt", "Dustin Hoffman", "Kevin Bacon"};
-        movieDatabase.addMovie("Sleepers", actors);
-        String[] actors1 = {"Brad Pitt", "Diane Kruger", "Eric Bana"};
-        movieDatabase.addMovie("Troy", actors1);
-        String[] actors2 = {"Humphrey Bogart"};
-        movieDatabase.addMovie("Casablanca", actors2);
+        final String movie1 = "Sleepers";
+        final String movie2 = "Troy";
+        final String movie3 = "Casablanca";
+        final String actor1 = "Brad Pitt";
+        final String actor2 = "Dustin Hoffman";
+        final String actor3 = "Kevin Bacon";
+        final String actor4 = "Diane Kruger";
+        final String actor5 = "Eric Bana";
+        final String actor6 = "Humphrey Bogart";
 
-        movieDatabase.addRating("Sleepers", rating1);
-        movieDatabase.addRating("Troy", rating2);
-        movieDatabase.addRating("Casablanca", rating3);
+        movieDatabase = new MovieDatabase();
+        String[] actors = {actor1, actor2, actor3};
+        movieDatabase.addMovie(movie1, actors);
+        String[] actors1 = {actor1,actor4 , actor5};
+        movieDatabase.addMovie(movie2, actors1);
+        String[] actors2 = {actor6};
+        movieDatabase.addMovie(movie3, actors2);
+        movieDatabase.addRating(movie1, rating1);
+        movieDatabase.addRating(movie2, rating2);
+        movieDatabase.addRating(movie3, rating3);
     }
 
     /**
@@ -56,9 +65,10 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieActorExist() {
-        String[] actors = {"Brad Pitt"};
+        final String testActor = "Brad Pitt";
+        String[] actors = {testActor};
         movieDatabase.addMovie("testMovie", actors);
-        assertTrue(movieDatabase.getActorCount("Brad Pitt") == 1);
+        assertTrue(movieDatabase.getActorCount(testActor) == 1);
     }
 
     /**
@@ -66,8 +76,9 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieAlreadyExist() {
+        final String testMovie = "Sleepers";
         String[] actors = {"testActor"};
-        movieDatabase.addMovie("Sleepers", actors);
-        assertTrue(movieDatabase.getMovieCount("Sleepers") == 1);
+        movieDatabase.addMovie(testMovie, actors);
+        assertTrue(movieDatabase.getMovieCount(testMovie) == 1);
     }
 }
