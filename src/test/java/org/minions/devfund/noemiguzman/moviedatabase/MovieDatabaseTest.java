@@ -86,13 +86,13 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddRating() {
-        String actorJesse = "Jesse Eisenberg";
-        String actorAffleck = "Ben Affleck";
-        String movieBatman = "The Batman";
+        String actorDaniel = "Daniel Kaluuya";
+        String actorAllison = "Allison Williams";
+        String movieGetOut = "GET OUT";
         final Double expectedRating = 7.8;
-        String[] actors = new String[] {actorAffleck, actorJesse};
-        moviedb2.addMovie(movieBatman, actors);
-        moviedb2.addRating(movieBatman, expectedRating);
+        String[] actors = new String[] {actorAllison, actorDaniel};
+        moviedb2.addMovie(movieGetOut, actors);
+        moviedb2.addRating(movieGetOut, expectedRating);
         assertEquals(expectedRating, moviedb2.getMovieList().get(0).getRating(), 0);
     }
 
@@ -118,27 +118,27 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testGetBestActor() {
-        String actorWest = "Adam West";
-        String actorBale = "Christian Bale";
-        String actorAffleck = "Ben Affleck";
-        String movieGlass = "Glass";
-        String movieBatman = "Batman";
-        String movieIt = "It";
-        String[] actors1 = new String[] {actorAffleck, actorWest};
+        String actorSissy = "Sissy Spaceck";
+        String actorDeneuve = "Catherine Deneuve";
+        String actorAffleck = "Wolf Creek";
+        String movieCarrie = "Carrie";
+        String movieCreek = "Wolf creek";
+        String movieHalloween = "Halloween";
+        String[] actors1 = new String[] {actorAffleck, actorSissy};
         String expectedBestActor = actorAffleck;
         final Double expectedRating1 = 5.5;
-        moviedb1.addMovie(movieGlass, actors1);
-        moviedb1.addRating(movieGlass, expectedRating1);
+        moviedb1.addMovie(movieCarrie, actors1);
+        moviedb1.addRating(movieCarrie, expectedRating1);
 
-        String[] actors2 = new String[] {actorWest, actorAffleck, actorBale};
+        String[] actors2 = new String[] {actorSissy, actorAffleck, actorDeneuve};
         final Double expectedRating2 = 6.5;
-        moviedb1.addMovie(movieBatman, actors2);
-        moviedb1.addRating(movieBatman, expectedRating2);
+        moviedb1.addMovie(movieCreek, actors2);
+        moviedb1.addRating(movieCreek, expectedRating2);
 
-        String[] actors3 = new String[] {actorWest, actorBale};
+        String[] actors3 = new String[] {actorSissy, actorDeneuve};
         final Double expectedRating3 = 7.5;
-        moviedb1.addMovie(movieIt, actors3);
-        moviedb1.addRating(movieIt, expectedRating3);
+        moviedb1.addMovie(movieHalloween, actors3);
+        moviedb1.addRating(movieHalloween, expectedRating3);
 
         assertEquals(expectedBestActor, moviedb1.getBestActor());
     }
