@@ -20,7 +20,6 @@ public abstract class Ship {
      */
     public abstract String getShipType();
 
-
     /**
      * Returns true if it is okay to put a ship of this length with its bow in this location,
      * with the given orientation, and returns false otherwise.
@@ -47,7 +46,6 @@ public abstract class Ship {
                 return false;
             }
             return helpToPlaceShipAt(column,  row,  getLength(),   1, ocean);
-
         }
     }
 
