@@ -55,6 +55,7 @@ public class MovieDatabaseTest {
         String actorBruce = "Bruce Willis";
         String actorJackson = "Samuel L. Jackson";
         String movieGlassS = "Glass Suspenso";
+        movie1 = new Movie(movieGlassS);
         List<Movie> movieList = new ArrayList<>();
         MovieDatabase moviedb3 = new MovieDatabase();
         String[] actors1 = new String[] {actorBruce, actorJackson};
@@ -72,6 +73,7 @@ public class MovieDatabaseTest {
         String actorNeve = "Neve Campbell";
         String actorCox = "Courtney Cox";
         String movieScream = "Scream";
+        movie1 = new Movie(movieScream);
         List<Movie> movieList = new ArrayList<>();
         MovieDatabase moviedb3 = new MovieDatabase();
         String[] actors1 = new String[] {actorCox, actorNeve};
