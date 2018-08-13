@@ -1,5 +1,7 @@
 package org.minions.devfund.katerinaanzoleaga.battleship;
 
+import java.util.Random;
+
 /**
  * Abstract class Ship.
  */
@@ -54,17 +56,15 @@ public abstract class Ship {
      * @return ture if feets.
      */
     private boolean fitsInDirection (int position, Ocean ocean) {
-        if (position >= 0 && position <= this.getLength() - 1) {
+        int oceanLength = ocean.getShips().length;
+        if (position >= 0) {
             return position + this.getLength() - 1 < ocean.getShips().length;
         } else {
             return false;
         }
     }
 
-    private boolean isValidPosition (int row, int column, Ocean ocean) {
-        int maxPosition = ocean.getShips().length - 1;
-        return row >= 0 && row <= maxPosition && column >= 0 && column <= maxPosition;
-    }
+
 
 
     /**
@@ -76,12 +76,12 @@ public abstract class Ship {
      * @return True if it is possible to place a ship in the defined position.
      */
     boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-        if (isValidPosition(row, column, ocean)) {
+        if (ocean.isValidPosition(row, column)) {
             if (horizontal) {
                 if (fitsInDirection(column, ocean)) {
                     for (int i = row - 1; i <= row + 1; ++i)
                         for (int j = column - 1; j <= column + this.getLength(); ++j)
-                            if (isValidPosition(i, j, ocean)) {
+                            if (ocean.isValidPosition(i, j)) {
                                 if (ocean.isOccupied(i, j)) {
                                     return false;
                                 }
@@ -95,7 +95,7 @@ public abstract class Ship {
                 if (fitsInDirection(row, ocean)) {
                     for (int i = row - 1; i <= row + this.getLength(); ++i )
                         for (int j = column - 1; j <= column + 1; ++j)
-                            if (isValidPosition(i, j, ocean)) {
+                            if (ocean.isValidPosition(i, j)) {
                                 if (ocean.isOccupied(i, j)) {
                                     return false;
                                 }
@@ -104,7 +104,6 @@ public abstract class Ship {
                 } else {
                     return false;
                 }
-
             }
         } else {
             return false;
@@ -115,7 +114,24 @@ public abstract class Ship {
 
 
     void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-        ;
+        if (okToPlaceShipAt(row, column, horizontal, ocean)) {
+            this.bowRow = row;
+            this.bowColumn = column;
+            this.horizontal = horizontal;
+            Ship[][] newShip = ocean.getShips();
+            if (horizontal) {
+                for (int i = column; i < column + this.length; ++i) {
+                    newShip[row][i] = this;
+                }
+                ocean.setShips(newShip);
+            } else {
+                for (int i = row; i < row + this.length; ++i) {
+                    newShip[i][column] = this;
+                }
+                ocean.setShips(newShip);
+            }
+        }
+
     }
 
     boolean shootAt (int row, int column) {
@@ -133,13 +149,6 @@ public abstract class Ship {
         } else return "S";
 
     }
-
-
-
-
-
-
-
 
 
 }

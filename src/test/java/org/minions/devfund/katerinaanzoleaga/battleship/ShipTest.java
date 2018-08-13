@@ -26,17 +26,18 @@ public class ShipTest {
     @Parameterized.Parameters
     public static Collection positions() {
         return Arrays.asList(new Object[][] {
-                { 0, 0, false, true },
-                { 0, 19, false, true },
-                { 19,19, false, false },
+                { 0, 8, true, false },
+                { 0, 0, false, false },
+                { 1, 5, false, false },
+                { 19,8, true, true },
                 { -1, 22, true, false },
-                { 19, 0, true, true }
+                { 19, 18, true, false }
         });
     }
 
     @Test
     public void testOkToPlaceShipAt() {
-        Ship aBattleShip = new BattleShip();
+        aBattleShip.placeShipAt(0, 0, true, theOcean);
         assertEquals(expectedResult, aBattleShip.okToPlaceShipAt(row, column, horizontal, theOcean));
     }
 
