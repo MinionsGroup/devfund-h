@@ -22,19 +22,6 @@ public class BattleshipGame {
             System.out.println();
             ocean.print();
 
-            /*
-             * autoplay the game
-             */
-//			for (int i = 0; i < 10; i++) {
-//				for (int j = 0; j < 10; j++) {
-//					System.out.println(i + " " + j);
-//					ocean.shootAt(i, j);
-//					ocean.print();
-//				}
-//			}
-//			ocean.print();
-//			break;
-
             System.out.print("5 places to shoot at: ");
             String input = scanner.nextLine();
             if (input.equals("q")) {

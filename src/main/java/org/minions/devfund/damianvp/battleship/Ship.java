@@ -1,7 +1,5 @@
 package org.minions.devfund.damianvp.battleship;
 
-import java.util.Arrays;
-
 public abstract class Ship {
     private int bowRow; //the row (0 to 19) which contains the bow (front) of the ship.
     private int bowColumn; //- the column which contains the bow (front) of the ship.
@@ -52,33 +50,44 @@ public abstract class Ship {
     abstract String getShipType();
 
     boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-        System.out.println("------------");
-        System.out.println(row);
-        System.out.println(column);
-        System.out.println(horizontal);
-        System.out.println(this.length);
-//        if (row > 20 || column > 20) {
-//            return false;
-//        }
-
+        int rowLimitA;
+        int rowLimitB;
+        int columnLimitA;
+        int columnLimitB;
         if (horizontal) {
-            if (column + this.getLength() >= 20) {
+            if (column + this.getLength() > 20) {
                 return false;
             }
-            for (int i = column; i < column + this.getLength(); i++) {
-                if (!ocean.getShipArray()[row][i].getShipType().equals("empty")) {
-                    return false;
-                }
-            }
+            Long r = Math.round(row * 0.019 + 0.49);
+            rowLimitA = row - r.intValue();
+            Long r2 = Math.round((19 - row) * 0.019 + 0.49);
+            rowLimitB = row + r2.intValue();
+            Long c1 = Math.round((column) * 0.019 + 0.49);
+            columnLimitA = column - c1.intValue();
+            Long c2 = Math.round((19 - column + this.getLength())* 0.019 + 0.49);
+            columnLimitB = column + this.getLength() - c2.intValue();
         } else {
-            if (row + this.getLength() >= 20) {
+            if (row + this.getLength() > 20) {
                 return false;
             }
-            for (int i = row; i < row + this.getLength(); i++) {
-                if (!ocean.getShipArray()[i][column].getShipType().equals("empty")) {
+            Long r = Math.round((row) * 0.019 + 0.49);
+            rowLimitA = row - r.intValue();
+            Long r2 = Math.round((row + this.getLength())* 0.019 + 0.49);
+            rowLimitB = row + this.getLength() - r2.intValue();
+            Long c1 = Math.round((column - 1) * 0.019 + 0.49);
+            columnLimitA = column - c1.intValue();
+            Long c2 = Math.round((19 - column)* 0.019 + 0.49);
+            columnLimitB = column + c2.intValue();
+
+        }
+
+        for (int i = rowLimitA; i <= rowLimitB; i++) {
+            for (int j = columnLimitA; j <= columnLimitB ; j ++ ) {
+                if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
                     return false;
                 }
             }
+
         }
         return true;
     }
@@ -90,13 +99,12 @@ public abstract class Ship {
 
         if (this.horizontal) {
             for (int i = column; i < column + this.getLength(); i++) {
-                System.out.println("placed");
                 ocean.getShipArray()[row][i] = this;
-            }
+                ocean.cccc++;            }
         } else {
-            for (int i = row; i < row + this.getLength(); i++) {
-                System.out.println("placed");
-                ocean.getShipArray()[i][column] = this;
+            for (int j = row; j < row + this.getLength(); j++) {
+                ocean.getShipArray()[j][column] = this;
+                ocean.cccc++;
             }
         }
     }
@@ -119,11 +127,7 @@ public abstract class Ship {
     }
 
     boolean isSunk() {
-        for (boolean h : this.hit) {
-            if (!h) {
-                return false;
-            }
-        }
+        for (boolean b : hit) if (!b) return false;
         return true;
     }
 
@@ -133,27 +137,12 @@ public abstract class Ship {
             return "x";
         }
         return "S";
-//        return isSunk() ? "x" : "S";
     }
 
-
-
-
-
-    /*
-     * Return true if the part of the ship was hit, false otherwise
-     */
     public boolean wasShootAt(int row, int column) {
-        System.out.println("********");
-        for (int i=0; i<this.hit.length;i++) {
-            System.out.println(this.hit[i]);
-        }
-
         if (horizontal) {
-            System.out.println(column - this.bowColumn);
             return hit[column - this.bowColumn] == true;
         } else {
-            System.out.println(row - this.bowRow);
             return hit[row - this.bowRow] == true;
         }
     }

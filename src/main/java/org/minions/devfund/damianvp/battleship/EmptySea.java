@@ -1,29 +1,29 @@
 package org.minions.devfund.damianvp.battleship;
 
+import java.util.Arrays;
+
 public class EmptySea extends Ship{
 
     EmptySea() {
         this.setLength(1);
+        this.setHit(new boolean[1]);
+        Arrays.fill(this.getHit(), false);
     }
-
 
     @Override
     boolean shootAt(int row, int column) {
+        this.getHit()[0] = true;
         return false;
-//        return super.shootAt(row, column);
     }
 
     @Override
     boolean isSunk() {
         return false;
-//        return super.isSunk();
     }
 
     @Override
     public String toString() {
         return this.getHit()[0] ? "-" : ".";
-//        return "E";
-//        return super.toString();
     }
 
     @Override

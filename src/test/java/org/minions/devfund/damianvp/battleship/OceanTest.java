@@ -30,14 +30,21 @@ public class OceanTest {
         assertEquals(0, ocean.getShipsSunk());
         assertEquals(0, ocean.getShotsFired());
         int shipCount = 0;
+        System.out.println("testsssssssssssssssssss");
+        int bs=0;
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
+                System.out.println(ocean.getShipArray()[i][j].getShipType());
                 if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
                     shipCount++;
+                }
+                if(ocean.getShipArray()[i][j].getShipType().equals("battleship")) {
+                    bs++;
                 }
 
             }
         }
+        System.out.println("counter:  " + bs);
 
         // 8 + 7 + 2*6 + 2*5 + 3*4 + 4*3 = 61
         assertEquals(61, shipCount);
@@ -202,5 +209,22 @@ public class OceanTest {
 
         assertEquals(sb.toString(), ocean.toString());
 
+    }
+
+    @Test
+    public void testIsGameOver() {
+        Ocean ocean = new Ocean();
+        assertFalse(ocean.isGameOver());
+        ocean.placeAllShipsRandomly();
+        Ship[][] ships = ocean.getShipArray();
+        for (int row=0; row < ships.length; row++) {
+            for (int col=0; col < ships[row].length; col++) {
+                if (!(ships[row][col] instanceof EmptySea)) {
+                    ocean.shootAt(row, col);
+                }
+            }
+        }
+        System.out.println(ocean.isGameOver());
+        assertTrue(ocean.isGameOver());
     }
 }
