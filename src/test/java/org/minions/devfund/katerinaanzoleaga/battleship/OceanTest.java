@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
  */
 public class OceanTest {
     private Ocean theOcean;
+    private LightCruiser lightCruiser = new LightCruiser();
 
     /**
      * Setup a new ocean for each test.
@@ -38,6 +39,19 @@ public class OceanTest {
     @Test
     public void testPlaceAllShipRandomly() {
         theOcean.placeAllShipRandomly();
+
+    }
+
+    @Test
+    public void testPrint() {
+        lightCruiser.placeShipAt(2, 2, false, theOcean);
+        theOcean.shootAt(2, 2);
+        theOcean.shootAt(4, 2);
+        theOcean.shootAt(3, 2);
+        theOcean.shootAt(5, 2);
+        theOcean.shootAt(6, 2);
+        theOcean.shootAt(3, 7);
+        theOcean.print();
 
     }
 }

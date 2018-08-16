@@ -47,7 +47,6 @@ public class ShipTest {
         assertTrue(aBattleCrusie.isSunk());
         assertFalse(aBattleCrusie.shootAt(1, 8));
         assertFalse(aBattleCrusie.shootAt(2, 6));
-
     }
 
     @Test

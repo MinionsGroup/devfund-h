@@ -1,6 +1,7 @@
 package org.minions.devfund.katerinaanzoleaga.battleship;
 
 import java.util.Arrays;
+import java.util.Formatter;
 import java.util.Random;
 
 public class Ocean {
@@ -57,24 +58,94 @@ public class Ocean {
      * Fills the Ocean with empty ships.
      */
     private void fillOcean() {
-        EmptySea emptySea = new EmptySea();
-        for (Ship[] row : this.ships)
-            Arrays.fill(row, emptySea);
+        for (int i = 0; i < this.ships.length; ++i)
+            for (int j = 0; j < this.ships.length; ++j) {
+                EmptySea emptySea = new EmptySea();
+                this.ships[i][j] = emptySea;
+            }
     }
+
+    /**
+     * Returns the ocean with the column and row numbers added.
+     *
+     * @return
 
     @Override
     public String toString() {
         String lineSeparator = System.lineSeparator();
         StringBuilder sb = new StringBuilder();
-
-        for (Ship[] row : this.ships) {
-            for (Ship ship : row) {
-                sb.append(ship.toString());
+        Formatter fmt = new Formatter(sb);
+        final String SPACES = " ";
+        for (int i = -1; i < this.ships.length; ++i){
+            for (int j = -1; j < this.ships.length; ++j) {
+                if (i == -1 && j == -1) {
+                    fmt.format("%2s", "");
+                }
+                if (i == -1 && j != -1) {
+                    sb.append(SPACES);
+                    fmt.format("%02d", j);
+                }
+                if (j == -1 && i != -1) {
+                    fmt.format("%02d", i);
+                }
+                if (i != -1 && j != -1) {
+                    fmt.format("%3s", this.ships[i][j].toString());
+                }
             }
             sb.append(lineSeparator);
         }
         return sb.toString();
+    }*/
+
+
+    public void print() {
+        String lineSeparator = System.lineSeparator();
+        StringBuilder sb = new StringBuilder();
+        Formatter fmt = new Formatter(sb);
+        int hitPosition;
+
+        final String SPACES = " ";
+        for (int i = -1; i < this.ships.length; ++i){
+            for (int j = -1; j < this.ships.length; ++j) {
+                if (i == -1 && j == -1) {
+                    fmt.format("%2s", "");
+                }
+                if (i == -1 && j != -1) {
+                    sb.append(SPACES);
+                    fmt.format("%02d", j);
+                }
+                if (j == -1 && i != -1) {
+                    fmt.format("%02d", i);
+                }
+                if (i != -1 && j != -1) {
+                    if (this.ships[i][j].getShipType() == "empty") {
+                        if (this.ships[i][j].getHit()[0]) {
+                            fmt.format("%3s", "-");
+                        } else {
+                            fmt.format("%3s", ".");
+                        }
+                    } else {
+                        if (this.ships[i][j].isSunk()) {
+                            fmt.format("%3s", "x");
+                        } else {
+                            hitPosition = this.ships[i][j].hitPosition(i,j);
+                            if (hitPosition != -1) {
+                                if (this.ships[i][j].getHit()[hitPosition]) {
+                                    fmt.format("%3s", this.ships[i][j].toString());
+                                } else {
+                                    fmt.format("%3s", ".");
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            sb.append(lineSeparator);
+        }
+        System.out.println(sb);
     }
+
 
     /**
      * Returns true if the position is valid from 0 to the length of the ocean.
@@ -226,6 +297,8 @@ public class Ocean {
             return false;
         }
     }
+
+
 
 
 

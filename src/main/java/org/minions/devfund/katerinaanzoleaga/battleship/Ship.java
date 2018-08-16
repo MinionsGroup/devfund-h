@@ -166,6 +166,25 @@ public abstract class Ship {
     }
 
     /**
+     * This method returns the index position of the hit relative to the position of a ship reference.
+     * @param row
+     * @param column
+     * @return -1 if the position does not belong to the ship
+     */
+
+    public int hitPosition (int row, int column) {
+        if (this.isInShipPosition(row, column) != -1) {
+            if (horizontal) {
+                return column - bowColumn;
+            } else {
+                return row - bowRow;
+            }
+        } else {
+            return -1;
+        }
+    }
+
+    /**
      * Verifies if the position belongs to the ship, is so, updates the hit array accordingly.
      * @param row
      * @param column
