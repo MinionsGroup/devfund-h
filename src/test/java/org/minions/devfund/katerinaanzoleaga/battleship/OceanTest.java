@@ -3,8 +3,6 @@ package org.minions.devfund.katerinaanzoleaga.battleship;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 /**
@@ -26,7 +24,7 @@ public class OceanTest {
      */
     @Test
     public void testConstructor() {
-        for (Ship[] row : theOcean.getShips()) {
+        for (Ship[] row : theOcean.getShipArray()) {
             for (Ship elem : row) {
                 assertEquals(".", elem.toString());
                 assertSame(elem.getShipType(),  "empty");
