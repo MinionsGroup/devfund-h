@@ -69,36 +69,8 @@ public class Ocean {
      * Returns the ocean with the column and row numbers added.
      *
      * @return
-
-    @Override
+     */
     public String toString() {
-        String lineSeparator = System.lineSeparator();
-        StringBuilder sb = new StringBuilder();
-        Formatter fmt = new Formatter(sb);
-        final String SPACES = " ";
-        for (int i = -1; i < this.ships.length; ++i){
-            for (int j = -1; j < this.ships.length; ++j) {
-                if (i == -1 && j == -1) {
-                    fmt.format("%2s", "");
-                }
-                if (i == -1 && j != -1) {
-                    sb.append(SPACES);
-                    fmt.format("%02d", j);
-                }
-                if (j == -1 && i != -1) {
-                    fmt.format("%02d", i);
-                }
-                if (i != -1 && j != -1) {
-                    fmt.format("%3s", this.ships[i][j].toString());
-                }
-            }
-            sb.append(lineSeparator);
-        }
-        return sb.toString();
-    }*/
-
-
-    public void print() {
         String lineSeparator = System.lineSeparator();
         StringBuilder sb = new StringBuilder();
         Formatter fmt = new Formatter(sb);
@@ -135,7 +107,6 @@ public class Ocean {
                                 } else {
                                     fmt.format("%3s", ".");
                                 }
-
                             }
                         }
                     }
@@ -143,7 +114,12 @@ public class Ocean {
             }
             sb.append(lineSeparator);
         }
-        System.out.println(sb);
+        return sb.toString();
+    }
+
+
+    public void print() {
+        System.out.println(this);
     }
 
 
@@ -172,7 +148,7 @@ public class Ocean {
      * Places the number of ships as indicated by the constant numbers in this class.
      * It places each ship in a random position and direction.
      */
-    public void placeAllShipRandomly() {
+    public void placeAllShipsRandomly() {
 
 
         Random randomNumber;
@@ -262,27 +238,32 @@ public class Ocean {
             }
             submarine.placeShipAt(row, colum, horizontal ==1, this);
         }
-        System.out.println(this);
     }
 
     public boolean shootAt(int row, int column) {
-        Ship aShip;
-        ++this.shotsFired;
-        aShip = this.ships[row][column];
-        if (aShip.isSunk()) {
-            return false;
-        } else {
-            if (aShip.shootAt(row, column)) {
-                ++this.hitCount;
-                if (aShip.isSunk()) {
-                    ++this.shipsSunk;
-                }
-                return true;
-            }
-            else {
+        if (this.isValidPosition(row, column)) {
+            Ship aShip;
+            ++this.shotsFired;
+            aShip = this.ships[row][column];
+            if (aShip.isSunk()) {
                 return false;
+            } else {
+                if (aShip.shootAt(row, column)) {
+                    ++this.hitCount;
+                    if (aShip.isSunk()) {
+                        ++this.shipsSunk;
+                    }
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
+
+        } else {
+            return false;
         }
+
     }
 
     /**

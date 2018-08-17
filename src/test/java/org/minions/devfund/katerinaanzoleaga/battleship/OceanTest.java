@@ -38,19 +38,23 @@ public class OceanTest {
      */
     @Test
     public void testPlaceAllShipRandomly() {
-        theOcean.placeAllShipRandomly();
+        theOcean.placeAllShipsRandomly();
+        System.out.println(theOcean.toString());
 
     }
 
     @Test
     public void testPrint() {
         lightCruiser.placeShipAt(2, 2, false, theOcean);
+        theOcean.shootAt(0, 0);
         theOcean.shootAt(2, 2);
         theOcean.shootAt(4, 2);
         theOcean.shootAt(3, 2);
         theOcean.shootAt(5, 2);
         theOcean.shootAt(6, 2);
         theOcean.shootAt(3, 7);
+        theOcean.shootAt(19, 20);
+        theOcean.shootAt(19, 19);
         theOcean.print();
 
     }
