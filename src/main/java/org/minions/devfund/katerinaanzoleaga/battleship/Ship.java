@@ -5,6 +5,14 @@ package org.minions.devfund.katerinaanzoleaga.battleship;
  */
 public abstract class Ship {
 
+    public void setBowRow(int bowRow) {
+        this.bowRow = bowRow;
+    }
+
+    public void setBowColumn(int bowColumn) {
+        this.bowColumn = bowColumn;
+    }
+
     private int bowRow;
     private int bowColumn;
     private int length;
@@ -13,42 +21,72 @@ public abstract class Ship {
 
     protected static final int HITLENGTH = 8;
 
-
+    /**
+     * Returns the row position of the bow.
+     * @return
+     */
     public int getBowRow() {
         return bowRow;
     }
 
+    /**
+     * Teturns the column position of the bow.
+     * @return
+     */
     public int getBowColumn() {
         return bowColumn;
     }
 
+    /**
+     * Returns the length of the ship.
+     * @return
+     */
     public int getLength() {
         return length;
     }
 
+    /**
+     * Sets the lenght of the ship from extended classes.
+     * @param length
+     */
     public void setLength(int length) {
         this.length = length;
     }
 
+    /**
+     * Returns true if the ship is horizontal.
+     * @return
+     */
     public boolean isHorizontal() {
         return horizontal;
     }
 
+    /**
+     * Retruns the hits array.
+     * @return
+     */
     public boolean[] getHit() {
         return hit;
     }
 
+    /**
+     * Updates the hit array.
+     * @param hit
+     */
     protected void setHit(boolean[] hit) {
         this.hit = hit;
     }
 
-
+    /**
+     * Abstract method to be overwrite by the extended classes.
+     * @return
+     */
     abstract String getShipType();
 
 
     /**
-     * Given the starting position, either row or columen, this fuction returns
-     * true if the ship's larger posstion will feet in the ocean.
+     * Given the starting position, either row or column, this fuction returns.
+     * true if the ship's larger position will feet in the ocean.
      * @param position either row or column
      * @param ocean the ocean reference.
      * @return ture if feets.
@@ -141,7 +179,7 @@ public abstract class Ship {
      * @param column
      * @return Returns the relative position of the hit i shot at that position.
      */
-    private int isInShipPosition(int row, int column) {
+    public int isInShipPosition(int row, int column) {
         if (horizontal) {
             if (row != bowRow) {
                 return -1;
@@ -201,6 +239,10 @@ public abstract class Ship {
         }
     }
 
+    /**
+     * Returns true if the ship is sunk. Reads every hit position until the length of the ship.
+     * @return
+     */
     boolean isSunk() {
         for (int i = 0; i < length; ++i) {
             if (!hit[i]) {
@@ -209,6 +251,11 @@ public abstract class Ship {
         }
         return true;
     }
+
+    /**
+     * Writes X if the ship is sunk, S otherwise.
+     * @return
+     */
 
     @Override
     public String toString() {

@@ -1,21 +1,18 @@
 package org.minions.devfund.katerinaanzoleaga.battleship;
 
-import java.util.Arrays;
 import java.util.Formatter;
 import java.util.Random;
 
+/**
+ * Ocean class is the base of BattleShip game. It holds the ships to be sunk.
+ */
 public class Ocean {
-
-
-
-    private Ship[][] ships = new Ship[20][20];
-
 
 
     private int shotsFired;
     private int hitCount;
     private int shipsSunk;
-
+    private static final int LENGTH = 20;
     private static final int BATTLESHIPSNUMBER = 1;
     private static final int BATTLECRUSIERSNUMBER = 1;
     private static final int CRUSIERSNUMBER = 2;
@@ -23,23 +20,44 @@ public class Ocean {
     private static final int DESTROYERSNUMBER = 3;
     private static final int SUBMARINESNUMBER = 4;
 
+    private Ship[][] ships = new Ship[LENGTH][LENGTH];
 
+    /**
+     * Returns the Ships array.
+     * @return Array of ships
+     */
     public Ship[][] getShipArray() {
         return ships;
     }
 
-    public void setShips(Ship[][] ships) {
+    /**
+     * Updates the Ships array.
+     * @param ships of the ocean.
+     */
+    public void setShips(final Ship[][] ships) {
         this.ships = ships;
     }
 
+    /**
+     * Returns the number of shots the gamer fired.
+     * @return shots fired.
+     */
     public int getShotsFired() {
         return shotsFired;
     }
 
+    /**
+     * Returns the number of hits.
+     * @return hit count
+     */
     public int getHitCount() {
         return hitCount;
     }
 
+    /**
+     * Returns the number of Ships already sunk.
+     * @return shis sunk
+     */
     public int getShipsSunk() {
         return shipsSunk;
     }
@@ -58,56 +76,48 @@ public class Ocean {
      * Fills the Ocean with empty ships.
      */
     private void fillOcean() {
-        for (int i = 0; i < this.ships.length; ++i)
+        for (int i = 0; i < this.ships.length; ++i) {
             for (int j = 0; j < this.ships.length; ++j) {
                 EmptySea emptySea = new EmptySea();
+                //emptySea.placeShipAt(i, j, false, this);
+                emptySea.setBowRow(i);
+                emptySea.setBowColumn(j);
                 this.ships[i][j] = emptySea;
             }
+        }
     }
 
     /**
-     * Returns the ocean with the column and row numbers added.
-     *
+     * Returns the ocean with the values to display the game status.
      * @return
      */
+    @Override
     public String toString() {
         String lineSeparator = System.lineSeparator();
         StringBuilder sb = new StringBuilder();
         Formatter fmt = new Formatter(sb);
         int hitPosition;
 
-        final String SPACES = " ";
-        for (int i = -1; i < this.ships.length; ++i){
+        final String spaces = " ";
+        for (int i = -1; i < this.ships.length; ++i) {
             for (int j = -1; j < this.ships.length; ++j) {
                 if (i == -1 && j == -1) {
                     fmt.format("%2s", "");
                 }
                 if (i == -1 && j != -1) {
-                    sb.append(SPACES);
+                    sb.append(spaces);
                     fmt.format("%02d", j);
                 }
                 if (j == -1 && i != -1) {
                     fmt.format("%02d", i);
                 }
                 if (i != -1 && j != -1) {
-                    if (this.ships[i][j].getShipType() == "empty") {
-                        if (this.ships[i][j].getHit()[0]) {
-                            fmt.format("%3s", "-");
+                    hitPosition = this.ships[i][j].isInShipPosition(i, j);
+                    if (hitPosition != -1) {
+                        if (this.ships[i][j].getHit()[hitPosition]) {
+                            fmt.format("%3s", this.ships[i][j].toString());
                         } else {
                             fmt.format("%3s", ".");
-                        }
-                    } else {
-                        if (this.ships[i][j].isSunk()) {
-                            fmt.format("%3s", "x");
-                        } else {
-                            hitPosition = this.ships[i][j].hitPosition(i,j);
-                            if (hitPosition != -1) {
-                                if (this.ships[i][j].getHit()[hitPosition]) {
-                                    fmt.format("%3s", this.ships[i][j].toString());
-                                } else {
-                                    fmt.format("%3s", ".");
-                                }
-                            }
                         }
                     }
                 }
@@ -117,7 +127,9 @@ public class Ocean {
         return sb.toString();
     }
 
-
+    /**
+     * Prints the Ocean to the gamer.
+     */
     public void print() {
         System.out.println(this);
     }
@@ -125,11 +137,11 @@ public class Ocean {
 
     /**
      * Returns true if the position is valid from 0 to the length of the ocean.
-     * @param row
-     * @param column
+     * @param row int
+     * @param column int
      * @return boolean
      */
-    public boolean isValidPosition (int row, int column) {
+    public boolean isValidPosition(int row, int column) {
         int maxPosition = this.getShipArray().length - 1;
         return row >= 0 && row <= maxPosition && column >= 0 && column <= maxPosition;
     }
@@ -161,85 +173,91 @@ public class Ocean {
         Destroyer destroyer;
         Submarine submarine;
 
-        for (int i=1; i<=BATTLESHIPSNUMBER; ++i) {
+        for (int i = 1; i <= BATTLESHIPSNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
             colum = randomNumber.nextInt(this.getShipArray().length);
-            horizontal= randomNumber.nextInt(2);
+            horizontal = randomNumber.nextInt(2);
             battleShip = new BattleShip();
-            while (!battleShip.okToPlaceShipAt(row,colum, horizontal == 1,this)) {
+            while (!battleShip.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
                 colum = randomNumber.nextInt(this.getShipArray().length);
-                horizontal= randomNumber.nextInt(2);
+                horizontal = randomNumber.nextInt(2);
             }
-            battleShip.placeShipAt(row, colum, horizontal ==1, this);
+            battleShip.placeShipAt(row, colum, horizontal == 1, this);
         }
 
-        for (int i=1; i<=BATTLECRUSIERSNUMBER; ++i) {
+        for (int i = 1; i <= BATTLECRUSIERSNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
             colum = randomNumber.nextInt(this.getShipArray().length);
-            horizontal= randomNumber.nextInt(2);
+            horizontal = randomNumber.nextInt(2);
             battleCruiser = new BattleCruiser();
-            while (!battleCruiser.okToPlaceShipAt(row,colum, horizontal == 1,this)) {
+            while (!battleCruiser.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
                 colum = randomNumber.nextInt(this.getShipArray().length);
-                horizontal= randomNumber.nextInt(2);
+                horizontal = randomNumber.nextInt(2);
             }
-            battleCruiser.placeShipAt(row, colum, horizontal ==1, this);
+            battleCruiser.placeShipAt(row, colum, horizontal == 1, this);
         }
 
-        for (int i=1; i<=CRUSIERSNUMBER; ++i) {
+        for (int i = 1;  i <= CRUSIERSNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
             colum = randomNumber.nextInt(this.getShipArray().length);
-            horizontal= randomNumber.nextInt(2);
+            horizontal = randomNumber.nextInt(2);
             cruiser = new Cruiser();
-            while (!cruiser.okToPlaceShipAt(row,colum, horizontal == 1,this)) {
+            while (!cruiser.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
                 colum = randomNumber.nextInt(this.getShipArray().length);
-                horizontal= randomNumber.nextInt(2);
+                horizontal = randomNumber.nextInt(2);
             }
-            cruiser.placeShipAt(row, colum, horizontal ==1, this);
+            cruiser.placeShipAt(row, colum, horizontal == 1, this);
         }
 
-        for (int i=1; i<=LIGHTCRUISIERSNUMBER; ++i) {
+        for (int i = 1; i <= LIGHTCRUISIERSNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
             colum = randomNumber.nextInt(this.getShipArray().length);
-            horizontal= randomNumber.nextInt(2);
+            horizontal = randomNumber.nextInt(2);
             lightCruiser = new LightCruiser();
-            while (!lightCruiser.okToPlaceShipAt(row,colum, horizontal == 1,this)) {
+            while (!lightCruiser.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
                 colum = randomNumber.nextInt(this.getShipArray().length);
-                horizontal= randomNumber.nextInt(2);
+                horizontal = randomNumber.nextInt(2);
             }
-            lightCruiser.placeShipAt(row, colum, horizontal ==1, this);
+            lightCruiser.placeShipAt(row, colum, horizontal == 1, this);
         }
 
-        for (int i=1; i<=DESTROYERSNUMBER; ++i) {
+        for (int i = 1;  i <= DESTROYERSNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
             colum = randomNumber.nextInt(this.getShipArray().length);
-            horizontal= randomNumber.nextInt(2);
+            horizontal = randomNumber.nextInt(2);
             destroyer = new Destroyer();
-            while (!destroyer.okToPlaceShipAt(row,colum, horizontal == 1,this)) {
+            while (!destroyer.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
                 colum = randomNumber.nextInt(this.getShipArray().length);
-                horizontal= randomNumber.nextInt(2);
+                horizontal =  randomNumber.nextInt(2);
             }
-            destroyer.placeShipAt(row, colum, horizontal ==1, this);
+            destroyer.placeShipAt(row, colum, horizontal == 1, this);
         }
 
-        for (int i=1; i<=SUBMARINESNUMBER; ++i) {
+        for (int i = 1; i <= SUBMARINESNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
             colum = randomNumber.nextInt(this.getShipArray().length);
-            horizontal= randomNumber.nextInt(2);
+            horizontal = randomNumber.nextInt(2);
             submarine = new Submarine();
-            while (!submarine.okToPlaceShipAt(row,colum, horizontal == 1,this)) {
+            while (!submarine.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
                 colum = randomNumber.nextInt(this.getShipArray().length);
-                horizontal= randomNumber.nextInt(2);
+                horizontal = randomNumber.nextInt(2);
             }
-            submarine.placeShipAt(row, colum, horizontal ==1, this);
+            submarine.placeShipAt(row, colum, horizontal == 1, this);
         }
     }
 
+    /**
+     * Retruns true if the shot hit a ship.
+     * @param row int
+     * @param column int
+     * @return boolean
+     */
     public boolean shootAt(int row, int column) {
         if (this.isValidPosition(row, column)) {
             Ship aShip;
@@ -254,16 +272,13 @@ public class Ocean {
                         ++this.shipsSunk;
                     }
                     return true;
-                }
-                else {
+                } else {
                     return false;
                 }
             }
-
         } else {
             return false;
         }
-
     }
 
     /**
@@ -271,16 +286,7 @@ public class Ocean {
      * @return boolean
      */
     public boolean isGameOver() {
-        if (shipsSunk == BATTLESHIPSNUMBER + BATTLECRUSIERSNUMBER +
-                CRUSIERSNUMBER + LIGHTCRUISIERSNUMBER + DESTROYERSNUMBER + SUBMARINESNUMBER) {
-            return true;
-        } else {
-            return false;
-        }
+        return shipsSunk == BATTLESHIPSNUMBER + BATTLECRUSIERSNUMBER + CRUSIERSNUMBER
+                + LIGHTCRUISIERSNUMBER + DESTROYERSNUMBER + SUBMARINESNUMBER;
     }
-
-
-
-
-
 }

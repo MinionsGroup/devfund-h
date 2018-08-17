@@ -49,7 +49,7 @@ public class OceanTest {
         theOcean.shootAt(0, 0);
         theOcean.shootAt(2, 2);
         theOcean.shootAt(4, 2);
-        theOcean.shootAt(3, 2);
+        //theOcean.shootAt(3, 2);
         theOcean.shootAt(5, 2);
         theOcean.shootAt(6, 2);
         theOcean.shootAt(3, 7);

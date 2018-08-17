@@ -13,7 +13,6 @@ public class BattleCruiser extends Ship {
      * Class constructor.
      */
     public BattleCruiser() {
-
         this.setLength(LENGTH);
         this.fillHitArray();
     }

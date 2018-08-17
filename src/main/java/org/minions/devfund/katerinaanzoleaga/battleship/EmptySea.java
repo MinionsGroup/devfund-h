@@ -36,11 +36,16 @@ public class EmptySea extends Ship {
     @Override
     boolean isSunk() {
         return false;
+
     }
 
     @Override
     public String toString() {
-        return ".";
+        if (this.getHit()[0]) {
+            return "-";
+        } else {
+            return ".";
+        }
     }
 
     @Override
