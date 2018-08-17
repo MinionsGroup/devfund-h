@@ -1,12 +1,17 @@
 package org.minions.devfund.katerinaanzoleaga.battleship;
 
-import java.util.Arrays;
-
+/**
+ * EmptySea class.
+ */
 public class EmptySea extends Ship {
+
+    /**
+     * EmptySea constructor.
+     */
     public EmptySea() {
         this.setLength(1);
         this.fillHitArray();
-}
+    }
 
     /**
      * Initializes HitArray with false values.
@@ -33,12 +38,20 @@ public class EmptySea extends Ship {
         return false;
     }
 
+    /**
+     * Returns true if sunk.
+     * @return bool
+     */
     @Override
     boolean isSunk() {
         return false;
 
     }
 
+    /**
+     * Retrns the proper character depending of if fired or not.
+     * @return string.
+     */
     @Override
     public String toString() {
         if (this.getHit()[0]) {
@@ -48,6 +61,10 @@ public class EmptySea extends Ship {
         }
     }
 
+    /**
+     * Returns empty.
+     * @return string
+     */
     @Override
     String getShipType() {
         return "empty";

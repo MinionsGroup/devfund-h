@@ -22,7 +22,7 @@ public class Submarine extends Ship {
     /**
      * Initializes hit array with false values.
      */
-    private void fillHitArray () {
+    private void fillHitArray() {
         boolean[] aHit = new boolean[HITLENGTH];
         Arrays.fill(aHit, 0, LENGTH - 1, false);
         this.setHit(aHit);

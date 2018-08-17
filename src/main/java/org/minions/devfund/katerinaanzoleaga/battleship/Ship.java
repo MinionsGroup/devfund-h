@@ -4,11 +4,18 @@ package org.minions.devfund.katerinaanzoleaga.battleship;
  * Abstract class Ship.
  */
 public abstract class Ship {
-
+    /**
+     * bowRow setter.
+     * @param bowRow int
+     */
     public void setBowRow(int bowRow) {
         this.bowRow = bowRow;
     }
 
+    /**
+     * bowColumn setter.
+     * @param bowColumn int
+     */
     public void setBowColumn(int bowColumn) {
         this.bowColumn = bowColumn;
     }
@@ -18,12 +25,11 @@ public abstract class Ship {
     private int length;
     private boolean horizontal;
     private boolean[] hit;
-
     protected static final int HITLENGTH = 8;
 
     /**
      * Returns the row position of the bow.
-     * @return
+     * @return int
      */
     public int getBowRow() {
         return bowRow;
@@ -31,7 +37,7 @@ public abstract class Ship {
 
     /**
      * Teturns the column position of the bow.
-     * @return
+     * @return int
      */
     public int getBowColumn() {
         return bowColumn;
@@ -39,7 +45,7 @@ public abstract class Ship {
 
     /**
      * Returns the length of the ship.
-     * @return
+     * @return length
      */
     public int getLength() {
         return length;
@@ -47,7 +53,7 @@ public abstract class Ship {
 
     /**
      * Sets the lenght of the ship from extended classes.
-     * @param length
+     * @param length int
      */
     public void setLength(int length) {
         this.length = length;
@@ -55,7 +61,7 @@ public abstract class Ship {
 
     /**
      * Returns true if the ship is horizontal.
-     * @return
+     * @return bool
      */
     public boolean isHorizontal() {
         return horizontal;
@@ -63,7 +69,7 @@ public abstract class Ship {
 
     /**
      * Retruns the hits array.
-     * @return
+     * @return hits array
      */
     public boolean[] getHit() {
         return hit;
@@ -71,15 +77,15 @@ public abstract class Ship {
 
     /**
      * Updates the hit array.
-     * @param hit
+     * @param hit hits array
      */
-    protected void setHit(boolean[] hit) {
+    protected void setHit(final boolean[] hit) {
         this.hit = hit;
     }
 
     /**
      * Abstract method to be overwrite by the extended classes.
-     * @return
+     * @return string
      */
     abstract String getShipType();
 
@@ -91,7 +97,7 @@ public abstract class Ship {
      * @param ocean the ocean reference.
      * @return ture if feets.
      */
-    private boolean fitsInDirection (int position, Ocean ocean) {
+    private boolean fitsInDirection(int position, final Ocean ocean) {
         int oceanLength = ocean.getShipArray().length;
         if (position >= 0) {
             return position + this.getLength() - 1 < ocean.getShipArray().length;
@@ -102,23 +108,25 @@ public abstract class Ship {
 
     /**
      * Given the current ship.
-     * @param row
-     * @param column
-     * @param horizontal
-     * @param ocean
+     * @param row int
+     * @param column int
+     * @param horizontal bool
+     * @param ocean ocean
      * @return True if it is possible to place a ship in the defined position.
      */
-    boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+    boolean okToPlaceShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
         if (ocean.isValidPosition(row, column)) {
             if (horizontal) {
                 if (fitsInDirection(column, ocean)) {
-                    for (int i = row - 1; i <= row + 1; ++i)
-                        for (int j = column - 1; j <= column + this.getLength(); ++j)
+                    for (int i = row - 1; i <= row + 1; ++i) {
+                        for (int j = column - 1; j <= column + this.getLength(); ++j) {
                             if (ocean.isValidPosition(i, j)) {
                                 if (ocean.isOccupied(i, j)) {
                                     return false;
                                 }
                             }
+                        }
+                    }
                     return true;
                 } else {
                     return false;
@@ -126,13 +134,15 @@ public abstract class Ship {
 
             } else {
                 if (fitsInDirection(row, ocean)) {
-                    for (int i = row - 1; i <= row + this.getLength(); ++i )
-                        for (int j = column - 1; j <= column + 1; ++j)
+                    for (int i = row - 1; i <= row + this.getLength(); ++i) {
+                        for (int j = column - 1; j <= column + 1; ++j) {
                             if (ocean.isValidPosition(i, j)) {
                                 if (ocean.isOccupied(i, j)) {
                                     return false;
                                 }
                             }
+                        }
+                    }
                     return true;
                 } else {
                     return false;
@@ -146,12 +156,12 @@ public abstract class Ship {
 
     /**
      * Places a ship at the position specified and with the direction specified.
-     * @param row
-     * @param column
-     * @param horizontal
-     * @param ocean
+     * @param row int
+     * @param column int
+     * @param horizontal bool
+     * @param ocean ocean
      */
-    void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+    void placeShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
         if (okToPlaceShipAt(row, column, horizontal, ocean)) {
             this.bowRow = row;
             this.bowColumn = column;
@@ -175,8 +185,8 @@ public abstract class Ship {
     /**
      * This returns -1 if the position does not belong to the ship.
      * Returns the relative position of the hit i shot at that position.
-     * @param row
-     * @param column
+     * @param row int
+     * @param column int
      * @return Returns the relative position of the hit i shot at that position.
      */
     public int isInShipPosition(int row, int column) {
@@ -205,12 +215,12 @@ public abstract class Ship {
 
     /**
      * This method returns the index position of the hit relative to the position of a ship reference.
-     * @param row
-     * @param column
+     * @param row int
+     * @param column int
      * @return -1 if the position does not belong to the ship
      */
 
-    public int hitPosition (int row, int column) {
+    public int hitPosition(int row, int column) {
         if (this.isInShipPosition(row, column) != -1) {
             if (horizontal) {
                 return column - bowColumn;
@@ -224,12 +234,12 @@ public abstract class Ship {
 
     /**
      * Verifies if the position belongs to the ship, is so, updates the hit array accordingly.
-     * @param row
-     * @param column
+     * @param row int
+     * @param column int
      * @return Boolean if the shot was successful.
      */
 
-    boolean shootAt (int row, int column) {
+    boolean shootAt(int row, int column) {
         int hitAt = isInShipPosition(row, column);
         if (hitAt != -1 && !isSunk()) {
             this.hit[hitAt] = true;
@@ -241,7 +251,7 @@ public abstract class Ship {
 
     /**
      * Returns true if the ship is sunk. Reads every hit position until the length of the ship.
-     * @return
+     * @return false if some hit was not
      */
     boolean isSunk() {
         for (int i = 0; i < length; ++i) {
@@ -254,14 +264,15 @@ public abstract class Ship {
 
     /**
      * Writes X if the ship is sunk, S otherwise.
-     * @return
+     * @return char x if sunk
      */
-
     @Override
     public String toString() {
-        if (this.isSunk()){
-            return "X";
-        } else return "S";
+        if (this.isSunk()) {
+            return "x";
+        } else {
+            return "S";
+        }
 
     }
 

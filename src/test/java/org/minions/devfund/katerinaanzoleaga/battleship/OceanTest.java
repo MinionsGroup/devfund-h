@@ -10,7 +10,13 @@ import static org.junit.Assert.*;
  */
 public class OceanTest {
     private Ocean theOcean;
+    private BattleShip battleShip = new BattleShip();
+    private BattleCruiser battleCruiser = new BattleCruiser();
+    private Cruiser cruiser = new Cruiser();
     private LightCruiser lightCruiser = new LightCruiser();
+    private Destroyer destroyer = new Destroyer();
+    private Submarine submarine = new Submarine();
+    private EmptySea emptySea = new EmptySea();
 
     /**
      * Setup a new ocean for each test.
@@ -44,18 +50,47 @@ public class OceanTest {
     }
 
     @Test
-    public void testPrint() {
+    public void testLightCruiserShotAt() {
+        final int lightCruiserThree = 3;
+        final int lightCruiserFour = 4;
+        final int lightCruiserFive = 5;
+        final int lightCruiserSix = 6;
+        final int lightCruiserSeven = 7;
+        final int lightCruiserNinth = 9;
+
         lightCruiser.placeShipAt(2, 2, false, theOcean);
         theOcean.shootAt(0, 0);
         theOcean.shootAt(2, 2);
-        theOcean.shootAt(4, 2);
-        //theOcean.shootAt(3, 2);
-        theOcean.shootAt(5, 2);
-        theOcean.shootAt(6, 2);
-        theOcean.shootAt(3, 7);
-        theOcean.shootAt(19, 20);
-        theOcean.shootAt(19, 19);
-        theOcean.print();
-
+        theOcean.shootAt(lightCruiserFour, 2);
+        theOcean.shootAt(lightCruiserThree, 2);
+        theOcean.shootAt(lightCruiserFive, 2);
+        theOcean.shootAt(lightCruiserSix, 2);
+        theOcean.shootAt(lightCruiserThree, lightCruiserSeven);
+        theOcean.shootAt(lightCruiserNinth, lightCruiserNinth + 1);
+        theOcean.shootAt(lightCruiserNinth, lightCruiserNinth);
+        assertTrue(lightCruiser.isSunk());
     }
+
+    @Test
+    public void testCruiserShotAt() {
+        final int cruiserThree = 3;
+        final int cruiserFour = 4;
+        final int cruiserFive = 5;
+
+
+        cruiser.placeShipAt(0, 19, false, theOcean);
+        assertTrue(theOcean.shootAt(0, theOcean.getShipArray().length));
+        assertTrue(theOcean.shootAt(1, theOcean.getShipArray().length));
+        assertTrue(theOcean.shootAt(2, theOcean.getShipArray().length));
+        assertTrue(theOcean.shootAt(3, theOcean.getShipArray().length));
+        assertTrue(theOcean.shootAt(4, theOcean.getShipArray().length));
+        assertTrue(theOcean.shootAt(5, theOcean.getShipArray().length));
+        assertFalse(theOcean.shootAt(7, theOcean.getShipArray().length));
+        assertFalse(theOcean.shootAt(1, 0));
+        assertFalse(theOcean.shootAt(8, 0));
+        assertTrue(cruiser.isSunk());
+        theOcean.print();
+    }
+
+
 }
