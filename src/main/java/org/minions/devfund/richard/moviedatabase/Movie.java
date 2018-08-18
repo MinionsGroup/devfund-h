@@ -18,8 +18,6 @@ public class Movie {
      * Constructor.
      */
     Movie() {
-        this.name = "";
-        this.rating = 0.0;
         this.actors = new LinkedHashSet<>();
     }
 
