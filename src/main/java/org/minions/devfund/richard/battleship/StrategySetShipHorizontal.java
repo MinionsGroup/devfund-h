@@ -10,6 +10,6 @@ public class StrategySetShipHorizontal implements StrategyShip {
      */
     @Override
     public void action(Ship ship, Ocean ocean, int ind) {
-        ocean.getShips()[ship.getBowRow()][ind] = ship;
+        ocean.getShipArray()[ship.getBowRow()][ind] = ship;
     }
 }

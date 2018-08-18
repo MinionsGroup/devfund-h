@@ -10,7 +10,7 @@ public class StrategyVerifyVertical implements StrategyShip {
      */
     @Override
     public void action(Ship ship, Ocean ocean, int ind) {
-        ShipHelper.setOccupied(ocean.isOccupied(ind, ship.getBowColumn()));
+        ShipHelper.setValidPosition(!ocean.isOccupied(ind, ship.getBowColumn()));
         ShipHelper.verifyBorder(ocean, ind, ship.getBowColumn());
     }
 }

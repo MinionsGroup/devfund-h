@@ -6,13 +6,13 @@ package org.minions.devfund.richard.battleship;
 public class BattleCruiser extends Ship {
 
     private static final int SHIP_NUM = 1;
-    private static final String SHIP_TYPE = "battle cruiser";
+    private static final String SHIP_TYPE = "battlecruiser";
     private static final int SHIP_LENGTH = 7;
 
     /**
      * Constructor.
      */
-    public BattleCruiser() {
+    BattleCruiser() {
         super.setLength(SHIP_LENGTH);
         super.setHit(new boolean[SHIP_LENGTH]);
         super.setNumber(SHIP_NUM);

@@ -12,7 +12,7 @@ public class Cruiser extends Ship {
     /**
      * Constructor.
      */
-    public Cruiser() {
+    Cruiser() {
         super.setLength(SHIP_LENGTH);
         super.setHit(new boolean[SHIP_LENGTH]);
         super.setNumber(SHIP_NUM);

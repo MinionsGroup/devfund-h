@@ -12,7 +12,7 @@ public class BattleShip extends Ship {
     /**
      * Constructor.
      */
-    public BattleShip() {
+    BattleShip() {
         super.setLength(SHIP_LENGTH);
         super.setHit(new boolean[SHIP_LENGTH]);
         super.setNumber(SHIP_NUM);

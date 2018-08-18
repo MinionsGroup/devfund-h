@@ -10,6 +10,6 @@ public class StrategySetShipVertical implements StrategyShip {
      */
     @Override
     public void action(Ship ship, Ocean ocean, int ind) {
-        ocean.getShips()[ind][ship.getBowColumn()] = ship;
+        ocean.getShipArray()[ind][ship.getBowColumn()] = ship;
     }
 }

@@ -1,9 +1,14 @@
 package org.minions.devfund.richard.battleship;
 
+import java.util.stream.IntStream;
+
 /**
  * Class.
  */
 public abstract class Ship {
+
+    private static final String SUNK_CHAR = "x";
+    private static final String NOT_SUNK_CHAR = "S";
 
     private int bowRow;
     private int bowColumn;
@@ -50,14 +55,28 @@ public abstract class Ship {
      * @return boolean.
      */
     Boolean shootAt(int row, int column) {
-        return false;
+        boolean flag = false;
+        if (!isSunk()) {
+            if (!horizontal && column == bowColumn && row >= bowRow && row < bowRow + length) {
+                hit[row - bowRow] = true;
+                flag = true;
+            } else if (horizontal && row == bowRow && column >= bowColumn && column < bowColumn + length) {
+                hit[column - bowColumn] = true;
+                flag = true;
+            }
+        }
+        if (this instanceof EmptySea) {
+            flag = false;
+        }
+        return flag;
     }
 
     /**
      * @return boolean.
      */
     boolean isSunk() {
-        return false;
+        return IntStream.range(0, hit.length)
+                .mapToObj(idx -> hit[idx]).allMatch(element -> element);
     }
 
     /**
@@ -65,9 +84,7 @@ public abstract class Ship {
      */
     @Override
     public String toString() {
-        //x undido
-        //s si no esta undido
-        return "x";
+        return isSunk() ? SUNK_CHAR : NOT_SUNK_CHAR;
     }
 
     /**
@@ -139,5 +156,4 @@ public abstract class Ship {
     void addShip(Ocean ocean) {
         ShipHelper.addShip(ocean, this);
     }
-
 }

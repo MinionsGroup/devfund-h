@@ -1,8 +1,13 @@
 package org.minions.devfund.richard.battleship;
 
+/**
+ * Class.
+ */
 public class EmptySea extends Ship {
     private static final String SHIP_TYPE = "empty";
     private static final int SHIP_LENGTH = 1;
+    private static final String NOTHING_FIRED_CHAR = "-";
+    private static final String NEVER_FIRED_CHAR = ".";
 
     /**
      * Class
@@ -20,11 +25,19 @@ public class EmptySea extends Ship {
         return SHIP_TYPE;
     }
 
-    void fill(Ocean ocean) {
-        for (int i = 0; i < ocean.getShips().length; i++) {
-            for (int j = 0; j < ocean.getShips().length; j++) {
-                placeShipAt(i, j, true, ocean);
-            }
-        }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isSunk() {
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return getHit()[0] ? NOTHING_FIRED_CHAR : NEVER_FIRED_CHAR;
     }
 }

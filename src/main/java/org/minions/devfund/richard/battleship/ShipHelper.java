@@ -7,7 +7,7 @@ import java.util.Random;
  */
 class ShipHelper {
 
-    private static boolean occupied;
+    private static boolean validPosition;
 
     /**
      * Constructor.
@@ -33,15 +33,9 @@ class ShipHelper {
      * @return boolean.
      */
     static boolean isValidPosition(Ship ship, Ocean ocean) {
-        occupied = false;
-        if (ship.isHorizontal() && ship.getBowColumn() + ship.getLength() - 1 < ocean.getShips().length) {
-            StrategyManager.strategyHorizontal(new StrategyVerifyHorizontal(), ship, ocean);
-            return !occupied;
-        } else if (!ship.isHorizontal() && ship.getBowRow() + ship.getLength() - 1 < ocean.getShips().length) {
-            StrategyManager.strategyVertical(new StrategyVerifyVertical(), ship, ocean);
-            return !occupied;
-        }
-        return false;
+        validPosition = true;
+        StrategyManager.strategyValidPosition(StrategyVerifyFactory.createStrategy(ship.isHorizontal()), ship, ocean);
+        return validPosition;
     }
 
     /**
@@ -50,7 +44,7 @@ class ShipHelper {
      * @return index.
      */
     private static int indexBuilderPlus(Ocean ocean, int index) {
-        if (index + 1 < ocean.getShips().length) {
+        if (index + 1 < ocean.getShipArray().length) {
             index += 1;
         }
         return index;
@@ -77,22 +71,22 @@ class ShipHelper {
         int rowLess = indexBuilderLess(row);
         int columnPlus = indexBuilderPlus(ocean, column);
         int columnLess = indexBuilderLess(column);
-        setOccupied(ocean.isOccupied(rowPlus, column));
-        setOccupied(ocean.isOccupied(rowPlus, columnPlus));
-        setOccupied(ocean.isOccupied(rowPlus, columnLess));
-        setOccupied(ocean.isOccupied(rowLess, column));
-        setOccupied(ocean.isOccupied(rowLess, columnPlus));
-        setOccupied(ocean.isOccupied(rowLess, columnLess));
-        setOccupied(ocean.isOccupied(row, columnLess));
-        setOccupied(ocean.isOccupied(row, columnPlus));
+        setValidPosition(!ocean.isOccupied(rowPlus, column));
+        setValidPosition(!ocean.isOccupied(rowPlus, columnPlus));
+        setValidPosition(!ocean.isOccupied(rowPlus, columnLess));
+        setValidPosition(!ocean.isOccupied(rowLess, column));
+        setValidPosition(!ocean.isOccupied(rowLess, columnPlus));
+        setValidPosition(!ocean.isOccupied(rowLess, columnLess));
+        setValidPosition(!ocean.isOccupied(row, columnLess));
+        setValidPosition(!ocean.isOccupied(row, columnPlus));
     }
 
     /**
      * @param value Horizontal Occupied.
      */
-    static void setOccupied(boolean value) {
-        if (!occupied) {
-            ShipHelper.occupied = value;
+    static void setValidPosition(boolean value) {
+        if (validPosition) {
+            ShipHelper.validPosition = value;
         }
     }
 
@@ -104,10 +98,10 @@ class ShipHelper {
         Random random = new Random();
         int index = 0;
         int shipNumber = ship.getNumber();
-        while (shipNumber > index) {
+        while (shipNumber >= index) {
             boolean horizontal = random.nextBoolean();
-            int row = random.nextInt(ocean.getShips().length);
-            int column = random.nextInt(ocean.getShips().length);
+            int row = random.nextInt(ocean.getShipArray().length);
+            int column = random.nextInt(ocean.getShipArray().length);
             if (ship.okToPlaceShipAt(row, column, horizontal, ocean)) {
                 ship.placeShipAt(row, column, horizontal, ocean);
                 shipNumber--;

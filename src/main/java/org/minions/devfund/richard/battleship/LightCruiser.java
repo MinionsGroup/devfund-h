@@ -22,7 +22,7 @@ public class LightCruiser extends Ship {
      * {@inheritDoc}
      */
     @Override
-    String getShipType() {
+    public String getShipType() {
         return SHIP_TYPE;
     }
 }
