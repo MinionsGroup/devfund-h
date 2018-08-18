@@ -1,5 +1,8 @@
 package org.minions.devfund.richard.battleship;
 
+/**
+ * Class.
+ */
 public abstract class Ship {
 
     private int bowRow;
@@ -9,8 +12,18 @@ public abstract class Ship {
     private boolean[] hit;
     private int number;
 
+    /**
+     * @return String.
+     */
     abstract String getShipType();
 
+    /**
+     * @param row        row.
+     * @param column     column.
+     * @param horizontal horizontal.
+     * @param ocean      ocean.
+     * @return boolean.
+     */
     boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
         this.bowRow = row;
         this.bowColumn = column;
@@ -18,6 +31,12 @@ public abstract class Ship {
         return ShipHelper.isValidPosition(this, ocean);
     }
 
+    /**
+     * @param row        row.
+     * @param column     column.
+     * @param horizontal horizontal.
+     * @param ocean      ocean.
+     */
     void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
         this.bowRow = row;
         this.bowColumn = column;
@@ -25,14 +44,25 @@ public abstract class Ship {
         ShipHelper.setShip(this, ocean);
     }
 
+    /**
+     * @param row    row.
+     * @param column column.
+     * @return boolean.
+     */
     Boolean shootAt(int row, int column) {
         return false;
     }
 
+    /**
+     * @return boolean.
+     */
     boolean isSunk() {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         //x undido
@@ -40,52 +70,74 @@ public abstract class Ship {
         return "x";
     }
 
+    /**
+     * @return bowRow.
+     */
     int getBowRow() {
         return bowRow;
     }
 
+    /**
+     * @return bowColumn.
+     */
     int getBowColumn() {
         return bowColumn;
     }
 
+    /**
+     * @return length.
+     */
     int getLength() {
         return length;
     }
 
+    /**
+     * @return boolean.
+     */
     boolean isHorizontal() {
         return horizontal;
     }
 
+    /**
+     * @return hit.
+     */
     boolean[] getHit() {
         return hit;
     }
 
+    /**
+     * @return number of chip withing the ocean.
+     */
     int getNumber() {
         return number;
     }
 
+    /**
+     * @param length chip length.
+     */
     void setLength(int length) {
         this.length = length;
     }
 
+    /**
+     * @param hit chip hit.
+     */
     void setHit(boolean[] hit) {
         this.hit = hit;
     }
 
+    /**
+     * @param number number of chip withing the ocean.
+     */
     void setNumber(int number) {
         this.number = number;
     }
 
-    public void setBowRow(int bowRow) {
-        this.bowRow = bowRow;
-    }
-
-    public void setBowColumn(int bowColumn) {
-        this.bowColumn = bowColumn;
-    }
-
-    public void setHorizontal(boolean horizontal) {
-        this.horizontal = horizontal;
+    /**
+     * @param ocean ocean.
+     */
+    void addShip(Ocean ocean) {
+        ShipHelper.addShip(ocean, this);
     }
 
 }

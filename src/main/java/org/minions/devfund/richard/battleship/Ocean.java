@@ -1,5 +1,8 @@
 package org.minions.devfund.richard.battleship;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Ocean {
 
     private static final int OCEAN_LENGTH = 20;
@@ -26,7 +29,10 @@ public class Ocean {
     }
 
     void placeAllShipsRandomly() {
-
+        List<Ship> shipsList = Arrays.asList(battleCruiser, battleShip, destroyer, lightCruiser, subMarine);
+        for (Ship ship : shipsList) {
+            ship.addShip(this);
+        }
     }
 
     Ship[][] getShips() {
@@ -36,5 +42,4 @@ public class Ocean {
     boolean isOccupied(final int row, final int column) {
         return ships[row][column].getLength() > 1;
     }
-
 }
