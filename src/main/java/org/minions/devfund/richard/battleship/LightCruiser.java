@@ -5,17 +5,17 @@ package org.minions.devfund.richard.battleship;
  */
 public class LightCruiser extends Ship {
 
-    private static final int NUM = 2;
-    private static final String TYPE = "light cruiser";
-    private static final int LENGTH = 5;
+    private static final int SHIP_NUM = 2;
+    private static final String SHIP_TYPE = "light cruiser";
+    private static final int SHIP_LENGTH = 5;
 
     /**
      * Constructor.
      */
     LightCruiser() {
-        super.setLength(LENGTH);
-        super.setHit(new boolean[LENGTH]);
-        super.setNumber(NUM);
+        super.setLength(SHIP_LENGTH);
+        super.setHit(new boolean[SHIP_LENGTH]);
+        super.setNumber(SHIP_NUM);
     }
 
     /**
@@ -23,6 +23,6 @@ public class LightCruiser extends Ship {
      */
     @Override
     String getShipType() {
-        return TYPE;
+        return SHIP_TYPE;
     }
 }

@@ -11,15 +11,21 @@ public abstract class Ship {
 
     abstract String getShipType();
 
-    boolean okToPlaceShipAt(int fila, int columna, boolean horizontal, Ocean ocean) {
-        return false;
+    boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+        this.bowRow = row;
+        this.bowColumn = column;
+        this.horizontal = horizontal;
+        return ShipHelper.isValidPosition(this, ocean);
     }
 
-    void placeShipAt(int fila, int columna, boolean horizontal, Ocean ocean) {
-
+    void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+        this.bowRow = row;
+        this.bowColumn = column;
+        this.horizontal = horizontal;
+        ShipHelper.setShip(this, ocean);
     }
 
-    Boolean shootAt(int fila, int columna) {
+    Boolean shootAt(int row, int column) {
         return false;
     }
 
@@ -58,20 +64,8 @@ public abstract class Ship {
         return number;
     }
 
-    void setBowRow(int bowRow) {
-        this.bowRow = bowRow;
-    }
-
-    void setBowColumn(int bowColumn) {
-        this.bowColumn = bowColumn;
-    }
-
     void setLength(int length) {
         this.length = length;
-    }
-
-    void setHorizontal(boolean horizontal) {
-        this.horizontal = horizontal;
     }
 
     void setHit(boolean[] hit) {
@@ -80,6 +74,18 @@ public abstract class Ship {
 
     void setNumber(int number) {
         this.number = number;
+    }
+
+    public void setBowRow(int bowRow) {
+        this.bowRow = bowRow;
+    }
+
+    public void setBowColumn(int bowColumn) {
+        this.bowColumn = bowColumn;
+    }
+
+    public void setHorizontal(boolean horizontal) {
+        this.horizontal = horizontal;
     }
 
 }

@@ -1,23 +1,13 @@
 package org.minions.devfund.richard.battleship;
 
-
-public class StrategyShip extends Strategy {
-
-    /**
-     * Constructor.
-     */
-    StrategyShip() {
-    }
+/**
+ * Interface.
+ */
+public interface StrategyShip {
 
     /**
-     * {@inheritDoc}
+     * @param ship  ship.
+     * @param ocean ocean.
      */
-    @Override
-    void action() {
-        getOcean().getShips()[getRow()][getColumn()] = getShip();
-        getShip().setBowRow(getRow());
-        getShip().setBowColumn(getColumn());
-        getShip().setHorizontal(getHorizontal());
-        getShip().setNumber(getShip().getNumber() - 1);
-    }
+    void action(Ship ship, Ocean ocean, int ind);
 }
