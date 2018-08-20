@@ -5,30 +5,35 @@ import org.junit.Test;
 
 public class ShipTest {
 
+    /**
+     * Method to test getShipType method.
+     */
     @Test
     public void testGetShipType() {
         Ship ship = new BattleShip();
+        Ship ship2 = new BattleCruiser();
         assertEquals("battleship", ship.getShipType());
         assertEquals(8, ship.getLength());
+        assertEquals("battlecruiser", ship2.getShipType());
+        assertEquals(7, ship2.getLength());
     }
 
-    @Test
-    public void testGetShipType2() {
-        Ship ship = new BattleCruiser();
-        assertEquals("battlecruiser", ship.getShipType());
-        assertEquals(7, ship.getLength());
-    }
-
+    /**
+     * Method to test okToPlaceSHipMethod.
+     */
     @Test
     public void testOkToPlaceShipAt() {
         Ship ship = new BattleShip();
         Ocean ocean = new Ocean();
-//        assertFalse(ship.okToPlaceShipAt(0, 17, true, ocean));
-//        assertTrue(ship.okToPlaceShipAt(0, 10, true, ocean));
-//        assertFalse(ship.okToPlaceShipAt(15, 17, false, ocean));
+        assertFalse(ship.okToPlaceShipAt(0, 17, true, ocean));
+        assertTrue(ship.okToPlaceShipAt(0, 10, true, ocean));
+        assertFalse(ship.okToPlaceShipAt(15, 17, false, ocean));
         assertTrue(ship.okToPlaceShipAt(12, 10, false, ocean));
     }
 
+    /**
+     * Method to test okToPlaceShipMethod including adjacency position.
+     */
     @Test
     public void testOkToPlaceShipAt2() {
         Ship ship1 = new BattleShip();
@@ -43,6 +48,9 @@ public class ShipTest {
         assertFalse(ship2.okToPlaceShipAt(1, 13, false, ocean));
     }
 
+    /**
+     * Method to test isSunk method.
+     */
     @Test
     public void testIsSunk() {
         Ocean ocean = new Ocean();
@@ -56,6 +64,9 @@ public class ShipTest {
 
     }
 
+    /**
+     * method to test isSunk method.
+     */
     @Test
     public void testIsSunk2() {
         Ocean ocean = new Ocean();
@@ -64,24 +75,12 @@ public class ShipTest {
         for (int j = 0; j < 7; j++) {
             ocean.shootAt(0, j);
         }
-
         assertFalse(ship.isSunk());
-
     }
 
-    @Test
-    public void testToString() {
-        Ocean ocean = new Ocean();
-        BattleShip ship = new BattleShip();
-        ship.placeShipAt(0, 0, true, ocean);
-        for (int j = 0; j < 8; j++) {
-            ocean.shootAt(0, j);
-        }
-
-        assertEquals("x", ship.toString());
-
-    }
-
+    /**
+     * Method to test toString method.
+     */
     @Test
     public void testToString2() {
         Ocean ocean = new Ocean();
@@ -90,11 +89,14 @@ public class ShipTest {
         for (int j = 0; j < 7; j++) {
             ocean.shootAt(0, j);
         }
-
         assertEquals("S", ship.toString());
-
+        ocean.shootAt(0, 7);
+        assertEquals("x", ship.toString());
     }
 
+    /**
+     * Method to test shootAt method.
+     */
     @Test
     public void testShootAt() {
         Ocean ocean = new Ocean();
@@ -104,9 +106,11 @@ public class ShipTest {
         assertTrue(ship.shootAt(0, 3));
         assertTrue(ship.shootAt(0, 4));
         assertFalse(ship.shootAt(1, 4));
-
     }
 
+    /**
+     * Method to test shootAt method.
+     */
     @Test
     public void testShootAt2() {
         Ocean ocean = new Ocean();
@@ -150,7 +154,6 @@ public class ShipTest {
         Ship ship1 = new BattleShip();
         Ship ship2 = new BattleShip();
         Ocean ocean = new Ocean();
-        System.out.println(";;;;;;;;;;;");
         assertTrue(ship1.okToPlaceShipAt(0, column10, true, ocean));
         ship1.placeShipAt(0, column10, true, ocean);
         assertTrue(ship2.okToPlaceShipAt(1, 0, false, ocean));

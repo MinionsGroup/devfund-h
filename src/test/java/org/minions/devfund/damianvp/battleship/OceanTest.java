@@ -1,5 +1,6 @@
 package org.minions.devfund.damianvp.battleship;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -7,10 +8,20 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class OceanTest {
+    private Ocean ocean;
+    /**
+     * Method to initialize each test.
+     */
+    @Before
+    public void setOceanClassTest() {
+        ocean = new Ocean();
+    }
+
+    /**
+     * Method to test the Ocean constructor.
+     */
     @Test
     public void testConstructor() {
-        Ocean ocean = new Ocean();
-
         assertEquals(0, ocean.getHitCount());
         assertEquals(0, ocean.getShipsSunk());
         assertEquals(0, ocean.getShotsFired());
@@ -19,40 +30,35 @@ public class OceanTest {
                 assertEquals("empty", ocean.getShipArray()[i][j].getShipType());
             }
         }
-
     }
 
+    /**
+     * Method to test placeAllShipsRandomly.
+     */
     @Test
     public void testPlaceAllShipsRandomly() {
-        Ocean ocean = new Ocean();
+//        Ocean ocean = new Ocean();
         ocean.placeAllShipsRandomly();
         assertEquals(0, ocean.getHitCount());
         assertEquals(0, ocean.getShipsSunk());
         assertEquals(0, ocean.getShotsFired());
         int shipCount = 0;
-        System.out.println("testsssssssssssssssssss");
-        int bs=0;
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-                System.out.println(ocean.getShipArray()[i][j].getShipType());
                 if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
                     shipCount++;
                 }
-                if(ocean.getShipArray()[i][j].getShipType().equals("battleship")) {
-                    bs++;
-                }
-
             }
         }
-        System.out.println("counter:  " + bs);
-
         // 8 + 7 + 2*6 + 2*5 + 3*4 + 4*3 = 61
         assertEquals(61, shipCount);
     }
 
+    /**
+     * Method to test isOccupied method in empty ocean.
+     */
     @Test
-    public void testIsOccupied1() {
-        Ocean ocean = new Ocean();
+    public void testIsOccupiedInEmptyOcean() {
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 assertFalse( ocean.isOccupied(i, j));
@@ -61,9 +67,11 @@ public class OceanTest {
         }
     }
 
+    /**
+     * Method to test isOccupied method in already placed ship in ocean.
+     */
     @Test
-    public void testIsOccupied2() {
-        Ocean ocean = new Ocean();
+    public void testIsOccupiedInOccupiedOcean() {
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
         for (int j = 0; j < 8; j++) {
@@ -72,9 +80,11 @@ public class OceanTest {
         assertFalse( ocean.isOccupied(0, 8));
     }
 
+    /**
+     * Method to test shootAt method.
+     */
     @Test
     public void testShootAt1() {
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
         ocean.shootAt(0, 0);
@@ -85,9 +95,11 @@ public class OceanTest {
         assertEquals(3, ocean.getShotsFired());
     }
 
+    /**
+     * Method to test shootAt method.
+     */
     @Test
     public void testShootAt2() {
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
         for (int j = 0; j < 8; j++) {
@@ -102,14 +114,15 @@ public class OceanTest {
 
     }
 
+    /**
+     * Method to test toString method.
+     */
     @Test
     public void testToString() {
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
         for (int j = 0; j < 8; j++) {
             ocean.shootAt(0, j);
-//            System.out.println(ocean.shootAt(0, j));
         }
 
         assertEquals(8, ocean.getHitCount());
@@ -136,12 +149,13 @@ public class OceanTest {
         }
 
         assertEquals(sb.toString(), ocean.toString());
-
     }
 
+    /**
+     * Method to test toString method.
+     */
     @Test
     public void testToString2() {
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
         for (int j = 0; j < 7; j++) {
@@ -172,12 +186,13 @@ public class OceanTest {
         }
 
         assertEquals(sb.toString(), ocean.toString());
-
     }
 
+    /**
+     * Method to test toString method.
+     */
     @Test
     public void testToString3() {
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
         for (int j = 0; j < 7; j++) {
@@ -208,12 +223,13 @@ public class OceanTest {
         }
 
         assertEquals(sb.toString(), ocean.toString());
-
     }
 
+    /**
+     * Method to test isGameOver method.
+     */
     @Test
     public void testIsGameOver() {
-        Ocean ocean = new Ocean();
         assertFalse(ocean.isGameOver());
         ocean.placeAllShipsRandomly();
         Ship[][] ships = ocean.getShipArray();
@@ -224,7 +240,6 @@ public class OceanTest {
                 }
             }
         }
-        System.out.println(ocean.isGameOver());
         assertTrue(ocean.isGameOver());
     }
 }
