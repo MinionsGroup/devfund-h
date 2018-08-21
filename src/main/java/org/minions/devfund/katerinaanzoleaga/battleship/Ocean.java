@@ -12,7 +12,7 @@ public class Ocean {
     private int shotsFired;
     private int hitCount;
     private int shipsSunk;
-    private static final int LENGTH = 20;
+    private static final int LENGTH = 15;
     private static final int BATTLESHIPSNUMBER = 1;
     private static final int BATTLECRUSIERSNUMBER = 1;
     private static final int CRUSIERSNUMBER = 2;
@@ -79,7 +79,6 @@ public class Ocean {
         for (int i = 0; i < this.ships.length; ++i) {
             for (int j = 0; j < this.ships.length; ++j) {
                 EmptySea emptySea = new EmptySea();
-                //emptySea.placeShipAt(i, j, false, this);
                 emptySea.setBowRow(i);
                 emptySea.setBowColumn(j);
                 this.ships[i][j] = emptySea;
@@ -88,11 +87,10 @@ public class Ocean {
     }
 
     /**
-     * Returns the ocean with the values to display the game status.
-     * @return
+     * Prints the ocean with the values to display the game board and ships' status.
+     *
      */
-    @Override
-    public String toString() {
+    public void print(){
         String lineSeparator = System.lineSeparator();
         StringBuilder sb = new StringBuilder();
         Formatter fmt = new Formatter(sb);
@@ -124,15 +122,9 @@ public class Ocean {
             }
             sb.append(lineSeparator);
         }
-        return sb.toString();
+        System.out.println(sb.toString());
     }
 
-    /**
-     * Prints the Ocean to the gamer.
-     */
-    public void print() {
-        System.out.println(this);
-    }
 
 
     /**
@@ -155,6 +147,7 @@ public class Ocean {
     public boolean isOccupied(int row, int column) {
         return ships[row][column].getShipType() != "empty";
     }
+
 
     /**
      * Places the number of ships as indicated by the constant numbers in this class.
@@ -259,9 +252,9 @@ public class Ocean {
      * @return boolean
      */
     public boolean shootAt(int row, int column) {
+        ++this.shotsFired;
         if (this.isValidPosition(row, column)) {
             Ship aShip;
-            ++this.shotsFired;
             aShip = this.ships[row][column];
             if (aShip.isSunk()) {
                 return false;

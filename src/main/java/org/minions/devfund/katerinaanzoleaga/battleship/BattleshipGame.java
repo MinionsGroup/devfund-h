@@ -21,7 +21,7 @@ public final class BattleshipGame {
      */
     public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int row, columnt;
+        int row, column;
         ocean.placeAllShipsRandomly();
         ocean.print();
         while (!ocean.isGameOver()) {
@@ -31,13 +31,13 @@ public final class BattleshipGame {
             for (String shot : shots) {
                 String[] tuple = shot.split(",");
                 row = Integer.valueOf(tuple[0].trim());
-                columnt = Integer.valueOf(tuple[1].trim());
-                ocean.shootAt(row, columnt);
-                ocean.print();
-                System.out.println("Fires shot: " + ocean.getShotsFired());
-                System.out.println("Hits count: " + ocean.getHitCount());
-                System.out.println("Ships sunk: " + ocean.getShipsSunk());
+                column = Integer.valueOf(tuple[1].trim());
+                ocean.shootAt(row, column);
             }
+            ocean.print();
+            System.out.println("Fires shot: " + ocean.getShotsFired());
+            System.out.println("Hits count: " + ocean.getHitCount());
+            System.out.println("Ships sunk: " + ocean.getShipsSunk());
         }
     }
 }

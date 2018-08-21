@@ -176,10 +176,9 @@ public abstract class Ship {
                 for (int i = row; i < row + this.length; ++i) {
                     newShip[i][column] = this;
                 }
-                ocean.setShips(newShip);
             }
+            ocean.setShips(newShip);
         }
-
     }
 
     /**
