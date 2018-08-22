@@ -54,16 +54,19 @@ public class Ocean {
     void placeAllShipsRandomly() {
         Random random = new Random();
         ShipCreator creator = new ShipCreator();
-        for (String shipType : fleet.keySet()) {
+
+        for (Map.Entry<String, Integer> shipFleet : fleet.entrySet()) {
+            String shipType = shipFleet.getKey();
+            int shipQuantity = shipFleet.getValue();
             int placedShips = 0;
-            while (placedShips < fleet.get(shipType)) {
+            while (placedShips < shipQuantity) {
                 Ship ship = creator.getShip(shipType);
                 int row;
                 int column;
                 boolean horizontal;
                 do {
-                    row = random.nextInt(LENGTH);
-                    column = random.nextInt(LENGTH);
+                    row = random.nextInt(LENGTH - 1);
+                    column = random.nextInt(LENGTH - 1);
                     horizontal = random.nextBoolean();
 
                 } while (!ship.okToPlaceShipAt(row, column, horizontal, this));
@@ -71,7 +74,6 @@ public class Ocean {
                 placedShips++;
             }
         }
-
     }
 
     /**
@@ -114,7 +116,7 @@ public class Ocean {
      * @return the Ship board.
      */
     public Ship[][] getShips() {
-        return ships;
+        return ships.clone();
     }
 
     /**

@@ -47,7 +47,7 @@ public abstract class Ship {
      * This method gets the array hit.
      * @return boolean array, hit.
      */
-    public boolean[] getHit() {
+    protected boolean[] getHit() {
         return hit;
     }
 
@@ -88,7 +88,7 @@ public abstract class Ship {
      * @param hit boolean array.
      */
     public void setHit(final boolean[] hit) {
-        this.hit = hit;
+        this.hit = hit.clone();
     }
 
     /**
@@ -111,32 +111,30 @@ public abstract class Ship {
         int rowLimitB;
         int columnLimitA;
         int columnLimitB;
-        int length = ocean.getShips().length;
+        final int length = ocean.getShips().length;
+        final double reducer = length * 0.001;
+        final double incrementer = 0.49;
         if (horizontal) {
             if (column + this.getLength() > length) {
                 return false;
             }
-            Long r = Math.round(row * 0.019 + 0.49);
-            rowLimitA = row - r.intValue();
-            Long r2 = Math.round((19 - row) * 0.019 + 0.49);
+            Long r2 = Math.round((length - row) * reducer + incrementer);
             rowLimitB = row + r2.intValue();
-            Long c1 = Math.round((column) * 0.019 + 0.49);
-            columnLimitA = column - c1.intValue();
-            Long c2 = Math.round((19 - column + this.getLength())* 0.019 + 0.49);
+            Long c2 = Math.round((column + this.getLength()) * reducer + incrementer);
             columnLimitB = column + this.getLength() - c2.intValue();
         } else {
             if (row + this.getLength() > length) {
                 return false;
             }
-            Long r = Math.round((row) * 0.019 + 0.49);
-            rowLimitA = row - r.intValue();
-            Long r2 = Math.round((row + this.getLength())* 0.019 + 0.49);
+            Long r2 = Math.round((row + this.getLength()) * reducer + incrementer);
             rowLimitB = row + this.getLength() - r2.intValue();
-            Long c1 = Math.round((column - 1) * 0.019 + 0.49);
-            columnLimitA = column - c1.intValue();
-            Long c2 = Math.round((19 - column)* 0.019 + 0.49);
+            Long c2 = Math.round((length - column) * reducer + incrementer);
             columnLimitB = column + c2.intValue();
         }
+        Long r = Math.round(row * reducer + incrementer);
+        rowLimitA = row - r.intValue();
+        Long c1 = Math.round((column) * reducer + incrementer);
+        columnLimitA = column - c1.intValue();
 
         for (int i = rowLimitA; i <= rowLimitB; i++) {
             for (int j = columnLimitA; j <= columnLimitB; j++) {
