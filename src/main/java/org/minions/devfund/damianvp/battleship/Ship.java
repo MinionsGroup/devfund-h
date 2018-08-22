@@ -87,10 +87,14 @@ public abstract class Ship {
      * This method set the hit.
      * @param hit boolean array.
      */
-    public void setHit(boolean[] hit) {
+    public void setHit(final boolean[] hit) {
         this.hit = hit;
     }
 
+    /**
+     * abstract method.
+     * @return the ship type.
+     */
     abstract String getShipType();
 
     /**
@@ -102,13 +106,14 @@ public abstract class Ship {
      * @return true if positions are ok to place a ship.
      *         false if positions does not ok to place a ship.
      */
-    boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+    boolean okToPlaceShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
         int rowLimitA;
         int rowLimitB;
         int columnLimitA;
         int columnLimitB;
+        int length = ocean.getShips().length;
         if (horizontal) {
-            if (column + this.getLength() > 20) {
+            if (column + this.getLength() > length) {
                 return false;
             }
             Long r = Math.round(row * 0.019 + 0.49);
@@ -120,7 +125,7 @@ public abstract class Ship {
             Long c2 = Math.round((19 - column + this.getLength())* 0.019 + 0.49);
             columnLimitB = column + this.getLength() - c2.intValue();
         } else {
-            if (row + this.getLength() > 20) {
+            if (row + this.getLength() > length) {
                 return false;
             }
             Long r = Math.round((row) * 0.019 + 0.49);
@@ -131,16 +136,14 @@ public abstract class Ship {
             columnLimitA = column - c1.intValue();
             Long c2 = Math.round((19 - column)* 0.019 + 0.49);
             columnLimitB = column + c2.intValue();
-
         }
 
         for (int i = rowLimitA; i <= rowLimitB; i++) {
-            for (int j = columnLimitA; j <= columnLimitB ; j ++ ) {
+            for (int j = columnLimitA; j <= columnLimitB; j++) {
                 if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
                     return false;
                 }
             }
-
         }
         return true;
     }
@@ -152,7 +155,7 @@ public abstract class Ship {
      * @param horizontal boolean, (true if ship is horizontal, false if ship is vertical).
      * @param ocean Ocean type.
      */
-    void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+    void placeShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
         this.bowRow = row;
         this.bowColumn = column;
         this.horizontal = horizontal;
@@ -197,7 +200,11 @@ public abstract class Ship {
      * @return true if every part of the ship has been hit, false otherwise.
      */
     boolean isSunk() {
-        for (boolean b : hit) if (!b) return false;
+        for (boolean b : hit) {
+            if (!b) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -210,9 +217,9 @@ public abstract class Ship {
      */
     public boolean wasShootAt(int row, int column) {
         if (horizontal) {
-            return hit[column - this.bowColumn] == true;
+            return hit[column - this.bowColumn];
         } else {
-            return hit[row - this.bowRow] == true;
+            return hit[row - this.bowRow];
         }
     }
 

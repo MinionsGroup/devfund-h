@@ -1,5 +1,7 @@
 package org.minions.devfund.damianvp.battleship;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -7,11 +9,12 @@ import java.util.Random;
  */
 public class Ocean {
     static final int LENGTH = 20;
-    static final int ALLOWED_SHIPS = 13;
+    static final int TOTAL_SHIPS = 13;
     private Ship[][] ships = new Ship[LENGTH][LENGTH];
     private int shotsFired;
     private int hitCount;
     private int shipsSunk;
+    private Map<String, Integer> fleet;
 
     /**
      * Ocean constructor.
@@ -27,6 +30,22 @@ public class Ocean {
         this.shotsFired = 0;
         this.hitCount = 0;
         this.shipsSunk = 0;
+        setFleet();
+    }
+
+    /**
+     * This method sets the quantity of ships allowed in the game.
+     */
+    private void setFleet() {
+        final int destroyer = 3;
+        final int submarine = 4;
+        fleet = new HashMap<>();
+        fleet.put("BattleShip", 1);
+        fleet.put("BattleCruiser", 1);
+        fleet.put("Cruiser", 2);
+        fleet.put("LightCruiser", 2);
+        fleet.put("Destroyer", destroyer);
+        fleet.put("Submarine", submarine);
     }
 
     /**
@@ -34,36 +53,25 @@ public class Ocean {
      */
     void placeAllShipsRandomly() {
         Random random = new Random();
-        Ship[] ships = new Ship[ALLOWED_SHIPS];
-        for (int i = 0; i < ALLOWED_SHIPS; i++) {
-            if (i == 0) {
-                ships[i] = new BattleShip();
-            } else if (i == 1) {
-                ships[i] = new BattleCruiser();
-            } else if (i < 4) {
-                ships[i] = new Cruiser();
-            } else if (i < 6) {
-                ships[i] = new LightCruiser();
-            } else if (i < 9) {
-                ships[i] = new Destroyer();
-            } else if (i < 13) {
-                ships[i] = new Submarine();
+        ShipCreator creator = new ShipCreator();
+        for (String shipType : fleet.keySet()) {
+            int placedShips = 0;
+            while (placedShips < fleet.get(shipType)) {
+                Ship ship = creator.getShip(shipType);
+                int row;
+                int column;
+                boolean horizontal;
+                do {
+                    row = random.nextInt(LENGTH);
+                    column = random.nextInt(LENGTH);
+                    horizontal = random.nextBoolean();
+
+                } while (!ship.okToPlaceShipAt(row, column, horizontal, this));
+                ship.placeShipAt(row, column, horizontal, this);
+                placedShips++;
             }
         }
 
-        for (Ship ship : ships) {
-            while (true) {
-                int row = random.nextInt(LENGTH);
-                int column = random.nextInt(LENGTH);
-                boolean horizontal = random.nextBoolean();
-
-                if (ship.okToPlaceShipAt(row, column, horizontal, this)) {
-
-                    ship.placeShipAt(row, column, horizontal, this);
-                    break;
-                }
-            }
-        }
     }
 
     /**
@@ -139,7 +147,7 @@ public class Ocean {
      *         false if game continue.
      */
     boolean isGameOver() {
-        return shipsSunk == 13;
+        return shipsSunk == TOTAL_SHIPS;
     }
 
     /**
@@ -150,21 +158,28 @@ public class Ocean {
         return ships;
     }
 
+    /**
+     * Method to print the ocean.
+     */
     public void print() {
         System.out.println(toString());
     }
 
+    /**
+     * Method to build the ocean matrix.
+     * @return String format of matrix.
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(" ");
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < LENGTH; i++) {
             sb.append(String.format("%3d", i));
         }
         sb.append("\n");
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < LENGTH; i++) {
             sb.append(String.format("%2d ", i));
-            for (int j = 0; j < 20; j++) {
+            for (int j = 0; j < LENGTH; j++) {
                 if (!ships[i][j].wasShootAt(i, j)) { // never been fired
                     sb.append(".");
                 } else {

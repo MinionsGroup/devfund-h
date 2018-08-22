@@ -6,14 +6,15 @@ import java.util.Arrays;
  * Submarine class.
  */
 public class Submarine extends Ship {
+    static final int LENGTH = 3;
     private String shipType = "submarine";
 
     /**
      * Submarine class constructor.
      */
     public Submarine() {
-        this.setLength(3);
-        this.setHit(new boolean[3]);
+        this.setLength(LENGTH);
+        this.setHit(new boolean[LENGTH]);
         Arrays.fill(this.getHit(), false);
     }
 
