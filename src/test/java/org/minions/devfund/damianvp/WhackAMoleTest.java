@@ -119,38 +119,6 @@ public class WhackAMoleTest {
     }
 
     /**
-     * Test random place moles valid.
-     */
-    @Test
-    public void testRandomPlaceMole() {
-        final int placeMoles = 4;
-        whackAMoleGame.randomPlace(placeMoles);
-        assertEquals(placeMoles, whackAMoleGame.getMolesLeft());
-    }
-
-    /**
-     * Test random place using more moles than grid.
-     */
-    @Test
-    public void testRandomPlaceUsingMole() {
-        final int placeMoles = 101;
-        int expectedMoles = 0;
-        whackAMoleGame.randomPlace(placeMoles);
-        assertEquals(expectedMoles, whackAMoleGame.getMolesLeft());
-    }
-
-    /**
-     * Test random place mole using negative number.
-     */
-    @Test
-    public void testRandomPlaceUsingNegativeNumber() {
-        final int placeMoles = -5;
-        int expectedMoles = 0;
-        whackAMoleGame.randomPlace(placeMoles);
-        assertEquals(expectedMoles, whackAMoleGame.getMolesLeft());
-    }
-
-    /**
      * Test whack Mole whit empty grid.
      */
     @Test

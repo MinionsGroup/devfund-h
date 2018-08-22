@@ -1,7 +1,6 @@
 package org.minions.devfund.damianvp;
 
 import java.util.Arrays;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -63,27 +62,6 @@ public class WhackAMole {
     }
 
     /**
-     * Method to randomly place n quantity of moles.
-     * @param moles quantity of moles to place randomly.
-     */
-    void randomPlace(int moles) {
-        Random random = new Random();
-        int max = this.moleGrid.length;
-        int min = 0;
-        int limitGrid = this.moleGrid.length * this.moleGrid.length;
-        if (moles <= limitGrid) {
-            while (moles > 0) {
-                int x = random.nextInt(max - min);
-                int y = random.nextInt(max - min);
-                if (place(x, y)) {
-                    moles--;
-                }
-            }
-        }
-        LOGGER.log(Level.WARNING, "Is not possible place more than {0} moles ", limitGrid);
-    }
-
-    /**
      * Method to whack a location in order to search a mole.
      * @param x x location of grid game.
      * @param y y location of grid game
@@ -104,19 +82,19 @@ public class WhackAMole {
     }
 
     /**
-     * Method to print the grid available for user.
+     * This method returns the grid available for user.
+     * @return String trackerMoleGrid.
      */
-    void printGridToUser() {
-        String gridPrintFormat = Arrays.deepToString(this.trackerMoleGrid);
-        LOGGER.log(Level.INFO, gridPrintFormat);
+    String printGridToUser() {
+        return Arrays.deepToString(this.trackerMoleGrid);
     }
 
     /**
-     * Method to print the complete grid game status.
+     * This method returns the complete grid game status.
+     * @return String moleGrid.
      */
-    void printGrid() {
-        String gridPrintFormat = Arrays.deepToString(this.moleGrid);
-        LOGGER.log(Level.INFO, gridPrintFormat);
+    String printGrid() {
+        return Arrays.deepToString(this.moleGrid);
     }
 
     /**
