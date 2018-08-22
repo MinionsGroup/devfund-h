@@ -58,12 +58,8 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPlaceMoleValidPositions() {
-
-        final int xLocation = 0;
-        final int yLocation = 0;
-        int expectedMolesLeft = 1;
-        assertTrue(whackAMoleGame.place(xLocation, yLocation));
-        assertEquals(expectedMolesLeft, whackAMoleGame.getMolesLeft());
+        assertTrue(whackAMoleGame.place(0, 0));
+        assertEquals(1, whackAMoleGame.getMolesLeft());
     }
 
     /**
@@ -71,10 +67,8 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPlaceMoleUsingNegativeLocations() {
-        final int xLocation = -1;
-        final int yLocation = -1;
         int expectedMolesLeft = 0;
-        assertFalse(whackAMoleGame.place(xLocation, yLocation));
+        assertFalse(whackAMoleGame.place(-1, -1));
         assertEquals(expectedMolesLeft, whackAMoleGame.getMolesLeft());
     }
 
@@ -95,12 +89,9 @@ public class WhackAMoleTest {
      */
     @Test
     public void testPlaceMoleAlreadyUsedLocation() {
-        final int xLocation = 1;
-        final int yLocation = 1;
-        int expectedMolesLeft = 1;
-        assertTrue(whackAMoleGame.place(xLocation, yLocation));
-        assertFalse(whackAMoleGame.place(xLocation, yLocation));
-        assertEquals(expectedMolesLeft, whackAMoleGame.getMolesLeft());
+        assertTrue(whackAMoleGame.place(1, 1));
+        assertFalse(whackAMoleGame.place(1, 1));
+        assertEquals(1, whackAMoleGame.getMolesLeft());
     }
 
     /**
@@ -112,10 +103,9 @@ public class WhackAMoleTest {
         final int yValidLocation = 5;
         final int xInvalidLocation = -3;
         final int yInvalidLocation = 15;
-        int expectedMolesLeft = 0;
         assertFalse(whackAMoleGame.place(xValidLocation, yInvalidLocation));
         assertFalse(whackAMoleGame.place(xInvalidLocation, yValidLocation));
-        assertEquals(expectedMolesLeft, whackAMoleGame.getMolesLeft());
+        assertEquals(0, whackAMoleGame.getMolesLeft());
     }
 
     /**
@@ -125,9 +115,8 @@ public class WhackAMoleTest {
     public void testWhackMoleWithEmptyGrid() {
         final int xLocation = 5;
         final int yLocation = 7;
-        int expectedMolesLeft = 0;
         whackAMoleGame.whack(xLocation, yLocation);
-        assertEquals(expectedMolesLeft, whackAMoleGame.getMolesLeft());
+        assertEquals(0, whackAMoleGame.getMolesLeft());
     }
 
     /**
@@ -139,10 +128,9 @@ public class WhackAMoleTest {
         final int yPlaceLocation = 7;
         final int xWhackLocation = 8;
         final int yWhackLocation = 0;
-        int expectedMolesLeft = 1;
         whackAMoleGame.place(xPlaceLocation, yPlaceLocation);
         whackAMoleGame.whack(xWhackLocation, yWhackLocation);
-        assertEquals(expectedMolesLeft, whackAMoleGame.getMolesLeft());
+        assertEquals(1, whackAMoleGame.getMolesLeft());
     }
 
     /**
@@ -152,10 +140,9 @@ public class WhackAMoleTest {
     public void testWhackMoleFound() {
         final int xLocation = 5;
         final int yLocation = 7;
-        int expectedMolesLeft = 0;
         whackAMoleGame.place(xLocation, yLocation);
         whackAMoleGame.whack(xLocation, yLocation);
-        assertEquals(expectedMolesLeft, whackAMoleGame.getMolesLeft());
+        assertEquals(0, whackAMoleGame.getMolesLeft());
     }
 
     /**
@@ -167,10 +154,9 @@ public class WhackAMoleTest {
         final int yPlaceLocation = 7;
         final int xWhackLocation = -5;
         final int yWhackLocation = -4;
-        int expectedMolesLeft = 1;
         whackAMoleGame.place(xPlaceLocation, yPlaceLocation);
         whackAMoleGame.whack(xWhackLocation, yWhackLocation);
-        assertEquals(expectedMolesLeft, whackAMoleGame.getMolesLeft());
+        assertEquals(1, whackAMoleGame.getMolesLeft());
     }
 
     /**
@@ -182,10 +168,9 @@ public class WhackAMoleTest {
         final int yPlaceLocation = 7;
         final int xWhackLocation = 15;
         final int yWhackLocation = 14;
-        int expectedMolesLeft = 1;
         whackAMoleGame.place(xPlaceLocation, yPlaceLocation);
         whackAMoleGame.whack(xWhackLocation, yWhackLocation);
-        assertEquals(expectedMolesLeft, whackAMoleGame.getMolesLeft());
+        assertEquals(1, whackAMoleGame.getMolesLeft());
     }
 
 }
