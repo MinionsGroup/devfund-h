@@ -3,6 +3,9 @@ package org.minions.devfund.damianvp.moviedatabase;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -47,17 +50,12 @@ public class ActorTest {
      */
     @Test
     public void testAddMovie() {
-        final ArrayList<Movie> expectedList1 = new ArrayList<>();
-        final ArrayList<Movie> expectedList2 = new ArrayList<>();
         movie1 = new Movie(karateMovie);
         movie2 = new Movie(gloryMovie);
         movie3 = new Movie(sevenMovie);
         movie4 = new Movie(theShawshankRedemtionMovie);
-        expectedList1.add(movie1);
-        expectedList1.add(movie2);
-        expectedList2.add(movie2);
-        expectedList2.add(movie3);
-        expectedList2.add(movie4);
+        final List<Movie> expectedList1 = Arrays.asList(movie1, movie2);
+        final List<Movie> expectedList2 = Arrays.asList(movie2, movie3, movie4);
         actor1.addMovie(movie1);
         actor1.addMovie(movie2);
         actor2.addMovie(movie2);
@@ -74,17 +72,13 @@ public class ActorTest {
      */
     @Test
     public void testAddMovieAlreadyExist() {
-        final ArrayList<Movie> expectedList1 = new ArrayList<>();
-        final ArrayList<Movie> expectedList2 = new ArrayList<>();
+
         movie1 = new Movie(karateMovie);
         movie2 = new Movie(gloryMovie);
         movie3 = new Movie(sevenMovie);
         movie4 = new Movie(theShawshankRedemtionMovie);
-        expectedList1.add(movie1);
-        expectedList1.add(movie2);
-        expectedList2.add(movie2);
-        expectedList2.add(movie3);
-        expectedList2.add(movie4);
+        final List<Movie> expectedList1 = Arrays.asList(movie1, movie2);
+        final List<Movie> expectedList2 = Arrays.asList(movie2, movie3, movie4);
         actor1.addMovie(movie1);
         actor1.addMovie(movie1);
         actor1.addMovie(movie2);

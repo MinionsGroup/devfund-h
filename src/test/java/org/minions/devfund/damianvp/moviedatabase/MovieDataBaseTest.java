@@ -17,9 +17,7 @@ public class MovieDataBaseTest {
     private String karateMovie = "Karate Kid";
     private String gloryMovie = "Glory";
     private String sevenMovie = "Seven";
-    private String[] actorList1 = {actorMacchio, actorFreeman};
-    private String[] actorList2 = {actorMacchio, actorBale, actorJolie};
-    private String[] actorList3 = {actorJolie, actorFreeman};
+
 
     /**
      * Before.
@@ -48,6 +46,9 @@ public class MovieDataBaseTest {
         final int expectMovieListSize = 3;
         final int expectActorListSize = 4;
         final int three = 3;
+        final String[] actorList1 = {actorMacchio, actorFreeman};
+        final String[] actorList2 = {actorMacchio, actorBale, actorJolie};
+        final String[] actorList3 = {actorJolie, actorFreeman};
 
         movieDatabase.addMovie(karateMovie, actorList1);
         movieDatabase.addMovie(gloryMovie, actorList2);
@@ -72,6 +73,9 @@ public class MovieDataBaseTest {
         final int expectMovieListSize = 3;
         final int expectActorListSize = 4;
         final int three = 3;
+        final String[] actorList1 = {actorMacchio, actorFreeman};
+        final String[] actorList2 = {actorMacchio, actorBale, actorJolie};
+        final String[] actorList3 = {actorJolie, actorFreeman};
 
         movieDatabase.addMovie(karateMovie, actorList1);
         movieDatabase.addMovie(gloryMovie, actorList2);
@@ -96,6 +100,9 @@ public class MovieDataBaseTest {
         final double rating1 = 70.0;
         final double rating2 = 65.0;
         final double rating3 = 90.5;
+        final String[] actorList1 = {actorMacchio, actorFreeman};
+        final String[] actorList2 = {actorMacchio, actorBale, actorJolie};
+        final String[] actorList3 = {actorJolie, actorFreeman};
 
         movieDatabase.addMovie(karateMovie, actorList1);
         movieDatabase.addMovie(gloryMovie, actorList2);
@@ -115,6 +122,9 @@ public class MovieDataBaseTest {
         final double rating1 = 90.5;
         final double rating2 = 65.0;
         final double rating3 = 70.5;
+        final String[] actorList1 = {actorMacchio, actorFreeman};
+        final String[] actorList2 = {actorMacchio, actorBale, actorJolie};
+        final String[] actorList3 = {actorJolie, actorFreeman};
 
         movieDatabase.addMovie(karateMovie, actorList1);
         movieDatabase.addMovie(gloryMovie, actorList2);
@@ -134,6 +144,9 @@ public class MovieDataBaseTest {
         final double rating2 = 65.0;
         final double rating3 = 90.5;
         final double delta = 0.0;
+        final String[] actorList1 = {actorMacchio, actorFreeman};
+        final String[] actorList2 = {actorMacchio, actorBale, actorJolie};
+        final String[] actorList3 = {actorJolie, actorFreeman};
 
         movieDatabase.addMovie(karateMovie, actorList1);
         movieDatabase.addMovie(gloryMovie, actorList2);
@@ -156,6 +169,9 @@ public class MovieDataBaseTest {
         final double rating2 = 65.0;
         final double rating3 = 90.5;
         final double delta = 0.0;
+        final String[] actorList1 = {actorMacchio, actorFreeman};
+        final String[] actorList2 = {actorMacchio, actorBale, actorJolie};
+        final String[] actorList3 = {actorJolie, actorFreeman};
 
         movieDatabase.addMovie(karateMovie, actorList1);
         movieDatabase.addMovie(gloryMovie, actorList2);

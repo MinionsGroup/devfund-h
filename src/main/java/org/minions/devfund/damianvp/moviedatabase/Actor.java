@@ -1,13 +1,14 @@
 package org.minions.devfund.damianvp.moviedatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Actor class.
  */
 public class Actor {
     private String name;
-    private ArrayList<Movie> movies;
+    private List<Movie> movies;
 
     /**
      * Class Constructor.
@@ -57,14 +58,14 @@ public class Actor {
      * @return Double, average of Movie ratings.
      */
     Double getRatingAverage() {
-        return this.movies.stream().mapToDouble(Movie::getRating).average().orElseThrow(Error::new);
+        return this.movies.stream().mapToDouble(Movie::getRating).average().orElse(0.0);
     }
 
     /**
      * Method to get the Movies.
      * @return ArrayList<Movie>
      */
-    ArrayList<Movie> getMovies() {
+    List<Movie> getMovies() {
         return this.movies;
     }
 

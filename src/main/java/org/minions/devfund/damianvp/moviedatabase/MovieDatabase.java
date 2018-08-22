@@ -117,8 +117,8 @@ public class MovieDatabase {
      * @return String type, name of the best actor.
      */
     String getBestActor() {
-        Comparator<Actor> comparator = Comparator.comparing(Actor::getRatingAverage);
-        return this.actorList.stream().max(comparator).orElseThrow(Error::new).getName();
+//        Comparator<Actor> comparator = Comparator.comparing(Actor::getRatingAverage);
+        return this.actorList.stream().max(Comparator.comparing(Actor::getRatingAverage)).orElse(new Actor()).getName();
     }
 
     /**
@@ -126,8 +126,8 @@ public class MovieDatabase {
      * @return String type, name of best movie.
      */
     String getBestMovie() {
-        Comparator<Movie> comparator = Comparator.comparing(Movie::getRating);
-        return this.movieList.stream().max(comparator).orElseThrow(Error::new).getName();
+//        Comparator<Movie> comparator = Comparator.comparing(Movie::getRating);
+        return this.movieList.stream().max(Comparator.comparing(Movie::getRating)).orElse(new Movie()).getName();
     }
 
 }

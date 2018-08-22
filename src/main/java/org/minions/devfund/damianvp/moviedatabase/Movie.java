@@ -22,6 +22,15 @@ public class Movie {
     }
 
     /**
+     * Constructor with empty name.
+     */
+    Movie() {
+        this.name = "";
+        this.actors = new ArrayList<>();
+        this.rating = 0.0;
+    }
+
+    /**
      * method to get the movie name.
      * @return String, name property.
      */
