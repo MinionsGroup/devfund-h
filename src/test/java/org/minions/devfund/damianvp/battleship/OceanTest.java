@@ -41,9 +41,7 @@ public class OceanTest {
      */
     @Test
     public void testPlaceAllShipsRandomly() {
-//        Ocean ocean = new Ocean();
         ocean.placeAllShipsRandomly();
-        // 8 + 7 + 2*6 + 2*5 + 3*4 + 4*3 = 61
         final int expectedCount = 61;
         assertEquals(0, ocean.getHitCount());
         assertEquals(0, ocean.getShipsSunk());
@@ -67,7 +65,6 @@ public class OceanTest {
         for (int i = 0; i < LENGTH; i++) {
             for (int j = 0; j < LENGTH; j++) {
                 assertFalse(ocean.isOccupied(i, j));
-                i++;
             }
         }
     }

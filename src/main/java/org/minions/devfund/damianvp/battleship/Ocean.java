@@ -161,13 +161,6 @@ public class Ocean {
     }
 
     /**
-     * Method to print the ocean.
-     */
-    public void print() {
-        System.out.println(toString());
-    }
-
-    /**
      * Method to build the ocean matrix.
      * @return String format of matrix.
      */

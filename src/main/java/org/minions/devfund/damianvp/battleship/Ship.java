@@ -111,24 +111,24 @@ public abstract class Ship {
         int rowLimitB;
         int columnLimitA;
         int columnLimitB;
-        final int length = ocean.getShips().length;
-        final double reducer = length * 0.001;
+        final int oceanLength = ocean.getShips().length;
+        final double reducer = oceanLength * 0.001;
         final double incrementer = 0.49;
         if (horizontal) {
-            if (column + this.getLength() > length) {
+            if (column + this.getLength() > oceanLength) {
                 return false;
             }
-            Long r2 = Math.round((length - row) * reducer + incrementer);
+            Long r2 = Math.round((oceanLength - row) * reducer + incrementer);
             rowLimitB = row + r2.intValue();
             Long c2 = Math.round((column + this.getLength()) * reducer + incrementer);
             columnLimitB = column + this.getLength() - c2.intValue();
         } else {
-            if (row + this.getLength() > length) {
+            if (row + this.getLength() > oceanLength) {
                 return false;
             }
             Long r2 = Math.round((row + this.getLength()) * reducer + incrementer);
             rowLimitB = row + this.getLength() - r2.intValue();
-            Long c2 = Math.round((length - column) * reducer + incrementer);
+            Long c2 = Math.round((oceanLength - column) * reducer + incrementer);
             columnLimitB = column + c2.intValue();
         }
         Long r = Math.round(row * reducer + incrementer);
