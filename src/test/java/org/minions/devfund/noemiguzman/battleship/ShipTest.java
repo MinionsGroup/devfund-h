@@ -170,7 +170,7 @@ public class ShipTest {
      * test get ship type EmptySea.
      */
     @Test
-    public void testGetShipType_EmptySea() {
+    public void testGetShipTypeEmptySea() {
         Ship ship = new EmptySea();
         assertEquals("empty", ship.getShipType());
     }
@@ -179,7 +179,7 @@ public class ShipTest {
      * method to test shoot at EmptySea.
      */
     @Test
-    public void testShootAt_EmptySea() {
+    public void testShootAtEmptySea() {
         Ship ship = new EmptySea();
         final int column4 = 4;
 
@@ -191,7 +191,7 @@ public class ShipTest {
      * method to test IsSunk EmptySea.
      */
     @Test
-    public void testIsSunk_EmptySea() {
+    public void testIsSunkEmptySea() {
         Ship ship = new EmptySea();
         assertFalse(ship.isSunk());
     }
@@ -200,7 +200,7 @@ public class ShipTest {
      * method to test ToStrinG EmptySea.
      */
     @Test
-    public void testToString_EmptySea() {
+    public void testToStringEmptySea() {
         Ship ship = new EmptySea();
         assertEquals(".", ship.toString());
     }
