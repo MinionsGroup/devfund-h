@@ -1,4 +1,4 @@
-package org.minions.devfund.david.Movie;
+package org.minions.devfund.david.movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +46,9 @@ public class Actor {
     }
 
     /**
-     * Sets Movie name.
+     * Sets movie name.
      *
-     * @param name of Movie.
+     * @param name of movie.
      */
     public void setMovies(final String name) {
         Movie movie = new Movie();
@@ -57,7 +57,7 @@ public class Actor {
     }
 
     /**
-     * Gets Average of Actor base Movie rating.
+     * Gets Average of Actor base movie rating.
      *
      * @return rating.
      */

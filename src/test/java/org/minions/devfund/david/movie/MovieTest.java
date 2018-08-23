@@ -1,4 +1,4 @@
-package org.minions.devfund.david.Movie;
+package org.minions.devfund.david.movie;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +8,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Movie tests class.
+ * movie tests class.
  */
 public class MovieTest {
 

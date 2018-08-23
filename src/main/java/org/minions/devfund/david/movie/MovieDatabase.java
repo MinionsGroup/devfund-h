@@ -1,11 +1,11 @@
-package org.minions.devfund.david.Movie;
+package org.minions.devfund.david.movie;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 /**
- * Homework Assignment 3: Movie Database.
+ * Homework Assignment 3: movie Database.
  */
 public class MovieDatabase {
     private List<Movie> movieList;
@@ -30,7 +30,7 @@ public class MovieDatabase {
     }
 
     /**
-     * Constructor, initialize Movie database.
+     * Constructor, initialize movie database.
      */
     public MovieDatabase() {
         movieList = new ArrayList<>();

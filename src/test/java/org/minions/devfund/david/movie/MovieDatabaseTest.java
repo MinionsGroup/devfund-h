@@ -1,4 +1,4 @@
-package org.minions.devfund.david.Movie;
+package org.minions.devfund.david.movie;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Movie database tests class.
+ * movie database tests class.
  */
 public class MovieDatabaseTest {
     private static final String NEW_MOVIE = "NewMovie";
@@ -67,7 +67,7 @@ public class MovieDatabaseTest {
 
         assertEquals(expectedActorSize, movieDatabase.getActorList().size());
 
-        String actor3 = "Actor1";
+        String actor3 = ACTOR_1;
         movieDatabase.addMovie(OLD_MOVIE, new String[]{ACTOR_1, ACTOR_2, actor3});
 
         assertEquals(expectedActorSize, movieDatabase.getActorList().size());

@@ -1,10 +1,10 @@
-package org.minions.devfund.david.Movie;
+package org.minions.devfund.david.movie;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Movie object.
+ * movie object.
  */
 public class Movie {
     private String name;
@@ -12,14 +12,14 @@ public class Movie {
     private double rating;
 
     /**
-     * Constructor of Movie.
+     * Constructor of movie.
      */
     public Movie() {
         actors = new ArrayList<>();
     }
 
     /**
-     * Gets Movie name.
+     * Gets movie name.
      *
      * @return name of the movie.
      */
@@ -28,9 +28,9 @@ public class Movie {
     }
 
     /**
-     * Sets Movie name.
+     * Sets movie name.
      *
-     * @param name of the Movie.
+     * @param name of the movie.
      */
     public void setName(final String name) {
         this.name = name;
