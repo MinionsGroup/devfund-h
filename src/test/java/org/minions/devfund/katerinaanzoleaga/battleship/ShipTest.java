@@ -113,11 +113,13 @@ public class ShipTest {
         ship.shootAt(row, columnSubmarineZero);
         assertTrue(ship.isSunk());
     }
-
+    /**
+     * Test several shots until sunk a vertical destroyer.
+     */
     @Test
-    public void testSunkDestroyerH(){
+    public void testSunkDestroyerH() {
         final Ship destroyer = new Destroyer();
-        destroyer.placeShipAt(0, 0 , true, theOcean);
+        destroyer.placeShipAt(0, 0, true, theOcean);
         for (int i = 0; i < destroyer.getLength(); ++i) {
             destroyer.shootAt(0, i);
             if (i != destroyer.getLength() - 1) {
@@ -127,10 +129,13 @@ public class ShipTest {
         assertTrue(destroyer.isSunk());
     }
 
+    /**
+     * Test several shots until sunk an horizontal destroyer.
+     */
     @Test
-    public void testSunkDestroyerV(){
+    public void testSunkDestroyerV() {
         final Ship destroyer = new Destroyer();
-        destroyer.placeShipAt(0, 0 , false, theOcean);
+        destroyer.placeShipAt(0, 0, false, theOcean);
         for (int i = 0; i < destroyer.getLength(); ++i) {
             destroyer.shootAt(i, 0);
             if (i != destroyer.getLength() - 1) {
@@ -140,10 +145,13 @@ public class ShipTest {
         assertTrue(destroyer.isSunk());
     }
 
+    /**
+     * Test several shots until sunk an horizontal lightCruiser.
+     */
     @Test
-    public void testSunkLightCruiserH(){
+    public void testSunkLightCruiserH() {
         final Ship lightCruiser = new Destroyer();
-        lightCruiser.placeShipAt(0, 0 , true, theOcean);
+        lightCruiser.placeShipAt(0, 0, true, theOcean);
         for (int i = 0; i < lightCruiser.getLength(); ++i) {
             lightCruiser.shootAt(0, i);
             if (i != lightCruiser.getLength() - 1) {
@@ -152,11 +160,15 @@ public class ShipTest {
         }
         assertTrue(lightCruiser.isSunk());
     }
+
+    /**
+     * Test several shots until sunk a vertical lightcruiser.
+     */
     @Test
-    public void testSunkLightCruiserV(){
+    public void testSunkLightCruiserV() {
         final Ship lightCruiser = new LightCruiser();
         assertFalse(lightCruiser.isSunk());
-        lightCruiser.placeShipAt(0, 0 , false, theOcean);
+        lightCruiser.placeShipAt(0, 0, false, theOcean);
         for (int i = 0; i < lightCruiser.getLength(); ++i) {
             lightCruiser.shootAt(i, 0);
             if (i != lightCruiser.getLength() - 1) {
@@ -166,11 +178,13 @@ public class ShipTest {
         assertTrue(lightCruiser.isSunk());
     }
 
-
+    /**
+     * Test several shots until sunk an horizontal cruiser.
+     */
     @Test
-    public void testSunkCruiserH(){
+    public void testSunkCruiserH() {
         final Ship cruiser = new Cruiser();
-        cruiser.placeShipAt(0, 0 , true, theOcean);
+        cruiser.placeShipAt(0, 0, true, theOcean);
         for (int i = 0; i < cruiser.getLength(); ++i) {
             cruiser.shootAt(0, i);
             if (i != cruiser.getLength() - 1) {
@@ -179,11 +193,15 @@ public class ShipTest {
         }
         assertTrue(cruiser.isSunk());
     }
+
+    /**
+     * Test several shots until sunk a vertical cruiser.
+     */
     @Test
-    public void testSunkCruiserV( ){
+    public void testSunkCruiserV() {
         final Ship cruiser = new Cruiser();
         assertFalse(cruiser.isSunk());
-        cruiser.placeShipAt(0, 0 , false, theOcean);
+        cruiser.placeShipAt(0, 0, false, theOcean);
         for (int i = 0; i < cruiser.getLength(); ++i) {
             cruiser.shootAt(i, 0);
             if (i != cruiser.getLength() - 1) {
@@ -193,11 +211,13 @@ public class ShipTest {
         assertTrue(cruiser.isSunk());
     }
 
-
+    /**
+     * Test several shots until sunk an horizontal battleCruiser.
+     */
     @Test
     public void testSunkBattleCruiserH() {
         final Ship battleCruiser = new BattleCruiser();
-        battleCruiser.placeShipAt(0, 0 , true, theOcean);
+        battleCruiser.placeShipAt(0, 0, true, theOcean);
         for (int i = 0; i < battleCruiser.getLength(); ++i) {
             battleCruiser.shootAt(0, i);
             if (i != battleCruiser.getLength() - 1) {
@@ -207,11 +227,14 @@ public class ShipTest {
         assertTrue(battleCruiser.isSunk());
     }
 
+    /**
+     * Test several shots until sunk a vertical battleCruiser.
+     */
     @Test
     public void testSunkBattleCruiserV() {
         final Ship battleCruiser = new BattleCruiser();
         assertFalse(battleCruiser.isSunk());
-        battleCruiser.placeShipAt(0, 0 , false, theOcean);
+        battleCruiser.placeShipAt(0, 0, false, theOcean);
         for (int i = 0; i < battleCruiser.getLength(); ++i) {
             battleCruiser.shootAt(i, 0);
             if (i != battleCruiser.getLength() - 1) {
@@ -221,10 +244,13 @@ public class ShipTest {
         assertTrue(battleCruiser.isSunk());
     }
 
+    /**
+     * Test several shots until sunk an horizontal battleShip.
+     */
     @Test
     public void testSunkBattleShipH() {
         final Ship battleShip = new BattleShip();
-        battleShip.placeShipAt(0, 0 , true, theOcean);
+        battleShip.placeShipAt(0, 0, true, theOcean);
         for (int i = 0; i < battleShip.getLength(); ++i) {
             battleShip.shootAt(0, i);
             if (i != battleShip.getLength() - 1) {
@@ -234,11 +260,14 @@ public class ShipTest {
         assertTrue(battleShip.isSunk());
     }
 
+    /**
+     * Test several shots until sunk a vertical battleShip.
+     */
     @Test
     public void testSunkBattleShipCruiserV() {
         final Ship battleShip = new BattleShip();
         assertFalse(battleShip.isSunk());
-        battleShip.placeShipAt(0, 0 , false, theOcean);
+        battleShip.placeShipAt(0, 0, false, theOcean);
         for (int i = 0; i < battleShip.getLength(); ++i) {
             battleShip.shootAt(i, 0);
             if (i != battleShip.getLength() - 1) {
