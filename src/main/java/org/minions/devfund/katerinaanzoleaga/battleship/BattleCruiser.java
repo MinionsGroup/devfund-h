@@ -1,5 +1,4 @@
 package org.minions.devfund.katerinaanzoleaga.battleship;
-import java.util.Arrays;
 
 /**
  * BattleCruiser class definition.
@@ -14,16 +13,7 @@ public class BattleCruiser extends Ship {
      */
     public BattleCruiser() {
         this.setLength(LENGTH);
-        this.fillHitArray();
-    }
-
-    /**
-     * Initializes HitArray with false values.
-     */
-    private void fillHitArray() {
-        boolean[] aHit = new boolean[HITLENGTH];
-        Arrays.fill(aHit, 0, LENGTH - 1, false);
-        this.setHit(aHit);
+        this.setHit(new boolean[LENGTH]);
     }
 
     /**

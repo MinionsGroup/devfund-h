@@ -10,16 +10,7 @@ public class EmptySea extends Ship {
      */
     public EmptySea() {
         this.setLength(1);
-        this.fillHitArray();
-    }
-
-    /**
-     * Initializes HitArray with false values.
-     */
-    private void fillHitArray() {
-        boolean[] ahit = new boolean[HITLENGTH];
-        ahit[0] = false;
-        this.setHit(ahit);
+        this.setHit(new boolean[1]);
     }
 
 
@@ -30,7 +21,7 @@ public class EmptySea extends Ship {
      * @return
      */
     @Override
-    boolean shootAt(int row, int column) {
+    public boolean shootAt(int row, int column) {
         boolean[] ahit;
         ahit = this.getHit();
         ahit[0] = true;
@@ -43,7 +34,7 @@ public class EmptySea extends Ship {
      * @return bool
      */
     @Override
-    boolean isSunk() {
+    public boolean isSunk() {
         return false;
 
     }
@@ -66,7 +57,7 @@ public class EmptySea extends Ship {
      * @return string
      */
     @Override
-    String getShipType() {
+    public String getShipType() {
         return "empty";
     }
 

@@ -1,6 +1,5 @@
 package org.minions.devfund.katerinaanzoleaga.battleship;
 
-import java.util.Arrays;
 
 /**
  * Submarine class definition.
@@ -15,17 +14,8 @@ public class Submarine extends Ship {
      */
     public Submarine() {
         this.setLength(LENGTH);
-        this.fillHitArray();
+        this.setHit(new boolean[LENGTH]);
 
-    }
-
-    /**
-     * Initializes hit array with false values.
-     */
-    private void fillHitArray() {
-        boolean[] aHit = new boolean[HITLENGTH];
-        Arrays.fill(aHit, 0, LENGTH - 1, false);
-        this.setHit(aHit);
     }
 
     /**

@@ -12,7 +12,7 @@ public class Ocean {
     private int shotsFired;
     private int hitCount;
     private int shipsSunk;
-    private static final int LENGTH = 15;
+    private static final int LENGTH = 20;
     private static final int BATTLESHIPSNUMBER = 1;
     private static final int BATTLECRUSIERSNUMBER = 1;
     private static final int CRUSIERSNUMBER = 2;
@@ -90,7 +90,7 @@ public class Ocean {
      * Prints the ocean with the values to display the game board and ships' status.
      *
      */
-    public void print(){
+    public void print() {
         String lineSeparator = System.lineSeparator();
         StringBuilder sb = new StringBuilder();
         Formatter fmt = new Formatter(sb);

@@ -105,13 +105,147 @@ public class ShipTest {
         final int columnSubmarineZero = 0;
         final int columnSubmarineOne = 1;
         final int columnSubmarineTwo = 2;
-        final Ocean ocean = new Ocean();
         final Ship ship = new Submarine();
-        ship.placeShipAt(row, column, true, ocean);
+        ship.placeShipAt(row, column, true, theOcean);
         ship.shootAt(row, columnSubmarineZero);
         ship.shootAt(row, columnSubmarineOne);
         ship.shootAt(row, columnSubmarineTwo);
         ship.shootAt(row, columnSubmarineZero);
         assertTrue(ship.isSunk());
     }
+
+    @Test
+    public void testSunkDestroyerH(){
+        final Ship destroyer = new Destroyer();
+        destroyer.placeShipAt(0, 0 , true, theOcean);
+        for (int i = 0; i < destroyer.getLength(); ++i) {
+            destroyer.shootAt(0, i);
+            if (i != destroyer.getLength() - 1) {
+                assertFalse(destroyer.isSunk());
+            }
+        }
+        assertTrue(destroyer.isSunk());
+    }
+
+    @Test
+    public void testSunkDestroyerV(){
+        final Ship destroyer = new Destroyer();
+        destroyer.placeShipAt(0, 0 , false, theOcean);
+        for (int i = 0; i < destroyer.getLength(); ++i) {
+            destroyer.shootAt(i, 0);
+            if (i != destroyer.getLength() - 1) {
+                assertFalse(destroyer.isSunk());
+            }
+        }
+        assertTrue(destroyer.isSunk());
+    }
+
+    @Test
+    public void testSunkLightCruiserH(){
+        final Ship lightCruiser = new Destroyer();
+        lightCruiser.placeShipAt(0, 0 , true, theOcean);
+        for (int i = 0; i < lightCruiser.getLength(); ++i) {
+            lightCruiser.shootAt(0, i);
+            if (i != lightCruiser.getLength() - 1) {
+                assertFalse(lightCruiser.isSunk());
+            }
+        }
+        assertTrue(lightCruiser.isSunk());
+    }
+    @Test
+    public void testSunkLightCruiserV(){
+        final Ship lightCruiser = new LightCruiser();
+        assertFalse(lightCruiser.isSunk());
+        lightCruiser.placeShipAt(0, 0 , false, theOcean);
+        for (int i = 0; i < lightCruiser.getLength(); ++i) {
+            lightCruiser.shootAt(i, 0);
+            if (i != lightCruiser.getLength() - 1) {
+                assertFalse(lightCruiser.isSunk());
+            }
+        }
+        assertTrue(lightCruiser.isSunk());
+    }
+
+
+    @Test
+    public void testSunkCruiserH(){
+        final Ship cruiser = new Cruiser();
+        cruiser.placeShipAt(0, 0 , true, theOcean);
+        for (int i = 0; i < cruiser.getLength(); ++i) {
+            cruiser.shootAt(0, i);
+            if (i != cruiser.getLength() - 1) {
+                assertFalse(cruiser.isSunk());
+            }
+        }
+        assertTrue(cruiser.isSunk());
+    }
+    @Test
+    public void testSunkCruiserV( ){
+        final Ship cruiser = new Cruiser();
+        assertFalse(cruiser.isSunk());
+        cruiser.placeShipAt(0, 0 , false, theOcean);
+        for (int i = 0; i < cruiser.getLength(); ++i) {
+            cruiser.shootAt(i, 0);
+            if (i != cruiser.getLength() - 1) {
+                assertFalse(cruiser.isSunk());
+            }
+        }
+        assertTrue(cruiser.isSunk());
+    }
+
+
+    @Test
+    public void testSunkBattleCruiserH() {
+        final Ship battleCruiser = new BattleCruiser();
+        battleCruiser.placeShipAt(0, 0 , true, theOcean);
+        for (int i = 0; i < battleCruiser.getLength(); ++i) {
+            battleCruiser.shootAt(0, i);
+            if (i != battleCruiser.getLength() - 1) {
+                assertFalse(battleCruiser.isSunk());
+            }
+        }
+        assertTrue(battleCruiser.isSunk());
+    }
+
+    @Test
+    public void testSunkBattleCruiserV() {
+        final Ship battleCruiser = new BattleCruiser();
+        assertFalse(battleCruiser.isSunk());
+        battleCruiser.placeShipAt(0, 0 , false, theOcean);
+        for (int i = 0; i < battleCruiser.getLength(); ++i) {
+            battleCruiser.shootAt(i, 0);
+            if (i != battleCruiser.getLength() - 1) {
+                assertFalse(battleCruiser.isSunk());
+            }
+        }
+        assertTrue(battleCruiser.isSunk());
+    }
+
+    @Test
+    public void testSunkBattleShipH() {
+        final Ship battleShip = new BattleShip();
+        battleShip.placeShipAt(0, 0 , true, theOcean);
+        for (int i = 0; i < battleShip.getLength(); ++i) {
+            battleShip.shootAt(0, i);
+            if (i != battleShip.getLength() - 1) {
+                assertFalse(battleShip.isSunk());
+            }
+        }
+        assertTrue(battleShip.isSunk());
+    }
+
+    @Test
+    public void testSunkBattleShipCruiserV() {
+        final Ship battleShip = new BattleShip();
+        assertFalse(battleShip.isSunk());
+        battleShip.placeShipAt(0, 0 , false, theOcean);
+        for (int i = 0; i < battleShip.getLength(); ++i) {
+            battleShip.shootAt(i, 0);
+            if (i != battleShip.getLength() - 1) {
+                assertFalse(battleShip.isSunk());
+            }
+        }
+        assertTrue(battleShip.isSunk());
+    }
+
 }

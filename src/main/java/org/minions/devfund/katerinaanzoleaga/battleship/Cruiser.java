@@ -1,6 +1,5 @@
 package org.minions.devfund.katerinaanzoleaga.battleship;
 
-import java.util.Arrays;
 
 /**
  * Cuiser class definition.
@@ -14,17 +13,8 @@ public class Cruiser extends Ship {
      */
     public Cruiser() {
         this.setLength(LENGTH);
-        this.fillHitArray();
+        this.setHit(new boolean[LENGTH]);
 
-    }
-
-    /**
-     * Initializes the hit array. This users only six hit positions.
-     */
-    private void fillHitArray() {
-        boolean[] aHit = new boolean[HITLENGTH];
-        Arrays.fill(aHit, 0, LENGTH - 1, false);
-        this.setHit(aHit);
     }
 
     /**
