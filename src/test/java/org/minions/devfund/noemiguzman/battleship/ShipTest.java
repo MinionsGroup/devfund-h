@@ -165,4 +165,43 @@ public class ShipTest {
         assertFalse(ship.shootAt(1, column4));
 
     }
+
+    /**
+     * test get ship type EmptySea.
+     */
+    @Test
+    public void testGetShipType_EmptySea() {
+        Ship ship = new EmptySea();
+        assertEquals("empty", ship.getShipType());
+    }
+
+    /**
+     * method to test shoot at EmptySea.
+     */
+    @Test
+    public void testShootAt_EmptySea() {
+        Ship ship = new EmptySea();
+        final int column4 = 4;
+
+        assertFalse(ship.shootAt(1, column4));
+
+    }
+
+    /**
+     * method to test IsSunk EmptySea.
+     */
+    @Test
+    public void testIsSunk_EmptySea() {
+        Ship ship = new EmptySea();
+        assertFalse(ship.isSunk());
+    }
+
+    /**
+     * method to test ToStrinG EmptySea.
+     */
+    @Test
+    public void testToString_EmptySea() {
+        Ship ship = new EmptySea();
+        assertEquals(".", ship.toString());
+    }
 }
