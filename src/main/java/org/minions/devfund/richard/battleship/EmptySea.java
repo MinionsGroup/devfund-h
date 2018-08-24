@@ -4,13 +4,14 @@ package org.minions.devfund.richard.battleship;
  * Class.
  */
 public class EmptySea extends Ship {
+
     private static final String SHIP_TYPE = "empty";
     private static final int SHIP_LENGTH = 1;
     private static final String NOTHING_FIRED_CHAR = "-";
     private static final String NEVER_FIRED_CHAR = ".";
 
     /**
-     * Class
+     * Class.
      */
     EmptySea() {
         super.setLength(SHIP_LENGTH);
@@ -18,7 +19,7 @@ public class EmptySea extends Ship {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public String getShipType() {
@@ -26,7 +27,7 @@ public class EmptySea extends Ship {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public boolean isSunk() {
@@ -34,7 +35,7 @@ public class EmptySea extends Ship {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public String toString() {

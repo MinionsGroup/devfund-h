@@ -19,7 +19,7 @@ public class BattleCruiser extends Ship {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public String getShipType() {

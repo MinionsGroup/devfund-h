@@ -3,7 +3,7 @@ package org.minions.devfund.richard.battleship;
 /**
  * Class.
  */
-class StrategyVerifyFactory {
+final class StrategyVerifyFactory {
 
     /**
      * Private Constructor.
@@ -14,9 +14,9 @@ class StrategyVerifyFactory {
 
     /**
      * @param horizontal boolean.
-     * @return Strategy;
+     * @return Strategy.
      */
-    static StrategyShip createStrategy(boolean horizontal) {
-        return (horizontal) ? new StrategyVerifyHorizontal() : new StrategyVerifyVertical();
+    static StrategyShip createStrategy(final boolean horizontal) {
+        return horizontal ? new StrategyVerifyHorizontal() : new StrategyVerifyVertical();
     }
 }

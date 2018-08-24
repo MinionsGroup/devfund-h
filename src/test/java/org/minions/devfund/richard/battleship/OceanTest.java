@@ -9,19 +9,23 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Test Class.
+ */
 public class OceanTest {
     private Ocean ocean;
 
     /**
-     * Preconditions.
+     * Before.
      */
     @Before
     public void setup() {
         ocean = new Ocean();
     }
 
+
     /**
-     * Expected counter initial values test.
+     * Test.
      */
     @Test
     public void testGetCounterValues() {
@@ -33,7 +37,7 @@ public class OceanTest {
     }
 
     /**
-     * Place occupied in ocean test.
+     * Test.
      */
     @Test
     public void testIsOccupied() {
@@ -45,7 +49,7 @@ public class OceanTest {
     }
 
     /**
-     * Shoot a place occupied by ship in ocean test.
+     * Test..
      */
     @Test
     public void testShootAtShip() {
@@ -57,7 +61,7 @@ public class OceanTest {
     }
 
     /**
-     * Shoot a place not occupied by ship in ocean test.
+     * Test.
      */
     @Test
     public void testShootAtEmpty() {
@@ -67,7 +71,7 @@ public class OceanTest {
     }
 
     /**
-     * Shoot a place not occupied by ship in ocean test.
+     * Test.
      */
     @Test
     public void testIncreaseShootsCount() {
@@ -79,7 +83,7 @@ public class OceanTest {
     }
 
     /**
-     * Shoot a place occupied by ship and asserts the hit counter value.
+     * Test.
      */
     @Test
     public void testIncreaseHitCount() {
@@ -93,7 +97,7 @@ public class OceanTest {
     }
 
     /**
-     * Shoots all places of a ship in ocean and asserts the sunk counter value.
+     * Test.
      */
     @Test
     public void testIncreaseSunkCount() {
@@ -111,14 +115,15 @@ public class OceanTest {
     }
 
     /**
-     * Shoot all ships in the ocean and asserts the game over value.
+     * Test.
      */
     @Test
-    public void testGameOver() {
+    public void testIsGameOver() {
         final int initIndex = 0;
         ocean.placeAllShipsRandomly();
         IntStream.range(initIndex, ocean.getShipArray().length).forEach(row ->
                 IntStream.range(initIndex, ocean.getShipArray().length).forEach(col -> ocean.shootAt(row, col)));
         assertTrue(ocean.isGameOver());
     }
+
 }

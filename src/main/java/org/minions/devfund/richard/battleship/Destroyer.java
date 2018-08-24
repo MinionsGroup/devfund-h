@@ -19,7 +19,7 @@ public class Destroyer extends Ship {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public String getShipType() {

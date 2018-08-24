@@ -25,11 +25,12 @@ public class Ocean {
     }
 
     /**
-     *
+     * place all Ships randomly.
      */
     void placeAllShipsRandomly() {
-        List<Ship> shipsList = Arrays.asList(new BattleShip(), new BattleCruiser(), new Cruiser()
-                , new LightCruiser(), new Destroyer(), new Submarine());
+        List<Ship> shipsList = Arrays.asList(new BattleShip(), new BattleCruiser(), new Cruiser(), new Cruiser(),
+                new LightCruiser(), new LightCruiser(), new Destroyer(), new Destroyer(), new Destroyer(),
+                new Submarine(), new Submarine(), new Submarine(), new Submarine());
         for (Ship ship : shipsList) {
             ship.addShip(this);
         }
@@ -72,7 +73,6 @@ public class Ocean {
      * @return boolean.
      */
     boolean isGameOver() {
-        System.out.println("shipsSunk  " + shipsSunk);
         return shipsSunk == SHIPS_QUANTITY;
     }
 

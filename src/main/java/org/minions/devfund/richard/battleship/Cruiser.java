@@ -19,7 +19,7 @@ public class Cruiser extends Ship {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
     public String getShipType() {

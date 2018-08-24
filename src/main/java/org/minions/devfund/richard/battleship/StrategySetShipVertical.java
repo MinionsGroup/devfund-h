@@ -6,10 +6,10 @@ package org.minions.devfund.richard.battleship;
 public class StrategySetShipVertical implements StrategyShip {
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
-    public void action(Ship ship, Ocean ocean, int ind) {
+    public void action(final Ship ship, final Ocean ocean, final int ind) {
         ocean.getShipArray()[ind][ship.getBowColumn()] = ship;
     }
 }

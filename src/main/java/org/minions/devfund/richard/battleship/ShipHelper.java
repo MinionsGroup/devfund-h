@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Class.
  */
-class ShipHelper {
+final class ShipHelper {
 
     private static boolean validPosition;
 
@@ -19,7 +19,7 @@ class ShipHelper {
      * @param ship  ship.
      * @param ocean Ocean.
      */
-    static void setShip(Ship ship, Ocean ocean) {
+    static void setShip(final Ship ship, final Ocean ocean) {
         if (ship.isHorizontal()) {
             StrategyManager.strategyHorizontal(new StrategySetShipHorizontal(), ship, ocean);
         } else {
@@ -32,7 +32,7 @@ class ShipHelper {
      * @param ocean Ocean.
      * @return boolean.
      */
-    static boolean isValidPosition(Ship ship, Ocean ocean) {
+    static boolean isValidPosition(final Ship ship, final Ocean ocean) {
         validPosition = true;
         StrategyManager.strategyValidPosition(StrategyVerifyFactory.createStrategy(ship.isHorizontal()), ship, ocean);
         return validPosition;
@@ -43,7 +43,7 @@ class ShipHelper {
      * @param index index.
      * @return index.
      */
-    private static int indexBuilderPlus(Ocean ocean, int index) {
+    private static int indexBuilderPlus(final Ocean ocean, int index) {
         if (index + 1 < ocean.getShipArray().length) {
             index += 1;
         }
@@ -66,7 +66,7 @@ class ShipHelper {
      * @param row    row.
      * @param column column.
      */
-    static void verifyBorder(Ocean ocean, int row, int column) {
+    static void verifyBorder(final Ocean ocean, int row, int column) {
         int rowPlus = indexBuilderPlus(ocean, row);
         int rowLess = indexBuilderLess(row);
         int columnPlus = indexBuilderPlus(ocean, column);
@@ -84,7 +84,7 @@ class ShipHelper {
     /**
      * @param value Horizontal Occupied.
      */
-    static void setValidPosition(boolean value) {
+    static void setValidPosition(final boolean value) {
         if (validPosition) {
             ShipHelper.validPosition = value;
         }
@@ -94,11 +94,10 @@ class ShipHelper {
      * @param ship  ship.
      * @param ocean ocean.
      */
-    static void addShip(Ocean ocean, Ship ship) {
+    static void addShip(final Ocean ocean, final Ship ship) {
         Random random = new Random();
-        int index = 0;
-        int shipNumber = ship.getNumber();
-        while (shipNumber >= index) {
+        int shipNumber = 1;
+        while (shipNumber > 0) {
             boolean horizontal = random.nextBoolean();
             int row = random.nextInt(ocean.getShipArray().length);
             int column = random.nextInt(ocean.getShipArray().length);

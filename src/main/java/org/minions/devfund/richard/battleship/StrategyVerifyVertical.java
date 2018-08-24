@@ -6,10 +6,10 @@ package org.minions.devfund.richard.battleship;
 public class StrategyVerifyVertical implements StrategyShip {
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
-    public void action(Ship ship, Ocean ocean, int ind) {
+    public void action(final Ship ship, final Ocean ocean, final int ind) {
         ShipHelper.setValidPosition(!ocean.isOccupied(ind, ship.getBowColumn()));
         ShipHelper.verifyBorder(ocean, ind, ship.getBowColumn());
     }

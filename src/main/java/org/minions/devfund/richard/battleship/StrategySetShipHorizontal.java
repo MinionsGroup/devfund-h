@@ -1,15 +1,15 @@
 package org.minions.devfund.richard.battleship;
 
 /**
- * Class
+ * Class.
  */
 public class StrategySetShipHorizontal implements StrategyShip {
 
     /**
-     * {@inheritDoc}
+     * {@inheritDoc}.
      */
     @Override
-    public void action(Ship ship, Ocean ocean, int ind) {
+    public void action(final Ship ship, final Ocean ocean, final int ind) {
         ocean.getShipArray()[ship.getBowRow()][ind] = ship;
     }
 }

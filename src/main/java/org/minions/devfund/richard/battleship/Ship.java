@@ -29,7 +29,7 @@ public abstract class Ship {
      * @param ocean      ocean.
      * @return boolean.
      */
-    boolean okToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+    boolean okToPlaceShipAt(final int row, final int column, final boolean horizontal, final Ocean ocean) {
         this.bowRow = row;
         this.bowColumn = column;
         this.horizontal = horizontal;
@@ -42,7 +42,7 @@ public abstract class Ship {
      * @param horizontal horizontal.
      * @param ocean      ocean.
      */
-    void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
+    void placeShipAt(final int row, final int column, final boolean horizontal, final Ocean ocean) {
         this.bowRow = row;
         this.bowColumn = column;
         this.horizontal = horizontal;
@@ -139,7 +139,7 @@ public abstract class Ship {
     /**
      * @param hit chip hit.
      */
-    void setHit(boolean[] hit) {
+    void setHit(final boolean[] hit) {
         this.hit = hit;
     }
 
@@ -153,7 +153,7 @@ public abstract class Ship {
     /**
      * @param ocean ocean.
      */
-    void addShip(Ocean ocean) {
+    void addShip(final Ocean ocean) {
         ShipHelper.addShip(ocean, this);
     }
 }

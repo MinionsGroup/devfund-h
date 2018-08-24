@@ -8,13 +8,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 /**
- * It is in charged to define the unit tests for {@link Ship} class.
+ * Test Class.
  */
 public class ShipTest {
 
-
     /**
-     * Ship ToString for a not sunk ship test.
+     * Test.
      */
     @Test
     public void testShipToStringNotSunk() {
@@ -24,7 +23,7 @@ public class ShipTest {
     }
 
     /**
-     * Ship ToString for a sunk ship test.
+     * Test.
      */
     @Test
     public void testShipToStringSunk() {
@@ -44,7 +43,7 @@ public class ShipTest {
     }
 
     /**
-     * Ship is horizontal for a not sunk ship test.
+     * Test.
      */
     @Test
     public void testShipIsHorizontal() {
@@ -58,7 +57,7 @@ public class ShipTest {
     }
 
     /**
-     *
+     * Test.
      */
     @Test
     public void testShipSetHorizontal() {
@@ -70,7 +69,7 @@ public class ShipTest {
     }
 
     /**
-     * Ship set horizontal value test.
+     * Test.
      */
     @Test
     public void testShipSetVertical() {
@@ -82,7 +81,7 @@ public class ShipTest {
     }
 
     /**
-     * Shoot at empty place for a not sunk ship test.
+     * Test.
      */
     @Test
     public void testShootAtEmptyPlace() {
@@ -97,7 +96,7 @@ public class ShipTest {
     }
 
     /**
-     * Shoot at empty place for a not sunk ship test.
+     * Test.
      */
     @Test
     public void testShootAfterSunk() {
@@ -117,7 +116,7 @@ public class ShipTest {
     }
 
     /**
-     *
+     * Test.
      */
     @Test
     public void testSetShipHead() {
@@ -131,7 +130,7 @@ public class ShipTest {
     }
 
     /**
-     * Get hits array for a new Ship object.
+     * Test.
      */
     @Test
     public void testGetHits() {
@@ -142,7 +141,7 @@ public class ShipTest {
     }
 
     /**
-     * Empty sea not hit toString test.
+     * Test.
      */
     @Test
     public void testEmptySeaToStringNotFired() {
@@ -152,7 +151,7 @@ public class ShipTest {
     }
 
     /**
-     * Empty sea hit toString test.
+     * Test.
      */
     @Test
     public void testEmptySeaToStringFired() {
@@ -165,7 +164,7 @@ public class ShipTest {
     }
 
     /**
-     * Empty sea get ship type test.
+     * Test.
      */
     @Test
     public void testEmptySeaGetShipType() {
@@ -175,7 +174,7 @@ public class ShipTest {
     }
 
     /**
-     * Empty sea is sunk test.
+     * Test.
      */
     @Test
     public void testEmptySeaIsSunk() {
@@ -184,7 +183,7 @@ public class ShipTest {
     }
 
     /**
-     * Battleship get ship type test.
+     * Test.
      */
     @Test
     public void testBattleshipGetShipType() {
@@ -194,7 +193,7 @@ public class ShipTest {
     }
 
     /**
-     * Battle Cruiser get ship type test.
+     * Test.
      */
     @Test
     public void testBattleCruiserGetShipType() {
@@ -204,7 +203,7 @@ public class ShipTest {
     }
 
     /**
-     * Cruiser get ship type test.
+     * Test.
      */
     @Test
     public void testCruiserGetShipType() {
@@ -214,7 +213,7 @@ public class ShipTest {
     }
 
     /**
-     * Destroyer get ship type test.
+     * Test.
      */
     @Test
     public void testDestroyerGetShipType() {
@@ -224,7 +223,7 @@ public class ShipTest {
     }
 
     /**
-     * Light Cruiser get ship type test.
+     * Test.
      */
     @Test
     public void testLightCruiserGetShipType() {
@@ -234,7 +233,7 @@ public class ShipTest {
     }
 
     /**
-     * Submarine get ship type test.
+     * Test.
      */
     @Test
     public void testSubmarineGetShipType() {
@@ -250,10 +249,100 @@ public class ShipTest {
     public void testOkToPlaceShipAt() {
         Ocean ocean = new Ocean();
         Ship ship = new Submarine();
+        final int nineTeen = 19;
         assertTrue(ship.okToPlaceShipAt(0, 0, true, ocean));
         assertTrue(ship.okToPlaceShipAt(0, 0, false, ocean));
-        assertFalse(ship.okToPlaceShipAt(19, 19, true, ocean));
-        assertFalse(ship.okToPlaceShipAt(19, 19, false, ocean));
+        assertFalse(ship.okToPlaceShipAt(nineTeen, nineTeen, true, ocean));
+        assertFalse(ship.okToPlaceShipAt(nineTeen, nineTeen, false, ocean));
+    }
+
+    /**
+     * Test.
+     */
+    @Test
+    public void testGetNumber() {
+        final int expectResultSubmarineShip = 4;
+        final int expectResultLightCruiserShip = 2;
+        final int expectResultBattleShip = 1;
+        final Ship battleShip = new BattleShip();
+        final Ship submarineShip = new Submarine();
+        final Ship lightCruiserShip = new LightCruiser();
+        assertEquals(expectResultSubmarineShip, submarineShip.getNumber());
+        assertEquals(expectResultLightCruiserShip, lightCruiserShip.getNumber());
+        assertEquals(expectResultBattleShip, battleShip.getNumber());
+    }
+
+    /**
+     * Test.
+     */
+    @Test
+    public void testShootAtHorizontalShip() {
+        final int zero = 0;
+        final int one = 1;
+        final int oneNegative = -1;
+        final int two = 2;
+        final int seven = 7;
+        final int eight = 8;
+        final int teen = 10;
+        final int nineTeen = 19;
+        final Ocean ocean = new Ocean();
+        final Ship battleShip = new BattleShip();
+        battleShip.placeShipAt(zero, zero, true, ocean);
+        assertTrue(battleShip.shootAt(zero, zero));
+        assertTrue(battleShip.shootAt(zero, one));
+        assertTrue(battleShip.shootAt(zero, two));
+        assertTrue(battleShip.shootAt(zero, seven));
+        assertFalse(battleShip.shootAt(zero, eight));
+        assertFalse(battleShip.shootAt(zero, teen));
+        assertFalse(battleShip.shootAt(zero, nineTeen));
+        assertFalse(battleShip.shootAt(teen, teen));
+        assertFalse(battleShip.shootAt(nineTeen, nineTeen));
+        assertFalse(battleShip.shootAt(one, zero));
+        assertFalse(battleShip.shootAt(two, zero));
+        assertFalse(battleShip.shootAt(seven, zero));
+        assertFalse(battleShip.shootAt(eight, zero));
+        assertFalse(battleShip.shootAt(teen, zero));
+        assertFalse(battleShip.shootAt(nineTeen, zero));
+        assertFalse(battleShip.shootAt(teen, teen));
+        assertFalse(battleShip.shootAt(zero, oneNegative));
+        assertFalse(battleShip.shootAt(oneNegative, zero));
+        assertFalse(battleShip.shootAt(oneNegative, oneNegative));
+    }
+
+    /**
+     * Test.
+     */
+    @Test
+    public void testShootAtVerticalShip() {
+        final int zero = 0;
+        final int one = 1;
+        final int oneNegative = -1;
+        final int two = 2;
+        final int seven = 7;
+        final int eight = 8;
+        final int teen = 10;
+        final int nineTeen = 19;
+        final Ocean ocean = new Ocean();
+        final Ship battleShip = new BattleShip();
+        battleShip.placeShipAt(zero, zero, false, ocean);
+        assertTrue(battleShip.shootAt(zero, zero));
+        assertTrue(battleShip.shootAt(one, zero));
+        assertTrue(battleShip.shootAt(two, zero));
+        assertTrue(battleShip.shootAt(seven, zero));
+        assertFalse(battleShip.shootAt(eight, zero));
+        assertFalse(battleShip.shootAt(teen, zero));
+        assertFalse(battleShip.shootAt(nineTeen, zero));
+        assertFalse(battleShip.shootAt(teen, teen));
+        assertFalse(battleShip.shootAt(nineTeen, nineTeen));
+        assertFalse(battleShip.shootAt(zero, one));
+        assertFalse(battleShip.shootAt(zero, two));
+        assertFalse(battleShip.shootAt(zero, seven));
+        assertFalse(battleShip.shootAt(zero, eight));
+        assertFalse(battleShip.shootAt(zero, teen));
+        assertFalse(battleShip.shootAt(zero, nineTeen));
+        assertFalse(battleShip.shootAt(oneNegative, zero));
+        assertFalse(battleShip.shootAt(zero, oneNegative));
+        assertFalse(battleShip.shootAt(oneNegative, oneNegative));
     }
 
 }
