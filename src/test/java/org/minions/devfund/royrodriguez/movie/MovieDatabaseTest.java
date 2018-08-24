@@ -121,8 +121,7 @@ public class MovieDatabaseTest {
         movieDatabase.addMovie(movie, actors);
         movieDatabase.addRating(movie, newRating);
         movieDatabase.addRating(movie, updateRating);
-        assertEquals(updateRating, movieDatabase.getMovieList().stream()
-                .findFirst().get().getRating(), PARAMETER_FOR_DOUBLE);
+        assertEquals(updateRating, movieDatabase.getMovieList().get(0).getRating(), PARAMETER_FOR_DOUBLE);
     }
 
     /**
@@ -232,10 +231,10 @@ public class MovieDatabaseTest {
 
         final ArrayList<Actor> actors2 = new ArrayList<>();
         final Actor actorTwo = new Actor();
-        actorTwo.setName("Alpha2");
+        actorTwo.setName(ALPHA_2);
         actors2.add(actorTwo);
         Movie movie2 = new Movie();
-        movie2.setName("AlphaMovie2");
+        movie2.setName(ALPHA_MOVIE_2);
         final double rating2 = 10.0;
         movie2.setRating(rating2);
         movie2.setActors(actors2);
