@@ -3,7 +3,6 @@ package org.minions.devfund.katerinaanzoleaga.battleship;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-//import org.junit.experimental.categories.Category;
 import junitparams.JUnitParamsRunner;
 
 import static org.junit.Assert.assertTrue;
@@ -51,8 +50,6 @@ public class ShipTest {
      */
     @Test
     public void testShootAt() {
-        final int row = 0;
-        final int column = 0;
         final int columnBattleCruiserThree = 3;
         final int columnBattleCruiserFour = 4;
         final int columnBattleCruiserFive = 5;
@@ -118,7 +115,6 @@ public class ShipTest {
      */
     @Test
     public void testSunkDestroyerH() {
-        final Ship destroyer = new Destroyer();
         destroyer.placeShipAt(0, 0, true, theOcean);
         for (int i = 0; i < destroyer.getLength(); ++i) {
             destroyer.shootAt(0, i);
@@ -134,7 +130,6 @@ public class ShipTest {
      */
     @Test
     public void testSunkDestroyerV() {
-        final Ship destroyer = new Destroyer();
         destroyer.placeShipAt(0, 0, false, theOcean);
         for (int i = 0; i < destroyer.getLength(); ++i) {
             destroyer.shootAt(i, 0);
@@ -150,7 +145,6 @@ public class ShipTest {
      */
     @Test
     public void testSunkLightCruiserH() {
-        final Ship lightCruiser = new Destroyer();
         lightCruiser.placeShipAt(0, 0, true, theOcean);
         for (int i = 0; i < lightCruiser.getLength(); ++i) {
             lightCruiser.shootAt(0, i);
@@ -166,7 +160,6 @@ public class ShipTest {
      */
     @Test
     public void testSunkLightCruiserV() {
-        final Ship lightCruiser = new LightCruiser();
         assertFalse(lightCruiser.isSunk());
         lightCruiser.placeShipAt(0, 0, false, theOcean);
         for (int i = 0; i < lightCruiser.getLength(); ++i) {
@@ -183,7 +176,6 @@ public class ShipTest {
      */
     @Test
     public void testSunkCruiserH() {
-        final Ship cruiser = new Cruiser();
         cruiser.placeShipAt(0, 0, true, theOcean);
         for (int i = 0; i < cruiser.getLength(); ++i) {
             cruiser.shootAt(0, i);
@@ -199,7 +191,6 @@ public class ShipTest {
      */
     @Test
     public void testSunkCruiserV() {
-        final Ship cruiser = new Cruiser();
         assertFalse(cruiser.isSunk());
         cruiser.placeShipAt(0, 0, false, theOcean);
         for (int i = 0; i < cruiser.getLength(); ++i) {
@@ -216,7 +207,6 @@ public class ShipTest {
      */
     @Test
     public void testSunkBattleCruiserH() {
-        final Ship battleCruiser = new BattleCruiser();
         battleCruiser.placeShipAt(0, 0, true, theOcean);
         for (int i = 0; i < battleCruiser.getLength(); ++i) {
             battleCruiser.shootAt(0, i);
@@ -232,7 +222,6 @@ public class ShipTest {
      */
     @Test
     public void testSunkBattleCruiserV() {
-        final Ship battleCruiser = new BattleCruiser();
         assertFalse(battleCruiser.isSunk());
         battleCruiser.placeShipAt(0, 0, false, theOcean);
         for (int i = 0; i < battleCruiser.getLength(); ++i) {
@@ -249,7 +238,6 @@ public class ShipTest {
      */
     @Test
     public void testSunkBattleShipH() {
-        final Ship battleShip = new BattleShip();
         battleShip.placeShipAt(0, 0, true, theOcean);
         for (int i = 0; i < battleShip.getLength(); ++i) {
             battleShip.shootAt(0, i);
@@ -265,7 +253,6 @@ public class ShipTest {
      */
     @Test
     public void testSunkBattleShipCruiserV() {
-        final Ship battleShip = new BattleShip();
         assertFalse(battleShip.isSunk());
         battleShip.placeShipAt(0, 0, false, theOcean);
         for (int i = 0; i < battleShip.getLength(); ++i) {
