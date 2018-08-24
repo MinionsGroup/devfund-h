@@ -15,7 +15,7 @@ public class MovieDatabase {
      *
      * @return List of movies.
      */
-    public List getMovieList() {
+    public List<Movie> getMovieList() {
         return movieList;
     }
 
@@ -33,7 +33,7 @@ public class MovieDatabase {
      *
      * @return list of actors.
      */
-    public List getActorList() {
+    public List<Actor> getActorList() {
         return actorList;
     }
 
