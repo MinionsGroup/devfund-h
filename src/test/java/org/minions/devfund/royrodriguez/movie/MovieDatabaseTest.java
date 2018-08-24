@@ -14,7 +14,11 @@ public class MovieDatabaseTest {
 
     private static final int FIRST_MOVIE = 0;
     private static final double PARAMETER_FOR_DOUBLE = 0;
-    public static final String THE_PIANIST2 = "The Pianist2";
+    private static final String THE_PIANIST2 = "The Pianist2";
+    private static final String ALPHA_2 = "Alpha2";
+    private static final String ALPHA_MOVIE_2 = "AlphaMovie2";
+    private static final String ALPHA_MOVIE = "AlphaMovie";
+    private static final String ALPHA = "Alpha";
 
     /**
      * Get best actor in the collection.
@@ -152,9 +156,9 @@ public class MovieDatabaseTest {
     @Test
     public void testSetMovieList() {
         final MovieDatabase movieDatabase = new MovieDatabase();
-        final ArrayList<Movie> movies = new ArrayList<Movie>();
+        final ArrayList<Movie> movies = new ArrayList<>();
         final Movie movie = new Movie();
-        movie.setName("Alpha");
+        movie.setName(ALPHA);
         movies.add(movie);
         movieDatabase.setMovieList(movies);
         assertEquals(movie.getName(), movieDatabase.getMovieList().get(0).getName());
@@ -166,9 +170,9 @@ public class MovieDatabaseTest {
     @Test
     public void testSetActorList() {
         final MovieDatabase movieDatabase = new MovieDatabase();
-        final ArrayList<Actor> actors = new ArrayList<Actor>();
+        final ArrayList<Actor> actors = new ArrayList<>();
         final Actor actor = new Actor();
-        actor.setName("Alpha");
+        actor.setName(ALPHA);
         actors.add(actor);
         movieDatabase.setActorList(actors);
         assertEquals(actor.getName(), movieDatabase.getActorList().get(0).getName());
@@ -180,23 +184,23 @@ public class MovieDatabaseTest {
     @Test
     public void testBestMovie() {
         final MovieDatabase movieDatabase = new MovieDatabase();
-        final ArrayList<Movie> movies = new ArrayList<Movie>();
-        final ArrayList<Actor> actors = new ArrayList<Actor>();
+        final ArrayList<Movie> movies = new ArrayList<>();
+        final ArrayList<Actor> actors = new ArrayList<>();
         final Actor actor = new Actor();
-        actor.setName("Alpha");
+        actor.setName(ALPHA);
         actors.add(actor);
         Movie movie = new Movie();
-        movie.setName("AlphaMovie");
+        movie.setName(ALPHA_MOVIE);
         final double rating = 10.0;
         movie.setRating(rating);
         movie.setActors(actors);
 
-        final ArrayList<Actor> actors2 = new ArrayList<Actor>();
+        final ArrayList<Actor> actors2 = new ArrayList<>();
         final Actor actorTwo = new Actor();
-        actorTwo.setName("Alpha2");
+        actorTwo.setName(ALPHA_2);
         actors2.add(actorTwo);
         Movie movie2 = new Movie();
-        movie2.setName("AlphaMovie2");
+        movie2.setName(ALPHA_MOVIE_2);
         final double rating2 = 20.0;
         movie2.setRating(rating2);
         movie2.setActors(actors2);
@@ -206,7 +210,7 @@ public class MovieDatabaseTest {
 
         movieDatabase.setMovieList(movies);
 
-        assertEquals("AlphaMovie2", movieDatabase.getBestMovie());
+        assertEquals(ALPHA_MOVIE_2, movieDatabase.getBestMovie());
     }
 
     /**
@@ -215,18 +219,18 @@ public class MovieDatabaseTest {
     @Test
     public void testBestMovieTwo() {
         final MovieDatabase movieDatabase = new MovieDatabase();
-        final ArrayList<Movie> movies = new ArrayList<Movie>();
-        final ArrayList<Actor> actors = new ArrayList<Actor>();
+        final ArrayList<Movie> movies = new ArrayList<>();
+        final ArrayList<Actor> actors = new ArrayList<>();
         final Actor actor = new Actor();
-        actor.setName("Alpha");
+        actor.setName(ALPHA);
         actors.add(actor);
         Movie movie = new Movie();
-        movie.setName("AlphaMovie");
+        movie.setName(ALPHA_MOVIE);
         final double rating = 10.0;
         movie.setRating(rating);
         movie.setActors(actors);
 
-        final ArrayList<Actor> actors2 = new ArrayList<Actor>();
+        final ArrayList<Actor> actors2 = new ArrayList<>();
         final Actor actorTwo = new Actor();
         actorTwo.setName("Alpha2");
         actors2.add(actorTwo);
@@ -241,7 +245,7 @@ public class MovieDatabaseTest {
 
         movieDatabase.setMovieList(movies);
 
-        assertEquals("AlphaMovie", movieDatabase.getBestMovie());
+        assertEquals(ALPHA_MOVIE, movieDatabase.getBestMovie());
     }
 
     /**
@@ -250,24 +254,24 @@ public class MovieDatabaseTest {
     @Test
     public void testBestMovieActor() {
         final MovieDatabase movieDatabase = new MovieDatabase();
-        final ArrayList<Movie> movies = new ArrayList<Movie>();
-        final ArrayList<Actor> actors = new ArrayList<Actor>();
+        final ArrayList<Movie> movies = new ArrayList<>();
+        final ArrayList<Actor> actors = new ArrayList<>();
         final Actor actor = new Actor();
-        actor.setName("Alpha");
+        actor.setName(ALPHA);
         actors.add(actor);
         Movie movie = new Movie();
-        movie.setName("AlphaMovie");
+        movie.setName(ALPHA_MOVIE);
         final double rating = 30.0;
         movie.setRating(rating);
         movie.setActors(actors);
 
-        final ArrayList<Actor> actors2 = new ArrayList<Actor>();
-        final ArrayList<Movie> movies2 = new ArrayList<Movie>();
+        final ArrayList<Actor> actors2 = new ArrayList<>();
+        final ArrayList<Movie> movies2 = new ArrayList<>();
         final Actor actorTwo = new Actor();
-        actorTwo.setName("Alpha2");
+        actorTwo.setName(ALPHA_2);
         actors2.add(actorTwo);
         Movie movie2 = new Movie();
-        movie2.setName("AlphaMovie2");
+        movie2.setName(ALPHA_MOVIE_2);
         final double rating2 = 20.0;
         movie2.setRating(rating2);
         movie2.setActors(actors2);
@@ -281,7 +285,7 @@ public class MovieDatabaseTest {
         movieDatabase.setActorList(actors);
 
         movieDatabase.setMovieList(movies);
-        assertEquals("Alpha", movieDatabase.getBestActor());
+        assertEquals(ALPHA, movieDatabase.getBestActor());
     }
 
     /**
@@ -290,24 +294,24 @@ public class MovieDatabaseTest {
     @Test
     public void testBestMovieActorTwo() {
         final MovieDatabase movieDatabase = new MovieDatabase();
-        final ArrayList<Movie> movies = new ArrayList<Movie>();
-        final ArrayList<Actor> actors = new ArrayList<Actor>();
+        final ArrayList<Movie> movies = new ArrayList<>();
+        final ArrayList<Actor> actors = new ArrayList<>();
         final Actor actor = new Actor();
-        actor.setName("Alpha");
+        actor.setName(ALPHA);
         actors.add(actor);
         Movie movie = new Movie();
-        movie.setName("AlphaMovie");
+        movie.setName(ALPHA_MOVIE);
         final double rating = 10.0;
         movie.setRating(rating);
         movie.setActors(actors);
 
-        final ArrayList<Actor> actors2 = new ArrayList<Actor>();
-        final ArrayList<Movie> movies2 = new ArrayList<Movie>();
+        final ArrayList<Actor> actors2 = new ArrayList<>();
+        final ArrayList<Movie> movies2 = new ArrayList<>();
         final Actor actorTwo = new Actor();
-        actorTwo.setName("Alpha2");
+        actorTwo.setName(ALPHA_2);
         actors2.add(actorTwo);
         Movie movie2 = new Movie();
-        movie2.setName("AlphaMovie2");
+        movie2.setName(ALPHA_MOVIE_2);
         final double rating2 = 20.0;
         movie2.setRating(rating2);
         movie2.setActors(actors2);
@@ -321,6 +325,6 @@ public class MovieDatabaseTest {
         movieDatabase.setActorList(actors);
 
         movieDatabase.setMovieList(movies);
-        assertEquals("Alpha2", movieDatabase.getBestActor());
+        assertEquals(ALPHA_2, movieDatabase.getBestActor());
     }
 }
