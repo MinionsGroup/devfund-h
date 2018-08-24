@@ -72,7 +72,7 @@ public abstract class Ship {
      * @return hits array
      */
     public boolean[] getHit() {
-        return hit;
+        return hit.clone();
     }
 
     /**
@@ -80,8 +80,9 @@ public abstract class Ship {
      * @param hit hits array
      */
     protected void setHit(final boolean[] hit) {
-        this.hit = hit;
+        this.hit = hit.clone();
     }
+
 
     /**
      * Abstract method to be overwrite by the extended classes.
@@ -92,13 +93,12 @@ public abstract class Ship {
 
     /**
      * Given the starting position, either row or column, this fuction returns.
-     * true if the ship's larger position will feet in the ocean.
+     * true if the ship's larger position will feit in the ocean.
      * @param position either row or column
      * @param ocean the ocean reference.
-     * @return ture if feets.
+     * @return ture if fits.
      */
     private boolean fitsInDirection(int position, final Ocean ocean) {
-        int oceanLength = ocean.getShipArray().length;
         if (position >= 0) {
             return position + this.getLength() - 1 < ocean.getShipArray().length;
         } else {

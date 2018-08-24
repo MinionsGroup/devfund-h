@@ -27,7 +27,7 @@ public class Ocean {
      * @return Array of ships
      */
     public Ship[][] getShipArray() {
-        return ships;
+        return ships.clone();
     }
 
     /**
@@ -35,7 +35,7 @@ public class Ocean {
      * @param ships of the ocean.
      */
     public void setShips(final Ship[][] ships) {
-        this.ships = ships;
+        this.ships = ships.clone();
     }
 
     /**
@@ -125,8 +125,6 @@ public class Ocean {
         System.out.println(sb.toString());
     }
 
-
-
     /**
      * Returns true if the position is valid from 0 to the length of the ocean.
      * @param row int
@@ -145,7 +143,7 @@ public class Ocean {
      * @return Ture if the ship in this position has its type equal to 'empty'
      */
     public boolean isOccupied(int row, int column) {
-        return ships[row][column].getShipType() != "empty";
+        return ships[row][column].getShipType() != "empty" || ships[row][column] == null;
     }
 
 
@@ -158,7 +156,7 @@ public class Ocean {
 
         Random randomNumber;
         randomNumber = new Random();
-        int row, colum, horizontal;
+        int row, column, horizontal;
         BattleShip battleShip;
         BattleCruiser battleCruiser;
         Cruiser cruiser;
@@ -168,80 +166,80 @@ public class Ocean {
 
         for (int i = 1; i <= BATTLESHIPSNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
-            colum = randomNumber.nextInt(this.getShipArray().length);
+            column = randomNumber.nextInt(this.getShipArray().length);
             horizontal = randomNumber.nextInt(2);
             battleShip = new BattleShip();
-            while (!battleShip.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
+            while (!battleShip.okToPlaceShipAt(row, column, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
-                colum = randomNumber.nextInt(this.getShipArray().length);
+                column = randomNumber.nextInt(this.getShipArray().length);
                 horizontal = randomNumber.nextInt(2);
             }
-            battleShip.placeShipAt(row, colum, horizontal == 1, this);
+            battleShip.placeShipAt(row, column, horizontal == 1, this);
         }
 
         for (int i = 1; i <= BATTLECRUSIERSNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
-            colum = randomNumber.nextInt(this.getShipArray().length);
+            column = randomNumber.nextInt(this.getShipArray().length);
             horizontal = randomNumber.nextInt(2);
             battleCruiser = new BattleCruiser();
-            while (!battleCruiser.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
+            while (!battleCruiser.okToPlaceShipAt(row, column, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
-                colum = randomNumber.nextInt(this.getShipArray().length);
+                column = randomNumber.nextInt(this.getShipArray().length);
                 horizontal = randomNumber.nextInt(2);
             }
-            battleCruiser.placeShipAt(row, colum, horizontal == 1, this);
+            battleCruiser.placeShipAt(row, column, horizontal == 1, this);
         }
 
         for (int i = 1;  i <= CRUSIERSNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
-            colum = randomNumber.nextInt(this.getShipArray().length);
+            column = randomNumber.nextInt(this.getShipArray().length);
             horizontal = randomNumber.nextInt(2);
             cruiser = new Cruiser();
-            while (!cruiser.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
+            while (!cruiser.okToPlaceShipAt(row, column, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
-                colum = randomNumber.nextInt(this.getShipArray().length);
+                column = randomNumber.nextInt(this.getShipArray().length);
                 horizontal = randomNumber.nextInt(2);
             }
-            cruiser.placeShipAt(row, colum, horizontal == 1, this);
+            cruiser.placeShipAt(row, column, horizontal == 1, this);
         }
 
         for (int i = 1; i <= LIGHTCRUISIERSNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
-            colum = randomNumber.nextInt(this.getShipArray().length);
+            column = randomNumber.nextInt(this.getShipArray().length);
             horizontal = randomNumber.nextInt(2);
             lightCruiser = new LightCruiser();
-            while (!lightCruiser.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
+            while (!lightCruiser.okToPlaceShipAt(row, column, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
-                colum = randomNumber.nextInt(this.getShipArray().length);
+                column = randomNumber.nextInt(this.getShipArray().length);
                 horizontal = randomNumber.nextInt(2);
             }
-            lightCruiser.placeShipAt(row, colum, horizontal == 1, this);
+            lightCruiser.placeShipAt(row, column, horizontal == 1, this);
         }
 
         for (int i = 1;  i <= DESTROYERSNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
-            colum = randomNumber.nextInt(this.getShipArray().length);
+            column = randomNumber.nextInt(this.getShipArray().length);
             horizontal = randomNumber.nextInt(2);
             destroyer = new Destroyer();
-            while (!destroyer.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
+            while (!destroyer.okToPlaceShipAt(row, column, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
-                colum = randomNumber.nextInt(this.getShipArray().length);
+                column = randomNumber.nextInt(this.getShipArray().length);
                 horizontal =  randomNumber.nextInt(2);
             }
-            destroyer.placeShipAt(row, colum, horizontal == 1, this);
+            destroyer.placeShipAt(row, column, horizontal == 1, this);
         }
 
         for (int i = 1; i <= SUBMARINESNUMBER; ++i) {
             row = randomNumber.nextInt(this.getShipArray().length);
-            colum = randomNumber.nextInt(this.getShipArray().length);
+            column = randomNumber.nextInt(this.getShipArray().length);
             horizontal = randomNumber.nextInt(2);
             submarine = new Submarine();
-            while (!submarine.okToPlaceShipAt(row, colum, horizontal == 1, this)) {
+            while (!submarine.okToPlaceShipAt(row, column, horizontal == 1, this)) {
                 row = randomNumber.nextInt(this.getShipArray().length);
-                colum = randomNumber.nextInt(this.getShipArray().length);
+                column = randomNumber.nextInt(this.getShipArray().length);
                 horizontal = randomNumber.nextInt(2);
             }
-            submarine.placeShipAt(row, colum, horizontal == 1, this);
+            submarine.placeShipAt(row, column, horizontal == 1, this);
         }
     }
 
