@@ -54,7 +54,7 @@ public abstract class Ship {
      * @param column column.
      * @return boolean.
      */
-    Boolean shootAt(int row, int column) {
+    boolean shootAt(int row, int column) {
         boolean flag = false;
         if (!isSunk()) {
             if (!horizontal && column == bowColumn && row >= bowRow && row < bowRow + length) {
@@ -64,9 +64,6 @@ public abstract class Ship {
                 hit[column - bowColumn] = true;
                 flag = true;
             }
-        }
-        if (this instanceof EmptySea) {
-            flag = false;
         }
         return flag;
     }

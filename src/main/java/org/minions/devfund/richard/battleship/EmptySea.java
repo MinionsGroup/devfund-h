@@ -41,4 +41,14 @@ public class EmptySea extends Ship {
     public String toString() {
         return getHit()[0] ? NOTHING_FIRED_CHAR : NEVER_FIRED_CHAR;
     }
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    public boolean shootAt(int row, int column) {
+        boolean[] hitArray = {true};
+        setHit(hitArray);
+        return false;
+    }
 }
