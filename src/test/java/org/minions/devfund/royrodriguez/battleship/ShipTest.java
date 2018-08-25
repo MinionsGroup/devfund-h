@@ -3,6 +3,7 @@ package org.minions.devfund.royrodriguez.battleship;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -136,7 +137,7 @@ public class ShipTest {
         final boolean defaultHitStatus = false;
         final Ship ship = new Submarine();
         final boolean[] expectedHits = {defaultHitStatus, defaultHitStatus, defaultHitStatus};
-//        assertArrayEquals(expectedHits, ship.getHit());
+        assertArrayEquals(expectedHits, ship.getHit());
     }
 
     /**
@@ -343,5 +344,4 @@ public class ShipTest {
         assertFalse(battleShip.shootAt(zero, oneNegative));
         assertFalse(battleShip.shootAt(oneNegative, oneNegative));
     }
-
 }

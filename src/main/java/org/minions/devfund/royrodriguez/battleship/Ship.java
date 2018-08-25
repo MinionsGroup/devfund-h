@@ -34,4 +34,8 @@ public abstract class Ship {
     public int getNumber() {
         return number;
     }
+
+    public boolean[] getHit() {
+        return hit;
+    }
 }
