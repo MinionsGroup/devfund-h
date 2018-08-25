@@ -6,6 +6,7 @@ public abstract class Ship {
     int lenght;
     boolean horizontal;
     boolean[] hit;
+    private int number;
 
     abstract String getShipType();
 
@@ -28,5 +29,9 @@ public abstract class Ship {
     @Override
     public String toString() {
         return null;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }
