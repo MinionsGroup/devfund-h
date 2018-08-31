@@ -1,6 +1,7 @@
 package org.minions.devfund.royrodriguez.movie;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -106,14 +107,9 @@ public class MovieDatabase {
      * @return name of the best movie.
      */
     public String getBestMovie() {
-        movieList.sort((firstMovie, secondMovie) -> {
-            if (Double.compare(firstMovie.getRating(), secondMovie.getRating()) > 0) {
-                return -1;
-            } else {
-                return Double.compare(firstMovie.getRating(), secondMovie.getRating()) < 0 ? 1 : 0;
-            }
-        });
-        return movieList.get(0).getName();
+        return movieList.stream()
+                .max(Comparator.comparing(Movie::getRating))
+                .map(Movie::getName).orElse("");
     }
 
     /**
@@ -122,13 +118,8 @@ public class MovieDatabase {
      * @return name of the best actor.
      */
     public String getBestActor() {
-        actorList.sort((actorOne, actorTwo) -> {
-            if (Double.compare(actorOne.getAverageRating(), actorTwo.getAverageRating()) > 0) {
-                return -1;
-            } else {
-                return Double.compare(actorOne.getAverageRating(), actorTwo.getAverageRating()) < 0 ? 1 : 0;
-            }
-        });
-        return actorList.get(0).getName();
+        return actorList.stream()
+                .max(Comparator.comparing(Actor::getAverageRating))
+                .map(Actor::getName).orElse("");
     }
 }
