@@ -59,8 +59,9 @@ public class Actor {
      * @return average rating.
      */
     public double getAverageRating() {
-        int count = movies.size();
-        double sumRatings = movies.stream().mapToDouble(Movie::getRating).sum();
-        return sumRatings / count;
+        return movies.stream()
+                .mapToDouble(Movie::getRating)
+                .average()
+                .orElse(0.0);
     }
 }
