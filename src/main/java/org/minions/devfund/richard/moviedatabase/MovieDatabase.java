@@ -1,7 +1,6 @@
 package org.minions.devfund.richard.moviedatabase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -28,19 +27,24 @@ public class MovieDatabase {
      * @param actors Array of actors.
      */
     void addMovie(final String name, final String[] actors) {
-        Movie newMovie = new Movie();
-        newMovie.setName(name);
+        Movie newMovie;
+        newMovie = new Movie().setName(name).isMovieAlreadyAdded(movieHash)
+                ? new Movie().setName(name).getMovieAlreadyExist(movieHash)
+                : new Movie().setName(name);
         if (!newMovie.isMovieAlreadyAdded(movieHash)) {
             movieHash.add(newMovie);
         }
-        Arrays.asList(actors)
-                .forEach(actorName -> {
-                    Actor newActor = new Actor();
-                    newActor.setName(actorName);
-                    if (!newActor.isActorAlreadyAdded(actorHash)) {
-                        actorHash.add(newActor);
-                    }
-                });
+        for (String actorName : actors) {
+            Actor newActor;
+            newActor = new Actor().setName(actorName).isActorAlreadyAdded(actorHash)
+                    ? new Actor().setName(actorName).getActorAlreadyExist(actorHash)
+                    : new Actor().setName(actorName);
+            newMovie.setActors(newActor);
+            newActor.setMovies(newMovie);
+            if (!newActor.isActorAlreadyAdded(actorHash)) {
+                actorHash.add(newActor);
+            }
+        }
     }
 
     /**

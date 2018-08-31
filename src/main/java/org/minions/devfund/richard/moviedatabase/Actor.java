@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Class.
@@ -33,7 +34,9 @@ public class Actor {
      * @return Actor.
      */
     Actor setMovies(final Movie newMovie) {
-        movies.add(newMovie);
+        if (!newMovie.isMovieAlreadyAdded(this.movies)) {
+            this.movies.add(newMovie);
+        }
         return this;
     }
 
@@ -79,6 +82,17 @@ public class Actor {
             }
         }
         return false;
+    }
+
+    /**
+     * @param actorHash movieHash.
+     * @return Actor.
+     */
+    Actor getActorAlreadyExist(final Set<Actor> actorHash) {
+        return actorHash.stream()
+                .filter(actor -> actor.actorEquals(this))
+                .collect(Collectors.toList()).get(0);
+
     }
 
 }

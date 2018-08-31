@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Class.
@@ -42,7 +43,9 @@ public class Movie {
      * @return Actor.
      */
     Movie setActors(final Actor newActor) {
-        this.actors.add(newActor);
+        if (!newActor.isActorAlreadyAdded(this.actors)) {
+            this.actors.add(newActor);
+        }
         return this;
     }
 
@@ -72,7 +75,7 @@ public class Movie {
      * @param otherMovie movie.
      * @return boolean.
      */
-    private boolean movieEquals(final Movie otherMovie) {
+    boolean movieEquals(final Movie otherMovie) {
         return otherMovie.getName().equals(this.getName());
     }
 
@@ -80,12 +83,23 @@ public class Movie {
      * @param movieHash movieHash.
      * @return boolean.
      */
-    public boolean isMovieAlreadyAdded(final Set<Movie> movieHash) {
+    boolean isMovieAlreadyAdded(final Set<Movie> movieHash) {
         for (Movie movie : movieHash) {
             if (this.movieEquals(movie)) {
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * @param movieHash movieHash.
+     * @return Movie.
+     */
+    Movie getMovieAlreadyExist(final Set<Movie> movieHash) {
+        return movieHash.stream()
+                .filter(movie -> movie.movieEquals(this))
+                .collect(Collectors.toList()).get(0);
+
     }
 }
