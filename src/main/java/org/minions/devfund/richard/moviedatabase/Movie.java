@@ -67,23 +67,25 @@ public class Movie {
         return new ArrayList<>(actors);
     }
 
+
     /**
-     * {@inheritDoc}
+     * @param otherMovie movie.
+     * @return boolean.
      */
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == null || this.getClass() != obj.getClass()) {
-            return false;
+    private boolean movieEquals(final Movie otherMovie) {
+        return otherMovie.getName().equals(this.getName());
+    }
+
+    /**
+     * @param movieHash movieHash.
+     * @return boolean.
+     */
+    public boolean isMovieAlreadyAdded(final Set<Movie> movieHash) {
+        for (Movie movie : movieHash) {
+            if (this.movieEquals(movie)) {
+                return true;
+            }
         }
-        return this.getName().equals(((Movie) obj).getName());
+        return false;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int hashCode() {
-        return this.name.hashCode();
-    }
-
 }

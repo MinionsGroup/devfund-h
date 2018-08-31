@@ -29,10 +29,17 @@ public class MovieDatabase {
      */
     void addMovie(final String name, final String[] actors) {
         Movie newMovie = new Movie();
+        newMovie.setName(name);
+        if (!newMovie.isMovieAlreadyAdded(movieHash)) {
+            movieHash.add(newMovie);
+        }
         Arrays.asList(actors)
                 .forEach(actorName -> {
-                    movieHash.add(newMovie.setName(name).setActors(new Actor().setName(actorName)));
-                    actorHash.add(new Actor().setName(actorName).setMovies(newMovie));
+                    Actor newActor = new Actor();
+                    newActor.setName(actorName);
+                    if (!newActor.isActorAlreadyAdded(actorHash)) {
+                        actorHash.add(newActor);
+                    }
                 });
     }
 

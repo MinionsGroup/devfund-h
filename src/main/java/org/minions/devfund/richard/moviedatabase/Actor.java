@@ -61,21 +61,24 @@ public class Actor {
     }
 
     /**
-     * {@inheritDoc}
+     * @param otherActor actor.
+     * @return boolean.
      */
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == null || this.getClass() != obj.getClass()) {
-            return false;
-        }
-        return this.getName().equals(((Actor) obj).getName());
+    private boolean actorEquals(final Actor otherActor) {
+        return otherActor.getName().equals(this.getName());
     }
 
     /**
-     * {@inheritDoc}
+     * @param actorHash movieHash.
+     * @return boolean.
      */
-    @Override
-    public int hashCode() {
-        return name.hashCode();
+    public boolean isActorAlreadyAdded(final Set<Actor> actorHash) {
+        for (Actor actor : actorHash) {
+            if (this.actorEquals(actor)) {
+                return true;
+            }
+        }
+        return false;
     }
+
 }
