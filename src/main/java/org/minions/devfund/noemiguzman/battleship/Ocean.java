@@ -4,21 +4,29 @@ package org.minions.devfund.noemiguzman.battleship;
  * Ocean class.
  */
 public class Ocean {
+
+
     private static final int SIZE_OCEAN = 20;
     private static final int NRO_SHIPS = 13;
-    private Ship[][] ships = new Ship[SIZE_OCEAN][SIZE_OCEAN];
+    private Ship[][] ships;
     private int shotsFired;
     private int hitCount;
     private int shipsSunk;
 
     /**
+     * GET Ocean size
+     * @return int
+     */
+    static int getSizeOcean() {
+        return SIZE_OCEAN;
+    }
+    /**
      * Creates an empty ocean (fills the ships array with a bunch of EmptySea instances).
      * Also initializes any game variables, such as how many shots have been fired.
      */
     public Ocean() {
-        shotsFired = 0;
-        hitCount = 0;
-        shipsSunk = 0;
+
+        ships = new Ship[SIZE_OCEAN][SIZE_OCEAN];
         for (int i = 0; i < SIZE_OCEAN; i++) {
             for (int j = 0; j < SIZE_OCEAN; j++) {
                 EmptySea emptySea = new EmptySea();

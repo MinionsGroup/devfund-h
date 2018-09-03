@@ -20,7 +20,7 @@ public class ShipTest {
         final int expectedLength = 8;
         Ship ship = new BattleShip();
         assertEquals("battleship", ship.getShipType());
-        assertEquals(expectedLength, ship.getLength());
+
     }
 
     /**
@@ -202,6 +202,15 @@ public class ShipTest {
     @Test
     public void testToStringEmptySea() {
         Ship ship = new EmptySea();
+        assertEquals(".", ship.toString());
+    }
+    /**
+     * method to test ToStrinG EmptySea.
+     */
+    @Test
+    public void testToStringEmptySeaWithShootAt() {
+        Ship ship = new EmptySea();
+        assertFalse(ship.shootAt(1, 0));
         assertEquals(".", ship.toString());
     }
 }

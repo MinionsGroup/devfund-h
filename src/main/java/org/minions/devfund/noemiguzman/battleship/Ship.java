@@ -11,7 +11,6 @@ public abstract class Ship {
     private int bowRow;
     private int bowColumn;
     private boolean horizontal;
-    private static final int SIZE_OCEAN = 20;
     private boolean[] hit;
 
     /**
@@ -36,16 +35,16 @@ public abstract class Ship {
 
 
         if (horizontal) {
-            if (column + getLength() > SIZE_OCEAN) {
+            if (column + length > ocean.getSizeOcean()) {
                 return false;
             }
-            return helpToPlaceShipAt(column,  row,  1,   getLength() + 1, ocean);
+            return helpToPlaceShipAt(column,  row,  1,   length + 1, ocean);
 
         } else {
-            if (row + getLength() > SIZE_OCEAN) {
+            if (row + length> ocean.getSizeOcean()) {
                 return false;
             }
-            return helpToPlaceShipAt(column,  row,  getLength(),   1, ocean);
+            return helpToPlaceShipAt(column,  row,  length,   1, ocean);
         }
     }
 
@@ -92,11 +91,11 @@ public abstract class Ship {
          * Set references to the ship in the ships array in the Ocean object
          */
         if (horizontal) {
-            for (int j = column; j < column + getLength(); j++) {
+            for (int j = column; j < column + length; j++) {
                 ocean.getShipArray()[row][j] = this;
             }
         } else {
-            for (int i = row; i < row + getLength(); i++) {
+            for (int i = row; i < row + length; i++) {
                 ocean.getShipArray()[i][column] = this;
             }
         }
@@ -110,11 +109,7 @@ public abstract class Ship {
      * @return true
      */
     public boolean wasShootAt(int row, int column) {
-        if (horizontal) {
-            return hit[column - this.bowColumn];
-        } else {
-            return hit[row - this.bowRow];
-        }
+        return horizontal ? hit[column - this.bowColumn] : hit[row - this.bowRow];
     }
 
     /**
@@ -126,18 +121,15 @@ public abstract class Ship {
      * @return true
      */
     public boolean shootAt(int row, int column) {
-        if (!isSunk()) {
-            if (horizontal) {
-                if (row == this.bowRow && column < this.bowColumn + length) {
-                    hit[column - this.bowColumn] = true;
-                    return true;
-                }
-            } else {
-                if (column == this.bowColumn && row < this.bowRow + length) {
-                    hit[row - this.bowRow] = true;
-                    return true;
-                }
-            }
+        if (isSunk()) {
+            return false;
+        }
+        final boolean isHittable = horizontal ? row == this.bowRow && column < this.bowColumn + length
+                : column == this.bowColumn && row < this.bowRow + length;
+        if (isHittable) {
+            final int hitPosition = horizontal ? column - this.bowColumn : row - this.bowRow;
+            hit[hitPosition] = true;
+            return true;
         }
         return false;
     }
@@ -161,13 +153,6 @@ public abstract class Ship {
         return isSunk() ? "x" : "S";
     }
 
-    /**
-     * returns length.
-     * @return int size
-     */
-    public int getLength() {
-        return length;
-    }
 
     /**
      * set size.
@@ -203,8 +188,8 @@ public abstract class Ship {
         int column;
         boolean horizontalRando;
         while (true) {
-            row = random.nextInt(SIZE_OCEAN);
-            column = random.nextInt(SIZE_OCEAN);
+            row = random.nextInt(ocean.getSizeOcean());
+            column = random.nextInt(ocean.getSizeOcean());
             horizontalRando = random.nextBoolean();
             if (this.okToPlaceShipAt(row, column, horizontalRando, ocean)) {
                 this.placeShipAt(row, column, horizontalRando, ocean);
