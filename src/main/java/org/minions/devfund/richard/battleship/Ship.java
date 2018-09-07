@@ -55,17 +55,17 @@ public abstract class Ship {
      * @return boolean.
      */
     boolean shootAt(int row, int column) {
-        boolean flag = false;
-        if (!isSunk()) {
-            if (!horizontal && column == bowColumn && row >= bowRow && row < bowRow + length) {
-                hit[row - bowRow] = true;
-                flag = true;
-            } else if (horizontal && row == bowRow && column >= bowColumn && column < bowColumn + length) {
-                hit[column - bowColumn] = true;
-                flag = true;
-            }
+        if (isSunk()) {
+            return false;
         }
-        return flag;
+        final boolean isHittable = horizontal ? row == bowRow && column >= bowColumn && column < bowColumn + length
+                : column == bowColumn && row >= bowRow && row < bowRow + length;
+        if (isHittable) {
+            final int hitPosition = horizontal ? column - bowColumn : row - bowRow;
+            hit[hitPosition] = true;
+            return true;
+        }
+        return false;
     }
 
     /**

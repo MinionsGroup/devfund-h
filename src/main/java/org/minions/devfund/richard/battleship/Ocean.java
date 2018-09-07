@@ -1,7 +1,8 @@
 package org.minions.devfund.richard.battleship;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class.
@@ -15,6 +16,7 @@ public class Ocean {
     private int shotsFired;
     private int hitCount;
     private int shipsSunk;
+    private static final Map<String, Ship> SHIP_MAP = new HashMap<>();
 
     /**
      * Ocean.
@@ -28,11 +30,21 @@ public class Ocean {
      * place all Ships randomly.
      */
     void placeAllShipsRandomly() {
-        List<Ship> shipsList = Arrays.asList(new BattleShip(), new BattleCruiser(), new Cruiser(), new Cruiser(),
-                new LightCruiser(), new LightCruiser(), new Destroyer(), new Destroyer(), new Destroyer(),
-                new Submarine(), new Submarine(), new Submarine(), new Submarine());
-        for (Ship ship : shipsList) {
-            ship.addShip(this);
+        SHIP_MAP.put("BattleShip", new BattleShip());
+        SHIP_MAP.put("BattleCruiser", new BattleCruiser());
+        SHIP_MAP.put("Cruiser1", new Cruiser());
+        SHIP_MAP.put("Cruiser2", new Cruiser());
+        SHIP_MAP.put("LightCruiser1", new LightCruiser());
+        SHIP_MAP.put("LightCruiser2", new LightCruiser());
+        SHIP_MAP.put("Destroyer1", new Destroyer());
+        SHIP_MAP.put("Destroyer2", new Destroyer());
+        SHIP_MAP.put("Destroyer3", new Destroyer());
+        SHIP_MAP.put("Submarine1", new Submarine());
+        SHIP_MAP.put("Submarine2", new Submarine());
+        SHIP_MAP.put("Submarine3", new Submarine());
+        SHIP_MAP.put("Submarine4", new Submarine());
+        for (Map.Entry<String, Ship> entry : SHIP_MAP.entrySet()) {
+            entry.getValue().addShip(this);
         }
     }
 
