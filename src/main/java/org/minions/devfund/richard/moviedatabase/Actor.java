@@ -1,6 +1,7 @@
 package org.minions.devfund.richard.moviedatabase;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -93,6 +94,17 @@ public class Actor {
                 .filter(actor -> actor.actorEquals(this))
                 .collect(Collectors.toList()).get(0);
 
+    }
+
+    /**
+     * @param moviesHash moviesHash.
+     * @return best movie.
+     */
+    String getBestMovie(final Set<Movie> moviesHash) {
+        return moviesHash.stream()
+                .max(Comparator.comparing(Movie::getRating))
+                .orElse(new Movie())
+                .getName();
     }
 
 }

@@ -1,7 +1,6 @@
 package org.minions.devfund.richard.moviedatabase;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -69,20 +68,14 @@ public class MovieDatabase {
      * @return best actor.
      */
     String getBestActor() {
-        return actorHash.stream()
-                .max(Comparator.comparing(Actor::getRating))
-                .orElse(new Actor())
-                .getName();
+        return new Movie().getBestActor(actorHash);
     }
 
     /**
      * @return best movie.
      */
     String getBestMovie() {
-        return movieHash.stream()
-                .max(Comparator.comparing(Movie::getRating))
-                .orElse(new Movie())
-                .getName();
+        return new Actor().getBestMovie(movieHash);
     }
 
     /**
