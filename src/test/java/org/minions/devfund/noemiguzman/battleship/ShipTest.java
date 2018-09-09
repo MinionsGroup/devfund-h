@@ -17,7 +17,6 @@ public class ShipTest {
      */
     @Test
     public void testGetShipType() {
-        final int expectedLength = 8;
         Ship ship = new BattleShip();
         assertEquals("battleship", ship.getShipType());
 

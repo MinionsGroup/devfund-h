@@ -1,8 +1,5 @@
 package org.minions.devfund.noemiguzman.battleship;
 
-
-import java.util.Random;
-
 /**
  * Ship class.
  */
@@ -15,6 +12,7 @@ public abstract class Ship {
 
     /**
      * This is an abstract method and therefore has no body.
+     *
      * @return ship string
      */
     public abstract String getShipType();
@@ -25,36 +23,38 @@ public abstract class Ship {
      * The ship must not overlap another ship, or touch another ship (vertically, horizontally, or diagonally),
      * and it must not stickout beyond the array.
      * Do not actually change either the ship or the Ocean, just says whether it is legal to do so.
-     * @param row numeric
-     * @param column numeric
+     *
+     * @param row        numeric
+     * @param column     numeric
      * @param horizontal true
-     * @param ocean object
+     * @param ocean      object
      * @return true
      */
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
 
 
         if (horizontal) {
-            if (column + length > ocean.getSizeOcean()) {
+            if (column + length > ocean.SIZE_OCEAN) {
                 return false;
             }
-            return helpToPlaceShipAt(column,  row,  1,   length + 1, ocean);
+            return helpToPlaceShipAt(column, row, 1, length + 1, ocean);
 
         } else {
-            if (row + length> ocean.getSizeOcean()) {
+            if (row + length > ocean.SIZE_OCEAN) {
                 return false;
             }
-            return helpToPlaceShipAt(column,  row,  length,   1, ocean);
+            return helpToPlaceShipAt(column, row, length, 1, ocean);
         }
     }
 
     /**
      * help to ask to place ship at.
-     * @param column numeric
-     * @param row numeric
-     * @param lenghtRow maxrow
+     *
+     * @param column       numeric
+     * @param row          numeric
+     * @param lenghtRow    maxrow
      * @param lengthColumn maxcolumn
-     * @param ocean object
+     * @param ocean        object
      * @return true
      */
     private boolean helpToPlaceShipAt(int column, int row, int lenghtRow, int lengthColumn, final Ocean ocean) {
@@ -77,10 +77,11 @@ public abstract class Ship {
     /**
      * Puts the ship in the ocean.
      * This involves giving values to the bowRow, bowColumn, and horizontal instance variables in the ship.
-     * @param row number
-     * @param column number
+     *
+     * @param row        number
+     * @param column     number
      * @param horizontal true
-     * @param ocean object
+     * @param ocean      object
      */
     public void placeShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
         bowRow = row;
@@ -104,7 +105,8 @@ public abstract class Ship {
 
     /**
      * Return true if the part of the ship was hit, false otherwise.
-     * @param row number
+     *
+     * @param row    number
      * @param column number
      * @return true
      */
@@ -116,7 +118,8 @@ public abstract class Ship {
      * If a part of the ship occupies the given row and column, and the ship hasnot been sunk,
      * mark that part of the ship as hit (in the hit array, 0 indicates the bow) and return true,
      * otherwise return false.
-     * @param row number
+     *
+     * @param row    number
      * @param column number
      * @return true
      */
@@ -137,6 +140,7 @@ public abstract class Ship {
 
     /**
      * Return true if every part of the ship has been hit, false otherwise.
+     *
      * @return true
      */
     public boolean isSunk() {
@@ -156,6 +160,7 @@ public abstract class Ship {
 
     /**
      * set size.
+     *
      * @param length int
      */
     public void setLength(int length) {
@@ -164,6 +169,7 @@ public abstract class Ship {
 
     /**
      * returns hit.
+     *
      * @return true hit
      */
     public boolean[] getHit() {
@@ -172,31 +178,11 @@ public abstract class Ship {
 
     /**
      * set hit.
+     *
      * @param hit object
      */
     public void setHit(final boolean[] hit) {
         this.hit = hit.clone();
-    }
-
-    /**
-     * put ship on ocean.
-     * @param ocean object
-     */
-    public void putRandom(final Ocean ocean) {
-        Random random = new Random();
-        int row;
-        int column;
-        boolean horizontalRando;
-        while (true) {
-            row = random.nextInt(ocean.getSizeOcean());
-            column = random.nextInt(ocean.getSizeOcean());
-            horizontalRando = random.nextBoolean();
-            if (this.okToPlaceShipAt(row, column, horizontalRando, ocean)) {
-                this.placeShipAt(row, column, horizontalRando, ocean);
-
-                break;
-            }
-        }
     }
 
 }
