@@ -32,15 +32,15 @@ public abstract class Ship {
      */
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
 
-
+        final int oceanLength = ocean.getShipArray().length;
         if (horizontal) {
-            if (column + length > ocean.SIZE_OCEAN) {
+            if (column + length > oceanLength) {
                 return false;
             }
             return helpToPlaceShipAt(column, row, 1, length + 1, ocean);
 
         } else {
-            if (row + length > ocean.SIZE_OCEAN) {
+            if (row + length > oceanLength) {
                 return false;
             }
             return helpToPlaceShipAt(column, row, length, 1, ocean);
