@@ -2,8 +2,13 @@ package org.minions.devfund.noemiguzman.battleship;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * class to create ships.
+ */
 public class ShipBuild {
+    /**
+     * interface to build ships.
+     */
     interface ShipBuilder {
 
         /**
