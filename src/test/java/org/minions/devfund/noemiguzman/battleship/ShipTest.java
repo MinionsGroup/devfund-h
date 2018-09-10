@@ -135,6 +135,8 @@ public class ShipTest {
         BattleShip ship = new BattleShip();
         final int column3 = 3;
         final int column4 = 4;
+        final int column8 = 8;
+        final int column10 = 10;
 
         ship.placeShipAt(0, 0, true, ocean);
         assertTrue(ship.shootAt(0, 0));
@@ -143,18 +145,25 @@ public class ShipTest {
         assertFalse(ship.shootAt(1, column4));
         assertFalse(ship.shootAt(2, column4));
         assertFalse(ship.shootAt(column3, column4));
+        assertFalse(ship.shootAt(0, column8));
+
 
         ship.placeShipAt(column3, 1, false, ocean);
         assertFalse(ship.shootAt(0, column4));
         assertFalse(ship.shootAt(1, column4));
         assertFalse(ship.shootAt(2, 2));
         assertTrue(ship.shootAt(column3, 1));
+        assertFalse(ship.shootAt(1, column8));
+        assertFalse(ship.shootAt(1, column10));
 
         ship.placeShipAt(1, column3, false, ocean);
         assertFalse(ship.shootAt(1, 0));
         assertFalse(ship.shootAt(1, 1));
         assertFalse(ship.shootAt(2, 0));
         assertTrue(ship.shootAt(column4, column3));
+        assertTrue(ship.shootAt(column8, column3));
+        assertFalse(ship.shootAt(column10, column3));
+
     }
 
     /**
