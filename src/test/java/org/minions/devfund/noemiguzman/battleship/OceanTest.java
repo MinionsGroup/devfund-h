@@ -282,4 +282,23 @@ public class OceanTest {
         assertEquals(sb.toString(), ocean.toString());
 
     }
+    /**
+     * Method to test isGameOver method.
+     */
+    @Test
+    public void testIsGameOverTrue() {
+        Ocean ocean = new Ocean();
+        assertFalse(ocean.isGameOver());
+        ocean.placeAllShipsRandomly();
+        Ship[][] ships = ocean.getShipArray();
+        for (int row = 0; row < ships.length; row++) {
+            for (int col = 0; col < ships[row].length; col++) {
+                if (!(ships[row][col] instanceof EmptySea)) {
+                    ocean.shootAt(row, col);
+                }
+            }
+        }
+        assertTrue(ocean.isGameOver());
+    }
+
 }

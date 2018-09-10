@@ -1,7 +1,6 @@
 package org.minions.devfund.noemiguzman.battleship;
 
 
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -134,14 +133,28 @@ public class ShipTest {
     public void testShootAt() {
         Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
-        final int column4 = 4;
         final int column3 = 3;
-        ship.placeShipAt(0, 0, true, ocean);
+        final int column4 = 4;
 
+        ship.placeShipAt(0, 0, true, ocean);
+        assertTrue(ship.shootAt(0, 0));
         assertTrue(ship.shootAt(0, column3));
         assertTrue(ship.shootAt(0, column4));
         assertFalse(ship.shootAt(1, column4));
+        assertFalse(ship.shootAt(2, column4));
+        assertFalse(ship.shootAt(column3, column4));
 
+        ship.placeShipAt(column3, 1, false, ocean);
+        assertFalse(ship.shootAt(0, column4));
+        assertFalse(ship.shootAt(1, column4));
+        assertFalse(ship.shootAt(2, 2));
+        assertTrue(ship.shootAt(column3, 1));
+
+        ship.placeShipAt(1, column3, false, ocean);
+        assertFalse(ship.shootAt(1, 0));
+        assertFalse(ship.shootAt(1, 1));
+        assertFalse(ship.shootAt(2, 0));
+        assertTrue(ship.shootAt(column4, column3));
     }
 
     /**
@@ -203,6 +216,7 @@ public class ShipTest {
         Ship ship = new EmptySea();
         assertEquals(".", ship.toString());
     }
+
     /**
      * method to test ToStrinG EmptySea.
      */
@@ -212,4 +226,5 @@ public class ShipTest {
         assertFalse(ship.shootAt(1, 0));
         assertEquals(".", ship.toString());
     }
+
 }
