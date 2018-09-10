@@ -146,6 +146,7 @@ public class ShipTest {
         assertFalse(ship.shootAt(2, column4));
         assertFalse(ship.shootAt(column3, column4));
         assertFalse(ship.shootAt(0, column8));
+        assertFalse(ship.shootAt(column8, column10));
 
 
         ship.placeShipAt(column3, 1, false, ocean);
