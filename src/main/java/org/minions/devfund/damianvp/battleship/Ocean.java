@@ -10,16 +10,31 @@ import java.util.Random;
 public class Ocean {
     static final int LENGTH = 20;
     static final int TOTAL_SHIPS = 13;
-    private Ship[][] ships = new Ship[LENGTH][LENGTH];
+    private Ship[][] ships;
     private int shotsFired;
     private int hitCount;
     private int shipsSunk;
-    private Map<String, Integer> fleet;
+    private static final int BATTLESHIP_NUMBER = 1;
+    private static final int BATTLE_CRUISER_NUMBER = 1;
+    private static final int CRUISER_NUMBER = 2;
+    private static final int LIGHT_CRUISER_NUMBER = 2;
+    private static final int DESTROYER_NUMBER = 3;
+    private static final int SUBMARINE_NUMBER = 4;
+    private static final Map<String, Integer> FLEET = new HashMap<>();
+    static {
+        FLEET.put("BattleShip", BATTLESHIP_NUMBER);
+        FLEET.put("BattleCruiser", BATTLE_CRUISER_NUMBER);
+        FLEET.put("Cruiser", CRUISER_NUMBER);
+        FLEET.put("LightCruiser", LIGHT_CRUISER_NUMBER);
+        FLEET.put("Destroyer", DESTROYER_NUMBER);
+        FLEET.put("Submarine", SUBMARINE_NUMBER);
+    }
 
     /**
      * Ocean constructor.
      */
     Ocean() {
+        ships = new Ship[LENGTH][LENGTH];
         for (int i = 0; i < LENGTH; i++) {
             for (int j = 0; j < LENGTH; j++) {
                 EmptySea emptySea = new EmptySea();
@@ -27,25 +42,6 @@ public class Ocean {
                 emptySea.placeShipAt(i, j, true, this);
             }
         }
-        this.shotsFired = 0;
-        this.hitCount = 0;
-        this.shipsSunk = 0;
-        setFleet();
-    }
-
-    /**
-     * This method sets the quantity of ships allowed in the game.
-     */
-    private void setFleet() {
-        final int destroyer = 3;
-        final int submarine = 4;
-        fleet = new HashMap<>();
-        fleet.put("BattleShip", 1);
-        fleet.put("BattleCruiser", 1);
-        fleet.put("Cruiser", 2);
-        fleet.put("LightCruiser", 2);
-        fleet.put("Destroyer", destroyer);
-        fleet.put("Submarine", submarine);
     }
 
     /**
@@ -55,7 +51,7 @@ public class Ocean {
         Random random = new Random();
         ShipCreator creator = new ShipCreator();
 
-        for (Map.Entry<String, Integer> shipFleet : fleet.entrySet()) {
+        for (Map.Entry<String, Integer> shipFleet : FLEET.entrySet()) {
             String shipType = shipFleet.getKey();
             int shipQuantity = shipFleet.getValue();
             int placedShips = 0;

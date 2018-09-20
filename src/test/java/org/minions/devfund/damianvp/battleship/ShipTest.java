@@ -145,4 +145,36 @@ public class ShipTest {
         assertFalse(ship.shootAt(0, four));
         assertFalse(ship.shootAt(1, four));
     }
+
+    /**
+     * Tests getBowRow method.
+     */
+    @Test
+    public void testGetBowRow() {
+        Ship ship = new BattleShip();
+        ship.setBowRow(1);
+        assertEquals(1, ship.getBowRow());
+    }
+
+    /**
+     * Tests getBowColumn method.
+     */
+    @Test
+    public void testGetBowColumn() {
+        Ship ship = new BattleShip();
+        ship.setBowColumn(1);
+        assertEquals(1, ship.getBowColumn());
+    }
+
+    /**
+     * Tests isHorizontal method.
+     */
+    @Test
+    public void testIsHorizontal() {
+        Ship ship = new BattleShip();
+        ship.setHorizontal(true);
+        assertTrue(ship.isHorizontal());
+        ship.setHorizontal(false);
+        assertFalse(ship.isHorizontal());
+    }
 }

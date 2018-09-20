@@ -65,6 +65,7 @@ public class OceanTest {
         for (int i = 0; i < LENGTH; i++) {
             for (int j = 0; j < LENGTH; j++) {
                 assertFalse(ocean.isOccupied(i, j));
+                assertFalse(ocean.getShipArray()[i][j].isSunk());
             }
         }
     }
@@ -113,6 +114,24 @@ public class OceanTest {
 
         assertEquals(ship.getLength(), ocean.getHitCount());
         assertEquals(1, ocean.getShipsSunk());
+        assertEquals(ship.getLength() + 2, ocean.getShotsFired());
+    }
+
+    /**
+     * Method to test shootAt method.
+     */
+    @Test
+    public void testShootAt3() {
+        BattleShip ship = new BattleShip();
+        ship.placeShipAt(0, 0, false, ocean);
+        for (int j = 0; j < ship.getLength(); j++) {
+            ocean.shootAt(0, j);
+        }
+        ocean.shootAt(0, 1);
+        ocean.shootAt(0, 2);
+
+        assertEquals(1, ocean.getHitCount());
+        assertEquals(0, ocean.getShipsSunk());
         assertEquals(ship.getLength() + 2, ocean.getShotsFired());
     }
 

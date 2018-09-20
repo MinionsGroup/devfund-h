@@ -1,5 +1,8 @@
 package org.minions.devfund.damianvp.battleship;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Ship class.
  */
@@ -107,10 +110,7 @@ public abstract class Ship {
      *         false if positions does not ok to place a ship.
      */
     boolean okToPlaceShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
-        int rowLimitA;
-        int rowLimitB;
-        int columnLimitA;
-        int columnLimitB;
+        Map<String, Integer> reducedLimits = new HashMap<>();
         final int oceanLength = ocean.getShips().length;
         final double reducer = oceanLength * 0.001;
         final double incrementer = 0.49;
@@ -119,25 +119,37 @@ public abstract class Ship {
                 return false;
             }
             Long r2 = Math.round((oceanLength - row) * reducer + incrementer);
-            rowLimitB = row + r2.intValue();
+            reducedLimits.put("rowB", row + r2.intValue());
             Long c2 = Math.round((column + this.getLength()) * reducer + incrementer);
-            columnLimitB = column + this.getLength() - c2.intValue();
+            reducedLimits.put("columnB", column + this.getLength() - c2.intValue());
         } else {
             if (row + this.getLength() > oceanLength) {
                 return false;
             }
             Long r2 = Math.round((row + this.getLength()) * reducer + incrementer);
-            rowLimitB = row + this.getLength() - r2.intValue();
+            reducedLimits.put("rowB", row + this.getLength() - r2.intValue());
             Long c2 = Math.round((oceanLength - column) * reducer + incrementer);
-            columnLimitB = column + c2.intValue();
+            reducedLimits.put("columnB", column + c2.intValue());
         }
         Long r = Math.round(row * reducer + incrementer);
-        rowLimitA = row - r.intValue();
+        reducedLimits.put("rowA", row - r.intValue());
         Long c1 = Math.round((column) * reducer + incrementer);
-        columnLimitA = column - c1.intValue();
+        reducedLimits.put("columnA", column - c1.intValue());
 
-        for (int i = rowLimitA; i <= rowLimitB; i++) {
-            for (int j = columnLimitA; j <= columnLimitB; j++) {
+        return isValidArea(reducedLimits, ocean);
+    }
+
+    /**
+     * Method to check if reduced area is valid.
+     * @param limits map that contains the area limits.
+     * @param ocean ocean type.
+     * @return true if is valid.
+     *         false if is not valid.
+     */
+
+    boolean isValidArea(final Map<String, Integer>  limits, final Ocean ocean) {
+        for (int i = limits.get("rowA"); i <= limits.get("rowB"); i++) {
+            for (int j = limits.get("columnA"); j <= limits.get("columnB"); j++) {
                 if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
                     return false;
                 }
@@ -177,18 +189,16 @@ public abstract class Ship {
      *         false, otherwise
      */
     boolean shootAt(int row, int column) {
-        if (!isSunk()) {
-            if (this.horizontal) {
-                if (row == this.bowRow && column >= this.bowColumn && column <= this.bowColumn + this.length) {
-                    this.hit[column - this.bowColumn] = true;
-                    return true;
-                }
-            } else {
-                if (column == this.bowColumn && row >= this.bowRow && row <= this.bowRow + this.length) {
-                    this.hit[row - this.bowRow] = true;
-                    return true;
-                }
-            }
+        if (isSunk()) {
+            return false;
+        }
+        final boolean isHittable = this.horizontal ? row == this.bowRow && column >= this.bowColumn
+                                    && column <= this.bowColumn + this.length
+                : column == this.bowColumn && row >= this.bowRow && row <= this.bowRow + this.length;
+        if (isHittable) {
+            final int hitPosition = this.horizontal ? column - this.bowColumn : row - this.bowRow;
+            this.hit[hitPosition] = true;
+            return true;
         }
         return false;
     }
@@ -214,18 +224,11 @@ public abstract class Ship {
      *         false otherwise.
      */
     public boolean wasShootAt(int row, int column) {
-        if (horizontal) {
-            return hit[column - this.bowColumn];
-        } else {
-            return hit[row - this.bowRow];
-        }
+        return horizontal ? hit[column - this.bowColumn] : hit[row - this.bowRow];
     }
 
     @Override
     public String toString() {
-        if (isSunk()) {
-            return "x";
-        }
-        return "S";
+        return isSunk() ? "x" : "S";
     }
 }
