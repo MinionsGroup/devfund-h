@@ -7,6 +7,10 @@ import java.util.Map;
  * Ship class.
  */
 public abstract class Ship {
+    private static final String ROW_LIMIT_A = "rowA";
+    private static final String ROW_LIMIT_B = "rowB";
+    private static final String COLUMN_LIMIT_A = "columnA";
+    private static final String COLUMN_LIMIT_B = "columnB";
     private int bowRow;
     private int bowColumn;
     private int length;
@@ -119,22 +123,22 @@ public abstract class Ship {
                 return false;
             }
             Long r2 = Math.round((oceanLength - row) * reducer + incrementer);
-            reducedLimits.put("rowB", row + r2.intValue());
+            reducedLimits.put(ROW_LIMIT_B, row + r2.intValue());
             Long c2 = Math.round((column + this.getLength()) * reducer + incrementer);
-            reducedLimits.put("columnB", column + this.getLength() - c2.intValue());
+            reducedLimits.put(COLUMN_LIMIT_B, column + this.getLength() - c2.intValue());
         } else {
             if (row + this.getLength() > oceanLength) {
                 return false;
             }
             Long r2 = Math.round((row + this.getLength()) * reducer + incrementer);
-            reducedLimits.put("rowB", row + this.getLength() - r2.intValue());
+            reducedLimits.put(ROW_LIMIT_B, row + this.getLength() - r2.intValue());
             Long c2 = Math.round((oceanLength - column) * reducer + incrementer);
-            reducedLimits.put("columnB", column + c2.intValue());
+            reducedLimits.put(COLUMN_LIMIT_B, column + c2.intValue());
         }
         Long r = Math.round(row * reducer + incrementer);
-        reducedLimits.put("rowA", row - r.intValue());
+        reducedLimits.put(ROW_LIMIT_A, row - r.intValue());
         Long c1 = Math.round((column) * reducer + incrementer);
-        reducedLimits.put("columnA", column - c1.intValue());
+        reducedLimits.put(COLUMN_LIMIT_A, column - c1.intValue());
 
         return isValidArea(reducedLimits, ocean);
     }
@@ -148,8 +152,8 @@ public abstract class Ship {
      */
 
     boolean isValidArea(final Map<String, Integer>  limits, final Ocean ocean) {
-        for (int i = limits.get("rowA"); i <= limits.get("rowB"); i++) {
-            for (int j = limits.get("columnA"); j <= limits.get("columnB"); j++) {
+        for (int i = limits.get(ROW_LIMIT_A); i <= limits.get(ROW_LIMIT_B); i++) {
+            for (int j = limits.get(COLUMN_LIMIT_A); j <= limits.get(COLUMN_LIMIT_B); j++) {
                 if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
                     return false;
                 }
