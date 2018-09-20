@@ -96,13 +96,14 @@ final class ShipHelper {
      */
     static void addShip(final Ocean ocean, final Ship ship) {
         Random random = new Random();
-        int shipNumber = 1;
+        int shipNumber = ship.getNumber();
         while (shipNumber > 0) {
+            Ship myShip = ship.getShip();
             boolean horizontal = random.nextBoolean();
             int row = random.nextInt(ocean.getShipArray().length);
             int column = random.nextInt(ocean.getShipArray().length);
-            if (ship.okToPlaceShipAt(row, column, horizontal, ocean)) {
-                ship.placeShipAt(row, column, horizontal, ocean);
+            if (myShip.okToPlaceShipAt(row, column, horizontal, ocean)) {
+                myShip.placeShipAt(row, column, horizontal, ocean);
                 shipNumber--;
             }
         }

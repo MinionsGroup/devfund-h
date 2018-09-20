@@ -25,4 +25,12 @@ public class LightCruiser extends Ship {
     public String getShipType() {
         return SHIP_TYPE;
     }
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    Ship getShip() {
+        return new LightCruiser();
+    }
 }

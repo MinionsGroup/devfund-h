@@ -51,4 +51,12 @@ public class EmptySea extends Ship {
         setHit(hitArray);
         return false;
     }
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Override
+    Ship getShip() {
+        return new EmptySea();
+    }
 }

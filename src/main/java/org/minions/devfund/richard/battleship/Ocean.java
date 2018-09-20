@@ -18,31 +18,27 @@ public class Ocean {
     private int shipsSunk;
     private static final Map<String, Ship> SHIP_MAP = new HashMap<>();
 
+    static {
+        SHIP_MAP.put("BattleShip", new BattleShip());
+        SHIP_MAP.put("BattleCruiser", new BattleCruiser());
+        SHIP_MAP.put("Cruiser", new Cruiser());
+        SHIP_MAP.put("LightCruiser", new LightCruiser());
+        SHIP_MAP.put("Destroyer", new Destroyer());
+        SHIP_MAP.put("Submarine", new Submarine());
+    }
+
     /**
      * Ocean.
      */
     Ocean() {
         ships = new Ship[OCEAN_LENGTH][OCEAN_LENGTH];
-        Arrays.stream(ships).forEach(row -> Arrays.fill(row, new EmptySea()));
+        Arrays.stream(ships).forEach(row -> Arrays.fill(row, new EmptySea().getShip()));
     }
 
     /**
      * place all Ships randomly.
      */
     void placeAllShipsRandomly() {
-        SHIP_MAP.put("BattleShip", new BattleShip());
-        SHIP_MAP.put("BattleCruiser", new BattleCruiser());
-        SHIP_MAP.put("Cruiser1", new Cruiser());
-        SHIP_MAP.put("Cruiser2", new Cruiser());
-        SHIP_MAP.put("LightCruiser1", new LightCruiser());
-        SHIP_MAP.put("LightCruiser2", new LightCruiser());
-        SHIP_MAP.put("Destroyer1", new Destroyer());
-        SHIP_MAP.put("Destroyer2", new Destroyer());
-        SHIP_MAP.put("Destroyer3", new Destroyer());
-        SHIP_MAP.put("Submarine1", new Submarine());
-        SHIP_MAP.put("Submarine2", new Submarine());
-        SHIP_MAP.put("Submarine3", new Submarine());
-        SHIP_MAP.put("Submarine4", new Submarine());
         for (Map.Entry<String, Ship> entry : SHIP_MAP.entrySet()) {
             entry.getValue().addShip(this);
         }
