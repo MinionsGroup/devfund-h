@@ -173,4 +173,40 @@ public class WhackAMoleTest {
         assertEquals(1, whackAMoleGame.getMolesLeft());
     }
 
+    /**
+     * Test get score method.
+     */
+    @Test
+    public void testGetScoreMethod() {
+        final int xLocation = 5;
+        final int yLocation = 7;
+        whackAMoleGame.place(xLocation, yLocation);
+        whackAMoleGame.whack(xLocation, yLocation);
+        assertEquals(1, whackAMoleGame.getScore());
+    }
+
+    /**
+     * Test getTrackerMethod.
+     */
+    @Test
+    public void testGetTrackedMoleGrid() {
+        char[][] expectedGrid = {
+                {'W', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+                {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+                {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+                {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+                {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+                {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+                {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+                {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+                {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'},
+                {'*', '*', '*', '*', '*', '*', '*', '*', '*', '*'}
+        };
+        whackAMoleGame.place(0, 0);
+        whackAMoleGame.whack(0, 0);
+        whackAMoleGame.whack(1, 1);
+        assertArrayEquals(expectedGrid, whackAMoleGame.getTrackerMoleGrid());
+
+    }
+
 }

@@ -13,10 +13,10 @@ public class WhackAMole {
     private int attemptsLeft;
     private char[][] moleGrid;
     private char[][] trackerMoleGrid;
-    static final char MOLE = 'M';
-    static final char EMPTY = '*';
-    static final char WHACKED = 'W';
-    static final int INVALID_RANGE = -2;
+    private static final char MOLE = 'M';
+    private static final char EMPTY = '*';
+    private static final char WHACKED = 'W';
+    private static final int INVALID_RANGE = -2;
     private static final Logger LOGGER = Logger.getLogger(WhackAMole.class.getName());
 
     /**
@@ -77,24 +77,7 @@ public class WhackAMole {
                 this.moleGrid[x][y] = WHACKED;
             }
             this.attemptsLeft--;
-            verifyGameStatus();
         }
-    }
-
-    /**
-     * This method returns the grid available for user.
-     * @return String trackerMoleGrid.
-     */
-    String printGridToUser() {
-        return Arrays.deepToString(this.trackerMoleGrid);
-    }
-
-    /**
-     * This method returns the complete grid game status.
-     * @return String moleGrid.
-     */
-    String printGrid() {
-        return Arrays.deepToString(this.moleGrid);
     }
 
     /**
@@ -108,28 +91,12 @@ public class WhackAMole {
         if (x > INVALID_RANGE && y > INVALID_RANGE && x < this.moleGrid.length && y < this.moleGrid.length) {
             if (x == -1 && y == -1) {
                 this.attemptsLeft = 0;
-                verifyGameStatus();
                 return false;
             }
             return true;
         }
         LOGGER.log(Level.WARNING, "valid coordinates should be between 0 - {0} ", this.moleGrid.length - 1);
         return false;
-    }
-
-    /**
-     * Method to verify if game continue.
-     */
-    void verifyGameStatus() {
-        if (this.molesLeft == 0) {
-            LOGGER.log(Level.FINE, "Great you Win!!!");
-            LOGGER.log(Level.FINE, "Scoer: {0}", this.score);
-            return;
-        }
-        if (this.attemptsLeft <= 0) {
-            LOGGER.log(Level.WARNING, "YOu Loss.... Try Again");
-            printGrid();
-        }
     }
 
     /**
@@ -162,6 +129,14 @@ public class WhackAMole {
      */
     char[][] getMoleGrid() {
         return this.moleGrid;
+    }
+
+    /**
+     * This method returns the grid available for user.
+     * @return String trackerMoleGrid.
+     */
+    char[][] getTrackerMoleGrid() {
+        return this.trackerMoleGrid;
     }
 
 }
