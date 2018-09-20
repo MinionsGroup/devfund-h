@@ -46,6 +46,18 @@ public class ActorTest {
         assertEquals(emptyMovieList, actor1.getMovies());
     }
     /**
+     * method to test Actor constructor with movies list.
+     */
+    @Test
+    public void testActorConstructorWithMovieList() {
+        movie1 = new Movie(karateMovie);
+        movie2 = new Movie(gloryMovie);
+        final ArrayList<Movie> moviesList = new ArrayList<>(Arrays.asList(movie1, movie2));
+        Actor currentActor = new Actor(actorMacchio, moviesList);
+        assertEquals(actorMacchio, currentActor.getName());
+        assertEquals(moviesList, currentActor.getMovies());
+    }
+    /**
      * Method to test add movie method.
      */
     @Test
@@ -64,8 +76,6 @@ public class ActorTest {
         assertEquals(expectedList1, actor1.getMovies());
         assertEquals(expectedList2, actor2.getMovies());
     }
-
-
 
     /**
      * Method to test add movie already existent.
