@@ -1,306 +1,258 @@
 package org.minions.devfund.damianvp;
 
-import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Test clas for Squarelotron.
  */
 public class SquarelotronTest {
     /**
-     * test of squarelotron constructor.
+     * Method to test size.
      */
     @Test
     public void testSquarelotronConstructorSize() {
-        final int two = 2;
-        final int three = 3;
-        final int four = 4;
-        Squarelotron se = new Squarelotron(two);
-        assertEquals(two, se.getSize());
-        assertEquals(1, se.getSquarelotron()[0][0]);
-        assertEquals(two, se.getSquarelotron()[0][1]);
-        assertEquals(three, se.getSquarelotron()[1][0]);
-        assertEquals(four, se.getSquarelotron()[1][1]);
+        final int dimension = 4;
+        assertEquals(dimension, new Squarelotron(dimension).getSize());
     }
 
     /**
-     * squarelotron constructor test size 5.
+     * Method to test Constructor Element.
      */
     @Test
-    public void testSquarelotronConstructorSize2() {
-        final int zero = 0;
-        final int three = 3;
-        final int four = 4;
-        final int five = 5;
-        final int twentyOne = 21;
-        final int nineTeen = 19;
-        Squarelotron se = new Squarelotron(five);
-        assertEquals(five, se.getSize());
-        assertEquals(twentyOne, se.getSquarelotron()[four][zero]);
-        assertEquals(nineTeen, se.getSquarelotron()[three][three]);
+    public void testSquarelotronConstructorElement() {
+        final int dimension = 1;
+        final int[][] expected = {{1}};
+        assertArrayEquals(expected, new Squarelotron(dimension).getSquarelotron());
     }
 
     /**
-     * test rotate rigth 1 turn.testMainDiagonalFlipNewObject.
+     * Method to test Constructor Elements.
+     */
+    @Test
+    public void testSquarelotronConstructorElements() {
+        final int dimension = 4;
+        final int[][] expected = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
+        assertArrayEquals(expected, new Squarelotron(dimension).getSquarelotron());
+    }
+
+    /**
+     * Method to test Rotate Right1.
      */
     @Test
     public void testRotateRight1() {
-        final int two = 2;
-        final int three = 3;
-        final int four = 4;
-        Squarelotron se = new Squarelotron(two);
-        se.rotateRight(1);
-        assertEquals(three, se.getSquarelotron()[0][0]);
-        assertEquals(1, se.getSquarelotron()[0][1]);
-        assertEquals(four, se.getSquarelotron()[1][0]);
-        assertEquals(two, se.getSquarelotron()[1][1]);
+        final int dimension = 4;
+        final int numberOfTurn = 1;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        squarelotron.rotateRight(numberOfTurn);
+        final int[][] expected = {{13, 9, 5, 1}, {14, 10, 6, 2}, {15, 11, 7, 3}, {16, 12, 8, 4}};
+        assertArrayEquals(expected, squarelotron.getSquarelotron());
     }
 
     /**
-     * test rotate rigth 2 turn.
+     * Method to test Rotate Right-1.
+     */
+    @Test
+    public void testRotateRightNegative1() {
+        final int dimension = 4;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        squarelotron.rotateRight(-1);
+        final int[][] expected = {{4, 8, 12, 16}, {3, 7, 11, 15}, {2, 6, 10, 14}, {1, 5, 9, 13}};
+        assertArrayEquals(expected, squarelotron.getSquarelotron());
+    }
+
+    /**
+     * Method to test Rotate Right 2.
      */
     @Test
     public void testRotateRight2() {
-        final int three = 3;
-        final int four = 4;
-        Squarelotron se = new Squarelotron(2);
-        se.rotateRight(2);
-        assertEquals(four, se.getSquarelotron()[0][0]);
-        assertEquals(three, se.getSquarelotron()[0][1]);
-        assertEquals(2, se.getSquarelotron()[1][0]);
-        assertEquals(1, se.getSquarelotron()[1][1]);
+        final int numberOfTurns2 = 2;
+        final int dimension = 4;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        squarelotron.rotateRight(numberOfTurns2);
+        final int[][] expected = {{16, 15, 14, 13}, {12, 11, 10, 9}, {8, 7, 6, 5}, {4, 3, 2, 1}};
+        assertArrayEquals(expected, squarelotron.getSquarelotron());
     }
 
     /**
-     * test rotate rigth 3 turn.
+     * Method to test Rotate Right -2.
+     */
+    @Test
+    public void testRotateRightNegative2() {
+        final int numberOfTurns2 = 2;
+        final int dimension = 4;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        squarelotron.rotateRight(-numberOfTurns2);
+        final int[][] expected = {{16, 15, 14, 13}, {12, 11, 10, 9}, {8, 7, 6, 5}, {4, 3, 2, 1}};
+        assertArrayEquals(expected, squarelotron.getSquarelotron());
+    }
+
+    /**
+     * Method to test Rotate Right 3.
      */
     @Test
     public void testRotateRight3() {
-        final int three = 3;
-        final int four = 4;
-        Squarelotron se = new Squarelotron(2);
-        se.rotateRight(three);
-        assertEquals(2, se.getSquarelotron()[0][0]);
-        assertEquals(four, se.getSquarelotron()[0][1]);
-        assertEquals(1, se.getSquarelotron()[1][0]);
-        assertEquals(three, se.getSquarelotron()[1][1]);
+        final int numberOfTurns3 = 3;
+        final int dimension = 4;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        squarelotron.rotateRight(numberOfTurns3);
+        final int[][] expected = {{4, 8, 12, 16}, {3, 7, 11, 15}, {2, 6, 10, 14}, {1, 5, 9, 13}};
+        assertArrayEquals(expected, squarelotron.getSquarelotron());
     }
 
     /**
-     * test rotate rigth 4 turn.
+     * Method to test Rotate Right -3.
+     */
+    @Test
+    public void testRotateRightNegative3() {
+        final int numberOfTurns3 = 3;
+        final int dimension = 4;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+
+        squarelotron.rotateRight(-numberOfTurns3);
+        final int[][] expected = {{13, 9, 5, 1}, {14, 10, 6, 2}, {15, 11, 7, 3}, {16, 12, 8, 4}};
+        assertArrayEquals(expected, squarelotron.getSquarelotron());
+    }
+
+    /**
+     * Method to test Rotate Right 4.
      */
     @Test
     public void testRotateRight4() {
-        final int three = 3;
-        final int four = 4;
-        final int five = 5;
-        final int six = 6;
-        final int nine = 9;
-        Squarelotron se = new Squarelotron(three);
-        se.rotateRight(four);
-        assertEquals(three, se.getSquarelotron()[0][2]);
-        assertEquals(six, se.getSquarelotron()[1][2]);
-        assertEquals(nine, se.getSquarelotron()[2][2]);
-        assertEquals(2, se.getSquarelotron()[0][1]);
-        assertEquals(five, se.getSquarelotron()[1][1]);
+        final int dimension = 4;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        squarelotron.rotateRight(dimension);
+        final int[][] expected = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
+        assertArrayEquals(expected, squarelotron.getSquarelotron());
     }
 
     /**
-     * test rotate rigth 5 turn.
+     * Method to test Rotate Right 5.
      */
     @Test
     public void testRotateRight5() {
-        final int three = 3;
-        final int four = 4;
-        final int five = 5;
-        final int nine = 9;
-        final int thirteen = 13;
-        final int sevenTeen = 17;
-        Squarelotron se = new Squarelotron(five);
-        se.rotateRight(five);
-        assertEquals(sevenTeen, se.getSquarelotron()[1][1]);
-        assertEquals(thirteen, se.getSquarelotron()[2][2]);
-        assertEquals(nine, se.getSquarelotron()[three][three]);
-        assertEquals(five, se.getSquarelotron()[four][four]);
+        final int dimension = 4;
+        final int size5 = 5;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        squarelotron.rotateRight(size5);
+        final int[][] expected = {{13, 9, 5, 1}, {14, 10, 6, 2}, {15, 11, 7, 3}, {16, 12, 8, 4}};
+        assertArrayEquals(expected, squarelotron.getSquarelotron());
     }
 
     /**
-     * test rotate rigth 6 turn.
+     * Method to test Rotate Right 6.
      */
     @Test
     public void testRotateRight6() {
-        final int three = 3;
-        final int six = 6;
-        final int fifteen = 15;
-        final int sixteen = 16;
-        final int twentyOne = 21;
-        final int twentyTwo = 22;
-        Squarelotron se = new Squarelotron(six);
-        se.rotateRight(six);
-        assertEquals(twentyTwo, se.getSquarelotron()[2][2]);
-        assertEquals(twentyOne, se.getSquarelotron()[2][three]);
-        assertEquals(sixteen, se.getSquarelotron()[three][2]);
-        assertEquals(fifteen, se.getSquarelotron()[three][three]);
+        final int dimension = 4;
+        final int numberOfTurns6 = 6;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        squarelotron.rotateRight(numberOfTurns6);
+        final int[][] expected = {{16, 15, 14, 13}, {12, 11, 10, 9}, {8, 7, 6, 5}, {4, 3, 2, 1}};
+        assertArrayEquals(expected, squarelotron.getSquarelotron());
     }
 
     /**
-     * test of diagonal flip. original squarelotron not should change.
+     * Method to test MainDiagonalFlip Dimension Two.
+     */
+    @Test
+    public void testMainDiagonalFlipDimensionTwo() {
+        final int dimension = 4;
+        final int ring = 2;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        final int[][] expected = {{1, 2, 3, 4}, {5, 6, 10, 8}, {9, 7, 11, 12}, {13, 14, 15, 16}};
+        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(ring).getSquarelotron());
+    }
+
+    /**
+     * Method to test MainDiagonalFlip Dimension FiveRingThree.
+     */
+    @Test
+    public void testMainDiagonalFlipDimensionFiveRingThree() {
+        final int dimension = 5;
+        final int ring = 3;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        final int[][] expected = {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20},
+                {21, 22, 23, 24, 25}};
+        assertArrayEquals(expected, squarelotron.mainDiagonalFlip(ring).getSquarelotron());
+    }
+
+    /**
+     * Method to test UpsideDownFlip dimension four.
+     */
+    @Test
+    public void testUpsideDownFlipDimensionFour() {
+        final int dimension = 4;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        final int ring2 = 2;
+        // 4 by 4, but flip inner ring
+        final int[][] test4 = {{1, 2, 3, 4}, {5, 10, 11, 8}, {9, 6, 7, 12}, {13, 14, 15, 16}};
+        assertArrayEquals(test4, squarelotron.upsideDownFlip(ring2).getSquarelotron());
+        // 4 by 4, but flip outer ring
+        final int[][] test5 = {{13, 14, 15, 16}, {9, 6, 7, 12}, {5, 10, 11, 8}, {1, 2, 3, 4}};
+        final int ring1 = 1;
+        assertArrayEquals(test5, squarelotron.upsideDownFlip(ring1).getSquarelotron());
+    }
+
+    /**
+     * Method to test UpsideDownFlip new object.
+     */
+    @Test
+    public void testUpsideDownFlipNewObject() {
+        final int dimension = 4;
+        final int ring = 1;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        final int[][] expectedValue = {{13, 14, 15, 16}, {9, 6, 7, 12}, {5, 10, 11, 8}, {1, 2, 3, 4}};
+        assertArrayEquals(expectedValue, squarelotron.upsideDownFlip(ring).getSquarelotron());
+    }
+
+    /**
+     * Method to test UpsideDownFlip dimension three.
+     */
+    @Test
+    public void testUpsideDownFlipDimensionThree() {
+        final int dimension = 3;
+        final int ring = 1;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        final int[][] expectedValue = {{7, 8, 9}, {4, 5, 6}, {1, 2, 3}};
+        assertArrayEquals(expectedValue, squarelotron.upsideDownFlip(ring).getSquarelotron());
+    }
+
+    /**
+     * Method to test UpsideDownFlip dimension one.
+     */
+    @Test
+    public void testUpsideDownFlipDimensionOne() {
+        final int dimension = 1;
+        final int ring = 1;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        final int[][] expectedValue = {{1}};
+        assertArrayEquals(expectedValue, squarelotron.upsideDownFlip(ring).getSquarelotron());
+    }
+
+    /**
+     * Method to test MainDiagonalFlip new object.
      */
     @Test
     public void testMainDiagonalFlipNewObject() {
-        final int four = 4;
-        final int five = 5;
-        final int seven = 7;
-        final int fifteen = 15;
-        final int twentyOne = 21;
-        final int twentyThree = 23;
-        final int twentyFive = 25;
-        Squarelotron se = new Squarelotron(five);
-        Squarelotron se2 = se.mainDiagonalFlip(1);
-        assertEquals(1, se.getSquarelotron()[0][0]);
-        assertEquals(seven, se.getSquarelotron()[1][1]);
-        assertEquals(five, se.getSquarelotron()[0][four]);
-        assertEquals(twentyThree, se.getSquarelotron()[four][2]);
-        assertEquals(twentyFive, se.getSquarelotron()[four][four]);
-        assertEquals(fifteen, se.getSquarelotron()[2][four]);
-        assertEquals(1, se2.getSquarelotron()[0][0]);
-        assertEquals(seven, se2.getSquarelotron()[1][1]);
-        assertEquals(twentyOne, se2.getSquarelotron()[0][four]);
-        assertEquals(fifteen, se2.getSquarelotron()[four][2]);
-        assertEquals(twentyFive, se2.getSquarelotron()[four][four]);
-        assertEquals(twentyThree, se2.getSquarelotron()[2][four]);
+        final int dimension = 3;
+        final int ring = 1;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        final int[][] expectedValue = {{1, 4, 7}, {2, 5, 8}, {3, 6, 9}};
+        assertArrayEquals(expectedValue, squarelotron.mainDiagonalFlip(ring).getSquarelotron());
     }
 
     /**
-     * test main diagonal flip, dimension 5 and ring 1.
+     * Method to test MainDiagonalFlip Dimension Five Ring One.
      */
     @Test
-    public void testMainDiagonalFlipDimension5Ring1() {
-        final int four = 4;
-        final int five = 5;
-        final int seven = 7;
-        final int fifteen = 15;
-        final int twentyOne = 21;
-        final int twentyThree = 23;
-        final int twentyFive = 25;
-        Squarelotron se = new Squarelotron(five);
-        se = se.mainDiagonalFlip(1);
-        assertEquals(1, se.getSquarelotron()[0][0]);
-        assertEquals(seven, se.getSquarelotron()[1][1]);
-        assertEquals(twentyOne, se.getSquarelotron()[0][four]);
-        assertEquals(fifteen, se.getSquarelotron()[four][2]);
-        assertEquals(twentyFive, se.getSquarelotron()[four][four]);
-        assertEquals(twentyThree, se.getSquarelotron()[2][four]);
-    }
-
-    /**
-     * test main diagonal flip, dimension 5 and ring 2.
-     */
-    @Test
-    public void testMainDiagonalFlipDimension5Ring2() {
-        final int three = 3;
-        final int five = 5;
-        final int seven = 7;
-        final int eight = 8;
-        final int twelve = 12;
-        final int thirteen = 13;
-        final int fourteen = 14;
-        Squarelotron se = new Squarelotron(five);
-        se = se.mainDiagonalFlip(2);
-        assertEquals(1, se.getSquarelotron()[0][0]);
-        assertEquals(seven, se.getSquarelotron()[1][1]);
-        assertEquals(thirteen, se.getSquarelotron()[2][2]);
-        assertEquals(twelve, se.getSquarelotron()[1][2]);
-        assertEquals(eight, se.getSquarelotron()[2][1]);
-        assertEquals(fourteen, se.getSquarelotron()[three][2]);
-    }
-
-    /**
-     * test main diagonal flip, dimension 5 and ring 3.
-     */
-    @Test
-    public void testMainDiagonalFlipDimension5Ring3() {
-        final int three = 3;
-        final int four = 4;
-        final int five = 5;
-        final int seven = 7;
-        final int thirteen = 13;
-        final int eighteen = 18;
-        final int nineteen = 19;
-        final int twentyFive = 25;
-        Squarelotron se = new Squarelotron(five);
-        se = se.mainDiagonalFlip(three);
-        assertEquals(1, se.getSquarelotron()[0][0]);
-        assertEquals(seven, se.getSquarelotron()[1][1]);
-        assertEquals(thirteen, se.getSquarelotron()[2][2]);
-        assertEquals(nineteen, se.getSquarelotron()[three][three]);
-        assertEquals(twentyFive, se.getSquarelotron()[four][four]);
-        assertEquals(eighteen, se.getSquarelotron()[three][2]);
-    }
-
-    /**
-     * test upside down flip, dimension 4 and ring 1.
-     */
-    @Test
-    public void testUpsideDownFlipDimension1() {
-        final int three = 3;
-        final int four = 4;
-        final int six = 6;
-        final int eight = 8;
-        final int nine = 9;
-        final int thirteen = 13;
-        final int fifteen = 15;
-        Squarelotron se = new Squarelotron(four);
-        se = se.upsideDownFlip(1);
-        assertEquals(thirteen, se.getSquarelotron()[0][0]);
-        assertEquals(fifteen, se.getSquarelotron()[0][2]);
-        assertEquals(nine, se.getSquarelotron()[1][0]);
-        assertEquals(six, se.getSquarelotron()[1][1]);
-        assertEquals(eight, se.getSquarelotron()[2][three]);
-        assertEquals(four, se.getSquarelotron()[three][three]);
-    }
-
-    /**
-     * test upside down flip, dimension 4 and ring 2.
-     */
-    @Test
-    public void testUpsideDownFlipDimension2() {
-        final int three = 3;
-        final int four = 4;
-        final int six = 6;
-        final int seven = 7;
-        final int eleven = 11;
-        final int thirteen = 13;
-        final int fifteen = 15;
-        Squarelotron se = new Squarelotron(four);
-        se = se.upsideDownFlip(2);
-        assertEquals(thirteen, se.getSquarelotron()[three][0]);
-        assertEquals(fifteen, se.getSquarelotron()[three][2]);
-        assertEquals(six, se.getSquarelotron()[2][1]);
-        assertEquals(seven, se.getSquarelotron()[2][2]);
-        assertEquals(eleven, se.getSquarelotron()[1][2]);
-    }
-
-    /**
-     * test upside down flip, dimension 4 and ring 3.
-     */
-    @Test
-    public void testUpsideDownFlipDimension3() {
-        final int three = 3;
-        final int four = 4;
-        final int seven = 7;
-        final int teen = 10;
-        final int eleven = 11;
-        final int thirteen = 13;
-        final int fourteen = 14;
-        final int fifteen = 15;
-        Squarelotron se = new Squarelotron(four);
-        se = se.upsideDownFlip(three);
-        assertEquals(thirteen, se.getSquarelotron()[three][0]);
-        assertEquals(fifteen, se.getSquarelotron()[three][2]);
-        assertEquals(eleven, se.getSquarelotron()[2][2]);
-        assertEquals(teen, se.getSquarelotron()[2][1]);
-        assertEquals(fourteen, se.getSquarelotron()[three][1]);
-        assertEquals(seven, se.getSquarelotron()[1][2]);
+    public void testMainDiagonalFlipDimensionFiveRingOne() {
+        final int dimension = 5;
+        final int ring = 1;
+        Squarelotron squarelotron = new Squarelotron(dimension);
+        final int[][] expectedValue = {{1, 6, 11, 16, 21}, {2, 7, 8, 9, 22}, {3, 12, 13, 14, 23}, {4, 17, 18, 19, 24},
+                {5, 10, 15, 20, 25}};
+        assertArrayEquals(expectedValue, squarelotron.mainDiagonalFlip(ring).getSquarelotron());
     }
 }
