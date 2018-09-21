@@ -1,8 +1,6 @@
 package org.minions.devfund.damianvp;
 
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Class to build whack a mole game.
@@ -17,7 +15,6 @@ public class WhackAMole {
     private static final char EMPTY = '*';
     private static final char WHACKED = 'W';
     private static final int INVALID_RANGE = -2;
-    private static final Logger LOGGER = Logger.getLogger(WhackAMole.class.getName());
 
     /**
      * constructor class.
@@ -69,7 +66,6 @@ public class WhackAMole {
     void whack(int x, int y) {
         if (validatedCoordinates(x, y)) {
             if (this.moleGrid[x][y] == MOLE) {
-                LOGGER.log(Level.FINE, "Good, you found a mole!!");
                 this.molesLeft--;
                 this.score++;
 
@@ -87,7 +83,7 @@ public class WhackAMole {
      * @return true, if locations are valid.
      *         false, if location are not valid.
      */
-    boolean validatedCoordinates(int x, int y) {
+    private boolean validatedCoordinates(int x, int y) {
         if (x > INVALID_RANGE && y > INVALID_RANGE && x < this.moleGrid.length && y < this.moleGrid.length) {
             if (x == -1 && y == -1) {
                 this.attemptsLeft = 0;
@@ -95,7 +91,6 @@ public class WhackAMole {
             }
             return true;
         }
-        LOGGER.log(Level.WARNING, "valid coordinates should be between 0 - {0} ", this.moleGrid.length - 1);
         return false;
     }
 

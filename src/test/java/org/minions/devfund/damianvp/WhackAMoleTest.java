@@ -95,14 +95,28 @@ public class WhackAMoleTest {
     }
 
     /**
-     * Test place Mole using only one invalid location.
+     * Test place Mole using only one invalid location. (greater than size)
      */
     @Test
     public void testPlaceMoleUsingOneInvalidLocation() {
         final int xValidLocation = 3;
         final int yValidLocation = 5;
-        final int xInvalidLocation = -3;
+        final int xInvalidLocation = 15;
         final int yInvalidLocation = 15;
+        assertFalse(whackAMoleGame.place(xValidLocation, yInvalidLocation));
+        assertFalse(whackAMoleGame.place(xInvalidLocation, yValidLocation));
+        assertEquals(0, whackAMoleGame.getMolesLeft());
+    }
+
+    /**
+     * Test place Mole using only one invalid location. (negative values)
+     */
+    @Test
+    public void testPlaceMoleUsingOneInvalidLocationNegativeValues() {
+        final int xValidLocation = 3;
+        final int yValidLocation = 5;
+        final int xInvalidLocation = -3;
+        final int yInvalidLocation = -3;
         assertFalse(whackAMoleGame.place(xValidLocation, yInvalidLocation));
         assertFalse(whackAMoleGame.place(xInvalidLocation, yValidLocation));
         assertEquals(0, whackAMoleGame.getMolesLeft());
