@@ -130,34 +130,6 @@ public class Ocean {
     }
 
     /**
-     * method to return string the game.
-     *
-     * @return string
-     */
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" ");
-        for (int i = 0; i < SIZE_OCEAN; i++) {
-            sb.append(String.format("%3d", i));
-        }
-        sb.append("\n");
-
-        for (int i = 0; i < SIZE_OCEAN; i++) {
-            sb.append(String.format("%2d ", i));
-            for (int j = 0; j < SIZE_OCEAN; j++) {
-                if (!ships[i][j].wasShootAt(i, j)) {
-                    sb.append(".");
-                } else {
-                    sb.append(ships[i][j].toString());
-                }
-                sb.append("  ");
-            }
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
-
-    /**
      * Returns the 20x20 array of ships.
      * Take an Ocean parameter really need to be able to look at the contents of this array;
      * the placeShipAt method even needs to modify it.

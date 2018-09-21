@@ -102,20 +102,8 @@ public abstract class Ship {
         }
     }
 
-
     /**
-     * Return true if the part of the ship was hit, false otherwise.
-     *
-     * @param row    number
-     * @param column number
-     * @return true
-     */
-    public boolean wasShootAt(int row, int column) {
-        return horizontal ? hit[column - this.bowColumn] : hit[row - this.bowRow];
-    }
-
-    /**
-     * If a part of the ship occupies the given row and column, and the ship hasnot been sunk,
+     * If a part of the ship occupies the given row and column, and the ship has not been sunk,
      * mark that part of the ship as hit (in the hit array, 0 indicates the bow) and return true,
      * otherwise return false.
      *

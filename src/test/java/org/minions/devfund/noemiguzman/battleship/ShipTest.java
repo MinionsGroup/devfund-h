@@ -228,13 +228,16 @@ public class ShipTest {
     }
 
     /**
-     * method to test ToStrinG EmptySea.
+     * Empty sea hit toString test.
      */
     @Test
-    public void testToStringEmptySeaWithShootAt() {
-        Ship ship = new EmptySea();
-        assertFalse(ship.shootAt(1, 0));
-        assertEquals(".", ship.toString());
+    public void testEmptySeaToStringFired() {
+        final int row = 0;
+        final int column = 0;
+        final String expectedToStringValue = "-";
+        final EmptySea ship = new EmptySea();
+        ship.shootAt(row, column);
+        assertEquals(expectedToStringValue, ship.toString());
     }
 
 }
