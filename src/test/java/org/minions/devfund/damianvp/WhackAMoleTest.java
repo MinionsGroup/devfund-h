@@ -63,16 +63,6 @@ public class WhackAMoleTest {
     }
 
     /**
-     * Test place Mole using negative locations.
-     */
-    @Test
-    public void testPlaceMoleUsingNegativeLocations() {
-        int expectedMolesLeft = 0;
-        assertFalse(whackAMoleGame.place(-1, -1));
-        assertEquals(expectedMolesLeft, whackAMoleGame.getMolesLeft());
-    }
-
-    /**
      * Test place Mole using locations greater than Grid dimension.
      */
     @Test

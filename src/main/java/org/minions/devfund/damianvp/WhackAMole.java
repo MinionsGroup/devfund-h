@@ -84,14 +84,7 @@ public class WhackAMole {
      *         false, if location are not valid.
      */
     private boolean validatedCoordinates(int x, int y) {
-        if (x > INVALID_RANGE && y > INVALID_RANGE && x < this.moleGrid.length && y < this.moleGrid.length) {
-            if (x == -1 && y == -1) {
-                this.attemptsLeft = 0;
-                return false;
-            }
-            return true;
-        }
-        return false;
+        return x > INVALID_RANGE && y > INVALID_RANGE && x < this.moleGrid.length && y < this.moleGrid.length;
     }
 
     /**
