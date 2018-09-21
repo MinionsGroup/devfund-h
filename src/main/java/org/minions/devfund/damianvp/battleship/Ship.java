@@ -196,9 +196,8 @@ public abstract class Ship {
         if (isSunk()) {
             return false;
         }
-        final boolean isHittable = this.horizontal ? row == this.bowRow && column >= this.bowColumn
-                                    && column <= this.bowColumn + this.length
-                : column == this.bowColumn && row >= this.bowRow && row <= this.bowRow + this.length;
+        final boolean isHittable = this.horizontal ? row == this.bowRow && column <= this.bowColumn + this.length
+                : column == this.bowColumn && row <= this.bowRow + this.length;
         if (isHittable) {
             final int hitPosition = this.horizontal ? column - this.bowColumn : row - this.bowRow;
             this.hit[hitPosition] = true;
@@ -218,17 +217,6 @@ public abstract class Ship {
             }
         }
         return true;
-    }
-
-    /**
-     * THis method verifies if position was shoot at.
-     * @param row int row position.
-     * @param column int column position.
-     * @return true if position was shoot at.
-     *         false otherwise.
-     */
-    public boolean wasShootAt(int row, int column) {
-        return horizontal ? hit[column - this.bowColumn] : hit[row - this.bowRow];
     }
 
     @Override

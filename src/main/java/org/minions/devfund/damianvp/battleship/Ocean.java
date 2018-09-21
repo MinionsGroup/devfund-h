@@ -156,30 +156,4 @@ public class Ocean {
         return ships;
     }
 
-    /**
-     * Method to build the ocean matrix.
-     * @return String format of matrix.
-     */
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" ");
-        for (int i = 0; i < LENGTH; i++) {
-            sb.append(String.format("%3d", i));
-        }
-        sb.append("\n");
-
-        for (int i = 0; i < LENGTH; i++) {
-            sb.append(String.format("%2d ", i));
-            for (int j = 0; j < LENGTH; j++) {
-                if (!ships[i][j].wasShootAt(i, j)) { // never been fired
-                    sb.append(".");
-                } else {
-                    sb.append(ships[i][j].toString());
-                }
-                sb.append("  ");
-            }
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
 }
