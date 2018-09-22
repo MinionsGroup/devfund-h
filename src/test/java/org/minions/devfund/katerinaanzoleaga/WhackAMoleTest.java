@@ -1,12 +1,8 @@
 package org.minions.devfund.katerinaanzoleaga;
-/**
- * WhackAMole game tests.
- */
 
-//import static org.junit.Assert.assertEquals;
-
-//import com.sun.org.apache.xpath.internal.operations.Equals;
+import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -15,111 +11,186 @@ import static org.junit.Assert.assertTrue;
  * The test cases.
  */
 public class WhackAMoleTest {
-    private static final int NUM_ATEMPTS = 10;
-    private static final int GRID_DIMENSION = 4;
-    private static final int OUT_OF_RANGE = 20;
 
-    private WhackAMole whackAMole = new WhackAMole(NUM_ATEMPTS, GRID_DIMENSION);
+    private static final int ATTEMPTS_NUMBER = 10;
 
+    private WhackAMole whackAMole;
 
     /**
-     * Verifies if the constructor returns the expected values.
+     * Method that setup initial values.
      */
-    @Test
-    public void whackAMoleConstructor() {
-        assertEquals(NUM_ATEMPTS, whackAMole.getAttemptsLeft());
-        char[][] otherGrid = new char[][]{
-                {'*', '*', '*', '*'},
-                {'*', '*', '*', '*'},
-                {'*', '*', '*', '*'},
-                {'*', '*', '*', '*'}};
-        WhackAMole otherWhackAMole = new WhackAMole(NUM_ATEMPTS, GRID_DIMENSION);
-        otherWhackAMole.setMoleGrid(otherGrid);
-        assertTrue(whackAMole.equals(otherWhackAMole));
+    @Before
+    public void setup() {
+        final int gridDimension = 10;
+        whackAMole = new WhackAMole(ATTEMPTS_NUMBER, gridDimension);
     }
 
     /**
-     * Verifies if it is possible to place a mole in a valid possiton.
+     * Method that verify the Grid dimension initial value defined in the constructor.
      */
     @Test
-    public void placeWherePossible() {
-        char[][] otherGrid = new char[][]{
-                {'*', '*', '*', '*'},
-                {'*', '*', 'M', '*'},
-                {'*', '*', '*', '*'},
-                {'*', '*', '*', '*'}};
-        WhackAMole otherWhackAMole = new WhackAMole(NUM_ATEMPTS, GRID_DIMENSION);
-        otherWhackAMole.setMoleGrid(otherGrid);
-        assertTrue(whackAMole.place(1, 2));
-        assertTrue(whackAMole.equals(otherWhackAMole));
+    public void testConstructorGrid() {
+        final int numAttempts = 3;
+        final int gridDimension = 5;
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
+        assertEquals(gridDimension, whackAMole.getMoleGrid().length);
     }
 
     /**
-     * Verifies if it is NOT possible to place a mole in a NOT valid possiton.
+     * Method that verify the initial value for number of attempts that is defined in the constructor.
      */
     @Test
-    public void placeWhereNotPossible() {
-        char[][] otherGrid = new char[][]{
-                {'*', '*', '*', '*'},
-                {'*', '*', '*', '*'},
-                {'*', '*', '*', '*'},
-                {'*', '*', '*', '*'}};
-        WhackAMole otherWhackAMole = new WhackAMole(NUM_ATEMPTS, GRID_DIMENSION);
-        otherWhackAMole.setMoleGrid(otherGrid);
-        assertFalse(whackAMole.place(1, OUT_OF_RANGE));
-        assertTrue(whackAMole.equals(otherWhackAMole));
+    public void testConstructorNumOfAttempts() {
+        final int numAttempts = 2;
+        final int gridDimension = 3;
+        whackAMole = new WhackAMole(numAttempts, gridDimension);
+        assertEquals(numAttempts, whackAMole.getAttemptsLeft());
     }
 
     /**
-     * Verifies the effect of placing a Mole in a valid position.
+     * Verify that a Mole is placed in the given position.
      */
     @Test
-    public void whackWerePosible() {
-        char[][] otherGrid = new char[][]{
-                {'*', '*', '*', '*'},
-                {'*', '*', '*', '*'},
-                {'*', '*', 'W', '*'},
-                {'*', '*', '*', '*'}};
-        WhackAMole otherWhackAMole = new WhackAMole(NUM_ATEMPTS, GRID_DIMENSION);
-        otherWhackAMole.setMoleGrid(otherGrid);
+    public void testPlaceSucceed() {
+        final int positionX = 6;
+        final int positionY = 5;
+        assertTrue(whackAMole.place(positionX, positionY));
+    }
+
+    /**
+     * Verify that a Mole is not assigned in a position that has been already assigned.
+     */
+    @Test
+    public void testPlaceFail() {
+        final int positionX = 1;
+        final int positionY = 2;
+        whackAMole.place(positionX, positionY);
+        assertFalse(whackAMole.place(positionX, positionY));
+    }
+
+    /**
+     * Verify a whack is done in the given position.
+     */
+    @Test
+    public void testWhackSucceedAttempts() {
+        final int positionX = 4;
+        final int positionY = 3;
+        whackAMole.place(positionX, positionY);
+        whackAMole.whack(positionX, positionY);
+        char[][] grid = whackAMole.getMoleGrid();
+        assertEquals(WhackAMole.WACKED, grid[positionX][positionY]);
+    }
+
+    /**
+     * Method that verify a whack is not done in wrong position.
+     */
+    @Test
+    public void testWhackFailAttempts() {
+        final int positionX = 4;
+        final int positionY = 3;
+        final int positionToWhackX = 1;
+        final int positionToWhackY = 2;
+        whackAMole.place(positionX, positionY);
+        whackAMole.whack(positionToWhackX, positionToWhackY);
+        char[][] grid = whackAMole.getMoleGrid();
+        assertEquals(WhackAMole.MOLE, grid[positionX][positionY]);
+    }
+
+
+    /**
+     * Verify the moles left is not modified when a whack is not done in the right position.
+     */
+    @Test
+    public void testWhackFailMolesLeft() {
+        final int positionX = 4;
+        final int positionY = 3;
+        final int positionToWhackX = 1;
+        final int positionToWhackY = 2;
+        final int molesLeft = whackAMole.getMolesLeft();
+        whackAMole.place(positionX, positionY);
+        whackAMole.whack(positionToWhackX, positionToWhackY);
+        assertEquals(molesLeft + 1, whackAMole.getMolesLeft());
+    }
+
+    /**
+     * Verify the moles left is decremented when a whack is successful.
+     */
+    @Test
+    public void testWhackSucceedMolesLeft() {
+        final int positionX = 4;
+        final int positionY = 3;
+        final int molesLeft = whackAMole.getMolesLeft();
+        whackAMole.place(positionX, positionY);
+        whackAMole.whack(positionX, positionY);
+        assertEquals(molesLeft, whackAMole.getMolesLeft());
+    }
+
+    /**
+     * Verify the score is incremented when a whack is successful.
+     */
+    @Test
+    public void testWhackScoreSucceed() {
+        final int positionX = 2;
+        final int positionY = 3;
+        int score = whackAMole.getScore();
+        whackAMole.place(positionX, positionY);
+        whackAMole.whack(positionX, positionY);
+        assertEquals(score + 1, whackAMole.getScore());
+    }
+
+    /**
+     * Verify the score is not modified when a whack is not right.
+     */
+    @Test
+    public void testWhackScoreFail() {
+        final int positionX = 2;
+        final int positionY = 3;
+        final int positionToWhackX = 1;
+        final int positionToWhackY = 2;
+        int score = whackAMole.getScore();
+        whackAMole.place(positionX, positionY);
+        whackAMole.whack(positionToWhackX, positionToWhackY);
+        assertEquals(score, whackAMole.getScore());
+    }
+
+    /**
+     * Verify the attempts are decreased when a whack is made.
+     */
+    @Test
+    public void testAttempts() {
+        final int positionX = 3;
+        final int positionY = 3;
+        final int expectedAttempts = ATTEMPTS_NUMBER - 1;
+        whackAMole.place(positionX, positionY);
+        whackAMole.whack(positionX, positionY);
+        assertEquals(expectedAttempts, whackAMole.getAttemptsLeft());
+    }
+
+    /**
+     * Method that validate how a Grid should be displayed to an User.
+     */
+    @Test
+    public void testPrintGridToUser() {
+        final int gridDimension = 3;
+        final String expectedGrid = "***\n*W*\n***\n";
+        whackAMole = new WhackAMole(ATTEMPTS_NUMBER, gridDimension);
+        whackAMole.place(1, 1);
         whackAMole.place(2, 2);
-        whackAMole.whack(2, 2);
-        assertEquals(NUM_ATEMPTS - 1, whackAMole.getAttemptsLeft());
-        assertEquals(0, whackAMole.getMolesLeft());
-        assertTrue(whackAMole.equals(otherWhackAMole));
+        whackAMole.whack(1, 1);
+        assertEquals(expectedGrid, whackAMole.printGridToUser());
     }
 
     /**
-     * Verifies the effect of TRYING TO place a Mole in a NOT valid position.
+     * Method that validate how a Grid should be displayed when game ends.
      */
-
     @Test
-    public void whackWereNotPosible() {
-        char[][] otherGrid = new char[][]{
-                {'*', '*', '*', '*'},
-                {'*', '*', '*', '*'},
-                {'*', '*', 'M', '*'},
-                {'*', '*', '*', '*'}};
-        WhackAMole otherWhackAMole = new WhackAMole(NUM_ATEMPTS, GRID_DIMENSION);
-        otherWhackAMole.setMoleGrid(otherGrid);
+    public void testPrintGrid() {
+        final int gridDimension = 3;
+        final String expectedGrid = "***\n*W*\n**M\n";
+        whackAMole = new WhackAMole(ATTEMPTS_NUMBER, gridDimension);
+        whackAMole.place(1, 1);
         whackAMole.place(2, 2);
-        whackAMole.whack(OUT_OF_RANGE, 2);
-        assertEquals(NUM_ATEMPTS - 1, whackAMole.getAttemptsLeft());
-        assertEquals(1, whackAMole.getMolesLeft());
-        assertTrue(whackAMole.equals(otherWhackAMole));
+        whackAMole.whack(1, 1);
+        assertEquals(expectedGrid, whackAMole.printGrid());
     }
-
-/*
-    @Test
-    public void printGridToUser() {
-    }
-
-    @Test
-    public void printGrid() {
-    }
-
-    @Test
-    public void placeNMoles() {
-    }
-*/
 }

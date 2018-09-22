@@ -1,26 +1,22 @@
 package org.minions.devfund.katerinaanzoleaga;
 
 /**
- * WhackAMole game class and main.
- * */
-
-import java.util.Arrays;
-import java.util.Random;
-
-/**
- * WhackAMole class is the main class of whckamole game.
+ * WhackAMole class is the main class of whack a mole game.
  */
 public class WhackAMole {
+
+    static final char MOLE = 'M';
+    static final char WACKED = 'W';
+    private static final char DEFAULT_PLACE = '*';
+    private static final char BREAK_LINE = '\n';
     private int score = 0;
     private int molesLeft;
     private int attemptsLeft;
     private char[][] moleGrid;
-    static final int DIMENSION = 10;
-    static final int TOTAL_MOLES = 10;
-    static final int MAX_ATTEMPTS = 50;
 
     /**
      * getScore method returns the current score of the game.
+     *
      * @return int score
      */
     public int getScore() {
@@ -28,7 +24,8 @@ public class WhackAMole {
     }
 
     /**
-     * getMolesLeft metod returns the moles that were not whacked yet.
+     * getMolesLeft method returns the moles that were not whacked yet.
+     *
      * @return int moles left
      */
     public int getMolesLeft() {
@@ -37,6 +34,7 @@ public class WhackAMole {
 
     /**
      * getAttemptsLeft returns he number of attempts left.
+     *
      * @return in attemptsLeft
      */
     public int getAttemptsLeft() {
@@ -45,35 +43,23 @@ public class WhackAMole {
 
     /**
      * getMoleGrid returns a reference to the moleGrid.
+     *
      * @return bidirectional array moleGrid
      */
     public char[][] getMoleGrid() {
         return moleGrid.clone();
     }
 
-
-    /**
-     * Replaces the mole grid by the parameter.
-     * @param moleGrid new gird
-     */
-    public void setMoleGrid(final char[][] moleGrid) {
-        this.moleGrid = moleGrid.clone();
-    }
-
     /**
      * WhackaMole constructor.
      * It requires the maximum number of attempts and array dimension.
-     * @param numAttempts maximum number of attempts
+     *
+     * @param numAttempts   maximum number of attempts
      * @param gridDimension whackamole grid
      */
     WhackAMole(int numAttempts, int gridDimension) {
-        if (numAttempts < 0 || gridDimension < 0) {
-            throw new NegativeArraySizeException();
-        }
-
         this.attemptsLeft = numAttempts;
         this.moleGrid = new char[gridDimension][gridDimension];
-        this.molesLeft = 0;
         this.fillMoleGrid();
     }
 
@@ -83,33 +69,9 @@ public class WhackAMole {
     private void fillMoleGrid() {
         for (int i = 0; i < this.moleGrid.length; i++) {
             for (int j = 0; j < this.moleGrid.length; j++) {
-                this.moleGrid[i][j] = '*';
-
+                this.moleGrid[i][j] = DEFAULT_PLACE;
             }
         }
-    }
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final WhackAMole other = (WhackAMole) obj;
-        for (int i = 0; i < this.moleGrid.length; i++) {
-            for (int j = 0; j < this.moleGrid.length; j++) {
-                if (other.moleGrid[i][j] != this.moleGrid[i][j]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Arrays.hashCode(this.moleGrid);
     }
 
     /**
@@ -117,95 +79,68 @@ public class WhackAMole {
      * Returns false if it is not possible either because there is a mole there
      * or when the row and column are invalid for the dimensions of the grid
      * Also increases the number of moles left in the grid.
+     *
      * @param x row
      * @param y column
      * @return boolean true if it was possible to place a mole there
      */
     boolean place(int x, int y) {
-        if (x < 0 || y < 0) {
-            return false;
-        }
-        int maxIndex = this.moleGrid.length - 1;
-        if (x <= maxIndex && y <= maxIndex && this.moleGrid[x][y] != 'M') {
-            this.moleGrid[x][y] = 'M';
-            this.molesLeft = this.molesLeft + 1;
+        if (this.moleGrid[x][y] != MOLE) {
+            this.moleGrid[x][y] = MOLE;
+            this.molesLeft++;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
      * Whacks a position indicated by the row and column parameter.
      * If the position is out of the grid it will count as a failure.
      * If there is a mole in the position, then the score will increase
+     *
      * @param x row
      * @param y column
      */
     void whack(int x, int y) {
-        if (x < 0 || y < 0) {
-            this.attemptsLeft = this.attemptsLeft - 1;
-        } else {
-            int maxIndex = this.moleGrid.length - 1;
-            if (x <= maxIndex && y <= maxIndex && this.moleGrid[x][y] == 'M') {
-                this.moleGrid[x][y] = 'W';
-                this.molesLeft = this.molesLeft - 1;
-                this.score = this.score + 1;
-            }
-            this.attemptsLeft = this.attemptsLeft - 1;
+        if (this.moleGrid[x][y] == MOLE) {
+            this.moleGrid[x][y] = WACKED;
+            this.molesLeft--;
+            this.score++;
         }
+        this.attemptsLeft--;
     }
 
     /**
      * Prints the grid in user mode.
      * This means without showing where the moles are,
      * except the ones already whacked
+     *
+     * @return grid to user
      */
-    void printGridToUser() {
-        int maxIndex = this.moleGrid.length - 1;
-        for (int i = 0; i <= maxIndex; i++) {
-            for (int j = 0; j <= maxIndex; j++)  {
-                if (this.moleGrid[i][j] == 'M' || this.moleGrid[i][j] == '\u0000') {
-                    System.out.print("   *");
-                } else {
-                    System.out.print("   " + this.moleGrid[i][j]);
-                }
+    String printGridToUser() {
+        StringBuilder gridToUser = new StringBuilder();
+        for (char[] rowMoleGrid : moleGrid) {
+            for (char colMoleGrid : rowMoleGrid) {
+                gridToUser.append(colMoleGrid == WACKED ? WACKED : DEFAULT_PLACE);
             }
-            System.out.println();
+            gridToUser.append(BREAK_LINE);
         }
+        return gridToUser.toString();
     }
 
     /**
      * Prints the grid with the moles positions.
+     *
+     * @return grid
      */
-    void printGrid() {
-        int maxIndex = this.moleGrid.length - 1;
-        for (int i = 0; i <= maxIndex; i++) {
-            for (int j = 0; j <= maxIndex; j++)  {
-                if (this.moleGrid[i][j] == '*') {
-                    System.out.print("   *");
-                } else {
-                    System.out.print("   " + this.moleGrid[i][j]);
-                }
+    String printGrid() {
+        StringBuilder grid = new StringBuilder();
+        for (char[] rowMoleGrid : moleGrid) {
+            for (char colAMoleGrid : rowMoleGrid) {
+                grid.append(colAMoleGrid);
             }
-            System.out.println();
+            grid.append(BREAK_LINE);
         }
-    }
-
-
-    /**
-     * Places N moles in randomic positions.
-     * @param n number of moles
-     */
-    void placeNMoles(int n) {
-        int i = 1;
-        while (i <= n) {
-            Random randomGenerator = new Random();
-            int x = randomGenerator.nextInt(this.moleGrid.length);
-            int y = randomGenerator.nextInt(this.moleGrid.length);
-            if (this.place(x, y)) {
-                i = i + 1;
-            }
-        }
+        return grid.toString();
     }
 }
