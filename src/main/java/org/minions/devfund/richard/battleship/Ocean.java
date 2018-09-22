@@ -1,8 +1,7 @@
 package org.minions.devfund.richard.battleship;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
  * Class.
@@ -16,16 +15,14 @@ public class Ocean {
     private int shotsFired;
     private int hitCount;
     private int shipsSunk;
-    private static final Map<String, Ship> SHIP_MAP = new HashMap<>();
-
-    static {
-        SHIP_MAP.put("BattleShip", new BattleShip());
-        SHIP_MAP.put("BattleCruiser", new BattleCruiser());
-        SHIP_MAP.put("Cruiser", new Cruiser());
-        SHIP_MAP.put("LightCruiser", new LightCruiser());
-        SHIP_MAP.put("Destroyer", new Destroyer());
-        SHIP_MAP.put("Submarine", new Submarine());
-    }
+    private static final List<String> SHIP_LIST = Arrays.asList(
+            "BattleShip",
+            "BattleCruiser",
+            "Cruiser",
+            "LightCruiser",
+            "Destroyer",
+            "Submarine"
+    );
 
     /**
      * Ocean.
@@ -39,9 +36,7 @@ public class Ocean {
      * place all Ships randomly.
      */
     void placeAllShipsRandomly() {
-        for (Map.Entry<String, Ship> entry : SHIP_MAP.entrySet()) {
-            entry.getValue().addShip(this);
-        }
+        SHIP_LIST.forEach(ship -> ShipHelper.addShip(this, ShipFactory.getShip(ship)));
     }
 
     /**

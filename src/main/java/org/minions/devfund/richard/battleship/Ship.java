@@ -152,11 +152,4 @@ public abstract class Ship {
         this.number = number;
     }
 
-    /**
-     * @param ocean ocean.
-     */
-    void addShip(final Ocean ocean) {
-        ShipHelper.addShip(ocean, this);
-    }
-
 }
