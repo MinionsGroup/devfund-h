@@ -52,13 +52,13 @@ public class Ocean {
      */
     public void placeAllShipsRandomly() {
 
-        ShipBuild creator = new ShipBuild();
+
         for (Map.Entry<String, Integer> shipFleet : FLEET_MAP.entrySet()) {
             String shipType = shipFleet.getKey();
             int shipQuantity = shipFleet.getValue();
             int placedShips = 0;
             while (placedShips < shipQuantity) {
-                Ship ship = creator.getShip(shipType);
+                Ship ship = ShipFactory.getShip(shipType);
                 putRandom(ship);
                 placedShips++;
 

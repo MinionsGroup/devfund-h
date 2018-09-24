@@ -5,7 +5,8 @@ import java.util.Map;
 /**
  * class to create ships.
  */
-public class ShipBuild {
+final class ShipFactory {
+
     /**
      * interface to build ships.
      */
@@ -34,7 +35,14 @@ public class ShipBuild {
      * @param shipType string type of ship.
      * @return specific ship instance.
      */
-    public Ship getShip(final String shipType) {
+    static Ship getShip(final String shipType) {
         return SHIP_FACTORY.getOrDefault(shipType, EmptySea::new).buildShip();
+    }
+
+    /**
+     * private constructor.
+     */
+    private ShipFactory() {
+        super();
     }
 }

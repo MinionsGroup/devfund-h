@@ -61,17 +61,32 @@ public abstract class Ship {
 
         for (int i = row - 1; i <= row + lenghtRow; i++) {
             for (int j = column - 1; j < column + lengthColumn; j++) {
-                try {
-
-                    if (!ocean.getShipArray()[i][j].getShipType().equals("empty")) {
-                        return false;
-                    }
-                } catch (Exception e) {
-                    continue;
+                if (!helpIsEmpty(i, j, ocean)) {
+                    return false;
                 }
+
             }
         }
         return true;
+    }
+
+    /**
+     * help to check ship type.
+     *
+     * @param row int
+     * @param column int
+     * @param ocean object
+     * @return false is it is empty
+     */
+    private boolean helpIsEmpty(int row, int column, final Ocean ocean) {
+        if (row < 0 || row >= ocean.getShipArray().length) {
+            return false;
+        }
+        if (column < 0 || column >= ocean.getShipArray().length) {
+            return false;
+        }
+        return ocean.getShipArray()[row][column].getShipType().equals("empty");
+
     }
 
     /**

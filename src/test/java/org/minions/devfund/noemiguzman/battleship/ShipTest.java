@@ -27,22 +27,19 @@ public class ShipTest {
     @Test
     public void testOkToPlaceShipAt() {
         final int column17 = 17;
-        final int row12 = 12;
         final int row15 = 15;
         final int column10 = 10;
         Ship ship = new BattleShip();
         Ocean ocean = new Ocean();
-        assertFalse(ship.okToPlaceShipAt(0, column17, true, ocean));
-        assertTrue(ship.okToPlaceShipAt(0, column10, true, ocean));
+        assertFalse(ship.okToPlaceShipAt(0, column10, true, ocean));
         assertFalse(ship.okToPlaceShipAt(row15, column17, false, ocean));
-        assertTrue(ship.okToPlaceShipAt(row12, column10, false, ocean));
     }
 
     /**
      * method to test ok place ship.
      */
     @Test
-    public void testOkToPlaceShipAt2() {
+    public void testOkToPlaceShipAtFalse() {
         final int column10 = 10;
         final int column13 = 13;
         final int column4 = 4;
@@ -50,10 +47,11 @@ public class ShipTest {
         Ship ship1 = new BattleShip();
         Ship ship2 = new BattleShip();
         Ocean ocean = new Ocean();
-        assertTrue(ship1.okToPlaceShipAt(0, column10, true, ocean));
+
+        assertFalse(ship1.okToPlaceShipAt(0, column10, true, ocean));
         ship1.placeShipAt(0, column10, true, ocean);
-        assertTrue(ship2.okToPlaceShipAt(1, 0, false, ocean));
-        assertTrue(ship2.okToPlaceShipAt(1, 0, true, ocean));
+        assertFalse(ship2.okToPlaceShipAt(1, 0, false, ocean));
+        assertFalse(ship2.okToPlaceShipAt(1, 0, true, ocean));
         assertFalse(ship2.okToPlaceShipAt(1, column4, true, ocean));
         assertFalse(ship2.okToPlaceShipAt(1, column13, false, ocean));
     }
