@@ -95,12 +95,9 @@ public class MovieDatabase {
      * @param rating double type, rating to set.
      */
     void addRating(final String name, double rating) {
-        for (int i = 0; i < this.movieList.size(); i++) {
-            if (this.movieList.get(i).getName().equals(name)) {
-                this.movieList.get(i).setRating(rating);
-                return;
-            }
-        }
+        movieList.stream()
+                .filter(movie -> movie.getName().equals(name))
+                .forEach(movie -> movie.setRating(rating));
     }
 
     /**
