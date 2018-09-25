@@ -49,8 +49,6 @@ public class Ocean {
      */
     void placeAllShipsRandomly() {
         Random random = new Random();
-//        ShipFactory creator = new ShipFactory();
-
         for (Map.Entry<String, Integer> shipFleet : FLEET.entrySet()) {
             String shipType = shipFleet.getKey();
             int shipQuantity = shipFleet.getValue();
