@@ -177,4 +177,27 @@ public class ShipTest {
         ship.setHorizontal(false);
         assertFalse(ship.isHorizontal());
     }
+
+    /**
+     * Empty sea not hit toString test.
+     */
+    @Test
+    public void testEmptySeaToStringNotFired() {
+        final String expectedToStringValue = ".";
+        final EmptySea ship = new EmptySea();
+        assertEquals(expectedToStringValue, ship.toString());
+    }
+
+    /**
+     * Empty sea hit toString test.
+     */
+    @Test
+    public void testEmptySeaToStringFired() {
+        final int row = 0;
+        final int column = 0;
+        final String expectedToStringValue = "-";
+        final EmptySea ship = new EmptySea();
+        ship.shootAt(row, column);
+        assertEquals(expectedToStringValue, ship.toString());
+    }
 }
