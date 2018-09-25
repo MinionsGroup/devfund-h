@@ -10,10 +10,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class MovieDatabaseTest {
 
-    private static final String NEW_MOVIE = "NewMovie";
-    private static final String ACTOR1 = "Actor1";
-    private static final String ACTOR2 = "Actor2";
-    private static final String NEW_MOVIE2 = "NewMovie2";
     private MovieDatabase movieDatabase;
 
     /**
@@ -29,11 +25,20 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieNewMovieAndActors() {
-        movieDatabase.addMovie(NEW_MOVIE, new String[]{ACTOR1, ACTOR2});
+        final String expectedMovie = "NewMovie";
+        final String firstActor = "Actor1";
+        final String secondActor = "Actor2";
+        final int expectedmoviesSize = 1;
+        final int expectedActorsSize = 2;
 
-        assertEquals(1, movieDatabase.getMovieList().size());
-        assertEquals(NEW_MOVIE, movieDatabase.getMovieList().get(0).getName());
-        assertEquals(2, movieDatabase.getActorList().size());
+        movieDatabase.addMovie(expectedMovie, new String[]{firstActor, secondActor});
+        final int actualMoviesSize = movieDatabase.getMovieList().size();
+        final String actualMovie = movieDatabase.getMovieList().get(0).getName();
+        final int actualActorsSize = movieDatabase.getActorList().size();
+
+        assertEquals(expectedmoviesSize, actualMoviesSize);
+        assertEquals(expectedMovie, actualMovie);
+        assertEquals(expectedActorsSize, actualActorsSize);
     }
 
     /**
@@ -41,12 +46,21 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieAlreadyAdded() {
-        movieDatabase.addMovie(NEW_MOVIE, new String[]{ACTOR1, ACTOR2});
-        movieDatabase.addMovie(NEW_MOVIE, new String[]{ACTOR1, ACTOR2});
+        final String expectedMovie = "NewMovie";
+        final String firstActor = "Actor1";
+        final String secondActor = "Actor2";
+        final int expectedMoviesSize = 1;
+        final int expectedActorsSize = 2;
 
-        assertEquals(1, movieDatabase.getMovieList().size());
-        assertEquals(NEW_MOVIE, movieDatabase.getMovieList().get(0).getName());
-        assertEquals(2, movieDatabase.getActorList().size());
+        movieDatabase.addMovie(expectedMovie, new String[]{firstActor, secondActor});
+        movieDatabase.addMovie(expectedMovie, new String[]{firstActor, secondActor});
+        final int actualMoviesSize = movieDatabase.getMovieList().size();
+        final String actualMovie = movieDatabase.getMovieList().get(0).getName();
+        final int actualActorsSize = movieDatabase.getActorList().size();
+
+        assertEquals(expectedMoviesSize, actualMoviesSize);
+        assertEquals(expectedMovie, actualMovie);
+        assertEquals(expectedActorsSize, actualActorsSize);
     }
 
     /**
@@ -54,14 +68,23 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieNewActors() {
-        movieDatabase.addMovie(NEW_MOVIE, new String[]{ACTOR1, ACTOR2});
-        String actor3 = "Actor3";
-        movieDatabase.addMovie(NEW_MOVIE2, new String[]{ACTOR1, ACTOR2, actor3});
-        final int three = 3;
+        final String expectedMovie = "NewMovie";
+        final String secondMovie = "NewMovie2";
+        final String firstActor = "Actor1";
+        final String secondActor = "Actor2";
+        final String thirdActor = "Actor3";
+        final int expectedMoviesSize = 2;
+        final int expectedActorsSize = 3;
 
-        assertEquals(2, movieDatabase.getMovieList().size());
-        assertEquals(NEW_MOVIE, movieDatabase.getMovieList().get(0).getName());
-        assertEquals(three, movieDatabase.getActorList().size());
+        movieDatabase.addMovie(expectedMovie, new String[]{firstActor, secondActor});
+        movieDatabase.addMovie(secondMovie, new String[]{firstActor, secondActor, thirdActor});
+        final int actualMoviesSize = movieDatabase.getMovieList().size();
+        final String actualMovie = movieDatabase.getMovieList().get(0).getName();
+        final int actualActorsSize = movieDatabase.getActorList().size();
+
+        assertEquals(expectedMoviesSize, actualMoviesSize);
+        assertEquals(expectedMovie, actualMovie);
+        assertEquals(expectedActorsSize, actualActorsSize);
     }
 
     /**
@@ -69,11 +92,16 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddRatingNewMovie() {
-        movieDatabase.addMovie(NEW_MOVIE, new String[]{ACTOR1, ACTOR2});
-        final double ten = 10.0;
-        movieDatabase.addRating(NEW_MOVIE, ten);
+        final String newMovie = "NewMovie";
+        final String firstActor = "Actor1";
+        final String secondActor = "Actor2";
+        final double expectedRating = 10.0;
 
-        assertEquals(ten, movieDatabase.getMovieList().get(0).getRating(), 0.0);
+        movieDatabase.addMovie(newMovie, new String[]{firstActor, secondActor});
+        movieDatabase.addRating(newMovie, expectedRating);
+        final double actualRating = movieDatabase.getMovieList().get(0).getRating();
+
+        assertEquals(expectedRating, actualRating, 0.0);
     }
 
     /**
@@ -81,13 +109,18 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testUpdateRatingToExistingMovie() {
-        movieDatabase.addMovie(NEW_MOVIE, new String[]{ACTOR1, ACTOR2});
-        final double ten = 10.0;
-        final double fifteen = 15.0;
-        movieDatabase.addRating(NEW_MOVIE, ten);
-        movieDatabase.updateRating(NEW_MOVIE, fifteen);
+        final String newMovie = "NewMovie";
+        final String firstActor = "Actor1";
+        final String secondActor = "Actor2";
+        final double initialRating = 10.0;
+        final double expectedRating = 15.0;
 
-        assertEquals(fifteen, movieDatabase.getMovieList().get(0).getRating(), 0.0);
+        movieDatabase.addMovie(newMovie, new String[]{firstActor, secondActor});
+        movieDatabase.addRating(newMovie, initialRating);
+        movieDatabase.updateRating(newMovie, expectedRating);
+        final double actualRating = movieDatabase.getMovieList().get(0).getRating();
+
+        assertEquals(expectedRating, actualRating, 0.0);
     }
 
     /**
@@ -95,14 +128,20 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testGetBestActor() {
-        movieDatabase.addMovie(NEW_MOVIE, new String[]{ACTOR1, ACTOR2});
-        movieDatabase.addMovie(NEW_MOVIE2, new String[]{ACTOR1});
-        final double ten = 10.0;
-        final double fifteen = 15.0;
-        movieDatabase.addRating(NEW_MOVIE, ten);
-        movieDatabase.addRating(NEW_MOVIE2, fifteen);
+        final String firstMovie = "NewMovie";
+        final String secondMovie = "NewMovie2";
+        final String expectedBestActor = "Actor1";
+        final String secondActor = "Actor2";
+        final double firstMovieRating = 10.0;
+        final double secondMovieRating = 15.0;
 
-        assertEquals(ACTOR1, movieDatabase.getBestActor());
+        movieDatabase.addMovie(firstMovie, new String[]{expectedBestActor, secondActor});
+        movieDatabase.addMovie(secondMovie, new String[]{expectedBestActor});
+        movieDatabase.addRating(firstMovie, firstMovieRating);
+        movieDatabase.addRating(secondMovie, secondMovieRating);
+        final String actualBestActor = movieDatabase.getBestActor();
+
+        assertEquals(expectedBestActor, actualBestActor);
     }
 
     /**
@@ -110,13 +149,19 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testGetBestMovie() {
-        movieDatabase.addMovie(NEW_MOVIE, new String[]{ACTOR1, ACTOR2});
-        movieDatabase.addMovie(NEW_MOVIE2, new String[]{ACTOR1});
-        final double ten = 10.0;
-        final double fifteen = 15.0;
-        movieDatabase.addRating(NEW_MOVIE, ten);
-        movieDatabase.addRating(NEW_MOVIE2, fifteen);
+        final String firstMovie = "NewMovie";
+        final String expectedBestMovie = "NewMovie2";
+        final String firstActor = "Actor1";
+        final String secondActor = "Actor2";
+        final double firstMovieRating = 10.0;
+        final double secondMovieRating = 15.0;
 
-        assertEquals(NEW_MOVIE2, movieDatabase.getBestMovie());
+        movieDatabase.addMovie(firstMovie, new String[]{firstActor, secondActor});
+        movieDatabase.addMovie(expectedBestMovie, new String[]{firstActor});
+        movieDatabase.addRating(firstMovie, firstMovieRating);
+        movieDatabase.addRating(expectedBestMovie, secondMovieRating);
+        final String actualBestMovie = movieDatabase.getBestMovie();
+
+        assertEquals(expectedBestMovie, actualBestMovie);
     }
 }
