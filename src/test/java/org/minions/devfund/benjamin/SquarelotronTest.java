@@ -50,7 +50,7 @@ public class SquarelotronTest {
     public void testRotateRight5() {
         final int sizeTwo = 2;
         final int turnsTwo = 2;
-        final int[][] expected = new int[][] {{4, 3}, {2, 1}};
+        final int[][] expected = {{4, 3}, {2, 1}};
         Squarelotron squarelotron = new Squarelotron(sizeTwo);
         squarelotron.rotateRight(turnsTwo);
         assertArrayEquals(expected, squarelotron.currentStatus());
@@ -63,7 +63,7 @@ public class SquarelotronTest {
     public void testRotateRight6() {
         final int sizeThree = 3;
         final int turnsOne = 1;
-        final int[][] expected = new int[][] {{7, 4, 1}, {8, 5, 2}, {9, 6, 3}};
+        final int[][] expected = {{7, 4, 1}, {8, 5, 2}, {9, 6, 3}};
         Squarelotron squarelotron = new Squarelotron(sizeThree);
         squarelotron.rotateRight(turnsOne);
         assertArrayEquals(expected, squarelotron.currentStatus());

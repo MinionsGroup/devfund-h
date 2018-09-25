@@ -57,15 +57,15 @@ public class Squarelotron {
      * @param numberOfTurns number of 90 degrees rotation.
      */
     public void rotateRight(int numberOfTurns) {
+        int[][] transposedMatrix = getTransponedMatrix();
+        int turns = Math.abs(numberOfTurns) % MAX_ROTATIONS;
         if (numberOfTurns >= 0) {
-            for (int x = 0; x < numberOfTurns % MAX_ROTATIONS; x++) {
-                int[][] transponedMatrix = getTransponedMatrix();
-                squarelotron = horizontalFlip(transponedMatrix);
+            for (int x = 0; x < turns; x++) {
+                squarelotron = horizontalFlip(transposedMatrix);
             }
         } else {
-            for (int x = 0; x < Math.abs(numberOfTurns) % MAX_ROTATIONS; x++) {
-                int[][] transponedMatrix = getTransponedMatrix();
-                squarelotron = verticalFlip(transponedMatrix);
+            for (int x = 0; x < turns; x++) {
+                squarelotron = verticalFlip(transposedMatrix);
             }
         }
     }
@@ -89,7 +89,7 @@ public class Squarelotron {
         } else {
             final int[][] copyMat = new int[origin.length][];
             for (int i = 0; i < origin.length; i++) {
-                copyMat[i] = Arrays.copyOf(origin[i], origin[i].length);
+                copyMat[i] = origin[i];
             }
             return copyMat;
         }
@@ -164,7 +164,7 @@ public class Squarelotron {
     }
 
     /**
-     * Transpone a 2D array.
+     * Transpose a 2D array.
      * @return 2D array.
      */
     private int[][] getTransponedMatrix() {
