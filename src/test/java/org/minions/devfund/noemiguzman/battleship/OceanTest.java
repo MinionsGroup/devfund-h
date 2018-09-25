@@ -1,6 +1,7 @@
 package org.minions.devfund.noemiguzman.battleship;
 
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
@@ -15,7 +16,7 @@ public class OceanTest {
     /**
      * method to test constructor.
      */
-    @Test
+    @Before
     public void testConstructor() {
         final int sizeOcean = 20;
         Ocean ocean = new Ocean();

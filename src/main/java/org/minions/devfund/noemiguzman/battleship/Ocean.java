@@ -52,7 +52,6 @@ public class Ocean {
      */
     public void placeAllShipsRandomly() {
 
-
         for (Map.Entry<String, Integer> shipFleet : FLEET_MAP.entrySet()) {
             String shipType = shipFleet.getKey();
             int shipQuantity = shipFleet.getValue();
@@ -78,16 +77,13 @@ public class Ocean {
         int row;
         int column;
         boolean horizontalRando;
-        while (true) {
+        do {
             row = random.nextInt(SIZE_OCEAN);
             column = random.nextInt(SIZE_OCEAN);
             horizontalRando = random.nextBoolean();
-            if (ship.okToPlaceShipAt(row, column, horizontalRando, this)) {
-                ship.placeShipAt(row, column, horizontalRando, this);
 
-                break;
-            }
-        }
+        } while (!ship.okToPlaceShipAt(row, column, horizontalRando, this));
+        ship.placeShipAt(row, column, horizontalRando, this);
     }
 
     /**
@@ -123,9 +119,8 @@ public class Ocean {
                 return true;
             }
             return false;
-        } else {
-            ships[row][column].shootAt(row, column);
         }
+        ships[row][column].shootAt(row, column);
         return false;
     }
 

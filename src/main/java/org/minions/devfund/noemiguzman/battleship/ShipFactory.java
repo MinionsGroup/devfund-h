@@ -38,7 +38,6 @@ final class ShipFactory {
     static Ship getShip(final String shipType) {
         return SHIP_FACTORY.getOrDefault(shipType, EmptySea::new).buildShip();
     }
-
     /**
      * private constructor.
      */
