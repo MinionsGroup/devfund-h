@@ -4,9 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ShipCreator class.
+ * ShipFactory class.
  */
-public class ShipCreator {
+final class ShipFactory {
+    /**
+     * ShipFactory private constructor.
+     */
+    private ShipFactory() {
+        super();
+    }
+
     /**
      * shipBuilder interface.
      */
@@ -35,7 +42,7 @@ public class ShipCreator {
      * @param shipType string type of ship.
      * @return specific ship instance.
      */
-    public Ship getShip(final String shipType) {
+    public static Ship getShip(final String shipType) {
         return SHIP_FACTORY.getOrDefault(shipType, EmptySea::new).buildShip();
     }
 }

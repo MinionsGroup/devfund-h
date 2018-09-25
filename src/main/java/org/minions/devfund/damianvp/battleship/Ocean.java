@@ -49,14 +49,14 @@ public class Ocean {
      */
     void placeAllShipsRandomly() {
         Random random = new Random();
-        ShipCreator creator = new ShipCreator();
+//        ShipFactory creator = new ShipFactory();
 
         for (Map.Entry<String, Integer> shipFleet : FLEET.entrySet()) {
             String shipType = shipFleet.getKey();
             int shipQuantity = shipFleet.getValue();
             int placedShips = 0;
             while (placedShips < shipQuantity) {
-                Ship ship = creator.getShip(shipType);
+                Ship ship = ShipFactory.getShip(shipType);
                 int row;
                 int column;
                 boolean horizontal;
