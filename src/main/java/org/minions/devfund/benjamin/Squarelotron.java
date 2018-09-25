@@ -1,5 +1,4 @@
 package org.minions.devfund.benjamin;
-import java.util.Arrays;
 /**
  * Class Squarelotron refers to a matrix.
  */
@@ -57,15 +56,16 @@ public class Squarelotron {
      * @param numberOfTurns number of 90 degrees rotation.
      */
     public void rotateRight(int numberOfTurns) {
-        int[][] transposedMatrix = getTransponedMatrix();
-        int turns = Math.abs(numberOfTurns) % MAX_ROTATIONS;
+
         if (numberOfTurns >= 0) {
-            for (int x = 0; x < turns; x++) {
-                squarelotron = horizontalFlip(transposedMatrix);
+            for (int x = 0; x < numberOfTurns % MAX_ROTATIONS; x++) {
+                int[][] transponedMatrix = getTransponedMatrix();
+                squarelotron = horizontalFlip(transponedMatrix);
             }
         } else {
-            for (int x = 0; x < turns; x++) {
-                squarelotron = verticalFlip(transposedMatrix);
+            for (int x = 0; x < Math.abs(numberOfTurns) % MAX_ROTATIONS; x++) {
+                int[][] transponedMatrix = getTransponedMatrix();
+                squarelotron = verticalFlip(transponedMatrix);
             }
         }
     }
