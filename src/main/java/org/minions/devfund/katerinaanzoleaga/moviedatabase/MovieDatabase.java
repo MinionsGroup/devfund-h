@@ -5,12 +5,15 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * MovieDatabase class.
+ */
 public class MovieDatabase {
     ArrayList<Movie> movieList;
     ArrayList<Actor> actorList;
 
     /**
-     *
+     * Constructor starts empty Movies and Actors' list.
      */
     MovieDatabase() {
         this.movieList = new ArrayList<Movie>();
@@ -49,11 +52,18 @@ public class MovieDatabase {
         return -1;
     }
 
+    /**
+     * Actors list getter.
+     * @return the list of actors.
+     */
     public ArrayList<Actor> getActorList() {
         return this.actorList;
     }
 
-
+    /**
+     * Movies list getter.
+     * @return
+     */
     public ArrayList<Movie> getMovieList() {
         return this.movieList;
 
@@ -88,9 +98,12 @@ public class MovieDatabase {
         }
     }
 
-
+    /**
+     * Adds a rating to a movie with the name specified only if the rating is zero.
+     * @param name
+     * @param rating
+     */
     void addRating(String name, double rating) {
-        //The following gets the movie index and updates the rating only if it was not zero
         int i = this.movieExists(name);
         if (i != -1) {
             Movie aMovie;
@@ -102,6 +115,11 @@ public class MovieDatabase {
 
     }
 
+    /**
+     * Updates the rating of a movie regardless of its original value.
+     * @param name
+     * @param newRating
+     */
     void updateRating(String name, double newRating) {
         // The following gets the movie index and updates the rating
         int i = this.movieExists(name);
@@ -112,7 +130,10 @@ public class MovieDatabase {
         }
     }
 
-
+    /**
+     * Gets the Actor with best average rating.
+     * @return
+     */
     String getBestActor() {
         double maxAvrRating = 0;
         double avrRating = 0;
@@ -129,6 +150,10 @@ public class MovieDatabase {
         return theActor.getName();
     }
 
+    /**
+     * Gets the best movie based on the max rating.
+     * @return
+     */
     String getBestMovie() {
         double maxRating = 0;
         int index = -1;
@@ -144,10 +169,11 @@ public class MovieDatabase {
 
     }
 
-    /**
-     * @param args
-     */
 
+    /**
+     * Fill Movies list from file.
+     * @param fileName
+     */
     void fillMoviesFromFile(String fileName) {
         try {
             File moviesFile = new File(fileName);
@@ -187,7 +213,10 @@ public class MovieDatabase {
     }
 
 
-
+    /**
+     * Fills the movies rationgs from the file.
+     * @param fileName
+     */
     void fillRatingsFromFile(String fileName) {
         try {
             File ratingsFile = new File(fileName);
@@ -213,6 +242,10 @@ public class MovieDatabase {
             e.printStackTrace();
         }
     }
+/**
+    /**
+     * Maim
+     * @param args
 
     public static void main(String[] args) {
         MovieDatabase movieDatabase;
@@ -237,6 +270,7 @@ public class MovieDatabase {
         System.out.println("Best movie: "+ movieDatabase.getBestActor());
 
     }
+*/
 }
 
 

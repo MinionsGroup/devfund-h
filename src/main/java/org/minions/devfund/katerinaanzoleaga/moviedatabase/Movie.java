@@ -3,6 +3,9 @@ package org.minions.devfund.katerinaanzoleaga.moviedatabase;
 
 import java.util.ArrayList;
 
+/**
+ * Movie database.
+ */
 public class Movie {
     private String name;
     private ArrayList<Actor> actors;
@@ -17,6 +20,10 @@ public class Movie {
         this.actors = new ArrayList<Actor>();
     }
 
+    /**
+     * Name getter.
+     * @return string name
+     */
     public String getName() {
         return this.name;
     }
@@ -28,8 +35,8 @@ public class Movie {
 
     /**
      * Returns true if setting the rating was possible
-     * @param rating
-     * @return
+     * @param rating double
+     * @return boolean
      */
     public boolean setRating(double rating) {
         if (rating > 0) {
@@ -39,15 +46,27 @@ public class Movie {
         return false;
     }
 
+    /**
+     * Rating getter.
+     * @return double
+     */
     public double getRating() {
         return this.rating;
     }
 
-
+    /**
+     * Adds an actor to the movie.
+     * @param actor the actor to add
+     */
     public void addActor(Actor actor) {
         this.actors.add(actor);
     }
 
+    /**
+     * Returns true if the movie has the actor in its actors' list.
+     * @param name actors name
+     * @return boolean
+     */
     public boolean hasActor(String name) {
         for (Actor anActor : this.actors){
             if (anActor.getName().equals(name)) {
@@ -57,6 +76,10 @@ public class Movie {
         return false;
     }
 
+    /**
+     * Actors list getter.
+     * @return list of strings
+     */
     public String[] getActors() {
         String [] theActors = new String[this.actors.size()];
         for (int i = 0; i < this.actors.size(); i++) {
