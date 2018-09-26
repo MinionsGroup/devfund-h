@@ -120,7 +120,7 @@ public class ShipTest {
         Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
-
+        assertTrue(ship.shootAt(0, 0));
         assertTrue(ship.shootAt(0, three));
         assertTrue(ship.shootAt(0, four));
         assertFalse(ship.shootAt(1, four));
@@ -137,6 +137,7 @@ public class ShipTest {
         Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
+
         for (int j = 0; j < length; j++) {
             ocean.shootAt(0, j);
         }
@@ -144,6 +145,7 @@ public class ShipTest {
         assertFalse(ship.shootAt(0, three));
         assertFalse(ship.shootAt(0, four));
         assertFalse(ship.shootAt(1, four));
+
     }
 
     /**
