@@ -60,6 +60,7 @@ public class MovieTest {
 
         movie1.addActor(actor1);
         movie1.addActor(actor2);
+        movie1.addActor(actor1);
         expectedList1.add(actor1);
         expectedList1.add(actor2);
         movie2.addActor(actor1);
