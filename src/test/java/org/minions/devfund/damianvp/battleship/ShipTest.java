@@ -202,4 +202,105 @@ public class ShipTest {
         ship.shootAt(row, column);
         assertEquals(expectedToStringValue, ship.toString());
     }
+
+    /**
+     * method to test shootAt method.
+     */
+    @Test
+    public void testShootAt3() {
+        Ocean ocean = new Ocean();
+        BattleShip ship = new BattleShip();
+        final int column3 = 3;
+        final int column4 = 4;
+        final int column8 = 8;
+        final int column10 = 10;
+
+        ship.placeShipAt(0, 0, true, ocean);
+        assertTrue(ship.shootAt(0, 0));
+        assertTrue(ship.shootAt(0, column3));
+        assertTrue(ship.shootAt(0, column4));
+        assertFalse(ship.shootAt(1, column4));
+        assertFalse(ship.shootAt(2, column4));
+        assertFalse(ship.shootAt(column3, column4));
+        assertFalse(ship.shootAt(column8, column10));
+
+
+        ship.placeShipAt(column3, 1, false, ocean);
+        assertFalse(ship.shootAt(0, column4));
+        assertFalse(ship.shootAt(1, column4));
+        assertFalse(ship.shootAt(2, 2));
+        assertTrue(ship.shootAt(column3, 1));
+        assertFalse(ship.shootAt(1, column8));
+        assertFalse(ship.shootAt(1, column10));
+
+        ship.placeShipAt(1, column3, false, ocean);
+        assertFalse(ship.shootAt(1, 0));
+        assertFalse(ship.shootAt(1, 1));
+        assertFalse(ship.shootAt(2, 0));
+        assertTrue(ship.shootAt(column4, column3));
+        assertTrue(ship.shootAt(column8, column3));
+        assertFalse(ship.shootAt(column10, column3));
+
+    }
+
+    /**
+     * method to test shoot at with battleship.
+     */
+    @Test
+    public void testShootAtWithShip() {
+        Ocean ocean = new Ocean();
+        BattleShip ship = new BattleShip();
+        final int column8 = 8;
+        final int column4 = 4;
+        final int column3 = 3;
+        ship.placeShipAt(0, 0, true, ocean);
+        for (int j = 0; j < column8; j++) {
+            ocean.shootAt(0, j);
+        }
+
+        assertFalse(ship.shootAt(0, column3));
+        assertFalse(ship.shootAt(0, column4));
+        assertFalse(ship.shootAt(1, column4));
+
+    }
+
+    /**
+     * test get ship type EmptySea.
+     */
+    @Test
+    public void testGetShipTypeEmptySea() {
+        Ship ship = new EmptySea();
+        assertEquals("empty", ship.getShipType());
+    }
+
+    /**
+     * method to test shoot at EmptySea.
+     */
+    @Test
+    public void testShootAtEmptySea() {
+        Ship ship = new EmptySea();
+        final int column4 = 4;
+
+        assertFalse(ship.shootAt(1, column4));
+
+    }
+
+    /**
+     * method to test IsSunk EmptySea.
+     */
+    @Test
+    public void testIsSunkEmptySea() {
+        Ship ship = new EmptySea();
+        assertFalse(ship.isSunk());
+    }
+
+    /**
+     * method to test ToString EmptySea.
+     */
+    @Test
+    public void testToStringEmptySea() {
+        Ship ship = new EmptySea();
+        assertEquals(".", ship.toString());
+    }
+
 }
