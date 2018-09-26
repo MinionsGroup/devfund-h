@@ -25,10 +25,10 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieNewMovieAndActors() {
-        final String expectedMovie = "NewMovie";
-        final String firstActor = "Actor1";
-        final String secondActor = "Actor2";
-        final int expectedmoviesSize = 1;
+        final String expectedMovie = "The Godfather";
+        final String firstActor = "Al Pacino";
+        final String secondActor = "Marlon Brando";
+        final int expectedMoviesSize = 1;
         final int expectedActorsSize = 2;
 
         movieDatabase.addMovie(expectedMovie, new String[]{firstActor, secondActor});
@@ -36,7 +36,7 @@ public class MovieDatabaseTest {
         final String actualMovie = movieDatabase.getMovieList().get(0).getName();
         final int actualActorsSize = movieDatabase.getActorList().size();
 
-        assertEquals(expectedmoviesSize, actualMoviesSize);
+        assertEquals(expectedMoviesSize, actualMoviesSize);
         assertEquals(expectedMovie, actualMovie);
         assertEquals(expectedActorsSize, actualActorsSize);
     }
@@ -46,9 +46,9 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieAlreadyAdded() {
-        final String expectedMovie = "NewMovie";
-        final String firstActor = "Actor1";
-        final String secondActor = "Actor2";
+        final String expectedMovie = "Gladiator";
+        final String firstActor = "Russell Crowe";
+        final String secondActor = "Joaquin Phoenix";
         final int expectedMoviesSize = 1;
         final int expectedActorsSize = 2;
 
@@ -68,11 +68,11 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddMovieNewActors() {
-        final String expectedMovie = "NewMovie";
-        final String secondMovie = "NewMovie2";
-        final String firstActor = "Actor1";
-        final String secondActor = "Actor2";
-        final String thirdActor = "Actor3";
+        final String expectedMovie = "The Dark Knight";
+        final String secondMovie = "The Dark Knight Rises";
+        final String firstActor = "Christian Bale";
+        final String secondActor = "Heath Ledger";
+        final String thirdActor = "Aaron Eckhart";
         final int expectedMoviesSize = 2;
         final int expectedActorsSize = 3;
 
@@ -92,9 +92,9 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testAddRatingNewMovie() {
-        final String newMovie = "NewMovie";
-        final String firstActor = "Actor1";
-        final String secondActor = "Actor2";
+        final String newMovie = "Forrest Gump";
+        final String firstActor = "Tom Hanks";
+        final String secondActor = "Rebecca Williams";
         final double expectedRating = 10.0;
 
         movieDatabase.addMovie(newMovie, new String[]{firstActor, secondActor});
@@ -109,9 +109,9 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testUpdateRatingToExistingMovie() {
-        final String newMovie = "NewMovie";
-        final String firstActor = "Actor1";
-        final String secondActor = "Actor2";
+        final String newMovie = "The Matrix";
+        final String firstActor = "Keanu Reeves";
+        final String secondActor = "Laurence Fishburne";
         final double initialRating = 10.0;
         final double expectedRating = 15.0;
 
@@ -128,10 +128,10 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testGetBestActor() {
-        final String firstMovie = "NewMovie";
-        final String secondMovie = "NewMovie2";
-        final String expectedBestActor = "Actor1";
-        final String secondActor = "Actor2";
+        final String firstMovie = "The Lord of the Rings: The Fellowship of the Ring";
+        final String secondMovie = "The Lord of the Rings: The Return of the King";
+        final String expectedBestActor = "Orlando Bloom";
+        final String secondActor = "Sean Astin";
         final double firstMovieRating = 10.0;
         final double secondMovieRating = 15.0;
 
@@ -149,10 +149,10 @@ public class MovieDatabaseTest {
      */
     @Test
     public void testGetBestMovie() {
-        final String firstMovie = "NewMovie";
-        final String expectedBestMovie = "NewMovie2";
-        final String firstActor = "Actor1";
-        final String secondActor = "Actor2";
+        final String firstMovie = "Back to the Future";
+        final String expectedBestMovie = "Back to the Future Part II";
+        final String firstActor = "Michael J. Fox";
+        final String secondActor = "Christopher Lloyd";
         final double firstMovieRating = 10.0;
         final double secondMovieRating = 15.0;
 
