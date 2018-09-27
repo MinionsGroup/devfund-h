@@ -250,17 +250,20 @@ public class ShipTest {
     public void testShootAtWithShip() {
         Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
-        final int column8 = 8;
-        final int column4 = 4;
-        final int column3 = 3;
+        final int eight = 8;
+        final int four = 4;
+        final int three = 3;
         ship.placeShipAt(0, 0, true, ocean);
-        for (int j = 0; j < column8; j++) {
-            ocean.shootAt(0, j);
+        for (int j = 0; j < eight; j++) {
+            ship.shootAt(0, j);
         }
 
-        assertFalse(ship.shootAt(0, column3));
-        assertFalse(ship.shootAt(0, column4));
-        assertFalse(ship.shootAt(1, column4));
+        assertFalse(ship.shootAt(0, three));
+        assertFalse(ship.shootAt(0, four));
+        assertFalse(ship.shootAt(1, four));
+        assertFalse(ship.shootAt(2, four));
+        assertFalse(ship.shootAt(three, four));
+        assertFalse(ship.shootAt(four, three));
 
     }
 
