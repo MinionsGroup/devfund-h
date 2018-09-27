@@ -214,6 +214,7 @@ public class ShipTest {
         final int column4 = 4;
         final int column8 = 8;
         final int column10 = 10;
+        final int twentyone = 21;
 
         ship.placeShipAt(0, 0, true, ocean);
         assertTrue(ship.shootAt(0, 0));
@@ -222,7 +223,11 @@ public class ShipTest {
         assertFalse(ship.shootAt(1, column4));
         assertFalse(ship.shootAt(2, column4));
         assertFalse(ship.shootAt(column3, column4));
-        assertFalse(ship.shootAt(column8, column10));
+        assertFalse(ship.shootAt(-1, 0));
+        assertFalse(ship.shootAt(column10, 1));
+        assertFalse(ship.shootAt(column8, -1));
+        assertFalse(ship.shootAt(twentyone, 1));
+        assertFalse(ship.shootAt(1, twentyone));
 
 
         ship.placeShipAt(column3, 1, false, ocean);

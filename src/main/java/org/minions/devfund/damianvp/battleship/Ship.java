@@ -193,18 +193,15 @@ public abstract class Ship {
      *         false, otherwise
      */
     boolean shootAt(int row, int column) {
-        if (!isSunk()) {
-            if (this.horizontal) {
-                if (row == this.bowRow && column >= this.bowColumn && column <= this.bowColumn + this.length) {
-                    this.hit[column - this.bowColumn] = true;
-                    return true;
-                }
-            } else {
-                if (column == this.bowColumn && row >= this.bowRow && row <= this.bowRow + this.length) {
-                    this.hit[row - this.bowRow] = true;
-                    return true;
-                }
-            }
+        if (isSunk()) {
+            return false;
+        }
+        final boolean isHittable = this.horizontal ? row == this.bowRow && column <= this.bowColumn + this.length
+                : column == this.bowColumn && row <= this.bowRow + this.length;
+        if (isHittable) {
+            final int hitPosition = this.horizontal ? column - this.bowColumn : row - this.bowRow;
+                    this.hit[hitPosition] = true;
+            return true;
         }
         return false;
     }
