@@ -196,9 +196,8 @@ public abstract class Ship {
         if (isSunk()) {
             return false;
         }
-        final boolean isHittable = this.horizontal ? row == this.bowRow && column <= this.bowColumn + this.length
-                : column == this.bowColumn && row <= this.bowRow + this.length;
-        if (isHittable) {
+        if (this.horizontal ? row == this.bowRow && column <= this.bowColumn + this.length
+                : column == this.bowColumn && row <= this.bowRow + this.length) {
             final int hitPosition = this.horizontal ? column - this.bowColumn : row - this.bowRow;
             this.hit[hitPosition] = true;
             return true;
