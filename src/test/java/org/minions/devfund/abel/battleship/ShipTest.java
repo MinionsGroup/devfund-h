@@ -254,8 +254,8 @@ public class ShipTest {
     @Test
     public void testBattleshipGetShipType() {
         final String expectedShipType = "battleship";
-        final Ship ship = new BattleShip();
-        final String actualShipType = ship.getShipType();
+        final Ship anotherShip = new BattleShip();
+        final String actualShipType = anotherShip.getShipType();
         assertEquals(expectedShipType, actualShipType);
     }
 
@@ -283,18 +283,18 @@ public class ShipTest {
      */
     @Test
     public void testBattleshipGetterSetter() {
-        final Ship ship = new BattleShip();
+        final Ship anotherShip = new BattleShip();
         final int expected = 0;
         final int expectedLength = 8;
-        ship.setBowRow(0);
-        ship.setBowColumn(0);
-        ship.setHorizontal(false);
-        final int actualBowRow = ship.getBowRow();
-        final int actualBowColumn = ship.getBowColumn();
-        final int actualLength = ship.getLength();
+        anotherShip.setBowRow(0);
+        anotherShip.setBowColumn(0);
+        anotherShip.setHorizontal(false);
+        final int actualBowRow = anotherShip.getBowRow();
+        final int actualBowColumn = anotherShip.getBowColumn();
+        final int actualLength = anotherShip.getLength();
         assertEquals(expected, actualBowRow);
         assertEquals(expected, actualBowColumn);
         assertEquals(expectedLength, actualLength);
-        assertFalse(ship.isHorizontal());
+        assertFalse(anotherShip.isHorizontal());
     }
 }

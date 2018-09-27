@@ -123,22 +123,35 @@ public abstract class Ship {
     public boolean okToPlaceShipAt(int row, int column, boolean horizontal, final Ocean ocean) {
         int oceanLength = ocean.getShipArray().length;
         if (isShipInBounds(row, column, horizontal, oceanLength)) {
-            int initialBorderRow = row - 1 < 0 ? 0 : row - 1;
-            int initialBorderColumn = column - 1 < 0 ? 0 : column - 1;
-            int lastBorderRow = horizontal ? row + 1 : row + length;
-            int lastBorderColumn = horizontal ? column + length : column + 1;
-            lastBorderRow = lastBorderRow < oceanLength ? lastBorderRow : oceanLength - 1;
-            lastBorderColumn = lastBorderColumn < oceanLength ? lastBorderColumn : oceanLength - 1;
-            for (int i = initialBorderRow; i <= lastBorderRow; i++) {
-                for (int j = initialBorderColumn; j <= lastBorderColumn; j++) {
-                    if (ocean.isOccupied(i, j)) {
-                        return false;
-                    }
-                }
-            }
-            return true;
+            return verifyIsOccupied(row, column, horizontal, ocean);
         }
         return false;
+    }
+
+    /**
+     * Verify if the position is Occupied.
+     * @param row int.
+     * @param column int.
+     * @param horizontal boolean.
+     * @param ocean Ocean.
+     * @return boolean.
+     */
+    private boolean verifyIsOccupied(int row, int column, boolean horizontal, final Ocean ocean) {
+        int oceanLength = ocean.getShipArray().length;
+        int initialBorderRow = row - 1 < 0 ? 0 : row - 1;
+        int initialBorderColumn = column - 1 < 0 ? 0 : column - 1;
+        int lastBorderRow = horizontal ? row + 1 : row + length;
+        int lastBorderColumn = horizontal ? column + length : column + 1;
+        lastBorderRow = lastBorderRow < oceanLength ? lastBorderRow : oceanLength - 1;
+        lastBorderColumn = lastBorderColumn < oceanLength ? lastBorderColumn : oceanLength - 1;
+        for (int i = initialBorderRow; i <= lastBorderRow; i++) {
+            for (int j = initialBorderColumn; j <= lastBorderColumn; j++) {
+                if (ocean.isOccupied(i, j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
