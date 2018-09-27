@@ -264,7 +264,6 @@ public class ShipTest {
         assertFalse(ship.shootAt(2, four));
         assertFalse(ship.shootAt(three, four));
         assertFalse(ship.shootAt(four, three));
-
     }
 
     /**
