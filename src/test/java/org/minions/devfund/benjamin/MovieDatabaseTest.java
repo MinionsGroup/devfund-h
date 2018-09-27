@@ -5,14 +5,13 @@ import static org.junit.Assert.assertEquals;
  * Class to test MovieDatabase class.
  */
 public class MovieDatabaseTest {
-    /**
-     * Test Add a new movie and actors.
-     */
-
     private static final String ACTOR_UNO = "Crhistian Bale";
     private static final String ACTOR_DOS = "Morgan Freeman";
     private static final String NEW_MOVIE = "Batman Forever";
     private static final String NEW_MOVIE_TWO = "NewMovie2";
+    /**
+     * Test Add a new movie and actors.
+     */
     @Test
     public void testAddMovieNewMovieAndActors() {
         MovieDatabase movieDatabase = new MovieDatabase();

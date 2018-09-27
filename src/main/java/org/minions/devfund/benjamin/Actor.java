@@ -55,9 +55,9 @@ public class Actor {
      * @return double.
      */
     public double getAverage() {
-        return (movies
+        return movies
                 .stream()
                 .mapToDouble(Movie::getRating)
-                .average().orElse(0.0));
+                .average().orElse(0.0);
     }
 }
