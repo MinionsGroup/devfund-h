@@ -13,7 +13,7 @@ public class Actor {
      * Constructor.
      * */
     public Actor() {
-        this.movies = new ArrayList<Movie>();
+        this.movies = new ArrayList<>();
     }
 
     /**

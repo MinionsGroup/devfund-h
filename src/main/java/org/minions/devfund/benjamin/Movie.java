@@ -15,7 +15,7 @@ public class Movie {
      * Constructor.
      */
     public Movie() {
-       actors = new ArrayList<Actor>();
+       actors = new ArrayList<>();
        rating = 0.0;
     }
 

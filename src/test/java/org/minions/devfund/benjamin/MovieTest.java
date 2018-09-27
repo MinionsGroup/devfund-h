@@ -3,18 +3,18 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * class to tes movie class.
+ * class to test movie class.
  */
 public class MovieTest {
+    private static final String MOVIE_NAME = "Batman Forever";
     /**
-     * Test set name function.
+     * Test set/get name function.
      */
     @Test
     public void testSetName() {
         Movie movie = new Movie();
-        String movieName = "BATMAN";
-        movie.setName(movieName);
-        assertEquals(movieName, movie.getName());
+        movie.setName(MOVIE_NAME);
+        assertEquals(MOVIE_NAME, movie.getName());
     }
 
     /**
@@ -23,21 +23,9 @@ public class MovieTest {
     @Test
     public void testAddActors() {
         Movie movie = new Movie();
-        String movieName = "BATMAN";
-        movie.setName(movieName);
+        movie.setName(MOVIE_NAME);
         movie.addActors(new String[]{"Crhistian Bale", "Morgan Freeman"});
         assertEquals(2, movie.getSize());
-    }
-
-    /**
-     * Test get movie name function.
-     */
-    @Test
-    public void testGetName() {
-        Movie movie = new Movie();
-        String movieName = "BATMAN";
-        movie.setName(movieName);
-        assertEquals(movieName, movie.getName());
     }
 
     /**
