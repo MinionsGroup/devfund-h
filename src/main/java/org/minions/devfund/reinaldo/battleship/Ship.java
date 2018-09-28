@@ -50,10 +50,8 @@ public abstract class Ship {
     private boolean isHorizontalOrVerticalLineOccupied(final int row, final int column, final int iterator,
                                                        final boolean horizontal, final Ocean ocean) {
         for (int j = iterator; j < iterator + length; j++) {
-            if (horizontal && ocean.isOccupied(row, j)) {
-                return false;
-            }
-            if (!horizontal && ocean.isOccupied(j, column)) {
+            final boolean isOccupied = horizontal ? ocean.isOccupied(row, j) : ocean.isOccupied(j, column);
+            if (isOccupied) {
                 return false;
             }
         }
@@ -92,16 +90,14 @@ public abstract class Ship {
      * @return true if a ship was shot.
      */
     boolean shootAt(final int row, final int column) {
-        boolean positionRow = column == bowColumn && row >= bowRow && row < bowRow + length;
-        boolean positionColumn = row == bowRow && column >= bowColumn && column < bowColumn + length;
-
-        if (!isSunk() && !horizontal && positionRow) {
-            hit[row - bowRow] = true;
-            return true;
+        if (isSunk()) {
+            return false;
         }
-
-        if (!isSunk() && horizontal && positionColumn) {
-            hit[column - bowColumn] = true;
+        boolean isHittable = horizontal ? row == bowRow && column >= bowColumn && column < bowColumn + length
+                : column == bowColumn && row >= bowRow && row < bowRow + length;
+        if (isHittable) {
+            final int hitPosition = horizontal ? column - bowColumn : row - bowRow;
+            hit[hitPosition] = true;
             return true;
         }
         return false;

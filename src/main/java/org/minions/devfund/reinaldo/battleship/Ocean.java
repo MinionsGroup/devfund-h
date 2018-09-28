@@ -15,13 +15,22 @@ public class Ocean {
 
     static final int SHIPLENGTH = 20;
     private static final int SHIPS_QUANTITY = 13;
-    private static List<Ship> shipsToPlace;
 
-    static {
-        shipsToPlace = Arrays.asList(new BattleShip(), new BattleCruiser(), new Cruiser(), new Cruiser(),
-                new LightCruiser(), new LightCruiser(), new Destroyer(), new Destroyer(), new Destroyer(),
-                new Submarine(), new Submarine(), new Submarine(), new Submarine());
-    }
+    private static final List<Ship> SHIPS_TO_PLACE = Arrays.asList(
+            new BattleShip(),
+            new BattleCruiser(),
+            new Cruiser(),
+            new Cruiser(),
+            new LightCruiser(),
+            new LightCruiser(),
+            new Destroyer(),
+            new Destroyer(),
+            new Destroyer(),
+            new Submarine(),
+            new Submarine(),
+            new Submarine(),
+            new Submarine()
+    );
 
     /**
      * Constructors to Ocean class.
@@ -44,11 +53,11 @@ public class Ocean {
     }
 
     /**
-     *Creates a ships randomly on ocean.
+     * Creates a ships randomly on ocean.
      */
     public void placeAllShipsRandomly() {
         Random random = new Random();
-        shipsToPlace.forEach(newShip -> {
+        SHIPS_TO_PLACE.forEach(newShip -> {
             boolean placeShip;
             do {
                 int row = random.nextInt(SHIPLENGTH);
