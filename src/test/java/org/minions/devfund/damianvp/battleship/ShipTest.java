@@ -310,4 +310,23 @@ public class ShipTest {
         assertEquals(".", ship.toString());
     }
 
+    /**
+     * method to Test a complete area around a ship.
+     */
+    @Test
+    public void testShotAtAroundShip() {
+        Ocean ocean = new Ocean();
+        BattleShip ship = new BattleShip();
+        final int length = 8;
+        final int three = 3;
+
+        ship.placeShipAt(1, 1, true, ocean);
+        for (int i = 0; i < length + 1; i++) {
+            for (int j = 0; j < three; j++) {
+                ocean.shootAt(i, j);
+            }
+        }
+        assertFalse(ship.isSunk());
+    }
+
 }
