@@ -12,12 +12,13 @@ public class Movie {
     private double rating;
 
     /**
-     * Movie constructor to be defined the way we are going to set the actors list
+     * Movie constructor to be defined the way we are going to set the actors list.
+     * @param name Movie name
      */
-    public Movie(String name) {
+    public Movie(final String name) {
         this.name = name;
         this.rating = 0;
-        this.actors = new ArrayList<Actor>();
+        this.actors = new ArrayList<>();
     }
 
     /**
@@ -28,17 +29,21 @@ public class Movie {
         return this.name;
     }
 
-    public void setName(String name) {
+    /**
+     * Name setter.
+     * @param name string Movie name
+     */
+    public void setName(final String name) {
         this.name = name;
     }
 
 
     /**
-     * Returns true if setting the rating was possible
+     * Returns true if setting the rating was possible.
      * @param rating double
      * @return boolean
      */
-    public boolean setRating(double rating) {
+    public boolean setRating(final double rating) {
         if (rating > 0) {
             this.rating = rating;
             return true;
@@ -58,7 +63,7 @@ public class Movie {
      * Adds an actor to the movie.
      * @param actor the actor to add
      */
-    public void addActor(Actor actor) {
+    public void addActor(final Actor actor) {
         this.actors.add(actor);
     }
 
@@ -67,8 +72,8 @@ public class Movie {
      * @param name actors name
      * @return boolean
      */
-    public boolean hasActor(String name) {
-        for (Actor anActor : this.actors){
+    public boolean hasActor(final String name) {
+        for (Actor anActor : this.actors) {
             if (anActor.getName().equals(name)) {
                 return true;
             }
@@ -81,7 +86,7 @@ public class Movie {
      * @return list of strings
      */
     public String[] getActors() {
-        String [] theActors = new String[this.actors.size()];
+        String[] theActors = new String[this.actors.size()];
         for (int i = 0; i < this.actors.size(); i++) {
             theActors[i] = this.actors.get(i).getName();
         }

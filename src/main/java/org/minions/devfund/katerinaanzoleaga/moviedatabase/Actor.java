@@ -6,15 +6,15 @@ import java.util.ArrayList;
  * Actor class.
  */
 public class Actor {
-    String name;
-    ArrayList<Movie> movies;
+    private String name;
+    private ArrayList<Movie> movies;
 
     /**
-     * Actor class constructor, to be defined the way we are going to get the movies list
+     * Actor class constructor, to be defined the way we are going to get the movies list.
      */
     public Actor() {
         this.name = "";
-        this.movies = new ArrayList<Movie>();
+        this.movies = new ArrayList<>();
     }
 
     /**
@@ -29,7 +29,7 @@ public class Actor {
      * Name setter.
      * @param name the name
      */
-    public void setName(String name){
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -38,9 +38,9 @@ public class Actor {
      * @return the list of movies of an actor
      */
     public String[] getMovies() {
-        String [] theMovies = new String[this.movies.size()];
+        String[] theMovies = new String[this.movies.size()];
         for (int i = 0; i < this.movies.size(); i++) {
-            theMovies[i] = this.movies.get(i).getName();
+            theMovies[i ] = this.movies.get(i).getName();
         }
         return theMovies;
     }
@@ -49,20 +49,20 @@ public class Actor {
      * Adds a movie to the movie list of an actor.
      * @param movie the movie
      */
-    public void addMovie(Movie movie) {
+    public void addMovie(final Movie movie) {
         this.movies.add(movie);
     }
 
     /**
      * Get the average rating of the actor across his/her movies.
-     * @return
+     * @return double average
      */
-    public double getAverageRating () {
+    public double getAverageRating() {
         double sum = 0;
         for (Movie movie : this.movies) {
             sum = sum + movie.getRating();
         }
-        return sum/(this.movies.size() * 1.0);
+        return sum / (this.movies.size() * 1.0);
     }
 
     /**
@@ -70,8 +70,8 @@ public class Actor {
      * @param name the name of the movie to look for
      * @return true if the movie is in the list
      */
-    public boolean hasMovie(String name) {
-        for (Movie aMovie : this.movies){
+    public boolean hasMovie(final String name) {
+        for (Movie aMovie : this.movies) {
             if (aMovie.getName().equals(name)) {
                 return true;
             }
