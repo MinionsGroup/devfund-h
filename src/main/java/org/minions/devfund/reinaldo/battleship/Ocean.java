@@ -1,5 +1,6 @@
 package org.minions.devfund.reinaldo.battleship;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -16,21 +17,24 @@ public class Ocean {
     static final int SHIPLENGTH = 20;
     private static final int SHIPS_QUANTITY = 13;
 
-    private static final List<Ship> SHIPS_TO_PLACE = Arrays.asList(
-            new BattleShip(),
-            new BattleCruiser(),
-            new Cruiser(),
-            new Cruiser(),
-            new LightCruiser(),
-            new LightCruiser(),
-            new Destroyer(),
-            new Destroyer(),
-            new Destroyer(),
-            new Submarine(),
-            new Submarine(),
-            new Submarine(),
-            new Submarine()
-    );
+    private static final List<String> SHIPS_TO_PLACE;
+
+    static {
+        SHIPS_TO_PLACE = new ArrayList<>();
+        SHIPS_TO_PLACE.add("BattleShip");
+        SHIPS_TO_PLACE.add("BattleCruiser");
+        SHIPS_TO_PLACE.add("Cruiser");
+        SHIPS_TO_PLACE.add("Cruiser");
+        SHIPS_TO_PLACE.add("LightCruiser");
+        SHIPS_TO_PLACE.add("LightCruiser");
+        SHIPS_TO_PLACE.add("Destroyer");
+        SHIPS_TO_PLACE.add("Destroyer");
+        SHIPS_TO_PLACE.add("Destroyer");
+        SHIPS_TO_PLACE.add("Submarine");
+        SHIPS_TO_PLACE.add("Submarine");
+        SHIPS_TO_PLACE.add("Submarine");
+        SHIPS_TO_PLACE.add("Submarine");
+    }
 
     /**
      * Constructors to Ocean class.
@@ -57,15 +61,16 @@ public class Ocean {
      */
     public void placeAllShipsRandomly() {
         Random random = new Random();
+        ShipFactory factory = new ShipFactory();
         SHIPS_TO_PLACE.forEach(newShip -> {
             boolean placeShip;
             do {
                 int row = random.nextInt(SHIPLENGTH);
                 int column = random.nextInt(SHIPLENGTH);
                 boolean horizontal = random.nextBoolean();
-                placeShip = newShip.okToPlaceShipAt(row, column, horizontal, this);
+                placeShip = factory.getShip(newShip).okToPlaceShipAt(row, column, horizontal, this);
                 if (placeShip) {
-                    newShip.placeShipAt(row, column, horizontal, this);
+                    factory.getShip(newShip).placeShipAt(row, column, horizontal, this);
                 }
             }
             while (!placeShip);
