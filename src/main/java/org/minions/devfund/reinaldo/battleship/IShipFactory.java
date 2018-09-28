@@ -9,5 +9,5 @@ public interface IShipFactory {
      * @param shipType ship.
      * @return ship ship.
      */
-    Ship getShip(String shipType);
+    Ship getShip(ShipTypeEnum shipType);
 }

@@ -5,19 +5,19 @@ package org.minions.devfund.reinaldo.battleship;
  */
 public class ShipFactory implements IShipFactory {
     @Override
-    public Ship getShip(final String shipType) {
+    public Ship getShip(final ShipTypeEnum shipType) {
         switch (shipType) {
-            case "BattleShip":
+            case BATTLESHIP:
                 return new BattleShip();
-            case "BattleCruiser":
+            case BATTLE_CRUISER:
                 return new BattleCruiser();
-            case "Cruiser":
+            case CRUISER:
                 return new Cruiser();
-            case "LightCruiser":
+            case LIGHT_CRUISER:
                 return new LightCruiser();
-            case "Destroyer":
+            case DESTROYER:
                 return new Destroyer();
-            case "Submarine":
+            case SUBMARINE:
                 return new Submarine();
             default:
                 return new EmptySea();

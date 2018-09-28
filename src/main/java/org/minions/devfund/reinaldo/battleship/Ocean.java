@@ -17,23 +17,23 @@ public class Ocean {
     static final int SHIPLENGTH = 20;
     private static final int SHIPS_QUANTITY = 13;
 
-    private static final List<String> SHIPS_TO_PLACE;
+    private static final List<ShipTypeEnum> SHIPS_TO_PLACE;
 
     static {
         SHIPS_TO_PLACE = new ArrayList<>();
-        SHIPS_TO_PLACE.add("BattleShip");
-        SHIPS_TO_PLACE.add("BattleCruiser");
-        SHIPS_TO_PLACE.add("Cruiser");
-        SHIPS_TO_PLACE.add("Cruiser");
-        SHIPS_TO_PLACE.add("LightCruiser");
-        SHIPS_TO_PLACE.add("LightCruiser");
-        SHIPS_TO_PLACE.add("Destroyer");
-        SHIPS_TO_PLACE.add("Destroyer");
-        SHIPS_TO_PLACE.add("Destroyer");
-        SHIPS_TO_PLACE.add("Submarine");
-        SHIPS_TO_PLACE.add("Submarine");
-        SHIPS_TO_PLACE.add("Submarine");
-        SHIPS_TO_PLACE.add("Submarine");
+        SHIPS_TO_PLACE.add(ShipTypeEnum.BATTLESHIP);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.BATTLE_CRUISER);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.CRUISER);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.CRUISER);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.LIGHT_CRUISER);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.LIGHT_CRUISER);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.DESTROYER);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.DESTROYER);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.DESTROYER);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.SUBMARINE);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.SUBMARINE);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.SUBMARINE);
+        SHIPS_TO_PLACE.add(ShipTypeEnum.SUBMARINE);
     }
 
     /**
