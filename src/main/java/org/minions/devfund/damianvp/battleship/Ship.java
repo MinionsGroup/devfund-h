@@ -196,14 +196,26 @@ public abstract class Ship {
         if (isSunk()) {
             return false;
         }
-        final boolean isHittable = this.horizontal ? row == this.bowRow && column <= this.bowColumn + this.length
-                : column == this.bowColumn && row <= this.bowRow + this.length;
-        if (isHittable) {
+        if (isShipRange(row, column)) {
             final int hitPosition = this.horizontal ? column - this.bowColumn : row - this.bowRow;
                     this.hit[hitPosition] = true;
             return true;
         }
         return false;
+    }
+
+    /**
+     * method to verify if position are into the ship range.
+     * @param row int row position.
+     * @param column int column position.
+     * @return true, if position is in ship range.
+     *         false, if position does not in ship range.
+     */
+    private boolean isShipRange(int row, int column) {
+        return this.horizontal ? row == this.bowRow
+                && (column - (this.bowColumn + hit.length)) * (column - this.bowColumn) <= 0
+                : column == this.bowColumn
+                && (row - (this.bowRow + hit.length)) * (row - this.bowRow) <= 0;
     }
 
     /**
