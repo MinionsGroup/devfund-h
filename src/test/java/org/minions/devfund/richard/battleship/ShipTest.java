@@ -227,7 +227,7 @@ public class ShipTest {
      */
     @Test
     public void testLightCruiserGetShipType() {
-        final String expectedShipType = "light cruiser";
+        final String expectedShipType = "lightcruiser";
         final Ship ship = new LightCruiser();
         assertEquals(expectedShipType, ship.getShipType());
     }

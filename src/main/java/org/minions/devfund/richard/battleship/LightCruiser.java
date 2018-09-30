@@ -6,7 +6,7 @@ package org.minions.devfund.richard.battleship;
 public class LightCruiser extends Ship {
 
     private static final int SHIP_NUM = 2;
-    private static final String SHIP_TYPE = "light cruiser";
+    private static final String SHIP_TYPE = "lightcruiser";
     private static final int SHIP_LENGTH = 5;
 
     /**
@@ -26,11 +26,4 @@ public class LightCruiser extends Ship {
         return SHIP_TYPE;
     }
 
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    Ship getShip() {
-        return new LightCruiser();
-    }
 }

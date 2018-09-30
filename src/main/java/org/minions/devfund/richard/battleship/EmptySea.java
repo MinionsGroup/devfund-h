@@ -52,11 +52,4 @@ public class EmptySea extends Ship {
         return false;
     }
 
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    Ship getShip() {
-        return new EmptySea();
-    }
 }

@@ -26,11 +26,4 @@ public class BattleShip extends Ship {
         return SHIP_TYPE;
     }
 
-    /**
-     * {@inheritDoc}.
-     */
-    @Override
-    Ship getShip() {
-        return new BattleShip();
-    }
 }

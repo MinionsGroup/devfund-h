@@ -23,11 +23,6 @@ public abstract class Ship {
     abstract String getShipType();
 
     /**
-     * @return New Ship.
-     */
-    abstract Ship getShip();
-
-    /**
      * @param row        row.
      * @param column     column.
      * @param horizontal horizontal.
@@ -150,13 +145,6 @@ public abstract class Ship {
      */
     void setNumber(int number) {
         this.number = number;
-    }
-
-    /**
-     * @param ocean ocean.
-     */
-    void addShip(final Ocean ocean) {
-        ShipHelper.addShip(ocean, this);
     }
 
 }

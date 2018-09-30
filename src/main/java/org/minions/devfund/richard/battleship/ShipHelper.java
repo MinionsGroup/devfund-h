@@ -98,7 +98,7 @@ final class ShipHelper {
         Random random = new Random();
         int shipNumber = ship.getNumber();
         while (shipNumber > 0) {
-            Ship myShip = ship.getShip();
+            Ship myShip = ShipFactory.getShip(ship.getShipType());
             boolean horizontal = random.nextBoolean();
             int row = random.nextInt(ocean.getShipArray().length);
             int column = random.nextInt(ocean.getShipArray().length);
