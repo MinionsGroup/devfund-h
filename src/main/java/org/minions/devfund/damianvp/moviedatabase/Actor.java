@@ -23,8 +23,7 @@ public class Actor {
      * Class Constructor, empty values.
      */
     Actor() {
-        this.name = "";
-        this.movies = new ArrayList<>();
+        this("");
     }
 
     /**

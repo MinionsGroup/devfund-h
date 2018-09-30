@@ -85,7 +85,7 @@ public abstract class Ship {
         if (column < 0 || column >= ocean.getShipArray().length) {
             return false;
         }
-        return ocean.getShipArray()[row][column].getShipType().equals("empty");
+        return !ocean.isOccupied(row, column);
 
     }
 

@@ -1,6 +1,7 @@
 package org.minions.devfund.damianvp.moviedatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Movie class.
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 public class Movie {
 
     private String name;
-    private ArrayList<Actor> actors;
+    private List<Actor> actors;
     private double rating;
 
     /**
@@ -24,9 +25,7 @@ public class Movie {
      * Constructor with empty name.
      */
     Movie() {
-        this.name = "";
-        this.actors = new ArrayList<>();
-        this.rating = 0.0;
+        this("");
     }
 
     /**
@@ -49,7 +48,7 @@ public class Movie {
      * Method to get the Actors list.
      * @return ArrayList<Actor>, actors.
      */
-    ArrayList<Actor> getActors() {
+    List<Actor> getActors() {
         return this.actors;
     }
 
