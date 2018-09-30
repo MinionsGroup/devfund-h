@@ -8,8 +8,8 @@ import java.util.Comparator;
  * Class MovieDatabase.
  */
 public class MovieDatabase {
-    private ArrayList<Movie> movieList;
-    private ArrayList<Actor> actorList;
+    private List<Movie> movieList;
+    private List<Actor> actorList;
 
     /**
      * Constructor.

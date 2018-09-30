@@ -1,13 +1,14 @@
 package org.minions.devfund.benjamin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class Actor.
  */
 public class Actor {
     private String name;
-    private ArrayList<Movie> movies;
+    private List<Movie> movies;
     /**
      *
      * Constructor.
@@ -43,11 +44,12 @@ public class Actor {
     }
 
     /**
-     * Function only to help the test of Addmovies function.
-     * @return string.
+     * Gets the actor's movies list attribute value.
+     *
+     * @return movies list.
      */
-    public String getMovie() {
-        return movies.get(0).getName();
+    public List<Movie> getMovies() {
+        return movies;
     }
 
     /**

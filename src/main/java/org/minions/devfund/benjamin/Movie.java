@@ -1,13 +1,14 @@
 package org.minions.devfund.benjamin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Movie class.
  */
 public class Movie {
     private String name;
-    private ArrayList<Actor> actors;
+    private List<Actor> actors;
     private double rating;
 
     /**
@@ -15,8 +16,17 @@ public class Movie {
      * Constructor.
      */
     public Movie() {
-       actors = new ArrayList<>();
-       rating = 0.0;
+       this("");
+    }
+
+    /**
+     * Initializes an instance of {@link Movie}.
+     *
+     * @param name movie's name value.
+     */
+    public Movie(final String name) {
+        this.name = name;
+        actors = new ArrayList<>();
     }
 
     /**
