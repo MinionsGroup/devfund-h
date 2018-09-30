@@ -111,41 +111,102 @@ public class ShipTest {
     }
 
     /**
-     * Method to test shootAt method.
+     * Shoot at empty place for a not sunk ship test.
      */
     @Test
-    public void testShootAt() {
-        final int three = 3;
-        final int four = 4;
-        Ocean ocean = new Ocean();
-        BattleShip ship = new BattleShip();
-        ship.placeShipAt(0, 0, true, ocean);
-        assertTrue(ship.shootAt(0, 0));
-        assertTrue(ship.shootAt(0, three));
-        assertTrue(ship.shootAt(0, four));
-        assertFalse(ship.shootAt(1, four));
+    public void testShootAtEmptyPlaceHorizontal() {
+        final int row = 0;
+        final int column = 0;
+        final int rowLimit = 19;
+        final int columnLimit = 19;
+        final Ocean ocean = new Ocean();
+        final Ship ship = new Submarine();
+        ship.placeShipAt(row, column, true, ocean);
+        assertFalse(ship.shootAt(rowLimit, columnLimit));
     }
 
     /**
-     * Method to test shootAt method.
+     * Shoot at empty place for a not sunk ship test.
      */
     @Test
-    public void testShootAt2() {
-        final int length = 8;
-        final int three = 3;
-        final int four = 4;
-        Ocean ocean = new Ocean();
-        BattleShip ship = new BattleShip();
-        ship.placeShipAt(0, 0, true, ocean);
+    public void testShootAtEmptyPlaceHorizontal2() {
+        final int row = 0;
+        final int column = 0;
+        final Ocean ocean = new Ocean();
+        final Ship ship = new Submarine();
+        ship.placeShipAt(1, 1, true, ocean);
+        assertFalse(ship.shootAt(row, column));
+    }
 
-        for (int j = 0; j < length; j++) {
-            ocean.shootAt(0, j);
-        }
+    /**
+     * Shoot at empty place for a not sunk ship test.
+     */
+    @Test
+    public void testShootAtEmptyPlaceVertical() {
+        final int row = 0;
+        final int column = 0;
+        final int rowLimit = 19;
+        final int columnLimit = 19;
+        final Ocean ocean = new Ocean();
+        final Ship ship = new Submarine();
+        ship.placeShipAt(row, column, false, ocean);
+        assertFalse(ship.shootAt(rowLimit, columnLimit));
+    }
 
-        assertFalse(ship.shootAt(0, three));
-        assertFalse(ship.shootAt(0, four));
-        assertFalse(ship.shootAt(1, four));
+    /**
+     * Shoot at empty place for a not sunk ship test.
+     */
+    @Test
+    public void testShootAtEmptyPlaceVertical2() {
+        final int row = 0;
+        final int column = 0;
+        final Ocean ocean = new Ocean();
+        final Ship ship = new Submarine();
+        ship.placeShipAt(1, 1, false, ocean);
+        assertFalse(ship.shootAt(row, column));
+    }
 
+    /**
+     * Shoot in a ship placed horizontal.
+     */
+    @Test
+    public void testShootAfterSunkColumn() {
+        final int row = 0;
+        final int column = 0;
+        final int columnSubmarineZero = 0;
+        final int columnSubmarineOne = 1;
+        final int columnSubmarineTwo = 2;
+        final int columnSubmarineThree = 3;
+        final Ocean ocean = new Ocean();
+        final Ship ship = new Submarine();
+        ship.placeShipAt(row, column, true, ocean);
+        ship.shootAt(row, columnSubmarineZero);
+        ship.shootAt(row, columnSubmarineOne);
+        ship.shootAt(row, columnSubmarineTwo);
+        ship.shootAt(row, columnSubmarineThree);
+        assertTrue(ship.isSunk());
+    }
+
+
+    /**
+     * Shoot in a ship placed vertical.
+     */
+    @Test
+    public void testShootAfterSunkRow() {
+        final int row = 0;
+        final int column = 0;
+        final int rowSubmarineZero = 0;
+        final int rowSubmarineOne = 1;
+        final int rowSubmarineTwo = 2;
+        final int rowSubmarineThree = 3;
+        final Ocean ocean = new Ocean();
+        final Ship ship = new Submarine();
+        ship.placeShipAt(row, column, false, ocean);
+        ship.shootAt(rowSubmarineZero, column);
+        ship.shootAt(rowSubmarineOne, column);
+        ship.shootAt(rowSubmarineTwo, column);
+        ship.shootAt(rowSubmarineThree, column);
+        assertTrue(ship.isSunk());
     }
 
     /**
@@ -201,74 +262,6 @@ public class ShipTest {
         final EmptySea ship = new EmptySea();
         ship.shootAt(row, column);
         assertEquals(expectedToStringValue, ship.toString());
-    }
-
-    /**
-     * method to test shootAt method.
-     */
-    @Test
-    public void testShootAt3() {
-        Ocean ocean = new Ocean();
-        BattleShip ship = new BattleShip();
-        final int column3 = 3;
-        final int column4 = 4;
-        final int column8 = 8;
-        final int column10 = 10;
-        final int twentyone = 21;
-
-        ship.placeShipAt(0, 0, true, ocean);
-        assertTrue(ship.shootAt(0, 0));
-        assertTrue(ship.shootAt(0, column3));
-        assertTrue(ship.shootAt(0, column4));
-        assertFalse(ship.shootAt(1, column4));
-        assertFalse(ship.shootAt(2, column4));
-        assertFalse(ship.shootAt(column3, column4));
-        assertFalse(ship.shootAt(-1, 0));
-        assertFalse(ship.shootAt(column10, 1));
-        assertFalse(ship.shootAt(column8, -1));
-        assertFalse(ship.shootAt(twentyone, 1));
-        assertFalse(ship.shootAt(1, twentyone));
-
-
-        ship.placeShipAt(column3, 1, false, ocean);
-        assertFalse(ship.shootAt(0, column4));
-        assertFalse(ship.shootAt(1, column4));
-        assertFalse(ship.shootAt(2, 2));
-        assertTrue(ship.shootAt(column3, 1));
-        assertFalse(ship.shootAt(1, column8));
-        assertFalse(ship.shootAt(1, column10));
-
-        ship.placeShipAt(1, column3, false, ocean);
-        assertFalse(ship.shootAt(1, 0));
-        assertFalse(ship.shootAt(1, 1));
-        assertFalse(ship.shootAt(2, 0));
-        assertTrue(ship.shootAt(column4, column3));
-        assertTrue(ship.shootAt(column8, column3));
-        assertFalse(ship.shootAt(column10, column3));
-
-    }
-
-    /**
-     * method to test shoot at with battleship.
-     */
-    @Test
-    public void testShootAtWithShip() {
-        Ocean ocean = new Ocean();
-        BattleShip ship = new BattleShip();
-        final int eight = 8;
-        final int four = 4;
-        final int three = 3;
-        ship.placeShipAt(0, 0, true, ocean);
-        for (int j = 0; j < eight; j++) {
-            ship.shootAt(0, j);
-        }
-
-        assertFalse(ship.shootAt(0, three));
-        assertFalse(ship.shootAt(0, four));
-        assertFalse(ship.shootAt(1, four));
-        assertFalse(ship.shootAt(2, four));
-        assertFalse(ship.shootAt(three, four));
-        assertFalse(ship.shootAt(four, three));
     }
 
     /**

@@ -212,10 +212,9 @@ public abstract class Ship {
      *         false, if position does not in ship range.
      */
     private boolean isShipRange(int row, int column) {
-        return this.horizontal ? row == this.bowRow
-                && (column - (this.bowColumn + hit.length)) * (column - this.bowColumn) <= 0
-                : column == this.bowColumn
-                && (row - (this.bowRow + hit.length)) * (row - this.bowRow) <= 0;
+        boolean isInRowRange = bowRow <= row && row < bowRow + length;
+        boolean isInColumnRange = bowColumn <= column && column < bowColumn + length;
+        return horizontal ? isInColumnRange : isInRowRange;
     }
 
     /**
