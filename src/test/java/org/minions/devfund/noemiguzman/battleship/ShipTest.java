@@ -41,19 +41,11 @@ public class ShipTest {
     @Test
     public void testOkToPlaceShipAtFalse() {
         final int column10 = 10;
-        final int column13 = 13;
-        final int column4 = 4;
-
-        Ship ship1 = new BattleShip();
-        Ship ship2 = new BattleShip();
         Ocean ocean = new Ocean();
 
+        Ship ship1 = new BattleShip();
         assertFalse(ship1.okToPlaceShipAt(0, column10, true, ocean));
         ship1.placeShipAt(0, column10, true, ocean);
-        assertFalse(ship2.okToPlaceShipAt(1, 0, false, ocean));
-        assertFalse(ship2.okToPlaceShipAt(1, 0, true, ocean));
-        assertFalse(ship2.okToPlaceShipAt(1, column4, true, ocean));
-        assertFalse(ship2.okToPlaceShipAt(1, column13, false, ocean));
     }
 
     /**
