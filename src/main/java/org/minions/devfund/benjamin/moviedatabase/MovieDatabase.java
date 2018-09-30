@@ -1,4 +1,4 @@
-package org.minions.devfund.benjamin;
+package org.minions.devfund.benjamin.moviedatabase;
 
 import java.util.ArrayList;
 import java.util.List;

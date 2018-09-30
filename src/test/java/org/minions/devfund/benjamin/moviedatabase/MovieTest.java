@@ -1,5 +1,7 @@
-package org.minions.devfund.benjamin;
+package org.minions.devfund.benjamin.moviedatabase;
+
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 /**

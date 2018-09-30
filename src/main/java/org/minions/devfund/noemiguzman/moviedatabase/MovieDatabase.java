@@ -3,7 +3,6 @@ package org.minions.devfund.noemiguzman.moviedatabase;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * class movie data base.
@@ -43,25 +42,28 @@ public class MovieDatabase {
      * @param actors array for the actor.
      */
     public void addMovie(final String name, final String[] actors) {
-        if (movieList.stream().noneMatch(movieObject -> movieObject.getName().equals(name))) {
-            Movie newMovie = new Movie(name);
-            newMovie.addActor(actors);
-            movieList.add(newMovie);
-            addNewActors(actors);
+        if (movieList.stream().noneMatch(movie -> name.equals(movie.getName()))) {
+            Movie movie = new Movie(name);
+            movie.addActor(actors);
+            movieList.add(movie);
+            addActors(name, actors);
         }
     }
 
     /**
      * Adds the new actor.
      *
+     * @param movieName movieName.
      * @param actors list.
      */
-    private void addNewActors(final String[] actors) {
-        boolean verify = actorList.stream().noneMatch(actor -> actor.getName().equals(actor.getName()));
-        Stream.of(actors)
-                .map(Actor::new)
-                .filter(actor -> verify)
-                .forEach(actor -> actorList.add(actor));
+    private void addActors(final String movieName, final String[] actors) {
+        for (String actor : actors) {
+            if (actorList.stream().noneMatch(a -> actor.equals(a.getName()))) {
+                Actor currentActor = new Actor(actor);
+                currentActor.addMovie(new Movie(movieName));
+                actorList.add(currentActor);
+            }
+        }
     }
     /**
      * Add a rating given movie name.
@@ -69,13 +71,7 @@ public class MovieDatabase {
      * @param rating the rating value
      */
     public void addRating(final String name, double rating) {
-        for (Movie movie: movieList) {
-            if (movie.getName().equals(name)) {
-                movie.setRating(rating);
-            } else {
-                continue;
-            }
-        }
+        movieList.stream().filter(m -> name.equals(m.getName())).forEach(m -> m.setRating(rating));
     }
 
     /**
