@@ -45,15 +45,15 @@ public class Ocean {
      */
     public void placeAllShipsRandomly() {
         Random rng = new Random();
-        ShipFactory factory = new ShipFactory();
         FLEET.keySet().forEach(t -> {
             int successCount = 0;
             while (successCount < FLEET.get(t)) {
                 int row = rng.nextInt(SIZE);
                 int col = rng.nextInt(SIZE);
                 boolean horizontal = rng.nextBoolean();
-                if (factory.getShip(t).okToPlaceShipAt(row, col, horizontal, this)) {
-                    factory.getShip(t).placeShipAt(row, col, horizontal, this);
+                final Ship ship = ShipFactory.getShip(t);
+                if (ship.okToPlaceShipAt(row, col, horizontal, this)) {
+                    ship.placeShipAt(row, col, horizontal, this);
                     successCount++;
                 }
             }
