@@ -26,18 +26,18 @@ public class MovieDatabase {
      * @param actors Array of actors.
      */
     void addMovie(final String name, final String[] actors) {
-        Movie newMovie;
-        newMovie = new Movie().setName(name).isMovieAlreadyAdded(movieHash)
-                ? new Movie().setName(name).getMovieAlreadyExist(movieHash)
-                : new Movie().setName(name);
+        Movie newMovie = new Movie().setName(name);
+        newMovie = newMovie.isMovieAlreadyAdded(movieHash)
+                ? newMovie.getMovieAlreadyExist(movieHash)
+                : newMovie;
         if (!newMovie.isMovieAlreadyAdded(movieHash)) {
             movieHash.add(newMovie);
         }
         for (String actorName : actors) {
-            Actor newActor;
-            newActor = new Actor().setName(actorName).isActorAlreadyAdded(actorHash)
-                    ? new Actor().setName(actorName).getActorAlreadyExist(actorHash)
-                    : new Actor().setName(actorName);
+            Actor newActor = new Actor().setName(actorName);
+            newActor = newActor.isActorAlreadyAdded(actorHash)
+                    ? newActor.getActorAlreadyExist(actorHash)
+                    : newActor;
             newMovie.setActors(newActor);
             newActor.setMovies(newMovie);
             if (!newActor.isActorAlreadyAdded(actorHash)) {
