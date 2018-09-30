@@ -80,7 +80,7 @@ public class Ocean {
      */
     public boolean shootAt(int row, int column) {
         shotsFired++;
-        if (isOccupied(row, column) && !ships[row][column].isSunk() && ships[row][column].shootAt(row, column)) {
+        if (isOccupied(row, column) && ships[row][column].shootAt(row, column)) {
             if (ships[row][column].isSunk()) {
                 shipsSunk++;
             }
