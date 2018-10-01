@@ -171,10 +171,10 @@ public class Ocean {
      * @return true if border is occupied.
      */
     boolean isBorderOccupied(final int row, final int column) {
-        int startRow = row + 1 < SHIPLENGTH ? row + 1 : row;
-        int endRow = row - 1 >= 0 ? row - 1 : row;
-        int startColumn = column + 1 < SHIPLENGTH ? column + 1 : column;
-        int endColumn = column - 1 >= 0 ? column - 1 : column;
+        final int startRow = row + 1 < SHIPLENGTH ? row + 1 : row;
+        final int endRow = row - 1 >= 0 ? row - 1 : row;
+        final int startColumn = column + 1 < SHIPLENGTH ? column + 1 : column;
+        final int endColumn = column - 1 >= 0 ? column - 1 : column;
         return isOccupied(startRow, column) || isOccupied(startRow, startColumn) || isOccupied(startRow, endColumn)
                 || isOccupied(endRow, column) || isOccupied(endRow, startColumn) || isOccupied(endRow, endColumn)
                 || isOccupied(row, endColumn) || isOccupied(row, startColumn);
