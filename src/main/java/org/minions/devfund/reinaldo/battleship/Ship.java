@@ -50,7 +50,9 @@ public abstract class Ship {
     private boolean isHorizontalOrVerticalLineOccupied(final int row, final int column, final int iterator,
                                                        final boolean horizontal, final Ocean ocean) {
         for (int j = iterator; j < iterator + length; j++) {
-            final boolean isOccupied = horizontal ? ocean.isOccupied(row, j) : ocean.isOccupied(j, column);
+            final boolean occupiedHorizontal = ocean.isOccupied(row, j) || ocean.isBorderOccupied(row, j);
+            final boolean occupiedVertital = ocean.isOccupied(j, column) || ocean.isBorderOccupied(j, column);
+            final boolean isOccupied = horizontal ? occupiedHorizontal : occupiedVertital;
             if (isOccupied) {
                 return false;
             }
