@@ -1,7 +1,5 @@
 package org.minions.devfund.richard.battleship;
 
-import java.util.Random;
-
 /**
  * Class.
  */
@@ -87,25 +85,6 @@ final class ShipHelper {
     static void setValidPosition(final boolean value) {
         if (validPosition) {
             ShipHelper.validPosition = value;
-        }
-    }
-
-    /**
-     * @param ship  ship.
-     * @param ocean ocean.
-     */
-    static void addShip(final Ocean ocean, final Ship ship) {
-        Random random = new Random();
-        int shipNumber = ship.getNumber();
-        while (shipNumber > 0) {
-            Ship myShip = ShipFactory.getShip(ship.getShipType());
-            boolean horizontal = random.nextBoolean();
-            int row = random.nextInt(ocean.getShipArray().length);
-            int column = random.nextInt(ocean.getShipArray().length);
-            if (myShip.okToPlaceShipAt(row, column, horizontal, ocean)) {
-                myShip.placeShipAt(row, column, horizontal, ocean);
-                shipNumber--;
-            }
         }
     }
 }

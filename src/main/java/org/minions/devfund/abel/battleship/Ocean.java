@@ -11,14 +11,15 @@ import java.util.Random;
 public class Ocean {
 
     private static final int SIZE = 20;
-    private Ship[][] ships;
-    private int shotsFired;
-    private int hitCount;
-    private int shipsSunk;
     private static final int TOTAL_SHIPS = 13;
     private static final int THREE = 3;
     private static final int FOUR = 4;
     private static final Map<String, Integer> FLEET;
+    private Ship[][] ships;
+    private int shotsFired;
+    private int hitCount;
+    private int shipsSunk;
+    private Random random;
 
     static {
         FLEET = new HashMap<>();
@@ -38,19 +39,19 @@ public class Ocean {
         for (Ship[] row : this.ships) {
             Arrays.fill(row, new EmptySea());
         }
+        random = new Random();
     }
 
     /**
      * Place all Ships Randomly.
      */
     public void placeAllShipsRandomly() {
-        Random rng = new Random();
         FLEET.keySet().forEach(t -> {
             int successCount = 0;
             while (successCount < FLEET.get(t)) {
-                int row = rng.nextInt(SIZE);
-                int col = rng.nextInt(SIZE);
-                boolean horizontal = rng.nextBoolean();
+                int row = random.nextInt(SIZE);
+                int col = random.nextInt(SIZE);
+                boolean horizontal = random.nextBoolean();
                 final Ship ship = ShipFactory.getShip(t);
                 if (ship.okToPlaceShipAt(row, col, horizontal, this)) {
                     ship.placeShipAt(row, col, horizontal, this);

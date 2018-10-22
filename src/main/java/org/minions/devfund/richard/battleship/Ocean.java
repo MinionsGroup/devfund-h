@@ -2,6 +2,7 @@ package org.minions.devfund.richard.battleship;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Class.
@@ -10,12 +11,6 @@ public class Ocean {
 
     private static final int OCEAN_LENGTH = 20;
     private static final int SHIPS_QUANTITY = 13;
-
-    private Ship[][] ships;
-    private int shotsFired;
-    private int hitCount;
-    private int shipsSunk;
-
     private static final List<String> SHIP_LIST = Arrays.asList(
             "battleship",
             "battlecruiser",
@@ -24,6 +19,11 @@ public class Ocean {
             "destroyer",
             "submarine"
     );
+    private Ship[][] ships;
+    private int shotsFired;
+    private int hitCount;
+    private int shipsSunk;
+    private Random random;
 
     /**
      * Ocean.
@@ -31,13 +31,26 @@ public class Ocean {
     Ocean() {
         ships = new Ship[OCEAN_LENGTH][OCEAN_LENGTH];
         Arrays.stream(ships).forEach(row -> Arrays.fill(row, new EmptySea()));
+        random = new Random();
     }
 
     /**
      * place all Ships randomly.
      */
     void placeAllShipsRandomly() {
-        SHIP_LIST.forEach(ship -> ShipHelper.addShip(this, ShipFactory.getShip(ship)));
+        for (String ship : SHIP_LIST) {
+            int shipNumber = ShipFactory.getShip(ship).getNumber();
+            while (shipNumber > 0) {
+                Ship myShip = ShipFactory.getShip(ship);
+                boolean horizontal = random.nextBoolean();
+                int row = random.nextInt(getShipArray().length);
+                int column = random.nextInt(getShipArray().length);
+                if (myShip.okToPlaceShipAt(row, column, horizontal, this)) {
+                    myShip.placeShipAt(row, column, horizontal, this);
+                    shipNumber--;
+                }
+            }
+        }
     }
 
     /**

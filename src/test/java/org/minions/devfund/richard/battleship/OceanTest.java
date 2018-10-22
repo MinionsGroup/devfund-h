@@ -1,9 +1,9 @@
 package org.minions.devfund.richard.battleship;
 
+import java.util.stream.IntStream;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -22,7 +22,6 @@ public class OceanTest {
     public void setup() {
         ocean = new Ocean();
     }
-
 
     /**
      * Test.

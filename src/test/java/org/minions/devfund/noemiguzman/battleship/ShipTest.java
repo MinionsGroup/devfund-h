@@ -1,6 +1,6 @@
 package org.minions.devfund.noemiguzman.battleship;
 
-
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -11,6 +11,17 @@ import static org.junit.Assert.assertTrue;
  * class to test ship methods.
  */
 public class ShipTest {
+
+    private Ocean ocean;
+
+    /**
+     * Before.
+     */
+    @Before
+    public void setup() {
+        ocean = new Ocean();
+    }
+
     /**
      * test get ship type.
      */
@@ -30,7 +41,6 @@ public class ShipTest {
         final int row15 = 15;
         final int column10 = 10;
         Ship ship = new BattleShip();
-        Ocean ocean = new Ocean();
         assertFalse(ship.okToPlaceShipAt(0, column10, true, ocean));
         assertFalse(ship.okToPlaceShipAt(row15, column17, false, ocean));
     }
@@ -41,8 +51,6 @@ public class ShipTest {
     @Test
     public void testOkToPlaceShipAtFalse() {
         final int column10 = 10;
-        Ocean ocean = new Ocean();
-
         Ship ship1 = new BattleShip();
         assertFalse(ship1.okToPlaceShipAt(0, column10, true, ocean));
         ship1.placeShipAt(0, column10, true, ocean);
@@ -54,7 +62,6 @@ public class ShipTest {
     @Test
     public void testIsSunk() {
         final int place8 = 8;
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
         for (int j = 0; j < place8; j++) {
@@ -71,7 +78,6 @@ public class ShipTest {
     @Test
     public void testIsSunk2() {
         final int place7 = 7;
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
         for (int j = 0; j < place7; j++) {
@@ -88,7 +94,6 @@ public class ShipTest {
     @Test
     public void testToString() {
         final int place8 = 8;
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
         for (int j = 0; j < place8; j++) {
@@ -104,7 +109,6 @@ public class ShipTest {
      */
     @Test
     public void testToStringWithShip() {
-        Ocean ocean = new Ocean();
         final int place7 = 7;
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
@@ -121,7 +125,6 @@ public class ShipTest {
      */
     @Test
     public void testShootAt() {
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         final int column3 = 3;
         final int column4 = 4;
@@ -162,7 +165,6 @@ public class ShipTest {
      */
     @Test
     public void testShootAtWithShip() {
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         final int column8 = 8;
         final int column4 = 4;

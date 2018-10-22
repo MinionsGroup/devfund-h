@@ -8,12 +8,8 @@ import java.util.Random;
  * Ocean class.
  */
 public class Ocean {
-    static final int LENGTH = 20;
-    static final int TOTAL_SHIPS = 13;
-    private Ship[][] ships;
-    private int shotsFired;
-    private int hitCount;
-    private int shipsSunk;
+    private static final int LENGTH = 20;
+    private static final int TOTAL_SHIPS = 13;
     private static final int BATTLESHIP_NUMBER = 1;
     private static final int BATTLE_CRUISER_NUMBER = 1;
     private static final int CRUISER_NUMBER = 2;
@@ -29,6 +25,11 @@ public class Ocean {
         FLEET.put("Destroyer", DESTROYER_NUMBER);
         FLEET.put("Submarine", SUBMARINE_NUMBER);
     }
+    private Ship[][] ships;
+    private int shotsFired;
+    private int hitCount;
+    private int shipsSunk;
+    private Random random;
 
     /**
      * Ocean constructor.
@@ -42,13 +43,13 @@ public class Ocean {
                 emptySea.placeShipAt(i, j, true, this);
             }
         }
+        random = new Random();
     }
 
     /**
      * methohd to place all ship randomly.
      */
     void placeAllShipsRandomly() {
-        Random random = new Random();
         for (Map.Entry<String, Integer> shipFleet : FLEET.entrySet()) {
             String shipType = shipFleet.getKey();
             int shipQuantity = shipFleet.getValue();

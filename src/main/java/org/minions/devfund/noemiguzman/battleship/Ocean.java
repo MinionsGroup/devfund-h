@@ -8,12 +8,8 @@ import java.util.Random;
  * Ocean class.
  */
 public class Ocean {
-    static final int SIZE_OCEAN = 20;
-    static final int NRO_SHIPS = 13;
-    private Ship[][] ships;
-    private int shotsFired;
-    private int hitCount;
-    private int shipsSunk;
+    private static final int SIZE_OCEAN = 20;
+    private static final int NRO_SHIPS = 13;
     private static final int BATTLESHIP_NUMBER = 1;
     private static final int BATTLE_CRUISER_NUMBER = 1;
     private static final int CRUISER_NUMBER = 2;
@@ -21,7 +17,6 @@ public class Ocean {
     private static final int DESTROYER_NUMBER = 3;
     private static final int SUBMARINE_NUMBER = 4;
     private static final Map<String, Integer> FLEET_MAP = new HashMap<>();
-
     static {
         FLEET_MAP.put("BattleShip", BATTLESHIP_NUMBER);
         FLEET_MAP.put("BattleCruiser", BATTLE_CRUISER_NUMBER);
@@ -30,13 +25,17 @@ public class Ocean {
         FLEET_MAP.put("Destroyer", DESTROYER_NUMBER);
         FLEET_MAP.put("Submarine", SUBMARINE_NUMBER);
     }
+    private Ship[][] ships;
+    private int shotsFired;
+    private int hitCount;
+    private int shipsSunk;
+    private Random random;
 
     /**
      * Creates an empty ocean (fills the ships array with a bunch of EmptySea instances).
      * Also initializes any game variables, such as how many shots have been fired.
      */
     public Ocean() {
-
         ships = new Ship[SIZE_OCEAN][SIZE_OCEAN];
         for (int i = 0; i < SIZE_OCEAN; i++) {
             for (int j = 0; j < SIZE_OCEAN; j++) {
@@ -44,6 +43,7 @@ public class Ocean {
                 emptySea.placeShipAt(i, j, true, this);
             }
         }
+        random = new Random();
     }
 
     /**
@@ -73,7 +73,6 @@ public class Ocean {
      * @param ship object
      */
     public void putRandom(final Ship ship) {
-        Random random = new Random();
         int row;
         int column;
         boolean horizontalRando;

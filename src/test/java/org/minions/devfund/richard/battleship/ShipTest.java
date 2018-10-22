@@ -1,16 +1,27 @@
 package org.minions.devfund.richard.battleship;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test Class.
  */
 public class ShipTest {
+
+    private Ocean ocean;
+
+    /**
+     * Before.
+     */
+    @Before
+    public void setup() {
+        ocean = new Ocean();
+    }
 
     /**
      * Test.
@@ -32,7 +43,6 @@ public class ShipTest {
         final int columnSubmarineZero = 0;
         final int columnSubmarineOne = 1;
         final int columnSubmarineTwo = 2;
-        final Ocean ocean = new Ocean();
         final Ship ship = new Submarine();
         final String expectedToString = "x";
         ship.placeShipAt(row, column, true, ocean);
@@ -49,7 +59,6 @@ public class ShipTest {
     public void testShipIsHorizontal() {
         final int row = 0;
         final int column = 0;
-        final Ocean ocean = new Ocean();
         final Ship ship = new Submarine();
         final boolean expectedHorizontalValue = true;
         ship.placeShipAt(row, column, true, ocean);
@@ -61,7 +70,6 @@ public class ShipTest {
      */
     @Test
     public void testShipSetHorizontal() {
-        final Ocean ocean = new Ocean();
         final Ship ship = new Submarine();
         final boolean expectedHorizontalValue = true;
         ship.placeShipAt(0, 0, true, ocean);
@@ -73,7 +81,6 @@ public class ShipTest {
      */
     @Test
     public void testShipSetVertical() {
-        final Ocean ocean = new Ocean();
         final Ship ship = new Submarine();
         final boolean expectedHorizontalValue = false;
         ship.placeShipAt(0, 0, false, ocean);
@@ -89,7 +96,6 @@ public class ShipTest {
         final int column = 0;
         final int rowLimit = 19;
         final int columnLimit = 19;
-        final Ocean ocean = new Ocean();
         final Ship ship = new Submarine();
         ship.placeShipAt(row, column, true, ocean);
         assertFalse(ship.shootAt(rowLimit, columnLimit));
@@ -105,7 +111,6 @@ public class ShipTest {
         final int columnSubmarineZero = 0;
         final int columnSubmarineOne = 1;
         final int columnSubmarineTwo = 2;
-        final Ocean ocean = new Ocean();
         final Ship ship = new Submarine();
         ship.placeShipAt(row, column, true, ocean);
         ship.shootAt(row, columnSubmarineZero);
@@ -122,7 +127,6 @@ public class ShipTest {
     public void testSetShipHead() {
         final int expectedRow = 0;
         final int expectedColumn = 0;
-        final Ocean ocean = new Ocean();
         final Ship ship = new Submarine();
         ship.placeShipAt(0, 0, true, ocean);
         assertEquals(expectedRow, ship.getBowRow());
@@ -247,7 +251,6 @@ public class ShipTest {
      */
     @Test
     public void testOkToPlaceShipAt() {
-        Ocean ocean = new Ocean();
         Ship ship = new Submarine();
         final int nineTeen = 19;
         assertTrue(ship.okToPlaceShipAt(0, 0, true, ocean));
@@ -285,7 +288,6 @@ public class ShipTest {
         final int eight = 8;
         final int teen = 10;
         final int nineTeen = 19;
-        final Ocean ocean = new Ocean();
         final Ship battleShip = new BattleShip();
         battleShip.placeShipAt(zero, zero, true, ocean);
         assertTrue(battleShip.shootAt(zero, zero));
@@ -322,7 +324,6 @@ public class ShipTest {
         final int eight = 8;
         final int teen = 10;
         final int nineTeen = 19;
-        final Ocean ocean = new Ocean();
         final Ship battleShip = new BattleShip();
         battleShip.placeShipAt(zero, zero, false, ocean);
         assertTrue(battleShip.shootAt(zero, zero));

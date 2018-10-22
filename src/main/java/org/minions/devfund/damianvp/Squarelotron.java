@@ -58,12 +58,24 @@ public class Squarelotron {
         int verticalLimit = this.size - ring;
         for (int x = horizontalLimit; x <= verticalLimit; x++) {
             for (int y = horizontalLimit; y <= verticalLimit; y++) {
-                if (x == horizontalLimit || x == verticalLimit || y == horizontalLimit || y == verticalLimit) {
+                if (isInRing(horizontalLimit, verticalLimit, x, y)) {
                     newSquarelotron.squarelotron[(this.size - 1) - x][y] = this.squarelotron[x][y];
                 }
             }
         }
         return newSquarelotron;
+    }
+
+    /**
+     * Is in ring.
+     * @param horizontalLimit horizontalLimit
+     * @param verticalLimit verticalLimit
+     * @param x current x position.
+     * @param y current y position.
+     * @return if the position is in a ring.
+     */
+    private boolean isInRing(int horizontalLimit, int verticalLimit, int x, int y) {
+        return x == horizontalLimit || y == horizontalLimit || x == verticalLimit || y == verticalLimit;
     }
 
     /**
@@ -77,7 +89,7 @@ public class Squarelotron {
         int verticalLimit = this.size - ring;
         for (int x = horizontalLimit; x <= verticalLimit; x++) {
             for (int y = horizontalLimit; y <= verticalLimit; y++) {
-                if (x == horizontalLimit || y == horizontalLimit || x == verticalLimit || y == verticalLimit) {
+                if (isInRing(horizontalLimit, verticalLimit, x, y)) {
                     newSquarelotron.squarelotron[x][y] = this.squarelotron[y][x];
                 }
             }

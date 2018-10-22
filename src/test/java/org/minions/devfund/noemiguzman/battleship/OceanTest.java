@@ -1,25 +1,34 @@
 package org.minions.devfund.noemiguzman.battleship;
 
-
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Class to test Ocean class.
  */
 
 public class OceanTest {
+
+    private Ocean ocean;
+
+    /**
+     * Before.
+     */
+    @Before
+    public void setup() {
+        ocean = new Ocean();
+    }
+
     /**
      * method to test constructor.
      */
-    @Before
+    @Test
     public void testConstructor() {
         final int sizeOcean = 20;
-        Ocean ocean = new Ocean();
         assertEquals(0, ocean.getHitCount());
         assertEquals(0, ocean.getShipsSunk());
         assertEquals(0, ocean.getShotsFired());
@@ -28,7 +37,6 @@ public class OceanTest {
                 assertEquals("empty", ocean.getShipArray()[i][j].getShipType());
             }
         }
-
     }
 
     /**
@@ -38,7 +46,6 @@ public class OceanTest {
     public void testPlaceAllShipsRandomly() {
         final int sizeOcean = 20;
         final int expectedShipCount = 61;
-        Ocean ocean = new Ocean();
         ocean.placeAllShipsRandomly();
         assertEquals(0, ocean.getHitCount());
         assertEquals(0, ocean.getShipsSunk());
@@ -62,7 +69,6 @@ public class OceanTest {
     @Test
     public void testIsOccupied1() {
         final int sizeOcean = 20;
-        Ocean ocean = new Ocean();
         for (int i = 0; i < sizeOcean; i++) {
             for (int j = 0; j < sizeOcean; j++) {
                 assertFalse(ocean.isOccupied(i, j));
@@ -76,7 +82,6 @@ public class OceanTest {
     @Test
     public void testIsOccupiedWithShip() {
         final int size8 = 8;
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
         for (int j = 0; j < size8; j++) {
@@ -90,7 +95,6 @@ public class OceanTest {
      */
     @Test
     public void testShootAt1() {
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         final int expectedShot = 3;
         ship.placeShipAt(0, 0, true, ocean);
@@ -107,7 +111,6 @@ public class OceanTest {
      */
     @Test
     public void testShootAtWithShip() {
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         final int place8 = 8;
         final int expectedShots = 10;
@@ -130,7 +133,6 @@ public class OceanTest {
     @Test
     public void testIsGameOver() {
         final int place8 = 8;
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         ship.placeShipAt(0, 0, true, ocean);
         for (int j = 0; j < place8; j++) {
@@ -147,7 +149,6 @@ public class OceanTest {
      */
     @Test
     public void testShootAtWithShipVertical() {
-        Ocean ocean = new Ocean();
         BattleShip ship = new BattleShip();
         final int place8 = 8;
         final int expectedShots = 10;
@@ -169,7 +170,6 @@ public class OceanTest {
      */
     @Test
     public void testIsGameOverTrue() {
-        Ocean ocean = new Ocean();
         assertFalse(ocean.isGameOver());
         ocean.placeAllShipsRandomly();
         Ship[][] ships = ocean.getShipArray();
